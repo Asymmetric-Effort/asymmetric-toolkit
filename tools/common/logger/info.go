@@ -6,7 +6,8 @@ import (
 
 
 func (o *Logger) Info(format string, v ...interface{}){
-	if o.level.Get() >= logLevel.Info {
+	switch o.level.Get() {
+	case logLevel.Info, logLevel.Debug:
 		o.Printf(logLevel.Info, format, v...)
 	}
 }
