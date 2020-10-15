@@ -13,7 +13,7 @@ const (
 	concurrencyFlag   ArgFlags = 7
 	timeoutFlag       ArgFlags = 8
 	delayFlag         ArgFlags = 9
-	TargetServersFlag ArgFlags = 10
+	targetServersFlag ArgFlags = 10
 	recordTypesFlag   ArgFlags = 11
 	debugFlag         ArgFlags = 12
 	forceFlag         ArgFlags = 13

@@ -4,6 +4,7 @@ import (
 	"asymmetric-effort/asymmetric-toolkit/tools/common/errors"
 	"asymmetric-effort/asymmetric-toolkit/tools/common/types"
 	"fmt"
+	"regexp"
 )
 
 func (o *Configuration) Parse(cliArguments []string) bool {
@@ -39,7 +40,7 @@ func (o *Configuration) Parse(cliArguments []string) bool {
 				lastFlag = dictionaryFlag
 				expected = expectValue
 			case "--TargetServers":
-				lastFlag = TargetServersFlag
+				lastFlag = targetServersFlag
 				expected = expectValue
 			case "--domain":
 				lastFlag = domainFlag
@@ -73,7 +74,8 @@ func (o *Configuration) Parse(cliArguments []string) bool {
 				errors.Fatal(1, fmt.Sprintf("Encountered unexpected argument: %s", args))
 			}
 		case expectValue:
-			if args[0:2] == "--" {
+			re:=regexp.MustCompile(`^--.+$`)
+			if re.MatchString(args) {
 				errors.Fatal(1, fmt.Sprintf("Expected value, not flag."))
 			}
 			switch lastFlag {
@@ -97,7 +99,7 @@ func (o *Configuration) Parse(cliArguments []string) bool {
 			case domainFlag:
 				expected = expectFlag
 				o.Domain.Set(args)
-			case TargetServersFlag:
+			case targetServersFlag:
 				expected = expectFlag
 				o.TargetServers.Set(args)
 			case forceFlag:

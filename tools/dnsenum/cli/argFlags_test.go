@@ -16,7 +16,7 @@ func TestArgFlags(t *testing.T) {
 	errors.Assert(concurrencyFlag == 7, "Expected 7")
 	errors.Assert(timeoutFlag == 8, "Expected 8")
 	errors.Assert(delayFlag == 9, "Expected 9")
-	errors.Assert(TargetServersFlag == 10, "Expected 10")
+	errors.Assert(targetServersFlag == 10, "Expected 10")
 	errors.Assert(recordTypesFlag == 11, "Expected 11")
 	errors.Assert(debugFlag == 12, "Expected 12")
 	errors.Assert(forceFlag == 13, "Expected 13")
