@@ -2,10 +2,13 @@ Documentation Index
 ===================
 
 ## Toolkit User Guides
-* TBD
+* [Pen Tester's Getting Started Guide](./user/getting-started.md)
+* [Developer's Getting Started Guide](./developer/getting-started.md)
+
 
 ## Tools 
-* TBD
+* [dnsEnum: DNS Enumeration Tool](../tools/dnsenum/README.md)
+* [vladTheInjector: Injection Tool](../tools/vladTheInjector/README.md)
 
 ## Tools: Common Code
 * [tools/common/casts](../tools/common/casts/README.md)
