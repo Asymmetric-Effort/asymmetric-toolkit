@@ -1,6 +1,6 @@
 package casts
 
-func BoolToInt(b bool) int {
+func BooltoInt(b bool) int {
 	if b {
 		return 1
 	}
