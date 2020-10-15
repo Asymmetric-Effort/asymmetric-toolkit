@@ -24,5 +24,4 @@ func (o *Logger) Setup(config *cli.Configuration) {
 	default:
 		panic("Invalid log destination.")
 	}
-	o.Info("Logger::Setup() complete.")
 }
