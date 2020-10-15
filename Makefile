@@ -7,20 +7,6 @@ help:
 	@echo "---------------------------"
 	@echo "(c) 2018 Sam Caldwell.  See LICENSE.txt"
 	@echo " "
+	@echo " This is a work in progress.  Sam should implement this...."
 	@echo " "
-
-routers/base:
-	@docker build --tag asymmetric-toolkit:routers.base \
-				  --compress \
-				  -f ${ROOT_DIR}/docker/routers/base.docker .
-
-tools/base:
-	@docker build --tag asymmetric-toolkit:tools.base \
-				  --compress \
-				  -f ${ROOT_DIR}/docker/tools/base.docker .
-
-osint/base:
-	@docker build --tag asymmetric-toolkit:osint.base \
-				  --compress \
-				  -f ${ROOT_DIR}/docker/osint/base.docker .
-
+	exit 1
