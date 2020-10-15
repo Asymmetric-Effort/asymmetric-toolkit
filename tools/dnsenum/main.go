@@ -22,10 +22,10 @@ func main() {
 		os.Exit(1)
 	}
 	log.Setup(&config)
+	log.Debug("Main(): Logger is setup and config is loaded.")
 
+	feed.Setup(&config,cli.SourceBufferSz,cli.DnsChars)	//Pass our configuration parameters (by reference)
 
-
-		feed.Setup(&config,cli.SourceBufferSz,cli.DnsChars)	//Pass our configuration parameters (by reference)
 	//args.Parse() //Parse arguments.
 
 	//var exit chan bool = make(chan bool, 1)
