@@ -10,3 +10,4 @@ Documentation Index
 ## Tools: Common Code
 * [tools/common/casts](../tools/common/casts/README.md)
 * [tools/common/counter](../tools/common/counter/README.md)
+* [tools/common/errors](../tools/common/errors/README.md)
