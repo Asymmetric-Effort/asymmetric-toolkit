@@ -1,5 +1,5 @@
-tools/common/source
-===================
+Common Source Generator
+=======================
 (c) 2020 Sam Caldwell.  All Rights Reserved.
 
 > This library exists to provide a commandline flag (e.g. -source),
