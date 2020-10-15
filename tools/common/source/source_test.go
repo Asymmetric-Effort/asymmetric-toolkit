@@ -3,7 +3,6 @@ package source
 import (
 	"asymmetric-effort/asymmetric-toolkit/tools/common/errors"
 	"testing"
-	"time"
 )
 
 func TestSourceHappy(t *testing.T) {
@@ -17,12 +16,3 @@ func TestSourceHappy(t *testing.T) {
 	errors.Assert(s.logger == nil, "expected nil logger")
 }
 
-func testTimeout(t *testing.T, to time.Duration) {
-	ticker := time.NewTicker(to * time.Second)
-	defer func() { ticker.Stop() }()
-	go func() { //Timeout
-		for _ = range ticker.C {
-			t.Fatal("Timeout exceeded")
-		}
-	}()
-}

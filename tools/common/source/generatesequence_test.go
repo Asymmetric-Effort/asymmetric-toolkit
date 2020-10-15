@@ -24,7 +24,7 @@ func TestSourceGenerateSequence(t *testing.T) {
 	s.config.MaxWordCount = 1000
 	s.allowedChars = func() *string { str := keyspace; return &str }()
 	s.feed = make(chan string, cli.SourceBufferSz)
-	go testTimeout(t, TestSetupGeneratorTimeout)
+	//go testTimeout(t, TestSetupGeneratorTimeout)
 	fmt.Println("Starting generator")
 	/*
 		Run Generator
