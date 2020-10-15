@@ -14,21 +14,17 @@ func main() {
 	*/
 	var config cli.Configuration
 	var log logger.Logger
-	var feed source.Source //Our feed is the generator of all brute force strings.
+	var feed source.Source
 	var exit chan bool = make(chan bool, 1)
 
 	if config.Parse(os.Args) {
-		//Some of our command line args are ready to exit (terminate) at this point.
 		os.Exit(1)
 	}
 	log.Setup(&config)
 	log.Debug("Main(): Logger is setup and config is loaded.")
 
-	feed.Setup(&config,cli.SourceBufferSz,cli.DnsChars)	//Pass our configuration parameters (by reference)
+	feed.Setup(&config,cli.SourceBufferSz,cli.DnsChars)
 
-	//args.Parse() //Parse arguments.
-
-	//var exit chan bool = make(chan bool, 1)
 	//var requestSent chan bool = make(chan bool, 1)
 
 	/*
