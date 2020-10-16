@@ -11,7 +11,7 @@ func (o *Source) Setup(config *cli.Configuration, bufferSz int, allowedChars str
 	errors.Assert(allowedChars != "", "Expected non-empty string in allowedChars")
 
 	o.config = config
-	o.feed = make(chan string, bufferSz)
+	o.feed.Setup(bufferSz)
 	o.allowedChars = &allowedChars
 	o.isPaused = true //By default the feed will be paused until the owner unpauses it.
 

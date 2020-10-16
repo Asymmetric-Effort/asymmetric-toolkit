@@ -13,11 +13,13 @@ func (o *Source) generateSequence() {
 	checkWordCount := func() bool {
 		return o.counter <= int(o.config.MaxWordCount)
 	}
-	for wordSize := 1; (wordSize < int(o.config.WordSize)) && checkWordCount(); wordSize++ {
+	for wordSize := 1; (wordSize <= int(o.config.WordSize)) && checkWordCount(); wordSize++ {
 		var generator counter.Counter
 		generator.Setup(*o.allowedChars, wordSize)
-		for generator.Increment(0) && checkWordCount() { //Iterate through the field of wordSize chars.
-			o.feed <- generator.String() //Produce a new word for each one and push to the feed.
+		//Iterate through the field of wordSize chars.
+		for generator.Increment(0) && checkWordCount() {
+			//Produce a new word for each one and push to the feed.
+			o.feed.Push(generator.String())
 			o.counter++
 		}
 	}

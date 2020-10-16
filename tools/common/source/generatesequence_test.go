@@ -10,39 +10,41 @@ import (
 )
 
 func TestSourceGenerateSequence(t *testing.T) {
-	t.SkipNow()
-	const keyspace = "0123456789"
-	var s Source
-	var config cli.Configuration
 	/*
 		Setup
 	*/
+	const keyspace = "0123456789"
+	var s Source
+	var config cli.Configuration
 	args := []string{"--domain", "google.com", "--mode", "sequence"}
 	config.Parse(args)
 	s.config = &config
 	s.config.WordSize = 2
 	s.config.MaxWordCount = 1000
 	s.allowedChars = func() *string { str := keyspace; return &str }()
-	s.feed = make(chan string, cli.SourceBufferSz)
-	//go testTimeout(t, TestSetupGeneratorTimeout)
-	fmt.Println("Starting generator")
+	s.feed.Setup(cli.SourceBufferSz*10)
 	/*
 		Run Generator
 	*/
-	go s.generateSequence()
+	fmt.Println("Starting generator")
+	s.generateSequence()
+	fmt.Printf("Finished generating.  Number items in channel: %d\n", s.feed.Length())
 	/*
 		Analyze Result
 	*/
-	fmt.Println("Capture data from generator")
+	fmt.Println("Capture/analyze data from generator")
 	count := 0
-	for element := <-s.feed; len(s.feed) != 0; element = <-s.feed {
-		count++
-		current, err := strconv.Atoi(element)
-		if err != nil {
-			panic(err)
+	expectedCount := int(math.Pow(float64(len(keyspace)), float64(s.config.WordSize)))
+	for i:=0;i<expectedCount;i++ {
+		fmt.Printf("Processing...  ChanSz: %d Count:%d\n", s.feed.Length(), count)
+		if s.HasData() {
+			element := s.feed.Pop()
+			_, err := strconv.Atoi(element)
+			if err != nil {
+				panic(err)
+			}
+			count++
 		}
-		errors.Assert(current <= count, "Count should be greater than current.")
 	}
-	expectedCount:=int(math.Pow(float64(len(keyspace)),float64(s.config.WordSize)))
-	errors.Assert(count == expectedCount, fmt.Sprintf("Count (%d) does not match expectedCount (%d) does not match.",count,expectedCount))
+	errors.Assert(count == expectedCount, fmt.Sprintf("Count (%d) does not match expectedCount (%d) does not match.", count, expectedCount))
 }

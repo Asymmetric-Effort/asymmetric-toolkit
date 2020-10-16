@@ -15,7 +15,7 @@ func (o *Source) generateDictionary() {
 	scanner:=dict.Setup(o.config.Dictionary.OpenRead())
 	for line:=scanner(); line != nil; line=scanner(){
 		o.WaitIfPaused()
-		o.feed <- *line
+		o.feed.Push(*line)
 		o.counter++
 	}
 }

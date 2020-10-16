@@ -65,7 +65,7 @@ func TestSetupHappySequence(t *testing.T) {
 		s.isPaused = false
 		testTimeout()
 		for s.HasData() {
-			out := <-s.feed
+			out := s.feed.Pop()
 			t.Logf("Generator Output:%s", out)
 		}
 	}
@@ -81,7 +81,7 @@ func TestSetupHappyRandom(t *testing.T) {
 	s.isPaused = false
 	//go testTimeout(t,TestSetupGeneratorTimeout)
 	for i := 0; i < 10; i++ {
-		out := <-s.feed
+		out := s.feed.Pop()
 		if len(out) == 0 {
 			t.Fatal("empty output")
 		} else {
@@ -107,7 +107,7 @@ func TestSetupHappyDictionary(t *testing.T) {
 	s.isPaused = false
 	// testTimeout(t,TestSetupGeneratorTimeout)
 	for i := 0; i < 10; i++ {
-		out := <-s.feed
+		out := s.feed.Pop()
 		if len(out) == 0 {
 			t.Fatal("empty output")
 		} else {
