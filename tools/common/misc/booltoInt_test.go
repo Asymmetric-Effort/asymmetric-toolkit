@@ -1,4 +1,4 @@
-package casts
+package misc
 
 import "testing"
 

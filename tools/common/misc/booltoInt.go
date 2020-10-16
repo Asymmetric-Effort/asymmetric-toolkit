@@ -1,4 +1,4 @@
-package casts
+package misc
 
 func BooltoInt(b bool) int {
 	if b {
