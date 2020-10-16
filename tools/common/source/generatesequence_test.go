@@ -27,6 +27,7 @@ func TestSourceGenerateSequence(t *testing.T) {
 		*/
 		fmt.Printf("Starting generator.  Size:%d\n", s.config.WordSize)
 		s.generateSequence()
+		s.feed.Close()
 		fmt.Printf("Finished generating.  Number items in channel: %d\n", s.feed.Length())
 		/*
 			Analyze Result
