@@ -13,7 +13,7 @@ func TestConfigurationStruct(t *testing.T){
 	errors.Assert(c.Delay == 0, "expect 0")
 	errors.Assert(c.Depth == 0, "expect 0")
 	errors.Assert(c.Dictionary == "", "expect empty string")
-	errors.Assert(c.TargetServers.String() == "", "expect empty list")
+	errors.Assert(c.TargetServer.String() == "", "expect empty list")
 	errors.Assert(c.Domain == "", "expect empty string")
 	errors.Assert(!c.Force, "Expect false")
 	errors.Assert(c.Mode == 0, "expect 0")

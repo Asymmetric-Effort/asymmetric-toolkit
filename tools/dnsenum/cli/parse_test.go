@@ -53,14 +53,22 @@ func TestCliParser_DomainOnly(t *testing.T) {
 		t.Errorf("Expected an error")
 	}
 }
+func TestCliParser_DomainMode(t *testing.T) {
+	var cfg Configuration
+	args := []string{"--domain", "google.com", "--mode", "sequence"}
+	if !cfg.Parse(args) {
+		t.Errorf("Expected an error")
+	}
+}
 
 func TestCliParser_DomainSequence(t *testing.T) {
 	var cfg Configuration
 	domainStr := "google.com"
-	args := []string{"--domain", domainStr, "--mode", "sequence"}
+	dnsServer := "udp:127.0.0.1:53"
+	args := []string{"--domain", domainStr, "--mode", "sequence", "--dnsServer", dnsServer}
 	if cfg.Parse(args) {
 		//We hit an unexpected terminate result.
-		t.Errorf("Error parsing sequence with no optionals. Args: %v",args)
+		t.Errorf("Error parsing sequence with no optionals. Args: %v", args)
 	} else {
 		errors.Assert(cfg.Domain.Get() == domainStr, fmt.Sprintf("Expected domain string not found. domain:'%s' expected:'%s'", domainStr, cfg.Domain.Get()))
 		errors.Assert(cfg.Mode.IsSequence(), "Expected Sequence mode")
@@ -70,7 +78,7 @@ func TestCliParser_DomainSequence(t *testing.T) {
 		errors.Assert(cfg.Delay == 0, "Expected delay not found.")
 		errors.Assert(cfg.Depth == defaultDepth, "Expected depth not found.")
 		errors.Assert(cfg.Dictionary == "", "Expected empty dictionary path/filename")
-		errors.Assert(cfg.TargetServers.String() == "", "Expected dns servers not found.")
+		errors.Assert(cfg.TargetServer.String() == dnsServer, "Expected dns servers not found.")
 		errors.Assert(cfg.Output == "", "Expected empty output filename.")
 		errors.Assert(cfg.Pattern.String() == defaultFilterPattern, "Expected filter pattern not found.")
 		errors.Assert(cfg.RecordTypes.String() == defaultDnsRecordTypes, "Expected dns record types not found.")
@@ -82,7 +90,8 @@ func TestCliParser_DomainSequence(t *testing.T) {
 func TestCliParser_DomainRandom(t *testing.T) {
 	var cfg Configuration
 	domainStr := "google.com"
-	args := []string{"--domain", domainStr, "--mode", "sequence"}
+	dnsServer := "udp:127.0.0.1:53"
+	args := []string{"--domain", domainStr, "--mode", "sequence", "--dnsServer", dnsServer}
 	if cfg.Parse(args) {
 		//We hit an unexpected terminate result.
 		t.Errorf("Error parsing random with no optionals")
@@ -95,7 +104,7 @@ func TestCliParser_DomainRandom(t *testing.T) {
 		errors.Assert(cfg.Delay == 0, "Expected delay not found.")
 		errors.Assert(cfg.Depth == defaultDepth, "Expected depth not found.")
 		errors.Assert(cfg.Dictionary == "", "Expected empty dictionary path/filename")
-		errors.Assert(cfg.TargetServers.String() == "", "Expected dns servers not found.")
+		errors.Assert(cfg.TargetServer.String() == dnsServer, "Expected dns servers not found.")
 		errors.Assert(cfg.Output == "", "Expected empty output filename.")
 		errors.Assert(cfg.Pattern.String() == defaultFilterPattern, "Expected filter pattern not found.")
 		errors.Assert(cfg.RecordTypes.String() == defaultDnsRecordTypes, "Expected dns record types not found.")

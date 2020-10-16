@@ -14,7 +14,6 @@ func TestConfigurationLoadDefault(t *testing.T) {
 	errors.Assert(cfg.Delay == 0, "Expected delay not found.")
 	errors.Assert(cfg.Depth == defaultDepth, "Expected depth not found.")
 	errors.Assert(cfg.Dictionary == "", "Expected empty dictionary path/filename.")
-	errors.Assert(cfg.TargetServers.String() == "", "Expected dns servers not found.")
 	errors.Assert(cfg.Domain == "", "Expected empty domain string")
 	errors.Assert(!cfg.Force, "Expected force to be false.")
 	errors.Assert(cfg.Mode.IsNotSet(), "Expected notset mode")

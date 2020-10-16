@@ -12,7 +12,7 @@ type Configuration struct {
 	Delay         types.PositiveInteger
 	Depth         types.PositiveInteger
 	Dictionary    types.FilePath
-	TargetServers types.List
+	TargetServer  types.TargetServer
 	Domain        types.DomainName
 	Force         bool
 	Log           struct {

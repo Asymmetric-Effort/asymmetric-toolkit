@@ -15,15 +15,15 @@ const (
 			dnsEnum --version
 
 		Brute Force with Random or Sequential Inputs:
-			dnsEnum --domain <root_domain> --mode <random|sequence> [--depth <int>] \
-					[--pattern /regex/] [--output <file>] [--concurrency <int>]  \
-					[--timeout <int>]  [--delay <int>]  [--TargetServers <string>] \
+			dnsEnum --domain <root_domain> --mode <random|sequence> --targetServer <serverDescriptor> \
+					[--depth <int>] [--pattern /regex/] [--output <file>] [--concurrency <int>]  \
+					[--timeout <int>]  [--delay <int>] \
 					[--recordTypes <str>] [--debug] --MaxWordCount <int> --WordSize <int>
 
 		Brute Force with Dictionary File:
 			dnsEnum --domain <root_domain> --mode <dictionary> --dictionary <file> \
-					[--depth <int>] [--pattern /regex/] [--output <file>] [--concurrency <int>] \
-					[--timeout <int>]  [--delay <int>]  [--TargetServers <string>] \
+					--targetServer <serverDescriptor> [--depth <int>] [--pattern /regex/] \
+					[--output <file>] [--concurrency <int>] [--timeout <int>]  [--delay <int>] \
 					[--recordTypes <str>] [--debug]
 
 
@@ -48,9 +48,8 @@ const (
 			This is the path/filename to the dictionary file which will be used.  The dictionary file
 			must follow the Asymmetric Toolkit dictionary file standard.
 
-		--TargetServers <string> (Default: Uses Local resolver)
-			A comma-delimited list of DNS servers to target in round robin fashion so as to avoid rate limiting
-			or to evade detection.
+		--dnsServer <udp|tcp>:<ipaddr>:<port>  (required)
+			A string identifying the connection to a target dnsServer (e.g. dnsProxy).
 
 		--domain <domainString> (Required)
 			The root domain (e.g. my.domain.tld) to which we will prepend subdomains as part of our scan.

@@ -39,8 +39,8 @@ func (o *Configuration) Parse(cliArguments []string) bool {
 			case "--dictionary":
 				lastFlag = dictionaryFlag
 				expected = expectValue
-			case "--TargetServers":
-				lastFlag = targetServersFlag
+			case "--dnsServer":
+				lastFlag = targetServerFlag
 				expected = expectValue
 			case "--domain":
 				lastFlag = domainFlag
@@ -99,9 +99,9 @@ func (o *Configuration) Parse(cliArguments []string) bool {
 			case domainFlag:
 				expected = expectFlag
 				o.Domain.Set(args)
-			case targetServersFlag:
+			case targetServerFlag:
 				expected = expectFlag
-				o.TargetServers.Set(args)
+				o.TargetServer.Set(args)
 			case forceFlag:
 				expected = expectFlag
 				break
@@ -143,6 +143,11 @@ func (o *Configuration) Parse(cliArguments []string) bool {
 
 	if o.Mode.Get() == types.NotSet {
 		fmt.Println("Missing mode (required).  Use --mode <sequence|random|dictionary> to specify.")
+		return ExitTerminate
+	}
+
+	if o.TargetServer.Get() == "" {
+		fmt.Println("Missing dnsServer (required).  Use --dnsServer <udp|tcp>:<ipaddr>:<port> to specify.")
 		return ExitTerminate
 	}
 
