@@ -17,11 +17,11 @@ func TestSourceGenerateSequence(t *testing.T) {
 	args := []string{"--domain", "google.com", "--mode", "sequence"}
 	config.Parse(args)
 	s.config = &config
-	for s.config.WordSize = 1; s.config.WordSize < 8; s.config.WordSize++ {
+	for s.config.WordSize = 1; s.config.WordSize < 9; s.config.WordSize++ {
 
 		s.config.MaxWordCount = 1000000000
 		s.allowedChars = func() *string { str := keyspace; return &str }()
-		s.feed.Setup(cli.SourceBufferSz * 100)
+		s.feed.Setup(cli.SourceBufferSz * 1000)
 		/*
 			Run Generator
 		*/
