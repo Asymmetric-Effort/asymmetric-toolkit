@@ -16,7 +16,7 @@ func TestUsageConstantHash(t *testing.T){
 	//Hint: If this test fails, verify the usage.go content is correct
 	//      then capture the actual hash from the test failure to update
 	//      the expectedHash string below.
-	const expectedHash = "9315e7a34a3c8e50131101f7a8de7a760a422b4363576855bd1acdc33a61c516"
+	const expectedHash = "868d2e41e44215aa64825275b67a697242ee3f02023f16a5ebd67dd6009e9184"
 
 	var usageHash = fmt.Sprintf("%x", sha256.Sum256([]byte(Usage)))
 	errors.Assert(usageHash == expectedHash,
