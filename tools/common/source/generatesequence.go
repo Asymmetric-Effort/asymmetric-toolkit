@@ -17,6 +17,7 @@ func (o *Source) generateSequence() {
 		var generator counter.Counter
 		generator.Setup(*o.allowedChars, wordSize)
 		//Iterate through the field of wordSize chars.
+		o.feed.Push(generator.String())
 		for generator.Increment(0) && checkWordCount() {
 			//Produce a new word for each one and push to the feed.
 			o.feed.Push(generator.String())
