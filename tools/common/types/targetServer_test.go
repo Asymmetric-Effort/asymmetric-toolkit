@@ -63,20 +63,17 @@ func TestTargetServer_SetOverPort(t *testing.T) {
 }
 func TestTargetServer_SetZeroAddr(t *testing.T) {
 	var ts TargetServer
-	defer func() { recover() }()
 	ts.Set("udp:0.0.0.0:53")
-	t.Error("expected error")
+	errors.Assert(ts=="udp:0.0.0.0:53", "Expected udp:0.0.0.0:53")
 }
 
 func TestTargetServer_GetHappy(t *testing.T) {
-	var ts TargetServer
-	ts = "udp:0.0.0.0:53"
+	var ts TargetServer = "udp:0.0.0.0:53"
 	errors.Assert(ts.Get() == "udp:0.0.0.0:53", "Get() failed to get expected server string.")
 }
 
 func TestTargetServer_GetBad(t *testing.T) {
-	var ts TargetServer
-	ts = "udp:0.0.0.0:-1"
+	var ts TargetServer = "udp:0.0.0.0:-1"
 	defer func() { recover() }()
 	_ = ts.Get()
 	t.Error("expected error")
@@ -89,7 +86,7 @@ func TestTargetServer_StringHappy(t *testing.T) {
 }
 
 func TestTargetServer_StringBad(t *testing.T) {
-	var ts TargetServer = "udp:0.0.0.0:53"
+	var ts TargetServer = "udp:0.0.0.0:-1"
 	defer func() { recover() }()
 	_ = ts.String()
 	t.Error("expected error")
