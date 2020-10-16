@@ -15,5 +15,5 @@ func TestCounter_String(t *testing.T) {
 	errors.Assert(c.String()=="00", "Expect 00 in initial state.")
 	(*c.data)[0]=1
 	(*c.data)[1]=2
-	errors.Assert(c.String()=="12", "Expect 12 in initial state.")
+	errors.Assert(c.String()=="21", "Expect 21 in initial state.")
 }
