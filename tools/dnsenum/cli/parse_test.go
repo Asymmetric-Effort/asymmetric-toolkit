@@ -56,9 +56,9 @@ func TestCliParser_DomainOnly(t *testing.T) {
 func TestCliParser_DomainMode(t *testing.T) {
 	var cfg Configuration
 	args := []string{"--domain", "google.com", "--mode", "sequence"}
-	if !cfg.Parse(args) {
-		t.Errorf("Expected an error")
-	}
+	defer func(){recover()}()
+	_ = cfg.Parse(args)
+	t.Errorf("Expected an error")
 }
 
 func TestCliParser_DomainSequence(t *testing.T) {
