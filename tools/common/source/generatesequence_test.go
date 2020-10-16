@@ -5,7 +5,6 @@ import (
 	"asymmetric-effort/asymmetric-toolkit/tools/dnsenum/cli"
 	"fmt"
 	"testing"
-	"time"
 )
 
 func TestSourceGenerateSequence(t *testing.T) {
@@ -16,13 +15,9 @@ func TestSourceGenerateSequence(t *testing.T) {
 	const maxWordSize = 9
 	var s Source
 	var config cli.Configuration
-	args := []string{"--domain", "google.com", "--mode", "sequence"}
+	args := []string{"--domain", "google.com", "--mode", "sequence", "--dnsServer", "udp:127.0.0.1:53"}
 	config.Parse(args)
 	s.config = &config
-	go func() {
-		<-time.After(time.Second * 500)
-		t.Fatal("Terminating after timeout (500s)")
-	}()
 
 	for s.config.WordSize = 1; s.config.WordSize < maxWordSize; s.config.WordSize++ {
 		s.config.MaxWordCount = 1000000000
@@ -59,14 +54,9 @@ func TestSourceGenerateSequenceBinary(t *testing.T) {
 	const maxWordSize = 9
 	var s Source
 	var config cli.Configuration
-	args := []string{"--domain", "google.com", "--mode", "sequence"}
+	args := []string{"--domain", "google.com", "--mode", "sequence", "--dnsServer","udp:127.0.0.1:53"}
 	config.Parse(args)
 	s.config = &config
-	go func() {
-		<-time.After(time.Second * 500)
-		t.Fatal("Terminating after timeout (500s)")
-	}()
-
 	for s.config.WordSize = 1; s.config.WordSize < maxWordSize; s.config.WordSize++ {
 		s.config.MaxWordCount = 1000000000
 		s.allowedChars = func() *string { str := keyspace; return &str }()

@@ -1,48 +1,42 @@
 package source
 
 import (
+	"asymmetric-effort/asymmetric-toolkit/tools/common/errors"
 	"asymmetric-effort/asymmetric-toolkit/tools/dnsenum/cli"
 	"fmt"
 	"testing"
-	"time"
 )
 
 func TestSourceGenerateRandom(t *testing.T) {
-	t.SkipNow()
 	/*
 		Setup
 	*/
 	const keyspace = "0123456789"
 	var s Source
 	var config cli.Configuration
-	var seenBefore map[string]bool = make(map[string]bool, 1)
-	args := []string{"--domain", "google.com", "--mode", "random", "--maxWordCount", "20"}
+	args := []string{"--domain", "google.com", "--mode", "random", "--dnsServer", "udp:127.0.0.1:53", "--maxWordCount", "20"}
 	config.Parse(args)
 	s.config = &config
-	s.config.WordSize = 2
+	s.config.WordSize = 4
 	s.config.MaxWordCount = 1000
 	s.allowedChars = func() *string { str := keyspace; return &str }()
 	s.feed.Setup(cli.SourceBufferSz)
-	go func() {
-		<-time.After(time.Second * 120)
-		t.Fatal("Terminating after timeout (120s)")
-	}()
 	/*
 		Run Generator
 	*/
 	fmt.Println("Starting generator")
-	go s.generateRandom()
+	s.generateRandom()
+	s.feed.Close()
 	/*
 		Analyze Result
 	*/
-	fmt.Println("Capture/analyze data from generator")
-	for i := 1; i < 100; i++ {
-		fmt.Printf("Processing results from generator %d", i)
-		current := s.feed.Pop()
-		if _, ok := seenBefore[current]; ok {
-			t.Fatal("Collision detected")
+	expectedCount := s.feed.Length()
+	last := ""
+	for i := 0; i <= expectedCount; i++ {
+		if s.feed.Length() > 0 {
+			last = s.feed.Pop()
 		}
-		seenBefore[current] = true
 	}
-
+	errors.Assert(s.feed.Length() == 0, "Expected to have consumed all elements")
+	fmt.Printf("Consumed queue of %d elements (last:%s)", expectedCount, last)
 }
