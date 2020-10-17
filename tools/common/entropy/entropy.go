@@ -1,14 +1,9 @@
 package entropy
 
-import "math"
-
-func CountCharacterFrequency(s *string) *map[rune]float64 {
-	result := make(map[rune]float64)
-	for _, i := range *s {
-		result[i]++
-	}
-	return &result
-}
+import (
+	"asymmetric-effort/asymmetric-toolkit/tools/common/misc"
+	"math"
+)
 
 func GetShannons(inputString string) int {
 	//See https://en.wikipedia.org/wiki/Entropy_(information_theory)
@@ -18,7 +13,7 @@ func GetShannons(inputString string) int {
 
 	var sum float64
 	var strLen int = len(inputString)
-	for _, v := range *CountCharacterFrequency(&inputString) {
+	for _, v := range *misc.CountCharacterFrequency(&inputString) {
 		var f float64 = v / float64(strLen)
 		sum += f * math.Log2(f)
 	}
