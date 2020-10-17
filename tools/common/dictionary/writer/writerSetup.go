@@ -1,4 +1,4 @@
-package dictionary
+package writer
 
 import (
 	"asymmetric-effort/asymmetric-toolkit/tools/common/errors"

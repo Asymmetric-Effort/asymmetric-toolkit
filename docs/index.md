@@ -12,11 +12,11 @@ Documentation Index
 
 ## Tools: Common Code
 * [tools/common/counter](../tools/common/counter/README.md)
+* [tools/common/dictionary](../tools/common/dictionary/README.md)
 * [tools/common/entropy](../tools/common/entropy/README.md)
 * [tools/common/errors](../tools/common/errors/README.md)
 * [tools/common/fifo](../tools/common/fifo/README.md)
 * [tools/common/file](../tools/common/file/README.md)
-* [tools/common/file/dictionary](../tools/common/file/dictionary/README.md)
 * [tools/common/logger](../tools/common/logger/README.md)
 * [tools/common/misc](../tools/common/misc/README.md)
 * [tools/common/source](../tools/common/source/README.md)

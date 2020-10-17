@@ -15,7 +15,7 @@ Dictionary Reader/Writer
 ```go
 package dictionary_example
 import (
-    "asymmetric-effort/asymmetric-toolkit/tools/common/file/dictionary"
+    "asymmetric-effort/asymmetric-toolkit/tools/common/dictionary"
     "os"
 )
 
@@ -45,7 +45,7 @@ read()
 ```go
 package dictionary_example
 import (
-    "asymmetric-effort/asymmetric-toolkit/tools/common/file/dictionary"
+    "asymmetric-effort/asymmetric-toolkit/tools/common/dictionary"
     "os"
 )
 

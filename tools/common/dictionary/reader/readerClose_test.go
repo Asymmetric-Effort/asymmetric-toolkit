@@ -1,4 +1,4 @@
-package dictionary_test
+package reader_test
 
 import (
 	"testing"
