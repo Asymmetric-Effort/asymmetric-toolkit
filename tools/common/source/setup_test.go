@@ -34,7 +34,7 @@ func TestSetupHappySequenceBadBufferSize(t *testing.T) {
 func TestSetupHappySequenceBadChars(t *testing.T) {
 	var s Source
 	var config cli.Configuration
-	args := []string{"--domain", "google.com", "--mode", "sequence"}
+	args := []string{"--domain", "google.com", "--mode", "sequence", "--dnsServer","udp:127.0.0.1:53"}
 	config.Parse(args)
 	defer func() { recover() }()
 	s.Setup(&config, cli.SourceBufferSz, "")
