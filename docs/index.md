@@ -12,6 +12,7 @@ Documentation Index
 
 ## Tools: Common Code
 * [tools/common/counter](../tools/common/counter/README.md)
+* [tools/common/entropy](../tools/common/entropy/README.md)
 * [tools/common/errors](../tools/common/errors/README.md)
 * [tools/common/fifo](../tools/common/fifo/README.md)
 * [tools/common/file](../tools/common/file/README.md)

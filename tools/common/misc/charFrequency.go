@@ -1,7 +1,7 @@
 package misc
 
-func CountCharacterFrequency(s *string) *map[rune]float64 {
-	result := make(map[rune]float64)
+func CountCharacterFrequency(s *string) *map[rune]int {
+	result := make(map[rune]int)
 	for _, i := range *s {
 		result[i]++
 	}
