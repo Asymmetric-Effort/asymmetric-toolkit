@@ -25,7 +25,7 @@ func TestSetupHappySequenceNullConfig(t *testing.T) {
 func TestSetupHappySequenceBadBufferSize(t *testing.T) {
 	var s Source
 	var config cli.Configuration
-	args := []string{"--domain", "google.com", "--mode", "sequence"}
+	args := []string{"--domain", "google.com", "--mode", "sequence", "--dnsServer","udp:127.0.0.1:53"}
 	config.Parse(args)
 	defer func() { recover() }()
 	s.Setup(&config, 0, cli.DnsChars)
@@ -59,7 +59,7 @@ func TestSetupHappySequence(t *testing.T) {
 		fmt.Printf("wordsize: %d\n",r)
 		var s Source
 		var config cli.Configuration
-		args := []string{"--domain", "google.com", "--mode", "sequence", "--wordSize", strconv.Itoa(r), "--maxWordCount", "100"}
+		args := []string{"--domain", "google.com", "--mode", "sequence", "--dnsServer","udp:127.0.0.1:53", "--wordSize", strconv.Itoa(r), "--maxWordCount", "100"}
 		config.Parse(args)
 		s.Setup(&config, cli.SourceBufferSz, cli.DnsChars)
 		s.isPaused = false
@@ -75,7 +75,7 @@ func TestSetupHappyRandom(t *testing.T) {
 	t.SkipNow()
 	var s Source
 	var config cli.Configuration
-	args := []string{"--domain", "google.com", "--mode", "random"}
+	args := []string{"--domain", "google.com", "--mode", "random", "--dnsServer","udp:127.0.0.1:53"}
 	config.Parse(args)
 	s.Setup(&config, cli.SourceBufferSz, cli.DnsChars)
 	s.isPaused = false
@@ -101,7 +101,7 @@ func TestSetupHappyDictionary(t *testing.T) {
 	dictFile := filepath.Join(baseDir, "dictFile")
 	errors.Assert(file.FileExists(dictFile), fmt.Sprintf("File not found:%s", dictFile))
 	//
-	args := []string{"--domain", "google.com", "--mode", "dictionary", "--dictionary", dictFile}
+	args := []string{"--domain", "google.com", "--mode", "dictionary", "--dictionary", dictFile, "--dnsServer","udp:127.0.0.1:53"}
 	config.Parse(args)
 	s.Setup(&config, cli.SourceBufferSz, cli.DnsChars)
 	s.isPaused = false
