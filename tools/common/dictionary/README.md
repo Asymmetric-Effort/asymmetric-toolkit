@@ -2,25 +2,24 @@ Dictionary Reader/Writer
 ========================
 
 ## Purpose
-* Provide a reusable reader/writer for dictionaries which we can use to extend more
-  advanced dictionary functionality such as ranking and priority-based dictionary 
-  sorts.
+Provide a reusable reader/writer for the toolkit dictionary file format which is 
+encrypted on a record-by-record level using a symmetric AES passphrase and armored
+ciphertext which will not encounter binary storage issues in github.
+
+## File Format
+TBD
   
-## Usage
+## Examples
 ### Reader
-#### Setup(filePtr *os.File)
-* Input: readable file handle (to the dictionary file).
-* Output: reader function `func() (string, int int int...)`
-#### Dictionary Reader Example
 ```go
 package dictionary_example
 import (
-    "asymmetric-effort/asymmetric-toolkit/tools/common/dictionary"
+    "asymmetric-effort/asymmetric-toolkit/tools/common/dictionary/reader"
     "os"
 )
 
 func doSomething(){
-var reader dictionary.Reader
+var reader DictionaryReader.Reader
 file,err:=os.Create("myDictionary.txt")
 if err != nil {
     panic(err)
@@ -37,20 +36,15 @@ read()
 ```
 
 ### Writer
-#### Setup(filePtr *os.File)
-* Input: writable file handle (to the dictionary file).
-* Output: writer function `func(s string)`
-
-#### Dictionary Writer Example
 ```go
 package dictionary_example
 import (
-    "asymmetric-effort/asymmetric-toolkit/tools/common/dictionary"
+    "asymmetric-effort/asymmetric-toolkit/tools/common/dictionary/writer"
     "os"
 )
 
 func doSomething(){
-var writer dictionary.Writer
+var writer DictionaryWriter.Writer
 file,err:=os.Create("myDictionary.txt")
 if err != nil {
     panic(err)
