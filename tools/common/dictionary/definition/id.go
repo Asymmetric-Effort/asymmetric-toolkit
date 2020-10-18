@@ -1,5 +1,9 @@
 package dictionaryDefinition
 
+import (
+	"fmt"
+)
+
 func (o *Record) Id() string {
-	return string(o.id)
+	return fmt.Sprintf("%x",o.id)
 }
