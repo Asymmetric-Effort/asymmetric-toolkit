@@ -6,25 +6,25 @@ import (
 	"encoding/base64"
 )
 
-type Definition struct {
+type Record struct {
 	id      []byte
 	word    string //Base64-encoded word
 }
 
-func (o *Definition) Set(s string) {
-	errors.Assert(o.id == nil, "Definition::Set(): can only be used once to set the word value.")
+func (o *Record) Set(s string) {
+	errors.Assert(o.id == nil, "Record::Set(): can only be used once to set the word value.")
 	bs:=[]byte(s)
 	hash := sha256.New()
 	o.id = hash.Sum(bs)
 	o.word = base64.StdEncoding.EncodeToString(bs)
 }
 
-func (o *Definition) Get() string {
+func (o *Record) Get() string {
 	w, err := base64.StdEncoding.DecodeString(o.word)
-	errors.Assert(err == nil, "Definition::Get() an error occurred getting the word content of a dictionary")
+	errors.Assert(err == nil, "Record::Get() an error occurred getting the word content of a dictionary")
 	return string(w)
 }
 
-func (o *Definition) Id() string {
+func (o *Record) Id() string {
 	return string(o.id)
 }
