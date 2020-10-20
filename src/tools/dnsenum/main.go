@@ -3,7 +3,7 @@ package main
 import (
 	"asymmetric-effort/asymmetric-toolkit/src/common/logger"
 	"asymmetric-effort/asymmetric-toolkit/src/common/source"
-	"asymmetric-effort/asymmetric-toolkit/tools/dnsenum/cli"
+	"asymmetric-effort/asymmetric-toolkit/src/tools/dnsenum/cli"
 	"os"
 )
 

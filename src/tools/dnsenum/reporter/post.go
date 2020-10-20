@@ -1,7 +1,7 @@
 package Reporter
 
 import (
-	"asymmetric-effort/asymmetric-toolkit/tools/dnsenum/response"
+	"asymmetric-effort/asymmetric-toolkit/src/tools/dnsenum/response"
 	"fmt"
 )
 

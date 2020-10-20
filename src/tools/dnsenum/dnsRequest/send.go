@@ -1,7 +1,7 @@
 package dnsRequest
 
 import (
-	"asymmetric-effort/asymmetric-toolkit/tools/dnsenum/response"
+	"asymmetric-effort/asymmetric-toolkit/src/tools/dnsenum/response"
 )
 
 func (o *Request) Send() (response *response.Response) {

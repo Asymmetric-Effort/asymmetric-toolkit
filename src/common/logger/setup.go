@@ -2,7 +2,7 @@ package logger
 
 import (
 	"asymmetric-effort/asymmetric-toolkit/src/common/logger/destination"
-	"asymmetric-effort/asymmetric-toolkit/tools/dnsenum/cli"
+	"asymmetric-effort/asymmetric-toolkit/src/tools/dnsenum/cli"
 )
 
 func (o *Logger) Setup(config *cli.Configuration) {
