@@ -6,3 +6,4 @@ set -e
 
 
 brew install git-hooks
+go get -u golang.org/x/lint/golint
