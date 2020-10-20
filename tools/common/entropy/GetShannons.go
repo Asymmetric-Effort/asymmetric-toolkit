@@ -1,21 +1,34 @@
 package entropy
 
 import (
-	"asymmetric-effort/asymmetric-toolkit/tools/common/misc"
 	"math"
+	"strings"
 )
 
-func GetShannons(inputString string) int {
-	//See https://en.wikipedia.org/wiki/Entropy_(information_theory)
-	//See https://en.wikipedia.org/wiki/Shannon_(unit)
-	//See https://en.wikipedia.org/wiki/ISO/IEC_80000
-	//See https://en.wiktionary.org/wiki/Shannon_entropy
+func GetShannons(data string) int {
+	/*
+		Calculate the discrete Shannon entropy (H) of a given input string (n).
 
-	var sum float64
-	var strLen int = len(inputString)
-	for _, v := range *misc.CountCharacterFrequency(&inputString) {
-		var f float64 = float64(v) / float64(strLen)
-		sum += f * math.Log2(f)
+		Given a discrete random variable (x) that is the string of N "symbols" (total characters)
+		consisting of n different characters (n=2 for binary), the shannon entropy of X in
+		bits/symbols is:
+
+					 _n_  count(i)       (  count(i) )
+			H(X) = - \    ________ * log2(  ________ )
+					 /__     N           (     N     )
+					 i=1
+
+		where count(i) is the count of characters n(i) (or frequency)
+	*/
+	var entropy float64 = 0
+	if data == "" {
+		return 0
 	}
-	return int(math.Ceil(sum*-1)) * strLen
+	for i := 0; i < 256; i++ {
+		px := float64(strings.Count(data, string(byte(i)))) / float64(len(data))
+		if px > 0 {
+			entropy += -px * math.Log2(px)
+		}
+	}
+	return int(math.Ceil(entropy*100))
 }
