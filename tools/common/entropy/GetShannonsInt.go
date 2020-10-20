@@ -5,7 +5,7 @@ import (
 	"math"
 )
 
-func GetShannonsIntArray(data int) int {
+func GetShannonsInt(data int) int {
 	/*
 	return func() int {
 

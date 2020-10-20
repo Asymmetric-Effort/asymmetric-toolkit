@@ -36,9 +36,9 @@ func TestGetShannonsIntArray(t *testing.T) {
 		},
 	}
 	for i, test := range tests {
-		fmt.Printf("Test %d failed with score %d (expected %d)\n", i, test.score, GetShannonsIntArray(test.input))
-		if GetShannonsIntArray(test.input) > test.score {
-			t.Fatalf("Test %d failed with score %d (expected %d)", i, test.score, GetShannonsIntArray(test.input))
+		fmt.Printf("Test %d failed with score %d (expected %d)\n", i, test.score, GetShannonsInt(test.input))
+		if GetShannonsInt(test.input) > test.score {
+			t.Fatalf("Test %d failed with score %d (expected %d)", i, test.score, GetShannonsInt(test.input))
 		}
 	}
 }

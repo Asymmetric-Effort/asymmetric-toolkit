@@ -8,46 +8,40 @@ import (
 
 func TestHighEntropyInt(t *testing.T) {
 	var tests = []struct {
-		input string
+		input int
 		result bool
 	}{
 		{
-			"1111111111111111111111",
+			1111111111111111111,
 			false,
 		}, {
-			"",
+			0,
 			false,
 		}, {
-			"0",
-			false,
-		}, {
-			"false",
+			668108162888,
 			true,
 		}, {
-			"668108162888",
+			1234567890,
 			true,
 		}, {
-			"1234567890",
+			12345791234567890,
 			true,
 		}, {
-			"12345678901234567890",
+			1234567890123456890,
 			true,
 		}, {
-			"123456789012345678901234567890",
-			true,
-		}, {
-			"12345678901234567890123456789012345678901234567890",
+			1234567890123456123,
 			true,
 		},
 	}
 	for i, test := range tests {
-		fmt.Printf("Test (%d) Result:%d (%t)\n", i, GetShannons(test.input),HighEntropy(test.input))
+		fmt.Printf("Test (%d) Result:%d (%t)\n", i, GetShannonsInt(test.input),HighEntropyInt(test.input))
 		if test.result {
-			errors.Assert(HighEntropy(test.input),
-				fmt.Sprintf("Expected %t (%d) (%d)", HighEntropy(test.input), i, GetShannons(test.input)))
+			errors.Assert(HighEntropyInt(test.input),
+				fmt.Sprintf("Expected %t (%d) (%d)", HighEntropyInt(test.input), i, GetShannonsInt(test.input)))
 		} else {
-			errors.Assert(!HighEntropy(test.input),
-				fmt.Sprintf("Expected %t (%d) (%d)", HighEntropy(test.input), i, GetShannons(test.input)))
+			errors.Assert(!HighEntropyInt(test.input),
+				fmt.Sprintf("Expected %t (%d) (%d)", HighEntropyInt(test.input), i, GetShannonsInt(test.input)))
 		}
 
 
