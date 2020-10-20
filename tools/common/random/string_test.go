@@ -13,13 +13,12 @@ func TestRandomStringLength(t *testing.T) {
 		s := String(100, &keySpace)
 		errors.Assert(len(s) == 100, "Expected 100 characters")
 	}()
-	for length := 20; length <= 100; length++ {
+	for length := 8; length <= 100; length++ {
 		for count := 1; count < 10000; count++ {
-			data := String(100, &keySpace)
-			score := entropy.GetShannons(data)
-			errors.Assert(score > entropy.HighEntropyThreshold, "Expected entropy over threshold.")
-			fmt.Printf(".")
+			data := String(length, &keySpace)
+			errors.Assert(entropy.HighEntropy(data), "Expected entropy over threshold.")
 		}
+		fmt.Printf(".")
 	}
 	fmt.Println("done")
 }
