@@ -5,17 +5,8 @@
 set -e
 
 echo "installing git hooks"
-(
-    mkdir -p $GOPATH/src/github.com/
-    cd $GOPATH/src/github.com/
-    [[ -d git-hooks ]] && rm -rf git-hooks
-    git clone git@github.com:sam-caldwell/git-hooks.git
-    cd git-hooks
-    make compress
-    go install
-)
-echo "git hooks installed."
-git hooks install
-git hooks
-mkdir githooks
-
+rm -f .git/hooks/*
+for f in $(find githooks -type f); do
+    filename="""$(basename "$f")"""
+    ln -sf "./githooks/${filename}" ".git/hooks/${filename}"
+done
