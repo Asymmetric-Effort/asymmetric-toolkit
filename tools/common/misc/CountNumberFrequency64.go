@@ -2,8 +2,8 @@ package misc
 
 import "strconv"
 
-func CountNumberFrequency(input int) *map[int]int {
-	s := strconv.Itoa(input)
+func CountNumberFrequency64(input int64) *map[int]int {
+	s := strconv.FormatInt(input, 10)
 
 	result := make(map[int]int)
 	for i := 0; i < 10; i++ { //initialize map
