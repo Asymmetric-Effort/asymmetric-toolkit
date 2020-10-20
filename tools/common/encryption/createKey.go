@@ -1,17 +1,13 @@
 package encryption
 
 import (
-	"asymmetric-effort/asymmetric-toolkit/tools/common/random"
-	"golang.org/x/crypto/bcrypt"
+	"crypto/sha256"
 )
 
-func createKey(passphrase *string) *[]byte {
+func createKey(passphrase *string) *[32]byte {
 	/*
 		This is not safe or production ready.  I'm doing this to get started.
-	 */
-	key, _ := bcrypt.GenerateFromPassword(
-		[]byte(*passphrase),
-		random.Number(bcrypt.DefaultCost,bcrypt.MaxCost))
-
+	*/
+	key := sha256.Sum256([]byte(*passphrase))
 	return &key
 }
