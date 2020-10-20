@@ -5,4 +5,5 @@
 set -e
 
 echo "$0 starting"
-exit 1
+
+echo "linter not implemented yet"

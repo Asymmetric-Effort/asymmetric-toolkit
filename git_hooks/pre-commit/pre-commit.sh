@@ -5,5 +5,7 @@
 set -e
 
 echo "Pre-commit starting..."
+
 THIS_DIR="""$(dirname "$0")/.."""
+
 make lint
