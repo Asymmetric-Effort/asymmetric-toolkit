@@ -15,10 +15,10 @@ help:
 	exit 1
 
 setup:
-	@./scripts/setup.sh
+	./scripts/setup.sh
 
 lint:
-	@./script/linter.sh
+	./scripts/linter.sh
 
 test:
 	find ./ -name "main.go" -exec go test -v -i {} \;

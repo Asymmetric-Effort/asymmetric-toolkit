@@ -3,3 +3,5 @@
 #
 
 set -e
+
+echo "$0 starting"
