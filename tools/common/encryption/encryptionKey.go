@@ -5,22 +5,23 @@ import (
 	"crypto/sha256"
 	"fmt"
 )
-const EncryptionKeyLength = 32
 
-type EncryptionKey [32]byte
+const KeyLength = 32
 
-func (o *EncryptionKey) Set(passphrase *string){
+type Key [32]byte
+
+func (o *Key) Set(passphrase *string){
 	*o =sha256.Sum256([]byte(*passphrase))
 }
 
-func (o *EncryptionKey) String() string{
+func (o *Key) String() string{
 	return fmt.Sprintf("%02x", *o)
 }
 
-func (o *EncryptionKey) Length() int{
+func (o *Key) Length() int{
 	return len(*o)
 }
 
-func (o *EncryptionKey) Equal(hash *[32]byte) bool {
+func (o *Key) Equal(hash *[32]byte) bool {
 	return bytes.Equal((*o)[:],(*hash)[:])
 }
