@@ -21,4 +21,4 @@ lint:
 	./scripts/linter.sh
 
 test:
-	find ./ -name "main.go" -exec go test -v -i {} \;
+	./scripts/run_tests.sh
