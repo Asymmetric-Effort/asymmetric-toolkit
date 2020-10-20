@@ -1,8 +1,8 @@
 package source
 
 import (
+	writer2 "asymmetric-effort/asymmetric-toolkit/tools/common/dictionary/writer"
 	"asymmetric-effort/asymmetric-toolkit/tools/common/file"
-	"asymmetric-effort/asymmetric-toolkit/tools/common/file/dictionary"
 	"fmt"
 	"os"
 	"path/filepath"
@@ -32,7 +32,7 @@ func TestSourceGenerateDictionary(t *testing.T) {
 			checkError(err)
 			return fh
 		}()
-		var writer dictionary.Writer
+		var writer writer2.Writer
 		writeDict:=writer.Setup(file)
 		defer writer.Close()
 		for i := 1; i < 10; i++ {

@@ -2,6 +2,8 @@ package dictionary
 
 import (
 	"asymmetric-effort/asymmetric-toolkit/tools/common/errors"
+	"fmt"
+	"os"
 	"strconv"
 	"strings"
 	"time"
@@ -9,9 +11,6 @@ import (
 
 func (o *Dictionary) Create(filename string, description string, passphrase *string, compressed bool) {
 	errors.Assert(filename != "", "Expected non-empty string as filename for dictionary")
-	errors.Assert(len(*passphrase) > 2047, "Expected passphrase length > 2047")
-	o.runtime.name = &filename
-	o.runtime.passphrase = passphrase
 
 	o.content.header.version = func() (v [3]byte) {
 		s := strings.Split(Version, ".")
@@ -32,4 +31,23 @@ func (o *Dictionary) Create(filename string, description string, passphrase *str
 		return
 	}()
 	o.content.body.defCount = 0 //Empty content.
+	func() {
+		//
+		// Setup the reader/writer
+		//
+		var err error
+		o.runtime.fileHandle, err = os.Create(filename)
+		errors.Assert(err == nil, fmt.Sprintf("Dictionary::Create() encountered error opening filename (%s): %v", filename, err))
+		defer func(){
+			o.runtime.io.reader.Close()
+			o.runtime.io.writer.Close()
+			err:=o.runtime.fileHandle.Close()
+			if err != nil {
+				panic(err)
+			}
+		}()
+
+		o.Read = o.runtime.io.reader.Setup(o.runtime.fileHandle, []byte(*passphrase))
+		o.Write = o.runtime.io.writer.Setup(o.runtime.fileHandle, []byte(*passphrase))
+	}()
 }
