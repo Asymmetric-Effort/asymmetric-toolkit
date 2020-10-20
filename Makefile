@@ -15,10 +15,10 @@ help:
 	exit 1
 
 setup:
-	./scripts/setup.sh
+	@./scripts/setup.sh
 
 lint:
-	./scripts/linter.sh
+	@./scripts/linter.sh
 
 test:
-	./scripts/run_tests.sh
+	@./scripts/run_tests.sh
