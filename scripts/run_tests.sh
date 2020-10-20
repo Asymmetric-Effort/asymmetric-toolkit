@@ -11,6 +11,11 @@ for f in $(find . -name "main.go"); do
     (
         echo "Testing $f"
         cd "${directory}" || exit 1
-        go test -v -i main.go || exit 2
+        go test -v -i main.go || {
+            echo " ";echo " "
+            echo "Test failed in $f"
+            echo " ";echo " "
+            exit 2
+        }
     )
 done
