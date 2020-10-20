@@ -5,4 +5,3 @@
 set -e
 
 echo "$0 starting"
-exit 1
