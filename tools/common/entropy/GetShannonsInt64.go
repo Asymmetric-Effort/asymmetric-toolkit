@@ -5,7 +5,7 @@ import (
 	"math"
 )
 
-func GetShannonsInt64Array(data int64) int64 {
+func GetShannonsInt64(data int64) int64 {
 	/*
 		return func() int {
 

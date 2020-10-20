@@ -36,9 +36,9 @@ func TestGetShannonsInt64Array(t *testing.T) {
 		},
 	}
 	for i, test := range tests {
-		fmt.Printf("Test %d failed with score %d (expected %d)\n", i, test.score, GetShannonsInt64Array(test.input))
-		if GetShannonsInt64Array(test.input) > int64(test.score) {
-			t.Fatalf("Test %d failed with score %d (expected %d)", i, test.score, GetShannonsInt64Array(test.input))
+		fmt.Printf("Test %d failed with score %d (expected %d)\n", i, test.score, GetShannonsInt64(test.input))
+		if GetShannonsInt64(test.input) > int64(test.score) {
+			t.Fatalf("Test %d failed with score %d (expected %d)", i, test.score, GetShannonsInt64(test.input))
 		}
 	}
 }
