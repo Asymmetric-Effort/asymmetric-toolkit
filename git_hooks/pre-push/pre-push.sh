@@ -4,5 +4,4 @@
 
 set -e
 
-THIS_DIR="""$(dirname "$0")/.."""
 make lint test

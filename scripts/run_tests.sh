@@ -4,8 +4,7 @@
 
 set -e
 
-THIS_DIR="""$(dirname "$0")/.."""
-
+# shellcheck disable=SC2044
 for f in $(find . -name "main.go"); do
     directory="""$(dirname "$f")"""
     (
