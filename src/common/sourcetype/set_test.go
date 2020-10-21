@@ -7,23 +7,48 @@ import (
 	"testing"
 )
 
-func TestDataSource_Set(t *testing.T) {
+func TestDataSource_GetSet(t *testing.T) {
 	var o sourcetype.DataSource
-	o.Set("Random")
-	errors.Assert(o == sourcetype.Random, "Expected Random")
-	o.Set("random")
-	errors.Assert(o == sourcetype.Random, "Expected Random")
-	o.Set("Sequence")
-	errors.Assert(o == sourcetype.Sequence, "Expected Sequence")
-	o.Set("sequence")
-	errors.Assert(o == sourcetype.Sequence, "Expected Sequence")
-	o.Set("Dictionary")
-	errors.Assert(o == sourcetype.Dictionary, "Expected Dictionary")
-	o.Set("dictionary")
-	errors.Assert(o == sourcetype.Dictionary, "Expected Dictionary")
-
-	//Sad Path
-	defer func() { recover() }()
-	o.Set(strconv.Itoa(int(BadDataSource)))
-	t.FailNow()
+	var tests = []struct {
+		input    string
+		expected sourcetype.DataSource
+	}{
+		{
+			"Dictionary",
+			sourcetype.Dictionary,
+		}, {
+			"Sequence",
+			sourcetype.Sequence,
+		}, {
+			"Random",
+			sourcetype.Random,
+		},
+	}
+	errors.Assert(o == sourcetype.NotSet, "Expected NotSet")
+	errors.Assert(o.Get() == sourcetype.NotSet, "Expected NotSet")
+	for _, test := range tests {
+		o.Set(test.input)
+		errors.Assert(o == test.expected, "Expected "+test.input)
+		errors.Assert(o.Get() == test.expected, "Expected "+test.input)
+		errors.Assert(o.String() == test.input, "Expected "+test.input)
+	}
+	go func() {
+		var o1 sourcetype.DataSource
+		defer func() { recover() }()
+		o1.Set(strconv.Itoa(int(BadDataSource)))
+		t.FailNow()
+	}()
+	go func() {
+		//Sad Path
+		var o1 sourcetype.DataSource = BadDataSource
+		defer func() { recover() }()
+		_ = o1.Get()
+		t.FailNow()
+	}()
+	go func() {
+		var o1 sourcetype.DataSource = BadDataSource
+		defer func() { recover() }()
+		_ = o1.String()
+		t.FailNow()
+	}()
 }
