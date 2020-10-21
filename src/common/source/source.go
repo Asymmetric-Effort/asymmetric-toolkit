@@ -1,7 +1,7 @@
 package source
 
 import (
-	"asymmetric-effort/asymmetric-toolkit/src/common/fifo"
+	"asymmetric-effort/asymmetric-toolkit/src/common/queues"
 	"asymmetric-effort/asymmetric-toolkit/src/common/logger"
 	"asymmetric-effort/asymmetric-toolkit/src/tools/dnsenum/cli"
 )
@@ -11,7 +11,7 @@ type Source struct {
 	AllowedChars   *string
 	SourceBufferSz int
 	IsPaused       bool
-	Feed           fifo.Fifo
+	Feed           queues.Fifo
 	Counter        int
 	Logger         *logger.Logger
 }

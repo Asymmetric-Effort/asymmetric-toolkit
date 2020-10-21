@@ -1,6 +1,7 @@
 package file_test
 
 import (
+	"asymmetric-effort/asymmetric-toolkit/src/common/file"
 	"os"
 	"path/filepath"
 	"testing"
@@ -8,7 +9,7 @@ import (
 
 func TestFileExists(t *testing.T) {
 	baseDir, _ :=os.Getwd()
-	if !FileExists(filepath.Join(baseDir,"fileExists_test.go")){
+	if !file.FileExists(filepath.Join(baseDir,"fileExists_test.go")){
 		t.FailNow()
 	}
 }

@@ -1,6 +1,7 @@
 package file_test
 
 import (
+	"asymmetric-effort/asymmetric-toolkit/src/common/file"
 	"fmt"
 	"os"
 	"testing"
@@ -8,7 +9,7 @@ import (
 
 func TestDirExists(t *testing.T) {
 	baseDir, _ :=os.Getwd()
-	if !DirExists(baseDir){
+	if !file.DirExists(baseDir){
 		fmt.Println("baseDir:",baseDir)
 		t.FailNow()
 	}

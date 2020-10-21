@@ -1,9 +1,9 @@
-package fifo
+package queues
 
 
 func (o *Fifo) Pop() (r string) {
-	if o.queue != nil {
-		return <-o.queue
+	if o.Queue != nil {
+		return <-o.Queue
 	}else{
 		panic("nil queue in Fifo::Pop().  Use .Setup() to initialize.")
 	}

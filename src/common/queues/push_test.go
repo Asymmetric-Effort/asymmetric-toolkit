@@ -1,4 +1,4 @@
-package fifo
+package queues
 
 import (
 	"asymmetric-effort/asymmetric-toolkit/src/common/errors"
@@ -11,16 +11,16 @@ import (
 func TestFifo_Push(t *testing.T) {
 	var q Fifo
 		q.sz=2
-	errors.Assert(q.queue == nil, "Queue expected to be nil initially.")
+	errors.Assert(q.Queue == nil, "Queue expected to be nil initially.")
 	errors.Assert(q.sz==2, "Queue Size == 2")
-	q.queue = make(chan string, q.sz)
-	errors.Assert(q.queue != nil, "Queue is not nil.")
+	q.Queue = make(chan string, q.sz)
+	errors.Assert(q.Queue != nil, "Queue is not nil.")
 	count:=0
 	go func() {
 		errors.Assert(q.Length() == 0, "Queue length is zero.")
 		for i:=1;i<=4;i++ {
 			t.Logf("Pushing %d to queue\n",i)
-			q.queue <- strconv.Itoa(i)
+			q.Queue <- strconv.Itoa(i)
 			count++
 		}
 		errors.Assert(count == 4, "Expect 4 processed  push() requests")
