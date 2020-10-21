@@ -12,9 +12,7 @@ type List struct {
 func (o *List) Set(s string) {
 	// Consume comma-delimited list as string.
 	// Split by comma delimiter and store the list.
-	for _, item := range strings.Split(s, ",") {
-		o.data = append(o.data, item)
-	}
+	o.data = append(o.data, strings.Split(s, ",")...)
 }
 
 func (o *List) Count() int {
@@ -30,5 +28,5 @@ func (o *List) Get(i int) string {
 }
 
 func (o *List) String() string {
-	return strings.Join(o.data,",")
+	return strings.Join(o.data, ",")
 }

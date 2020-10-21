@@ -15,7 +15,7 @@ func TestLogLevelSet_Happy(t *testing.T) {
 	l.Set(level.Warning)
 	errors.Assert(l.Get() == level.Warning, "Expect Warningf")
 	l.Set(level.Info)
-	errors.Assert(l.Get() == level.Info, "Expect Info")
+	errors.Assert(l.Get() == level.Info, "Expect Infof")
 	l.Set(level.Debug)
 	errors.Assert(l.Get() == level.Debug, "Expect Debug")
 }

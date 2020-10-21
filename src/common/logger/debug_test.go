@@ -65,7 +65,7 @@ func TestLoggerDebugInfo(t *testing.T) {
 	config.Log.Level.Set(level.Debug)
 	out := catchStdOut(t, func() {
 		log.Setup(&config)
-		log.Info("Test")
+		log.Infof("Test")
 	})
 	pattern := `^\[[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}\.[0-9]+` +
 		` [-+]{1}[0-9]+ [A-Z]+ m=[+-][0-9]+\.[0-9]+\]\[Logger\]\(INFO\): Test$`
