@@ -1,4 +1,4 @@
-package DictionaryReader
+package reader
 
 import (
 	"os"

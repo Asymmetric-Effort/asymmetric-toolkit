@@ -14,7 +14,7 @@ type Dictionary struct {
 		passphrase *string  //Encryption passphrase (not written to the actual file).
 		fileHandle *os.File //File handle for reading/writing the actual file.
 		io         struct {
-			reader DictionaryReader.Reader
+			reader reader.Reader
 			writer DictionaryWriter.Writer
 		}
 	}
