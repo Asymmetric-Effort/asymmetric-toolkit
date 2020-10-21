@@ -27,7 +27,7 @@ func (o *Dictionary) Create(filename string, description string, passphrase *str
 	o.content.header.description = []byte(description)
 	o.content.header.descriptionLength = func() (length uint16) {
 		length = uint16(len(o.content.header.description))
-		errors.Assert(length < 65535, "Dictionary description must be less than 65535 characters.")
+		errors.Assert(length < MaxLengthDictionaryDescription, "Dictionary description must be less than 65535 characters.")
 		return
 	}()
 	o.content.body.defCount = 0 //Empty content.
