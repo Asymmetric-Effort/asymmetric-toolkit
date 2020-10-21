@@ -1,9 +1,11 @@
-package queues
+package queues_test
 
-import "testing"
+import (
+	"asymmetric-effort/asymmetric-toolkit/src/common/queues"
+	"testing"
+)
 
 func TestFifoSetup(t *testing.T){
-	var q Fifo
+	var q queues.Fifo
 	q.Setup(10)
-
 }

@@ -9,14 +9,11 @@ import (
 
 func TestFifo_Pop(t *testing.T) {
 	var q queues.Fifo
-	fmt.Println("Initializing test")
-	errors.Assert(q.Queue == nil, "Queue expected to be nil initially.")
-	q.Queue = make(chan string, 5)
-	errors.Assert(q.Queue != nil, "Queue is not nil.")
+	q.Setup(5)
 	errors.Assert(q.Length()==0, "Queue length is zero.")
 	fmt.Println("Pushing data into channel")
-	q.Queue <-"1"
-	q.Queue <-"2"
+	q.Push("1")
+	q.Push("2")
 	fmt.Println("Starting Pop test.")
 	errors.Assert(q.Length()==2, "Queue length is two")
 	errors.Assert(q.Pop() == "1", "Queue Pop returned the wrong value")

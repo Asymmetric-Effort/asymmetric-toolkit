@@ -8,5 +8,5 @@ import (
 
 func TestFifo(t *testing.T){
 	var q queues.Fifo
-	errors.Assert(q.Queue == nil, "expect nil")
+	errors.Assert(&q != nil, "Not nil")
 }

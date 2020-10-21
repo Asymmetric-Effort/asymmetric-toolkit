@@ -1,8 +1,8 @@
 package queues
 
 func (o *Fifo) Close(){
-	if o.Queue == nil {
+	if o.queue == nil {
 		panic("Cannot close nil queue")
 	}
-	close(o.Queue)
+	close(o.queue)
 }
