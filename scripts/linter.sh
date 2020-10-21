@@ -47,18 +47,7 @@ done
 # Lint golang code
 #
 # shellcheck disable=SC2044
-for f in $(find . -name "*.go"); do
-    (
-        echo "Testing $f"
-        golint """$(dirname "$f")""" || {
-            echo " ";echo " "
-            echo "Linter failed in $f"
-            echo " ";echo " "
-            exit 2
-        }
-    )
-done
-
+golangci-lint run --enable-all --disable gomodguard --disable bodyclose
 #
 # Lint yaml code
 #
