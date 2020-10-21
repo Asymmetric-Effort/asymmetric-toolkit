@@ -1,4 +1,4 @@
-package dictionaryDefinition
+package definition
 
 type Record struct {
 	id      string

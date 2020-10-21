@@ -1,11 +1,11 @@
-package dictionaryDefinition_test
+package definition_test
 
 import (
-	dictionaryDefinition "asymmetric-effort/asymmetric-toolkit/src/common/dictionary/definition"
+	"asymmetric-effort/asymmetric-toolkit/src/common/dictionary/definition"
 	"asymmetric-effort/asymmetric-toolkit/src/common/errors"
 	"testing"
 )
 
 func TestDictionaryDefinitionConstants(t *testing.T){
-	errors.Assert(dictionaryDefinition.Delimiter == " ", "Expect single-space delimiter.")
+	errors.Assert(definition.Delimiter == " ", "Expect single-space delimiter.")
 }

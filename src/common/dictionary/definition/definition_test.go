@@ -1,13 +1,12 @@
-package dictionaryDefinition_test
+package definition_test
 
 import (
-	dictionaryDefinition "asymmetric-effort/asymmetric-toolkit/src/common/dictionary/definition"
+	"asymmetric-effort/asymmetric-toolkit/src/common/dictionary/definition"
 	"asymmetric-effort/asymmetric-toolkit/src/common/errors"
 	"testing"
 )
 
 func TestRecord(t *testing.T){
-	var o dictionaryDefinition.Record
-	errors.Assert(o.id=="", "expect empty string")
-	errors.Assert(o.word=="", "expect empty word string")
+	var o definition.Record
+	errors.Assert(o.ID()=="", "expect empty string")
 }

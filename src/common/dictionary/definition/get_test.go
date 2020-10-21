@@ -1,20 +1,27 @@
-package dictionaryDefinition_test
+package definition_test
 
 import (
-	dictionaryDefinition "asymmetric-effort/asymmetric-toolkit/src/common/dictionary/definition"
+	"asymmetric-effort/asymmetric-toolkit/src/common/dictionary/definition"
 	"asymmetric-effort/asymmetric-toolkit/src/common/encryption"
 	"asymmetric-effort/asymmetric-toolkit/src/common/errors"
+	"crypto/sha256"
+	"fmt"
 	"testing"
 )
+
 func TestRecord_Get(t *testing.T) {
-	var o dictionaryDefinition.Record
-	testWord:= "test"
-	passphrase:="myPassphrase"
-	expectedEncodedWord:= encryption.encrypt(&testWord, &passphrase)
-	expectedId:= dictionaryDefinition.CreateId(&testWord)
-	errors.Assert(o.id == "", "Expected empty id")
-	errors.Assert(o.word == "", "Expected empty word string")
-	o.id=expectedId
-	o.word=*expectedEncodedWord
-	errors.Assert(o.Get(&passphrase)==testWord,"Test Record::Get(): Expected test word mismatch.")
+	var o definition.Record
+	var key encryption.Key
+
+	testWord := "test"
+	passphrase := "myPassphrase"
+
+	key.Set(&passphrase)
+
+	expectedId := fmt.Sprintf("%x", sha256.Sum256([]byte(testWord)))
+	errors.Assert(o.ID() == "", "Expected empty id")
+	errors.Assert(o.String(&key) == "", "Expected empty word string")
+	o.Set(testWord, &key)
+	errors.Assert(o.Get(&key) == testWord, "Test Record::Get(): Expected test word mismatch.")
+	errors.Assert(o.ID() == expectedId, "Expected sha256 hash")
 }

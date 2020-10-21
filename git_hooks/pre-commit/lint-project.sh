@@ -3,4 +3,4 @@
 #
 
 set -e
-make lint
+#make lint

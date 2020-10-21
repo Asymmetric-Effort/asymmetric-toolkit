@@ -1,4 +1,4 @@
-package dictionaryDefinition
+package definition
 
 import (
 	"crypto/sha256"
