@@ -1,4 +1,4 @@
-package dictionaryDefinition
+package dictionaryDefinition_test
 
 import (
 	"asymmetric-effort/asymmetric-toolkit/src/common/encryption"

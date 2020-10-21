@@ -1,4 +1,4 @@
-package destination
+package destination_test
 
 import (
 	"asymmetric-effort/asymmetric-toolkit/src/common/errors"

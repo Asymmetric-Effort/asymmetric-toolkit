@@ -9,123 +9,123 @@ import (
 
 func (o *Configuration) Parse(cliArguments []string) bool {
 	o.LoadDefault()
-	expected := expectFlag
-	lastFlag := noFlag
+	expected := ExpectFlag
+	lastFlag := NoFlag
 	for _, args := range cliArguments {
 		switch expected {
-		case expectFlag:
+		case ExpectFlag:
 			switch args {
 			case "-h", "--help":
 				showUsage()
-				lastFlag = usageFlag
+				lastFlag = UsageFlag
 				return ExitTerminate
 			case "--version", "-v":
 				showVersion()
-				lastFlag = versionFlag
+				lastFlag = VersionFlag
 				return ExitTerminate
 			case "--concurrency":
-				lastFlag = concurrencyFlag
-				expected = expectValue
+				lastFlag = ConcurrencyFlag
+				expected = ExpectValue
 			case "--debug":
-				lastFlag = debugFlag
-				expected = expectFlag
+				lastFlag = DebugFlag
+				expected = ExpectFlag
 				o.Debug = true
 			case "--delay":
-				lastFlag = delayFlag
-				expected = expectValue
+				lastFlag = DelayFlag
+				expected = ExpectValue
 			case "--depth":
-				lastFlag = depthFlag
-				expected = expectValue
+				lastFlag = DepthFlag
+				expected = ExpectValue
 			case "--dictionary":
-				lastFlag = dictionaryFlag
-				expected = expectValue
+				lastFlag = DictionaryFlag
+				expected = ExpectValue
 			case "--dnsServer":
-				lastFlag = targetServerFlag
-				expected = expectValue
+				lastFlag = TargetServerFlag
+				expected = ExpectValue
 			case "--domain":
-				lastFlag = domainFlag
-				expected = expectValue
+				lastFlag = DomainFlag
+				expected = ExpectValue
 			case "--force":
-				lastFlag = forceFlag
-				expected = expectFlag
+				lastFlag = ForceFlag
+				expected = ExpectFlag
 				o.Force = true
 			case "--maxWordCount":
-				lastFlag = maxWordCountFlag
-				expected = expectValue
+				lastFlag = MaxWordCountFlag
+				expected = ExpectValue
 			case "--mode":
-				lastFlag = modeFlag
-				expected = expectValue
+				lastFlag = ModeFlag
+				expected = ExpectValue
 			case "--output":
-				lastFlag = outputFlag
-				expected = expectValue
+				lastFlag = OutputFlag
+				expected = ExpectValue
 			case "--pattern":
-				lastFlag = patternFlag
-				expected = expectValue
+				lastFlag = PatternFlag
+				expected = ExpectValue
 			case "--recordTypes":
-				lastFlag = recordTypesFlag
-				expected = expectValue
+				lastFlag = RecordTypesFlag
+				expected = ExpectValue
 			case "--timeout":
-				lastFlag = timeoutFlag
-				expected = expectValue
+				lastFlag = TimeoutFlag
+				expected = ExpectValue
 			case "--wordSize":
-				lastFlag = wordSizeFlag
-				expected = expectValue
+				lastFlag = WordSizeFlag
+				expected = ExpectValue
 			default:
 				errors.Fatal(1, fmt.Sprintf("Encountered unexpected argument: %s", args))
 			}
-		case expectValue:
+		case ExpectValue:
 			re:=regexp.MustCompile(`^--.+$`)
 			if re.MatchString(args) {
 				errors.Fatal(1, fmt.Sprintf("Expected value, not flag."))
 			}
 			switch lastFlag {
-			case usageFlag, versionFlag:
+			case UsageFlag, VersionFlag:
 				break
-			case concurrencyFlag:
+			case ConcurrencyFlag:
 				o.Concurrency.Set(args)
-				expected = expectFlag
-			case debugFlag:
-				expected = expectFlag
+				expected = ExpectFlag
+			case DebugFlag:
+				expected = ExpectFlag
 				break
-			case depthFlag:
-				expected = expectFlag
+			case DepthFlag:
+				expected = ExpectFlag
 				o.Depth.Set(args)
-			case delayFlag:
-				expected = expectFlag
+			case DelayFlag:
+				expected = ExpectFlag
 				o.Delay.Set(args)
-			case dictionaryFlag:
-				expected = expectFlag
+			case DictionaryFlag:
+				expected = ExpectFlag
 				o.Dictionary.Set(args)
-			case domainFlag:
-				expected = expectFlag
+			case DomainFlag:
+				expected = ExpectFlag
 				o.Domain.Set(args)
-			case targetServerFlag:
-				expected = expectFlag
+			case TargetServerFlag:
+				expected = ExpectFlag
 				o.TargetServer.Set(args)
-			case forceFlag:
-				expected = expectFlag
+			case ForceFlag:
+				expected = ExpectFlag
 				break
-			case maxWordCountFlag:
+			case MaxWordCountFlag:
 				o.MaxWordCount.Set(args)
-				expected = expectFlag
-			case modeFlag:
+				expected = ExpectFlag
+			case ModeFlag:
 				o.Mode.Set(args)
-				expected = expectFlag
-			case outputFlag:
+				expected = ExpectFlag
+			case OutputFlag:
 				o.Output.Set(args)
-				expected = expectFlag
-			case patternFlag:
+				expected = ExpectFlag
+			case PatternFlag:
 				o.Pattern.Set(args)
-				expected = expectFlag
-			case recordTypesFlag:
+				expected = ExpectFlag
+			case RecordTypesFlag:
 				o.RecordTypes.Set(args)
-				expected = expectFlag
-			case timeoutFlag:
+				expected = ExpectFlag
+			case TimeoutFlag:
 				o.Timeout.Set(args)
-				expected = expectFlag
-			case wordSizeFlag:
+				expected = ExpectFlag
+			case WordSizeFlag:
 				o.WordSize.Set(args)
-				expected = expectFlag
+				expected = ExpectFlag
 			default:
 				panic("invalid flag")
 			}
@@ -178,7 +178,7 @@ func (o *Configuration) Parse(cliArguments []string) bool {
 			o.MaxWordCount = types.PositiveInteger(int(o.WordSize) * len(DnsChars))
 		}
 		if o.WordSize == 0 {
-			o.WordSize = defaultWordSize
+			o.WordSize = DefaultWordSize
 		}
 	}
 	if o.Output != "" {
@@ -187,8 +187,8 @@ func (o *Configuration) Parse(cliArguments []string) bool {
 			return ExitTerminate
 		}
 	}
-	if o.Depth > maxDepth{
-		fmt.Printf("Depth (--depth) exceeds maxDepth (%d)\n",maxDepth)
+	if o.Depth > MaxDepth {
+		fmt.Printf("Depth (--depth) exceeds maxDepth (%d)\n", MaxDepth)
 		return ExitTerminate
 	}
 	return ExitParseOk

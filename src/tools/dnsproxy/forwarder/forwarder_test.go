@@ -1,1 +1,1 @@
-package dnsProxyForwarder
+package dnsProxyForwarder_test

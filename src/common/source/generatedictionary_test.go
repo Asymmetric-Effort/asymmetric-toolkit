@@ -1,4 +1,4 @@
-package source
+package source_test
 
 import (
 	"testing"

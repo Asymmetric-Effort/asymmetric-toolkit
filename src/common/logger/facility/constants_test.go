@@ -1,4 +1,4 @@
-package LogFacility
+package LogFacility_test
 
 import (
 	"regexp"

@@ -1,13 +1,14 @@
-package cli
+package cli_test
 
 import (
 	"asymmetric-effort/asymmetric-toolkit/src/common/errors"
+	"asymmetric-effort/asymmetric-toolkit/src/tools/dnsenum/cli"
 	"fmt"
 	"testing"
 )
 
 func TestCliParser_HelpShort(t *testing.T) {
-	var cfg Configuration
+	var cfg cli.Configuration
 	args := []string{"-h"}
 	if !cfg.Parse(args) {
 		t.Errorf("Expected true on -h")
@@ -15,7 +16,7 @@ func TestCliParser_HelpShort(t *testing.T) {
 }
 
 func TestCliParser_HelpLong(t *testing.T) {
-	var cfg Configuration
+	var cfg cli.Configuration
 	args := []string{"--help"}
 	if !cfg.Parse(args) {
 		t.Errorf("Expected true on --help")
@@ -23,7 +24,7 @@ func TestCliParser_HelpLong(t *testing.T) {
 }
 
 func TestCliParser_Version(t *testing.T) {
-	var cfg Configuration
+	var cfg cli.Configuration
 	args := []string{"--version"}
 	if !cfg.Parse(args) {
 		t.Errorf("Expected true on --version")
@@ -31,7 +32,7 @@ func TestCliParser_Version(t *testing.T) {
 }
 
 func TestCliParser_DomainEmpty(t *testing.T) {
-	var cfg Configuration
+	var cfg cli.Configuration
 	args := []string{"--domain"}
 	if !cfg.Parse(args) {
 		t.Errorf("Expected error since only the domain was given.")
@@ -39,7 +40,7 @@ func TestCliParser_DomainEmpty(t *testing.T) {
 }
 
 func TestCliParser_NoArgs(t *testing.T) {
-	var cfg Configuration
+	var cfg cli.Configuration
 	var args []string
 	if !cfg.Parse(args) {
 		t.Errorf("Expected an error")
@@ -47,14 +48,14 @@ func TestCliParser_NoArgs(t *testing.T) {
 }
 
 func TestCliParser_DomainOnly(t *testing.T) {
-	var cfg Configuration
+	var cfg cli.Configuration
 	args := []string{"--domain", "google.com"}
 	if !cfg.Parse(args) {
 		t.Errorf("Expected an error")
 	}
 }
 func TestCliParser_DomainMode(t *testing.T) {
-	var cfg Configuration
+	var cfg cli.Configuration
 	args := []string{"--domain", "google.com", "--mode", "sequence"}
 	defer func(){recover()}()
 	_ = cfg.Parse(args)
@@ -62,7 +63,7 @@ func TestCliParser_DomainMode(t *testing.T) {
 }
 
 func TestCliParser_DomainSequence(t *testing.T) {
-	var cfg Configuration
+	var cfg cli.Configuration
 	domainStr := "google.com"
 	dnsServer := "udp:127.0.0.1:53"
 	args := []string{"--domain", domainStr, "--mode", "sequence", "--dnsServer", dnsServer}
@@ -74,21 +75,21 @@ func TestCliParser_DomainSequence(t *testing.T) {
 		errors.Assert(cfg.Mode.IsSequence(), "Expected Sequence mode")
 		errors.Assert(!cfg.Debug, "Expected debug to be false")
 		errors.Assert(!cfg.Force, "Expected force to be false.")
-		errors.Assert(cfg.Concurrency == defaultConcurrency, "Expected defaultConcurrency")
+		errors.Assert(cfg.Concurrency == cli.DefaultConcurrency, "Expected defaultConcurrency")
 		errors.Assert(cfg.Delay == 0, "Expected delay not found.")
-		errors.Assert(cfg.Depth == defaultDepth, "Expected depth not found.")
+		errors.Assert(cfg.Depth == cli.DefaultDepth, "Expected depth not found.")
 		errors.Assert(cfg.Dictionary == "", "Expected empty dictionary path/filename")
 		errors.Assert(cfg.TargetServer.String() == dnsServer, "Expected dns servers not found.")
 		errors.Assert(cfg.Output == "", "Expected empty output filename.")
-		errors.Assert(cfg.Pattern.String() == defaultFilterPattern, "Expected filter pattern not found.")
-		errors.Assert(cfg.RecordTypes.String() == defaultDnsRecordTypes, "Expected dns record types not found.")
-		errors.Assert(cfg.Timeout == defaultTimeout, "Expected timeout not found.")
-		errors.Assert(cfg.WordSize == defaultWordSize, "Expected wordsize not found.")
+		errors.Assert(cfg.Pattern.String() == cli.DefaultFilterPattern, "Expected filter pattern not found.")
+		errors.Assert(cfg.RecordTypes.String() == cli.DefaultDnsRecordTypes, "Expected dns record types not found.")
+		errors.Assert(cfg.Timeout == cli.DefaultTimeout, "Expected timeout not found.")
+		errors.Assert(cfg.WordSize == cli.DefaultWordSize, "Expected wordsize not found.")
 	}
 }
 
 func TestCliParser_DomainRandom(t *testing.T) {
-	var cfg Configuration
+	var cfg cli.Configuration
 	domainStr := "google.com"
 	dnsServer := "udp:127.0.0.1:53"
 	args := []string{"--domain", domainStr, "--mode", "sequence", "--dnsServer", dnsServer}
@@ -100,15 +101,15 @@ func TestCliParser_DomainRandom(t *testing.T) {
 		errors.Assert(cfg.Mode.IsSequence(), "Expected Sequence mode")
 		errors.Assert(!cfg.Debug, "Expected debug to be false")
 		errors.Assert(!cfg.Force, "Expected force to be false.")
-		errors.Assert(cfg.Concurrency == defaultConcurrency, "Expected defaultConcurrency")
+		errors.Assert(cfg.Concurrency == cli.DefaultConcurrency, "Expected defaultConcurrency")
 		errors.Assert(cfg.Delay == 0, "Expected delay not found.")
-		errors.Assert(cfg.Depth == defaultDepth, "Expected depth not found.")
+		errors.Assert(cfg.Depth == cli.DefaultDepth, "Expected depth not found.")
 		errors.Assert(cfg.Dictionary == "", "Expected empty dictionary path/filename")
 		errors.Assert(cfg.TargetServer.String() == dnsServer, "Expected dns servers not found.")
 		errors.Assert(cfg.Output == "", "Expected empty output filename.")
-		errors.Assert(cfg.Pattern.String() == defaultFilterPattern, "Expected filter pattern not found.")
-		errors.Assert(cfg.RecordTypes.String() == defaultDnsRecordTypes, "Expected dns record types not found.")
-		errors.Assert(cfg.Timeout == defaultTimeout, "Expected timeout not found.")
-		errors.Assert(cfg.WordSize == defaultWordSize, "Expected wordsize not found.")
+		errors.Assert(cfg.Pattern.String() == cli.DefaultFilterPattern, "Expected filter pattern not found.")
+		errors.Assert(cfg.RecordTypes.String() == cli.DefaultDnsRecordTypes, "Expected dns record types not found.")
+		errors.Assert(cfg.Timeout == cli.DefaultTimeout, "Expected timeout not found.")
+		errors.Assert(cfg.WordSize == cli.DefaultWordSize, "Expected wordsize not found.")
 	}
 }

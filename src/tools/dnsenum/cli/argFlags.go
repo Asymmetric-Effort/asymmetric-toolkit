@@ -3,22 +3,22 @@ package cli
 type ArgFlags int
 
 const (
-	noFlag           ArgFlags = 0
-	domainFlag       ArgFlags = 1
-	modeFlag         ArgFlags = 2
-	depthFlag        ArgFlags = 3
-	patternFlag      ArgFlags = 4
-	outputFlag       ArgFlags = 5
-	dictionaryFlag   ArgFlags = 6
-	concurrencyFlag  ArgFlags = 7
-	timeoutFlag      ArgFlags = 8
-	delayFlag        ArgFlags = 9
-	targetServerFlag ArgFlags = 10
-	recordTypesFlag  ArgFlags = 11
-	debugFlag        ArgFlags = 12
-	forceFlag        ArgFlags = 13
-	usageFlag        ArgFlags = 14
-	versionFlag      ArgFlags = 15
-	wordSizeFlag     ArgFlags = 16
-	maxWordCountFlag ArgFlags = 17
+	NoFlag           ArgFlags = 0
+	DomainFlag       ArgFlags = 1
+	ModeFlag         ArgFlags = 2
+	DepthFlag        ArgFlags = 3
+	PatternFlag      ArgFlags = 4
+	OutputFlag       ArgFlags = 5
+	DictionaryFlag   ArgFlags = 6
+	ConcurrencyFlag  ArgFlags = 7
+	TimeoutFlag      ArgFlags = 8
+	DelayFlag        ArgFlags = 9
+	TargetServerFlag ArgFlags = 10
+	RecordTypesFlag  ArgFlags = 11
+	DebugFlag        ArgFlags = 12
+	ForceFlag        ArgFlags = 13
+	UsageFlag        ArgFlags = 14
+	VersionFlag      ArgFlags = 15
+	WordSizeFlag     ArgFlags = 16
+	MaxWordCountFlag ArgFlags = 17
 )

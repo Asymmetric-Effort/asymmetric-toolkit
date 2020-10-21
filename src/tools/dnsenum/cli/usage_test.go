@@ -1,7 +1,8 @@
-package cli
+package cli_test
 
 import (
 	"asymmetric-effort/asymmetric-toolkit/src/common/errors"
+	"asymmetric-effort/asymmetric-toolkit/src/tools/dnsenum/cli"
 	"crypto/sha256"
 	"fmt"
 	"testing"
@@ -9,7 +10,7 @@ import (
 
 
 func TestUsageConstantNotEmpty(t *testing.T) {
-	errors.Assert(Usage != "", "expect non-empty string")
+	errors.Assert(cli.Usage != "", "expect non-empty string")
 }
 
 func TestUsageConstantHash(t *testing.T){
@@ -18,7 +19,7 @@ func TestUsageConstantHash(t *testing.T){
 	//      the expectedHash string below.
 	const expectedHash = "868d2e41e44215aa64825275b67a697242ee3f02023f16a5ebd67dd6009e9184"
 
-	var usageHash = fmt.Sprintf("%x", sha256.Sum256([]byte(Usage)))
+	var usageHash = fmt.Sprintf("%x", sha256.Sum256([]byte(cli.Usage)))
 	errors.Assert(usageHash == expectedHash,
 		fmt.Sprintf("Usage string does not match hash.\n"+
 			"expected: %s\n" +

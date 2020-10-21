@@ -1,5 +1,5 @@
 package dictionaryDefinition
 
 const (
-	delimiter string = " "
+	Delimiter string = " "
 )

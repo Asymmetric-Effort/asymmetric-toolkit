@@ -1,4 +1,4 @@
-package encryption
+package encryption_test
 
 import (
 	"asymmetric-effort/asymmetric-toolkit/src/common/errors"

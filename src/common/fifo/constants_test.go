@@ -1,4 +1,4 @@
-package fifo
+package fifo_test
 
 import (
 	"asymmetric-effort/asymmetric-toolkit/src/common/errors"

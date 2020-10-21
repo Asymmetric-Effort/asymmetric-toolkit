@@ -1,4 +1,4 @@
-package entropy
+package entropy_test
 
 import (
 	"asymmetric-effort/asymmetric-toolkit/src/common/errors"

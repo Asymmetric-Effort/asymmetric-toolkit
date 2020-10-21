@@ -1,2 +1,2 @@
-package dictionary
+package dictionary_test
 

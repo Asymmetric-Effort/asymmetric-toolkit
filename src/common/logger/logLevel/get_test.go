@@ -1,4 +1,4 @@
-package logLevel
+package logLevel_test
 
 import (
 	"asymmetric-effort/asymmetric-toolkit/src/common/errors"

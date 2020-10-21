@@ -4,6 +4,6 @@ import (
 	"fmt"
 )
 
-func showVersion() {
+func ShowVersion() {
 	fmt.Printf(Version)
 }

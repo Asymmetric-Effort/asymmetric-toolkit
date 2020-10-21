@@ -1,4 +1,4 @@
-package random
+package random_test
 
 import (
 	"asymmetric-effort/asymmetric-toolkit/src/common/entropy"

@@ -28,7 +28,7 @@ type Dictionary struct {
 		}
 		body struct {
 			defCount    uint32 // definition count (number records in body)
-			definitions []definition.Record
+			definitions []dictionaryDefinition.Record
 		}
 		footer [32]byte //hash of file up to the footer.
 	}

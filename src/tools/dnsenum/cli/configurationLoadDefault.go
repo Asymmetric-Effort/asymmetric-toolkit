@@ -1,12 +1,12 @@
 package cli
 
 func (o *Configuration) LoadDefault() {
-	o.Concurrency = defaultConcurrency
+	o.Concurrency = DefaultConcurrency
 	o.Debug = false
 	o.Delay = 0
-	o.Depth = defaultDepth
+	o.Depth = DefaultDepth
 	o.Force = false
-	o.Pattern.Set(defaultFilterPattern)
-	o.RecordTypes.Set(defaultDnsRecordTypes)
-	o.Timeout = defaultTimeout
+	o.Pattern.Set(DefaultFilterPattern)
+	o.RecordTypes.Set(DefaultDnsRecordTypes)
+	o.Timeout = DefaultTimeout
 }

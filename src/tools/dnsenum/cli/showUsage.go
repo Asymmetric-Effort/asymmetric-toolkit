@@ -4,6 +4,6 @@ import (
 	"fmt"
 )
 
-func showUsage() {
+func ShowUsage() {
 	fmt.Printf(Usage)
 }
