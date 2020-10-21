@@ -7,25 +7,25 @@ import (
 )
 
 type FilterPattern struct {
-	re *regexp.Regexp
+	Re *regexp.Regexp
 }
 
 func (o *FilterPattern) Set(s string) {
 	re, err := regexp.Compile(s)
 	errors.Assert(err == nil, fmt.Sprintf("Encountered an error when compiling --pattern regex.  Error:%v", err))
-	o.re = re
+	o.Re = re
 }
 
 func (o *FilterPattern) Match(s string) bool {
-	if o.re == nil {
+	if o.Re == nil {
 		return false
 	}
-	return o.re.MatchString(s)
+	return o.Re.MatchString(s)
 }
 
 func (o *FilterPattern) String() string {
-	if o.re == nil {
+	if o.Re == nil {
 		return ""
 	}
-	return o.re.String()
+	return o.Re.String()
 }
