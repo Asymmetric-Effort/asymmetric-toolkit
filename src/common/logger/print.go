@@ -7,13 +7,13 @@ import (
 )
 
 func (o *Logger) Print(level logLevel.LogLevel, msg string) {
-	if o.writer != nil {
+	if o.Writer != nil {
 		formattedMessage:=fmt.Sprintf(
 			LogFormat,
 			time.Now().String(),
-			o.facility.String(),
+			o.Facility.String(),
 			level.String(),
 			msg+"\n")
-		o.writer(&formattedMessage)
+		o.Writer(&formattedMessage)
 	}
 }

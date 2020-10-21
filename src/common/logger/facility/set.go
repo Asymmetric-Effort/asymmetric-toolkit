@@ -5,7 +5,7 @@ import (
 )
 
 func (f *Facility) Set(v string) {
-	re:=regexp.MustCompile(facilityRegExPattern)
+	re:=regexp.MustCompile(FacilityRegExPattern)
 	if re.MatchString(v){
 		*f = Facility(v)
 	} else {

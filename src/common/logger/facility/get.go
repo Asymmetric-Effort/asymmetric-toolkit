@@ -3,7 +3,7 @@ package LogFacility
 import "regexp"
 
 func (f *Facility) Get() string {
-	re:=regexp.MustCompile(facilityRegExPattern)
+	re:=regexp.MustCompile(FacilityRegExPattern)
 	if re.MatchString(string(*f)){
 		return string(*f)
 	} else {

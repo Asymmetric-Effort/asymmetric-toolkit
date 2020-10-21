@@ -5,7 +5,7 @@ import (
 )
 
 func (o *Logger) Warning(format string, v ...interface{}) {
-	switch o.level.Get() {
+	switch o.Level.Get() {
 	case logLevel.Warning, logLevel.Info, logLevel.Debug:
 		o.Printf(logLevel.Warning, format, v...)
 	}

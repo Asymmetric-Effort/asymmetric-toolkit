@@ -6,7 +6,7 @@ import (
 )
 
 type Logger struct {
-	level    logLevel.LogLevel
-	facility LogFacility.Facility
-	writer func(*string)
+	Level    logLevel.LogLevel
+	Facility LogFacility.Facility
+	Writer   func(*string)
 }

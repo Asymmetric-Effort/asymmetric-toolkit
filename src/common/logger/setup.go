@@ -9,12 +9,12 @@ func (o *Logger) Setup(config *cli.Configuration) {
 	/*
 		Initialize the log destination file handle (fp)
 	*/
-	o.level.Set(config.Log.Level)
-	o.facility.Set(defaultLoggerFacility)
+	o.Level.Set(config.Log.Level)
+	o.Facility.Set(DefaultLoggerFacility)
 
 	switch config.Log.Destination {
 	case destination.Stdout:
-		o.writer = o.logWriterStdOut
+		o.Writer = o.logWriterStdOut
 	case destination.File:
 		panic("not implemented (logger file writer)")
 		//o.writer =  o.logWriterFile

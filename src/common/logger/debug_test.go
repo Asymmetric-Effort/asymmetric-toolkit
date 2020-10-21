@@ -2,6 +2,7 @@ package logger_test
 
 import (
 	"asymmetric-effort/asymmetric-toolkit/src/common/errors"
+	"asymmetric-effort/asymmetric-toolkit/src/common/logger"
 	"asymmetric-effort/asymmetric-toolkit/src/common/logger/destination"
 	"asymmetric-effort/asymmetric-toolkit/src/common/logger/logLevel"
 	"asymmetric-effort/asymmetric-toolkit/src/tools/dnsenum/cli"
@@ -10,8 +11,9 @@ import (
 	"strings"
 	"testing"
 )
+
 func TestLoggerDebugWarn(t *testing.T) {
-	var log Logger
+	var log logger.Logger
 	var config cli.Configuration
 	config.Log.Destination.Set(destination.Stdout)
 	config.Log.Level.Set(logLevel.Debug)
@@ -25,7 +27,7 @@ func TestLoggerDebugWarn(t *testing.T) {
 }
 
 func TestLoggerDebugCritical(t *testing.T) {
-	var log Logger
+	var log logger.Logger
 	var config cli.Configuration
 	config.Log.Destination.Set(destination.Stdout)
 	config.Log.Level.Set(logLevel.Debug)
@@ -39,7 +41,7 @@ func TestLoggerDebugCritical(t *testing.T) {
 }
 
 func TestLoggerDebugError(t *testing.T) {
-	var log Logger
+	var log logger.Logger
 	var config cli.Configuration
 	config.Log.Destination.Set(destination.Stdout)
 	config.Log.Level.Set(logLevel.Debug)
@@ -54,7 +56,7 @@ func TestLoggerDebugError(t *testing.T) {
 
 
 func TestLoggerDebugInfo(t *testing.T) {
-	var log Logger
+	var log logger.Logger
 	var config cli.Configuration
 	config.Log.Destination.Set(destination.Stdout)
 	config.Log.Level.Set(logLevel.Debug)

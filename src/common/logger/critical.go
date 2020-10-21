@@ -5,7 +5,7 @@ import (
 )
 
 func (o *Logger) Critical(format string, v ...interface{}) {
-	switch o.level.Get() {
+	switch o.Level.Get() {
 	case logLevel.Critical, logLevel.Error, logLevel.Warning, logLevel.Info, logLevel.Debug:
 		o.Printf(logLevel.Critical, format, v...)
 	}

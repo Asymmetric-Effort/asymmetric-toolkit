@@ -1,5 +1,5 @@
 package LogFacility
 
 const (
-	facilityRegExPattern = `^[a-zA-Z][a-zA-Z0-9]+$`
+	FacilityRegExPattern = `^[a-zA-Z][a-zA-Z0-9]+$`
 )

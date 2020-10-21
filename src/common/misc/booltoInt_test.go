@@ -1,8 +1,11 @@
 package misc_test
 
-import "testing"
+import (
+	"asymmetric-effort/asymmetric-toolkit/src/common/misc"
+	"testing"
+)
 
 func TestBoolToInt(t *testing.T) {
-	_ = BooltoInt(true)
-	_ = BooltoInt(false)
+	_ = misc.BooltoInt(true)
+	_ = misc.BooltoInt(false)
 }
