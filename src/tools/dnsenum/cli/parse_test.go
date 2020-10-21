@@ -71,7 +71,9 @@ func TestCliParser_DomainSequence(t *testing.T) {
 		//We hit an unexpected terminate result.
 		t.Errorf("Error parsing sequence with no optionals. Args: %v", args)
 	} else {
-		errors.Assert(cfg.Domain.Get() == domainStr, fmt.Sprintf("Expected domain string not found. domain:'%s' expected:'%s'", domainStr, cfg.Domain.Get()))
+		errors.Assert(cfg.Domain.Get() == domainStr,
+			fmt.Sprintf("Expected domain string not found. domain:'%s' expected:'%s'",
+				domainStr, cfg.Domain.Get()))
 		errors.Assert(cfg.Mode.IsSequence(), "Expected Sequence mode")
 		errors.Assert(!cfg.Debug, "Expected debug to be false")
 		errors.Assert(!cfg.Force, "Expected force to be false.")
@@ -82,7 +84,8 @@ func TestCliParser_DomainSequence(t *testing.T) {
 		errors.Assert(cfg.TargetServer.String() == dnsServer, "Expected dns servers not found.")
 		errors.Assert(cfg.Output == "", "Expected empty output filename.")
 		errors.Assert(cfg.Pattern.String() == cli.DefaultFilterPattern, "Expected filter pattern not found.")
-		errors.Assert(cfg.RecordTypes.String() == cli.DefaultDnsRecordTypes, "Expected dns record types not found.")
+		errors.Assert(cfg.RecordTypes.String() == cli.DefaultDnsRecordTypes,
+			"Expected dns record types not found.")
 		errors.Assert(cfg.Timeout == cli.DefaultTimeout, "Expected timeout not found.")
 		errors.Assert(cfg.WordSize == cli.DefaultWordSize, "Expected wordsize not found.")
 	}
@@ -97,7 +100,9 @@ func TestCliParser_DomainRandom(t *testing.T) {
 		//We hit an unexpected terminate result.
 		t.Errorf("Error parsing random with no optionals")
 	} else {
-		errors.Assert(cfg.Domain.Get() == domainStr, fmt.Sprintf("Expected domain string not found. domain:'%s' expected:'%s'", domainStr, cfg.Domain.Get()))
+		errors.Assert(cfg.Domain.Get() == domainStr,
+			fmt.Sprintf("Expected domain string not found. domain:'%s' expected:'%s'",
+				domainStr, cfg.Domain.Get()))
 		errors.Assert(cfg.Mode.IsSequence(), "Expected Sequence mode")
 		errors.Assert(!cfg.Debug, "Expected debug to be false")
 		errors.Assert(!cfg.Force, "Expected force to be false.")
@@ -108,7 +113,8 @@ func TestCliParser_DomainRandom(t *testing.T) {
 		errors.Assert(cfg.TargetServer.String() == dnsServer, "Expected dns servers not found.")
 		errors.Assert(cfg.Output == "", "Expected empty output filename.")
 		errors.Assert(cfg.Pattern.String() == cli.DefaultFilterPattern, "Expected filter pattern not found.")
-		errors.Assert(cfg.RecordTypes.String() == cli.DefaultDnsRecordTypes, "Expected dns record types not found.")
+		errors.Assert(cfg.RecordTypes.String() == cli.DefaultDnsRecordTypes,
+			"Expected dns record types not found.")
 		errors.Assert(cfg.Timeout == cli.DefaultTimeout, "Expected timeout not found.")
 		errors.Assert(cfg.WordSize == cli.DefaultWordSize, "Expected wordsize not found.")
 	}

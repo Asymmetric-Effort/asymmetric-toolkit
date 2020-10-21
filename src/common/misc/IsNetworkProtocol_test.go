@@ -13,9 +13,9 @@ func TestMiscIsTcpUdpProtocol(t *testing.T) {
 	const s2 = "udp"
 	const s3 = "Udp"
 	const s4 = "bad"
-	errors.Assert(misc.IsTcpUdpProtocol(s0), fmt.Sprintf("Expected %s", s0))
-	errors.Assert(misc.IsTcpUdpProtocol(s1), fmt.Sprintf("Expected %s", s1))
-	errors.Assert(misc.IsTcpUdpProtocol(s2), fmt.Sprintf("Expected %s", s2))
-	errors.Assert(misc.IsTcpUdpProtocol(s3), fmt.Sprintf("Expected %s", s3))
-	errors.Assert(!misc.IsTcpUdpProtocol(s4), fmt.Sprintf("Expected %s", s4))
+	errors.Assert(misc.IsNetworkProtocol(s0), fmt.Sprintf("Expected %s", s0))
+	errors.Assert(misc.IsNetworkProtocol(s1), fmt.Sprintf("Expected %s", s1))
+	errors.Assert(misc.IsNetworkProtocol(s2), fmt.Sprintf("Expected %s", s2))
+	errors.Assert(misc.IsNetworkProtocol(s3), fmt.Sprintf("Expected %s", s3))
+	errors.Assert(!misc.IsNetworkProtocol(s4), fmt.Sprintf("Expected %s", s4))
 }

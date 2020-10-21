@@ -10,7 +10,8 @@ import (
 func TestConfigurationLoadDefault(t *testing.T) {
 	var cfg cli.Configuration
 	cfg.LoadDefault()
-	errors.Assert(cfg.Concurrency == cli.DefaultConcurrency, fmt.Sprintf("Expected concurrency not found. Found:%d", cfg.Concurrency))
+	errors.Assert(cfg.Concurrency == cli.DefaultConcurrency,
+		fmt.Sprintf("Expected concurrency not found. Found:%d", cfg.Concurrency))
 	errors.Assert(!cfg.Debug, "Expected debug to be false")
 	errors.Assert(cfg.Delay == 0, "Expected delay not found.")
 	errors.Assert(cfg.Depth == cli.DefaultDepth, "Expected depth not found.")

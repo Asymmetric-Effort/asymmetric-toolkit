@@ -15,7 +15,7 @@ func (o *TargetServer) IsValid() (r bool) {
 	if len(s) != 3 {
 		return false
 	}
-	return misc.IsTcpUdpProtocol(s[0]) && misc.IsIpAddr(s[1]) && misc.IsPort(s[2])
+	return misc.IsNetworkProtocol(s[0]) && misc.IsIpAddr(s[1]) && misc.IsPort(s[2])
 }
 
 func (o *TargetServer) Set(s string) {
@@ -57,6 +57,6 @@ func (o *TargetServer) Protocol() string {
 	s := strings.Split(string(*o), ":")
 	errors.Assert(len(s) == 3, "TargetServer::Protocol(): Badly formatted TargetServer string.  "+
 		"Expected protocol:address:port")
-	errors.Assert(misc.IsTcpUdpProtocol(s[0]), "TargetServer::IsTcpUdpProtocol(): Expected udp or tcp protocol.")
+	errors.Assert(misc.IsNetworkProtocol(s[0]), "TargetServer::IsNetworkProtocol(): Expected udp or tcp protocol.")
 	return string(s[0])
 }

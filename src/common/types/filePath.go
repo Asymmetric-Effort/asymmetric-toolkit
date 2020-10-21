@@ -34,5 +34,4 @@ func (o *FilePath) OpenRead() *os.File {
 
 func (o *FilePath) OpenWrite() *os.File {
 	panic("not implemented")
-	return nil
 }
