@@ -1,12 +1,12 @@
 package logger
 
 import (
-	"asymmetric-effort/asymmetric-toolkit/src/common/logger/logLevel"
+	"asymmetric-effort/asymmetric-toolkit/src/common/logger/level"
 )
 
 func (o *Logger) Debug(format string, v ...interface{}){
 	switch o.level.Get() {
-	case logLevel.Debug:
-		o.Printf(logLevel.Debug, format, v...)
+	case level.Debug:
+		o.Printf(level.Debug, format, v...)
 	}
 }

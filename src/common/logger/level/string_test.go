@@ -1,4 +1,4 @@
-package logLevel
+package level
 
 import (
 	"asymmetric-effort/asymmetric-toolkit/src/common/errors"
@@ -6,6 +6,6 @@ import (
 )
 
 func TestLogLevelGetStr_Happy(t *testing.T){
-	var o LogLevel = Debug
+	var o Level = Debug
 	errors.Assert(o.String()=="DEBUG", "Expected Debug String")
 }

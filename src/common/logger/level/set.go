@@ -1,10 +1,10 @@
-package logLevel
+package level
 
 import (
 	"fmt"
 )
 
-func (o *LogLevel) Set(v LogLevel) {
+func (o *Level) Set(v Level) {
 	switch v {
 	case Critical, Error, Warning, Info, Debug:
 		break

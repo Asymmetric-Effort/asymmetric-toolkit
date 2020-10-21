@@ -1,10 +1,10 @@
-package logLevel
+package level
 
 import (
 	"fmt"
 )
 
-func (o *LogLevel) Get() (v LogLevel) {
+func (o *Level) Get() (v Level) {
 	switch *o {
 	case Critical, Error, Warning, Info, Debug:
 		v = *o

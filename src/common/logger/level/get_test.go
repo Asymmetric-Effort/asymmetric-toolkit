@@ -1,27 +1,31 @@
-package logLevel
+package level
 
 import (
 	"asymmetric-effort/asymmetric-toolkit/src/common/errors"
 	"testing"
 )
 
-func TestLogLevelSet_Happy(t *testing.T){
-	var l LogLevel
-	errors.Assert(l == Critical, "Expect Critical (Default)")
+const (
+	BadLevel=-1
+)
 
-	l.Set(Error)
+func TestLogLevelGet_Happy(t *testing.T){
+	var l Level = Critical
+	errors.Assert(l.Get() == Critical, "Expect Critical")
+	l = Error
 	errors.Assert(l.Get() == Error, "Expect Error")
-	l.Set(Warning)
+	l = Warning
 	errors.Assert(l.Get() == Warning, "Expect Warning")
-	l.Set(Info)
+	l = Info
 	errors.Assert(l.Get() == Info, "Expect Info")
-	l.Set(Debug)
+	l = Debug
 	errors.Assert(l.Get() == Debug, "Expect Debug")
 }
 
-func TestLogLevelSet_Sad(t *testing.T){
-	var l LogLevel
+func TestLogLevelGet_Sad(t *testing.T){
+	var l Level = BadLevel
 	defer func(){recover()}()
-	l.Set(BadLevel)
+	_ = l.Get()
 	t.Error("expected error")
 }
+

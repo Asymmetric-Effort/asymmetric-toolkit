@@ -1,12 +1,12 @@
-package logLevel
+package level
 
 import (
 	"fmt"
 	"strings"
 )
 
-func (o *LogLevel) String() (s string) {
-	list := strings.Split(LevelStrings, ",")
+func (o *Level) String() (s string) {
+	list := strings.Split(Strings, ",")
 	i := int(o.Get())
 	if i < len(list) {
 		return list[i]

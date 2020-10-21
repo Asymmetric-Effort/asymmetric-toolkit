@@ -22,7 +22,7 @@ type Configuration struct {
 	Domain       types.DomainName
 	Log          struct {
 		Destination destination.LogDestination
-		Level       level.LogLevel
+		Level       level.Level
 		Target      string //Could be log file or syslog server.
 	}
 	Mode        types.DataSource
