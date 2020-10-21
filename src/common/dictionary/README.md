@@ -1,10 +1,13 @@
-Dictionary Reader/Writer
-========================
+Dictionary
+==========
 
 ## Purpose
-Provide a reusable reader/writer for the toolkit dictionary file format which is 
-encrypted on a record-by-record level using a symmetric AES passphrase and armored
-ciphertext which will not encounter binary storage issues in github.
+* Provide a single abstract 'definition' struct containing the dictionary 'word', a hash identifier and various
+  metadata which can be used to prioritize words for use in various attack processes during a penetration test.
+  
+* Provide a reusable reader/writer for the toolkit dictionary file format which is encrypted on a record-by-record
+  level using a symmetric AES passphrase and armored ciphertext which will not encounter binary storage issues in
+  github.
 
 ## File Format
 TBD
@@ -19,13 +22,13 @@ import (
 )
 
 func doSomething(){
-var reader DictionaryReader.Reader
+var r reader.Reader
 file,err:=os.Create("myDictionary.txt")
 if err != nil {
     panic(err)
 }
-defer func(){reader.Close()}()
-read:=reader.Setup(file)
+defer func(){r.Close()}()
+read:=r.Setup(file)
 var eof bool
 var data []string
 eof,data = read()
@@ -44,13 +47,13 @@ import (
 )
 
 func doSomething(){
-var writer DictionaryWriter.Writer
+var w writer.Writer
 file,err:=os.Create("myDictionary.txt")
 if err != nil {
     panic(err)
 }
-defer func(){writer.Close()}()
-write:=writer.Setup(file)
+defer func(){w.Close()}()
+write:=w.Setup(file)
 write("my_word0")
 write("my_word1")
 write("my_word2")

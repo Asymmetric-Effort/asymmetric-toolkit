@@ -15,7 +15,7 @@ type Dictionary struct {
 		fileHandle *os.File          //File handle for reading/writing the actual file.
 		io         struct {
 			reader reader.Reader
-			writer DictionaryWriter.Writer
+			writer writer.Writer
 		}
 	}
 	content struct {
