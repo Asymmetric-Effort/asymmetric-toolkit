@@ -8,5 +8,7 @@ func (o *Logger) Warningf(format string, v ...interface{}) {
 	switch o.Level.Get() {
 	case level.Warning, level.Info, level.Debug:
 		o.Printf(level.Warning, format, v...)
+	case level.Critical, level.Error:
+		break
 	}
 }

@@ -8,16 +8,16 @@ import (
 
 func TestLogLevelSet_Happy(t *testing.T) {
 	var l level.LogLevel
-	errors.Assert(l == level.Critical, "Expect Critical (Default)")
+	errors.Assert(l == level.Critical, "Expect Criticalf (Default)")
 
 	l.Set(level.Error)
-	errors.Assert(l.Get() == level.Error, "Expect Error")
+	errors.Assert(l.Get() == level.Error, "Expect Errorf")
 	l.Set(level.Warning)
 	errors.Assert(l.Get() == level.Warning, "Expect Warningf")
 	l.Set(level.Info)
 	errors.Assert(l.Get() == level.Info, "Expect Infof")
 	l.Set(level.Debug)
-	errors.Assert(l.Get() == level.Debug, "Expect Debug")
+	errors.Assert(l.Get() == level.Debug, "Expect Debugf")
 }
 
 func TestLogLevelSet_Sad(t *testing.T) {

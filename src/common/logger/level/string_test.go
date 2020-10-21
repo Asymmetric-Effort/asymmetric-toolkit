@@ -8,5 +8,5 @@ import (
 
 func TestLogLevelGetStr_Happy(t *testing.T){
 	var o level.LogLevel = level.Debug
-	errors.Assert(o.String()=="DEBUG", "Expected Debug String")
+	errors.Assert(o.String()=="DEBUG", "Expected Debugf String")
 }

@@ -6,7 +6,7 @@ import (
 
 type Request struct {
 	concurrency    int
-	activeRequests int
+	//activeRequests int
 
 	timeout *time.Duration
 	domain  *string

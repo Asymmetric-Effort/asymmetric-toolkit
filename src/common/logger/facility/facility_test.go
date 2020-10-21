@@ -1,4 +1,4 @@
-package LogFacility_test
+package facility_test
 
 import (
 	"asymmetric-effort/asymmetric-toolkit/src/common/errors"

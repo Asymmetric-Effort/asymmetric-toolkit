@@ -8,7 +8,7 @@ import (
 
 func (o *Request) SetTimeout(t *time.Duration) {
 	if t == nil {
-		fmt.Println("Error(Request::setTimeout()): null timeout encountered.")
+		fmt.Println("Errorf(Request::setTimeout()): null timeout encountered.")
 		os.Exit(1)
 	}
 	o.timeout = t

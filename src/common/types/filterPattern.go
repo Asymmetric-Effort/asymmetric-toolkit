@@ -12,7 +12,7 @@ type FilterPattern struct {
 
 func (o *FilterPattern) Set(s string) {
 	re, err := regexp.Compile(s)
-	errors.Assert(err == nil, fmt.Sprintf("Encountered an error when compiling --pattern regex.  Error:%v", err))
+	errors.Assert(err == nil, fmt.Sprintf("Encountered an error when compiling --pattern regex.  Errorf:%v", err))
 	o.Re = re
 }
 

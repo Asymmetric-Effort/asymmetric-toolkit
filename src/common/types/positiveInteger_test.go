@@ -14,7 +14,7 @@ func TestPositiveInteger_Set_Happy(t *testing.T) {
 		p.Set(v)
 		i, e := strconv.Atoi(v)
 		if e != nil {
-			t.Fatalf("Error parsing %s into integer.  Error: %v", v, e)
+			t.Fatalf("Errorf parsing %s into integer.  Errorf: %v", v, e)
 		}
 		errors.Assert(p == types.PositiveInteger(i), "Conversion error in PositiveInteger type")
 	}

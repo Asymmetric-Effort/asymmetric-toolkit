@@ -19,7 +19,7 @@ func TestLoggerCriticalCritical(t *testing.T) {
 	config.Log.Level.Set(level.Critical)
 	out := catchStdOut(t, func() {
 		log.Setup(&config)
-		log.Critical("Test")
+		log.Criticalf("Test")
 	})
 	pattern := `^\[[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}\.[0-9]+` +
 		` [-+]{1}[0-9]+ [A-Z]+ m=[+-][0-9]+\.[0-9]+\]\[Logger\]\(CRIT\): Test$`
@@ -34,7 +34,7 @@ func TestLoggerCriticalDebug(t *testing.T) {
 	config.Log.Level.Set(level.Debug)
 	out := catchStdOut(t, func() {
 		log.Setup(&config)
-		log.Critical("Test")
+		log.Criticalf("Test")
 	})
 	pattern := `^\[[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}\.[0-9]+` +
 		` [-+]{1}[0-9]+ [A-Z]+ m=[+-][0-9]+\.[0-9]+\]\[Logger\]\(CRIT\): Test$`

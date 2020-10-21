@@ -1,3 +1,3 @@
-package LogFacility
+package facility
 
 type Facility string

@@ -1,4 +1,4 @@
-package LogFacility_test
+package facility_test
 
 import (
 	"asymmetric-effort/asymmetric-toolkit/src/common/errors"
@@ -6,24 +6,23 @@ import (
 	"testing"
 )
 
-func TestLogFacilityGet_Happy(t *testing.T){
-	var f LogFacility.Facility
-	f= LogFacility.Facility("MyLog") //Happy
-	errors.Assert(string(f)=="MyLog", "Expected value not properly stored.")
+func TestLogFacilityGet_Happy(t *testing.T) {
+	const facilityName = "MyLog"
+	var f LogFacility.Facility = LogFacility.Facility(facilityName) //Happy
+	errors.Assert(string(f) == facilityName, "Expected value not properly stored.")
 }
 
-func TestLogFacilityGet_Bad(t *testing.T){
-	var f LogFacility.Facility
-	defer func(){recover()}()
-	f= LogFacility.Facility("MyBadLog!")
+func TestLogFacilityGet_Bad(t *testing.T) {
+	const facilityName = "MyBadLog!"
+	var f LogFacility.Facility = LogFacility.Facility(facilityName)
+	defer func() { recover() }()
 	_ = f.Get()
 	t.Errorf("Expected error")
 }
 
-func TestLogFacilityGet_Empty(t *testing.T){
-	var f LogFacility.Facility
-	defer func(){recover()}()
-	f= LogFacility.Facility("MyBadLog!")
+func TestLogFacilityGet_Empty(t *testing.T) {
+	var f LogFacility.Facility = LogFacility.Facility("")
+	defer func() { recover() }()
 	_ = f.Get()
 	t.Errorf("Expected error")
 }

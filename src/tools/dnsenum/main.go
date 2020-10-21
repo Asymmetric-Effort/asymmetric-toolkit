@@ -21,7 +21,7 @@ func main() {
 		os.Exit(1)
 	}
 	log.Setup(&config)
-	log.Debug("Main(): Logger is setup and config is loaded.")
+	log.Debugf("Main(): Logger is setup and config is loaded.")
 
 	feed.Setup(&config,cli.SourceBufferSz,cli.DnsChars)
 

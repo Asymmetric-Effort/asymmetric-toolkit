@@ -34,7 +34,7 @@ func TestLoggerWarningCritical(t *testing.T) {
 	config.Log.Level.Set(level.Warning)
 	out := catchStdOut(t, func() {
 		log.Setup(&config)
-		log.Critical("Test")
+		log.Criticalf("Test")
 	})
 	pattern := `^\[[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}\.[0-9]+` +
 		` [-+]{1}[0-9]+ [A-Z]+ m=[+-][0-9]+\.[0-9]+\]\[Logger\]\(CRIT\): Test$`

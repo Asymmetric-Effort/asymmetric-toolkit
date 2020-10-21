@@ -69,7 +69,7 @@ func TestCliParser_DomainSequence(t *testing.T) {
 	args := []string{"--domain", domainStr, "--mode", "sequence", "--dnsServer", dnsServer}
 	if cfg.Parse(args) {
 		//We hit an unexpected terminate result.
-		t.Errorf("Error parsing sequence with no optionals. Args: %v", args)
+		t.Errorf("Errorf parsing sequence with no optionals. Args: %v", args)
 	} else {
 		errors.Assert(cfg.Domain.Get() == domainStr,
 			fmt.Sprintf("Expected domain string not found. domain:'%s' expected:'%s'",
@@ -98,7 +98,7 @@ func TestCliParser_DomainRandom(t *testing.T) {
 	args := []string{"--domain", domainStr, "--mode", "sequence", "--dnsServer", dnsServer}
 	if cfg.Parse(args) {
 		//We hit an unexpected terminate result.
-		t.Errorf("Error parsing random with no optionals")
+		t.Errorf("Errorf parsing random with no optionals")
 	} else {
 		errors.Assert(cfg.Domain.Get() == domainStr,
 			fmt.Sprintf("Expected domain string not found. domain:'%s' expected:'%s'",

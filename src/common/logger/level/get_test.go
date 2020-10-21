@@ -12,15 +12,15 @@ const (
 
 func TestLogLevelGet_Happy(t *testing.T){
 	var l level.LogLevel = level.Critical
-	errors.Assert(l.Get() == level.Critical, "Expect Critical")
+	errors.Assert(l.Get() == level.Critical, "Expect Criticalf")
 	l = level.Error
-	errors.Assert(l.Get() == level.Error, "Expect Error")
+	errors.Assert(l.Get() == level.Error, "Expect Errorf")
 	l = level.Warning
 	errors.Assert(l.Get() == level.Warning, "Expect Warningf")
 	l = level.Info
 	errors.Assert(l.Get() == level.Info, "Expect Infof")
 	l = level.Debug
-	errors.Assert(l.Get() == level.Debug, "Expect Debug")
+	errors.Assert(l.Get() == level.Debug, "Expect Debugf")
 }
 
 func TestLogLevelGet_Sad(t *testing.T){

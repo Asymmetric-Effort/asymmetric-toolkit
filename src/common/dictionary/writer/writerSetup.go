@@ -39,9 +39,9 @@ func (o *Writer) Setup(file *os.File, passphrase []byte) (write func(s string)) 
 				nonce,
 				[]byte(base64.StdEncoding.EncodeToString([]byte(s))),
 				nil))
-		assert.Error(err==nil, "Error calling write() operation in DictionaryWriter.Write()")
+		assert.Error(err==nil, "Errorf calling write() operation in DictionaryWriter.Write()")
 		err = writer.Flush()
-		errors.Assert(err == nil, fmt.Sprintf("DictionaryWriter::Write() failed to flush.  Error: %v", err))
+		errors.Assert(err == nil, fmt.Sprintf("DictionaryWriter::Write() failed to flush.  Errorf: %v", err))
 		errors.Assert(err == nil, fmt.Sprintf("%v", err))
 	}
 }

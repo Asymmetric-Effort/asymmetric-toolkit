@@ -11,5 +11,5 @@ func Assert(condition bool, msg string) bool {
 	if condition {
 		return true
 	}
-	panic(fmt.Sprintf("Assertion Error: %s", msg))
+	panic(fmt.Sprintf("Assertion Errorf: %s", msg))
 }

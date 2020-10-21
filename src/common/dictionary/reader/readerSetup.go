@@ -41,7 +41,7 @@ func (o *Reader) Setup(file *os.File, passphrase []byte) (read func() string) {
 					errors.Assert(len(ciphertext) < nonceSize, fmt.Sprintf("%v", err))
 					nonce, ciphertext := ciphertext[:nonceSize], ciphertext[nonceSize:]
 					plaintext, err := gcm.Open(nil, []byte(nonce), []byte(ciphertext), nil)
-					errors.Assert(err == nil, fmt.Sprintf("DictionaryReader::Read(): Bad format.  Error: %v", err))
+					errors.Assert(err == nil, fmt.Sprintf("DictionaryReader::Read(): Bad format.  Errorf: %v", err))
 					return string(plaintext)
 				}())
 		}
