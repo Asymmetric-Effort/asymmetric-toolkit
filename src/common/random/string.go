@@ -6,12 +6,6 @@ import (
 	"time"
 )
 
-import (
-	"math/rand"
-	"os"
-	"time"
-)
-
 func String(sz int,chars *string) string {//Return a random string of sz length using the chars character set.
 
 	keySpace := []rune(*chars)

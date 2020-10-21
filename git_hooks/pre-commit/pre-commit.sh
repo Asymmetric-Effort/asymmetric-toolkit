@@ -7,4 +7,4 @@ set -e
 echo "Pre-commit starting..."
 
 
-#make lint
+make lint
