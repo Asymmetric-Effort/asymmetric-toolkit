@@ -1,4 +1,4 @@
-package types
+package sourcetype
 
 type DataSource uint8
 
@@ -7,6 +7,5 @@ const (
 	Sequence   DataSource = 1
 	Random     DataSource = 2
 	Dictionary DataSource = 3
-	// See BadDataSource = 255 in dataSource_test.go
+	// See BadDataSource = 255 in constants_test.go
 )
-

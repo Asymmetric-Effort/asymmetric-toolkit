@@ -1,4 +1,4 @@
-package types
+package sourcetype
 
 import (
 	"fmt"
@@ -7,9 +7,12 @@ import (
 
 func (o *DataSource) Set(n string) {
 	switch strings.ToLower(n) {
-	case "random": *o = Random
-	case "sequence": *o = Sequence
-	case "dictionary": *o = Dictionary
+	case "random":
+		*o = Random
+	case "sequence":
+		*o = Sequence
+	case "dictionary":
+		*o = Dictionary
 	default:
 		panic(fmt.Sprintf("Invalid DataSource value (%s)", n))
 	}

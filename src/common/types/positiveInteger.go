@@ -15,6 +15,6 @@ func (o *PositiveInteger) Set(s string) {
 	*o = PositiveInteger(i)
 }
 
-func (o *PositiveInteger) Get() int{
+func (o *PositiveInteger) Get() int {
 	return int(*o)
 }

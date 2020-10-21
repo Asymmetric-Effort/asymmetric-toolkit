@@ -2,6 +2,7 @@ package cli
 
 import (
 	"asymmetric-effort/asymmetric-toolkit/src/common/errors"
+	"asymmetric-effort/asymmetric-toolkit/src/common/sourcetype"
 	"asymmetric-effort/asymmetric-toolkit/src/common/types"
 	"fmt"
 	"regexp"
@@ -150,7 +151,7 @@ func (o *Configuration) Parse(cliArguments []string) bool {
 		return ExitTerminate
 	}
 
-	if o.Mode.Get() == types.NotSet {
+	if o.Mode.Get() == sourcetype.NotSet {
 		fmt.Println("Missing mode (required).  Use --mode <sequence|random|dictionary> to specify.")
 		return ExitTerminate
 	}

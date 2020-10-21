@@ -3,6 +3,7 @@ package cli
 import (
 	"asymmetric-effort/asymmetric-toolkit/src/common/logger/destination"
 	"asymmetric-effort/asymmetric-toolkit/src/common/logger/level"
+	"asymmetric-effort/asymmetric-toolkit/src/common/sourcetype"
 	"asymmetric-effort/asymmetric-toolkit/src/common/types"
 )
 
@@ -25,7 +26,7 @@ type Configuration struct {
 		Level       level.Level
 		Target      string //Could be log file or syslog server.
 	}
-	Mode        types.DataSource
+	Mode        sourcetype.DataSource
 	Output      types.FilePath
 	Pattern     types.FilterPattern
 	RecordTypes types.List

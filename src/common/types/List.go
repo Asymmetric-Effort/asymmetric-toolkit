@@ -30,5 +30,5 @@ func (o *List) Get(i int) string {
 }
 
 func (o *List) String() string {
-	return strings.Join(o.data,",")
+	return strings.Join(o.data, ",")
 }

@@ -17,15 +17,23 @@ func (o *FilterPattern) Set(s string) {
 }
 
 func (o *FilterPattern) Match(s string) bool {
-	if o.re == nil {
+	if o.IsNil() {
 		return false
 	}
 	return o.re.MatchString(s)
 }
 
 func (o *FilterPattern) String() string {
-	if o.re == nil {
+	if o.IsNil() {
 		return ""
 	}
 	return o.re.String()
+}
+
+func (o *FilterPattern) Get() string {
+	return o.String()
+}
+
+func (o *FilterPattern) IsNil() bool {
+	return o.re == nil
 }
