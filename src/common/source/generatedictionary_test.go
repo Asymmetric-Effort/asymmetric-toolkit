@@ -1,4 +1,4 @@
-package source
+package source_test
 
 import (
 	writer2 "asymmetric-effort/asymmetric-toolkit/src/common/dictionary/writer"

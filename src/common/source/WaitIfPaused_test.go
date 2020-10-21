@@ -1,13 +1,14 @@
-package source
+package source_test
 
 import (
 	"asymmetric-effort/asymmetric-toolkit/src/common/errors"
+	"asymmetric-effort/asymmetric-toolkit/src/common/source"
 	"testing"
 	"time"
 )
 
 func TestWaitIfPaused(t *testing.T) {
-	var s Source
+	var s source.Source
 	s.isPaused = true
 	go func() {
 		<-time.After(time.Second * (pauseCheckDelay + 5))

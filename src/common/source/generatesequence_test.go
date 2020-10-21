@@ -1,7 +1,8 @@
-package source
+package source_test
 
 import (
 	"asymmetric-effort/asymmetric-toolkit/src/common/errors"
+	"asymmetric-effort/asymmetric-toolkit/src/common/source"
 	"asymmetric-effort/asymmetric-toolkit/tools/dnsenum/cli"
 	"fmt"
 	"testing"
@@ -13,7 +14,7 @@ func TestSourceGenerateSequence(t *testing.T) {
 	*/
 	const keyspace = "0123456789"
 	const maxWordSize = 9
-	var s Source
+	var s source.Source
 	var config cli.Configuration
 	args := []string{"--domain", "google.com", "--mode", "sequence", "--dnsServer", "udp:127.0.0.1:53"}
 	config.Parse(args)
@@ -52,7 +53,7 @@ func TestSourceGenerateSequenceBinary(t *testing.T) {
 	*/
 	const keyspace = "01"
 	const maxWordSize = 9
-	var s Source
+	var s source.Source
 	var config cli.Configuration
 	args := []string{"--domain", "google.com", "--mode", "sequence", "--dnsServer","udp:127.0.0.1:53"}
 	config.Parse(args)

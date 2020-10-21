@@ -1,8 +1,9 @@
-package source
+package source_test
 
 import (
 	"asymmetric-effort/asymmetric-toolkit/src/common/errors"
 	"asymmetric-effort/asymmetric-toolkit/src/common/file"
+	"asymmetric-effort/asymmetric-toolkit/src/common/source"
 	"asymmetric-effort/asymmetric-toolkit/tools/dnsenum/cli"
 	"fmt"
 	"os"
@@ -17,13 +18,13 @@ const (
 )
 
 func TestSetupHappySequenceNullConfig(t *testing.T) {
-	var s Source
+	var s source.Source
 	defer func() { recover() }()
 	s.Setup(nil, cli.SourceBufferSz, cli.DnsChars)
 }
 
 func TestSetupHappySequenceBadBufferSize(t *testing.T) {
-	var s Source
+	var s source.Source
 	var config cli.Configuration
 	args := []string{"--domain", "google.com", "--mode", "sequence", "--dnsServer","udp:127.0.0.1:53"}
 	config.Parse(args)
@@ -32,7 +33,7 @@ func TestSetupHappySequenceBadBufferSize(t *testing.T) {
 }
 
 func TestSetupHappySequenceBadChars(t *testing.T) {
-	var s Source
+	var s source.Source
 	var config cli.Configuration
 	args := []string{"--domain", "google.com", "--mode", "sequence", "--dnsServer","udp:127.0.0.1:53"}
 	config.Parse(args)
@@ -57,7 +58,7 @@ func TestSetupHappySequence(t *testing.T) {
 	}
 	for r := 1; r <= 4; r++ {
 		fmt.Printf("wordsize: %d\n",r)
-		var s Source
+		var s source.Source
 		var config cli.Configuration
 		args := []string{"--domain", "google.com", "--mode", "sequence", "--dnsServer","udp:127.0.0.1:53", "--wordSize", strconv.Itoa(r), "--maxWordCount", "100"}
 		config.Parse(args)
@@ -73,7 +74,7 @@ func TestSetupHappySequence(t *testing.T) {
 
 func TestSetupHappyRandom(t *testing.T) {
 	t.SkipNow()
-	var s Source
+	var s source.Source
 	var config cli.Configuration
 	args := []string{"--domain", "google.com", "--mode", "random", "--dnsServer","udp:127.0.0.1:53"}
 	config.Parse(args)
@@ -92,7 +93,7 @@ func TestSetupHappyRandom(t *testing.T) {
 
 func TestSetupHappyDictionary(t *testing.T) {
 	t.SkipNow()
-	var s Source
+	var s source.Source
 	var config cli.Configuration
 	//
 	baseDir, err := os.Getwd()
