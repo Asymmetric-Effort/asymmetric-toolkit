@@ -7,32 +7,18 @@ import (
 
 func GetShannonsInt64(data int64) int64 {
 	/*
-		return func() int {
+		Calculate the discrete Shannon entropy (H) of a given input string (n).
 
-			totalLength := len(*input)
-			var sum float64 = 0
-			for _, i := range *input {
-				for _, v := range *misc.CountNumberFrequency(i) {
-					var f = float64(v) / float64(totalLength)
-					sum += f * math.Log2(f)
-				}
-			}
-			//return int(math.Ceil(sum*-1)) * int(totalLength)
-		//}()
+		Given a discrete random variable (x) that is the string of N "symbols" (total characters)
+		consisting of n different characters (n=2 for binary), the shannon entropy of X in
+		bits/symbols is:
 
-		/*
-			Calculate the discrete Shannon entropy (H) of a given input string (n).
+					 _n_  count(i)       (  count(i) )
+			H(X) = - \    ________ * log2(  ________ )
+					 /__     N           (     N     )
+					 i=1
 
-			Given a discrete random variable (x) that is the string of N "symbols" (total characters)
-			consisting of n different characters (n=2 for binary), the shannon entropy of X in
-			bits/symbols is:
-
-						 _n_  count(i)       (  count(i) )
-				H(X) = - \    ________ * log2(  ________ )
-						 /__     N           (     N     )
-						 i=1
-
-			where count(i) is the count of characters n(i) (or frequency)
+		where count(i) is the count of characters n(i) (or frequency)
 	*/
 	var entropy float64 = 0
 	freqMap:=misc.CountNumberFrequency64(data)
