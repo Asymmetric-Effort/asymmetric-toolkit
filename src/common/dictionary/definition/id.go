@@ -1,5 +1,5 @@
-package definition
+package dictionaryDefinition
 
-func (o *Record) ID() string {
+func (o *Record) Id() string {
 	return o.id
 }

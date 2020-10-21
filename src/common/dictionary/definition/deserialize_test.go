@@ -1,1 +1,1 @@
-package definition_test
+package dictionaryDefinition

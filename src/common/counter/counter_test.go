@@ -6,9 +6,7 @@ import (
 	"testing"
 )
 
-func TestCounter (t *testing.T){
+func TestCounter(t *testing.T) {
 	var c counter.Counter
-	errors.Assert(c.Runes == nil, "expected nil pointer for c.runes")
-	errors.Assert(c.Data == nil, "expected nil pointer for c.data")
-	errors.Assert(c.MaxBase == 0, "expected 0 value for c.maxBase")
+	errors.Assert(c.String() == "", "Expect an empty string if we are not initialized.")
 }

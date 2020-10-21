@@ -18,11 +18,9 @@ func (o *Configuration) Parse(cliArguments []string) bool {
 			case "-h", "--help":
 				ShowUsage()
 				lastFlag = UsageFlag
-				break
 			case "--version", "-v":
 				ShowVersion()
 				lastFlag = VersionFlag
-				break
 			case "--concurrency":
 				lastFlag = ConcurrencyFlag
 				expected = ExpectValue
@@ -80,8 +78,12 @@ func (o *Configuration) Parse(cliArguments []string) bool {
 					errors.Fatal(1, "Expected value, not flag.")
 				}
 			}()
+
 			switch lastFlag {
-			case UsageFlag, VersionFlag:
+			case NoFlag,UsageFlag:
+				ShowUsage()
+			case VersionFlag:
+				break
 			case ConcurrencyFlag:
 				o.Concurrency.Set(args)
 				expected = ExpectFlag
@@ -182,7 +184,7 @@ func (o *Configuration) Parse(cliArguments []string) bool {
 			return ExitTerminate
 		}
 		if o.MaxWordCount == 0 {
-			o.MaxWordCount = types.PositiveInteger(int(o.WordSize) * len(DnsChars))
+			o.MaxWordCount = types.PositiveInteger(int(o.WordSize) * len(DNSChars))
 		}
 		if o.WordSize == 0 {
 			o.WordSize = DefaultWordSize

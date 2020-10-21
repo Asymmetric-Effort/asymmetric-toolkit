@@ -18,7 +18,7 @@ setup:
 	@./scripts/setup.sh
 
 lint:
-	@./scripts/linter.sh
+	./scripts/linter.sh
 
 test:
-	@./scripts/run_tests.sh
+	@echo "run tests not implemented yet"

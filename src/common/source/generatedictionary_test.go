@@ -1,15 +1,20 @@
-package source_test
+package source
 
 import (
+	writer2 "asymmetric-effort/asymmetric-toolkit/src/common/dictionary/writer"
+	"asymmetric-effort/asymmetric-toolkit/src/common/file"
+	"fmt"
+	"os"
+	"path/filepath"
 	"testing"
+	"time"
 )
 
 func TestSourceGenerateDictionary(t *testing.T) {
-	/*
 	dictionary:=func() string {
-
-		//Setup the test by creating a test dictionary file.
-
+		/*
+			Setup the test by creating a test dictionary file.
+		*/
 		checkError := func(err error) {
 			if err != nil {
 				panic(err)

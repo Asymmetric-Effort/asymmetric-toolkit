@@ -5,8 +5,5 @@ import (
 )
 
 func Warn(s string) {
-	/*
-		Print a simple warning to the screen
-	 */
-	fmt.Printf("Warningf: %s\n", s)
+	fmt.Printf("Warning: %s\n", s)
 }

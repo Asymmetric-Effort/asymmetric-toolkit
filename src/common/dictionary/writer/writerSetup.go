@@ -1,4 +1,4 @@
-package writer
+package DictionaryWriter
 
 import (
 	"asymmetric-effort/asymmetric-toolkit/src/common/errors"
@@ -9,7 +9,6 @@ import (
 	"crypto/sha256"
 	"encoding/base64"
 	"fmt"
-	assert "github.com/sam-caldwell/adrestia-assertions/src"
 	"io"
 	"os"
 )
@@ -39,9 +38,8 @@ func (o *Writer) Setup(file *os.File, passphrase []byte) (write func(s string)) 
 				nonce,
 				[]byte(base64.StdEncoding.EncodeToString([]byte(s))),
 				nil))
-		assert.Error(err==nil, "Errorf calling write() operation in DictionaryWriter.Write()")
 		err = writer.Flush()
-		errors.Assert(err == nil, fmt.Sprintf("DictionaryWriter::Write() failed to flush.  Errorf: %v", err))
+		errors.Assert(err == nil, fmt.Sprintf("DictionaryWriter::Write() failed to flush.  Error: %v", err))
 		errors.Assert(err == nil, fmt.Sprintf("%v", err))
 	}
 }

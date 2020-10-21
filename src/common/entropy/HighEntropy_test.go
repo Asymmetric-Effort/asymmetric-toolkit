@@ -1,7 +1,6 @@
-package entropy_test
+package entropy
 
 import (
-	"asymmetric-effort/asymmetric-toolkit/src/common/entropy"
 	"asymmetric-effort/asymmetric-toolkit/src/common/errors"
 	"fmt"
 	"testing"
@@ -42,13 +41,13 @@ func TestHighEntropy(t *testing.T) {
 		},
 	}
 	for i, test := range tests {
-		fmt.Printf("Test (%d) Result:%d (%t)\n", i, entropy.GetShannons(test.input), entropy.HighEntropy(test.input))
+		fmt.Printf("Test (%d) Result:%d (%t)\n", i, GetShannons(test.input), HighEntropy(test.input))
 		if test.result {
-			errors.Assert(entropy.HighEntropy(test.input),
-				fmt.Sprintf("Expected %t (%d) (%d)", entropy.HighEntropy(test.input), i, entropy.GetShannons(test.input)))
+			errors.Assert(HighEntropy(test.input),
+				fmt.Sprintf("Expected %t (%d) (%d)", HighEntropy(test.input), i, GetShannons(test.input)))
 		} else {
-			errors.Assert(!entropy.HighEntropy(test.input),
-				fmt.Sprintf("Expected %t (%d) (%d)", entropy.HighEntropy(test.input), i, entropy.GetShannons(test.input)))
+			errors.Assert(!HighEntropy(test.input),
+				fmt.Sprintf("Expected %t (%d) (%d)", HighEntropy(test.input), i, GetShannons(test.input)))
 		}
 
 

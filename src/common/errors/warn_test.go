@@ -1,10 +1,7 @@
-package errors_test
+package errors
 
-import (
-	"asymmetric-effort/asymmetric-toolkit/src/common/errors"
-	"testing"
-)
+import "testing"
 
 func TestWarn(t *testing.T){
-	errors.Warn("pass") //cause assertion error."
+	Warn("pass") //cause assertion error."
 }

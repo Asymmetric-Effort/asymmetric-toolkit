@@ -1,12 +1,9 @@
-package errors_test
+package errors
 
-import (
-	"asymmetric-effort/asymmetric-toolkit/src/common/errors"
-	"testing"
-)
+import "testing"
 
 func TestAssert(t *testing.T){
 	defer func(){recover()}()
-	errors.Assert(false,"expect true") //cause assertion error."
+	Assert(false,"expect true") //cause assertion error."
 	t.FailNow()
 }

@@ -1,19 +1,19 @@
 package logger
 
 import (
-	"asymmetric-effort/asymmetric-toolkit/src/common/logger/level"
+	"asymmetric-effort/asymmetric-toolkit/src/common/logger/logLevel"
 	"fmt"
 	"time"
 )
 
-func (o *Logger) Print(level level.LogLevel, msg string) {
-	if o.Writer != nil {
+func (o *Logger) Print(level logLevel.LogLevel, msg string) {
+	if o.writer != nil {
 		formattedMessage:=fmt.Sprintf(
 			LogFormat,
 			time.Now().String(),
-			o.Facility.String(),
+			o.facility.String(),
 			level.String(),
 			msg+"\n")
-		o.Writer(&formattedMessage)
+		o.writer(&formattedMessage)
 	}
 }

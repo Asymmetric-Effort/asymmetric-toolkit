@@ -1,14 +1,13 @@
-package misc_test
+package misc
 
 import (
 	"asymmetric-effort/asymmetric-toolkit/src/common/errors"
-	"asymmetric-effort/asymmetric-toolkit/src/common/misc"
 	"testing"
 )
 
 func TestCountNumberFrequency(t *testing.T) {
 	n := 12345
-	c := *misc.CountNumberFrequency(n)
+	c := *CountNumberFrequency(n)
 	errors.Assert(c[0] == 0, "Expect 0 0s")
 	errors.Assert(c[1] == 1, "Expect 1 1s")
 	errors.Assert(c[2] == 1, "Expect 1 2s")
@@ -17,7 +16,7 @@ func TestCountNumberFrequency(t *testing.T) {
 	errors.Assert(c[5] == 1, "Expect 1 5s")
 
 	n = 11111
-	c = *misc.CountNumberFrequency(n)
+	c = *CountNumberFrequency(n)
 	errors.Assert(c[0] == 0, "Expect 0 0s")
 	errors.Assert(c[1] == 5, "Expect 5 1s")
 	errors.Assert(c[2] == 0, "Expect 0 2s")
@@ -26,7 +25,7 @@ func TestCountNumberFrequency(t *testing.T) {
 	errors.Assert(c[5] == 0, "Expect 0 5s")
 
 	n = 122333444455555
-	c = *misc.CountNumberFrequency(n)
+	c = *CountNumberFrequency(n)
 	errors.Assert(c[0] == 0, "Expect 0 0s")
 	errors.Assert(c[1] == 1, "Expect 1 1s")
 	errors.Assert(c[2] == 2, "Expect 2 2s")

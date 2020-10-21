@@ -27,7 +27,6 @@ func nextSequence(n int) func() string {
 			x[i] = 0
 			if i <= 0 {
 				x = x[0:0]
-
 				break
 			}
 		}
@@ -36,13 +35,13 @@ func nextSequence(n int) func() string {
 }
 
 func bruteForce() {
-	const outChanSz = 16384
 	done:=make(chan bool,1)
-	out:=make(chan string,outChanSz)
+	out:=make(chan string,16384)
 	go func(){
 		for {
 			fmt.Println(<-out)
 		}
+		<-done
 	}()
 	for n := 0; n <= maxSizeLimit; n++ {
 		np := nextSequence(n)

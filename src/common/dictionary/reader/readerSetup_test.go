@@ -1,4 +1,4 @@
-package reader_test
+package DictionaryReader
 
 import (
 	"testing"

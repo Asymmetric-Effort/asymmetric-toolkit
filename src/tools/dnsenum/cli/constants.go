@@ -11,7 +11,7 @@ const (
 	DefaultFilterPattern  string                = `.+`
 	DefaultDNSRecordTypes string                = "A,AAAA,MX,CNAME,NS,TXT,SOA,SRV"
 	DefaultWordSize       types.PositiveInteger = 5 //For a given sequence or random string, this is the max length of the 'word'
-	DnsChars              string                = "WMEFSABCDGHIJKLNOPQRTUVXYZwmefsabcdghijklnopqrtuvxyz0123456789._-"
+	DNSChars              string                = "WMEFSABCDGHIJKLNOPQRTUVXYZwmefsabcdghijklnopqrtuvxyz0123456789._-"
 	SourceBufferSz        int                   = 1048576 //Size of the source buffer which feeds the payload (attack) function.
 	ResponseBufferSz      int                   = 1048576 //Size of the response buffer for responses pending report processing.
 

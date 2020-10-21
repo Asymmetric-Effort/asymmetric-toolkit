@@ -1,4 +1,0 @@
-TODO LIST
-=========
-1. In src/common/queues/Fifo::Push() we need to emit stats for start and stop times of blocked calls.
-2. Add stats metadata to dictionary definition Record struct and add supporting methods.

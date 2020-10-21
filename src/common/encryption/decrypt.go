@@ -4,12 +4,10 @@ import (
 	"asymmetric-effort/asymmetric-toolkit/src/common/errors"
 	"crypto/aes"
 	"crypto/cipher"
-/*
+
 	//"crypto/aes"
 	//"crypto/cipher"
 	//"encoding/hex"
-
- */
 	"encoding/hex"
 	"fmt"
 )
@@ -30,11 +28,11 @@ func Decrypt(signal *string, key *Key) *string {
 		sbytes, err := hex.DecodeString(*signal)
 		errors.Assert(err == nil,
 			fmt.Sprintf("Failed to decode ciphertext string. "+
-				"Errorf:%v\n"+
+				"Error:%v\n"+
 				"signal:%s",
 				*signal, err))
-		n := sbytes[0:NonceSize]
-		c := sbytes[NonceSize:]
+		n := sbytes[0:nonceSize]
+		c := sbytes[nonceSize:]
 
 		return &c, &n
 	}()
@@ -42,13 +40,13 @@ func Decrypt(signal *string, key *Key) *string {
 	fmt.Println(cipherText, nonce)
 
 	block, err = aes.NewCipher((*key)[:])
-	errors.Assert(err == nil, fmt.Sprintf("Failed to generate the cipher block. Errorf:%v", err))
+	errors.Assert(err == nil, fmt.Sprintf("Failed to generate the cipher block. Error:%v", err))
 
 	gcm, err := cipher.NewGCM(block)
-	errors.Assert(err == nil, fmt.Sprintf("Failed to create new GCM. Errorf:%v", err))
+	errors.Assert(err == nil, fmt.Sprintf("Failed to create new GCM. Error:%v", err))
 
 	plainText, err = gcm.Open(nil, *nonce, *cipherText, nil)
-	errors.Assert(err == nil, fmt.Sprintf("Decryption failed. Errorf:%v", err))
+	errors.Assert(err == nil, fmt.Sprintf("Decryption failed. Error:%v", err))
 	s := string(plainText)
 
 	return &s

@@ -1,13 +1,12 @@
-package types_test
+package types
 
 import (
 	"asymmetric-effort/asymmetric-toolkit/src/common/errors"
-	"asymmetric-effort/asymmetric-toolkit/src/common/types"
 	"testing"
 )
 
 func TestDataSource_IsDictionary (t *testing.T) {
-	var d types.DataSource
+	var d DataSource
 	d.Set("Dictionary")
 	errors.Assert(d.IsDictionary(), "Expected Dictionary(1)")
 	d.Set("dictionary")

@@ -1,11 +1,11 @@
-package facility
+package LogFacility
 
 import (
 	"regexp"
 )
 
 func (f *Facility) Set(v string) {
-	re:=regexp.MustCompile(FacilityRegExPattern)
+	re:=regexp.MustCompile(facilityRegExPattern)
 	if re.MatchString(v){
 		*f = Facility(v)
 	} else {

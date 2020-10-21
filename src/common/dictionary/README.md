@@ -1,11 +1,10 @@
-Dictionary
-==========
+Dictionary Reader/Writer
+========================
 
 ## Purpose
-* Provide an abstract `definition` struct for storing and handling dictionary 'words,' identifiers and related
-  metadata with encryption/compression in-memory and at rest on disk.
-* Provide a reusable reader/writer for the toolkit which will read/write a proprietary rich dictionary file format
-  to/from disk.
+Provide a reusable reader/writer for the toolkit dictionary file format which is 
+encrypted on a record-by-record level using a symmetric AES passphrase and armored
+ciphertext which will not encounter binary storage issues in github.
 
 ## File Format
 TBD

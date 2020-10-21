@@ -1,10 +1,9 @@
-package source_test
+package source
 
 import (
 	"asymmetric-effort/asymmetric-toolkit/src/common/errors"
 	"asymmetric-effort/asymmetric-toolkit/src/common/file"
-	"asymmetric-effort/asymmetric-toolkit/src/common/source"
-	"asymmetric-effort/asymmetric-toolkit/src/tools/dnsenum/cli"
+	"asymmetric-effort/asymmetric-toolkit/tools/dnsenum/cli"
 	"fmt"
 	"os"
 	"path/filepath"
@@ -18,13 +17,13 @@ const (
 )
 
 func TestSetupHappySequenceNullConfig(t *testing.T) {
-	var s source.Source
+	var s Source
 	defer func() { recover() }()
 	s.Setup(nil, cli.SourceBufferSz, cli.DnsChars)
 }
 
 func TestSetupHappySequenceBadBufferSize(t *testing.T) {
-	var s source.Source
+	var s Source
 	var config cli.Configuration
 	args := []string{"--domain", "google.com", "--mode", "sequence", "--dnsServer","udp:127.0.0.1:53"}
 	config.Parse(args)
@@ -33,7 +32,7 @@ func TestSetupHappySequenceBadBufferSize(t *testing.T) {
 }
 
 func TestSetupHappySequenceBadChars(t *testing.T) {
-	var s source.Source
+	var s Source
 	var config cli.Configuration
 	args := []string{"--domain", "google.com", "--mode", "sequence", "--dnsServer","udp:127.0.0.1:53"}
 	config.Parse(args)
@@ -58,15 +57,15 @@ func TestSetupHappySequence(t *testing.T) {
 	}
 	for r := 1; r <= 4; r++ {
 		fmt.Printf("wordsize: %d\n",r)
-		var s source.Source
+		var s Source
 		var config cli.Configuration
 		args := []string{"--domain", "google.com", "--mode", "sequence", "--dnsServer","udp:127.0.0.1:53", "--wordSize", strconv.Itoa(r), "--maxWordCount", "100"}
 		config.Parse(args)
 		s.Setup(&config, cli.SourceBufferSz, cli.DnsChars)
-		s.IsPaused = false
+		s.isPaused = false
 		testTimeout()
 		for s.HasData() {
-			out := s.Feed.Pop()
+			out := s.feed.Pop()
 			t.Logf("Generator Output:%s", out)
 		}
 	}
@@ -74,15 +73,15 @@ func TestSetupHappySequence(t *testing.T) {
 
 func TestSetupHappyRandom(t *testing.T) {
 	t.SkipNow()
-	var s source.Source
+	var s Source
 	var config cli.Configuration
 	args := []string{"--domain", "google.com", "--mode", "random", "--dnsServer","udp:127.0.0.1:53"}
 	config.Parse(args)
 	s.Setup(&config, cli.SourceBufferSz, cli.DnsChars)
-	s.IsPaused = false
+	s.isPaused = false
 	//go testTimeout(t,TestSetupGeneratorTimeout)
 	for i := 0; i < 10; i++ {
-		out := s.Feed.Pop()
+		out := s.feed.Pop()
 		if len(out) == 0 {
 			t.Fatal("empty output")
 		} else {
@@ -93,22 +92,22 @@ func TestSetupHappyRandom(t *testing.T) {
 
 func TestSetupHappyDictionary(t *testing.T) {
 	t.SkipNow()
-	var s source.Source
+	var s Source
 	var config cli.Configuration
 	//
 	baseDir, err := os.Getwd()
 	errors.Assert(err == nil, fmt.Sprintf("%v", err))
 	//
 	dictFile := filepath.Join(baseDir, "dictFile")
-	errors.Assert(file.ExistsAsFile(dictFile), fmt.Sprintf("File not found:%s", dictFile))
+	errors.Assert(file.FileExists(dictFile), fmt.Sprintf("File not found:%s", dictFile))
 	//
 	args := []string{"--domain", "google.com", "--mode", "dictionary", "--dictionary", dictFile, "--dnsServer","udp:127.0.0.1:53"}
 	config.Parse(args)
 	s.Setup(&config, cli.SourceBufferSz, cli.DnsChars)
-	s.IsPaused = false
+	s.isPaused = false
 	// testTimeout(t,TestSetupGeneratorTimeout)
 	for i := 0; i < 10; i++ {
-		out := s.Feed.Pop()
+		out := s.feed.Pop()
 		if len(out) == 0 {
 			t.Fatal("empty output")
 		} else {

@@ -23,7 +23,7 @@ func main() {
 	log.Setup(&config)
 	log.Debugf("Main(): Logger is setup and config is loaded.")
 
-	feed.Setup(&config,cli.SourceBufferSz,cli.DnsChars)
+	feed.Setup(&config,cli.SourceBufferSz,cli.DNSChars)
 
 	//var requestSent chan bool = make(chan bool, 1)
 

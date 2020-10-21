@@ -1,9 +1,14 @@
 package source
 
-/*
-func (o *Source) generateDictionary() {
-	//Read the o.dict file (observe pauseFlag)
+import (
+	"asymmetric-effort/asymmetric-toolkit/src/common/dictionary/reader"
+	"asymmetric-effort/asymmetric-toolkit/src/common/errors"
+)
 
+func (o *Source) generateDictionary() {
+	/*
+		Read the o.dict file (observe pauseFlag)
+	*/
 	errors.Assert(o.config != nil,"Source::generateDictionary() encountered nil config")
 	var dict reader.Reader
 	defer dict.Close()
@@ -14,4 +19,3 @@ func (o *Source) generateDictionary() {
 		o.counter++
 	}
 }
-*/

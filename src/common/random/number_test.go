@@ -1,9 +1,8 @@
-package random_test
+package random
 
 import (
 	"asymmetric-effort/asymmetric-toolkit/src/common/entropy"
 	"asymmetric-effort/asymmetric-toolkit/src/common/errors"
-	"asymmetric-effort/asymmetric-toolkit/src/common/random"
 	"fmt"
 	"testing"
 )
@@ -18,7 +17,7 @@ func TestNumberLarge(t *testing.T) {
 		above := 0
 		frequency := make(map[int]int)
 		for i := 0; i < rounds; i++ {
-			n := random.Number(low, high)
+			n := Number(low, high)
 			if entropy.HighEntropyInt(n) {
 				above++
 			}

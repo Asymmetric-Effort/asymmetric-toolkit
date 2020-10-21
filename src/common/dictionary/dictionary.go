@@ -8,20 +8,19 @@ import (
 )
 
 type Dictionary struct {
-	Read    func() string
-	Write   func(s string)
+	Read func() string
+	Write func(s string)
 	runtime struct {
-		passphrase *string  //Encryption passphrase (not written to the actual file).
-		fileHandle *os.File //File handle for reading/writing the actual file.
+		passphrase *string           //Encryption passphrase (not written to the actual file).
+		fileHandle *os.File          //File handle for reading/writing the actual file.
 		io         struct {
-			reader reader.Reader
-			writer writer.Writer
+			reader DictionaryReader.Reader
+			writer DictionaryWriter.Writer
 		}
 	}
 	content struct {
 		header struct {
 			version           [3]byte // file format version
-			reserved          [4]byte //Padding to align memory
 			compressed        bool    // flag indicates whether compression is used
 			created           int64   // unix timestamp
 			descriptionLength uint16

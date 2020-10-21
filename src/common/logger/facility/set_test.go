@@ -1,19 +1,18 @@
-package facility_test
+package LogFacility
 
 import (
 	"asymmetric-effort/asymmetric-toolkit/src/common/errors"
-	LogFacility "asymmetric-effort/asymmetric-toolkit/src/common/logger/facility"
 	"testing"
 )
 
 func TestLogFacilitySet_Happy(t *testing.T){
-	var f LogFacility.Facility
+	var f Facility
 	f.Set("MyLog") //Happy
 	errors.Assert(string(f)=="MyLog", "Expected value not properly stored.")
 }
 
 func TestLogFacilitySet_Bad(t *testing.T){
-	var f LogFacility.Facility
+	var f Facility
 	defer func(){recover()}()
 	f.Set("MyBadLog!")
 	_ = f.Get()
@@ -21,7 +20,7 @@ func TestLogFacilitySet_Bad(t *testing.T){
 }
 
 func TestLogFacilitySet_Empty(t *testing.T){
-	var f LogFacility.Facility
+	var f Facility
 	defer func(){recover()}()
 	f.Set("")
 	_ = f.Get()

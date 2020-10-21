@@ -1,13 +1,12 @@
-package types_test
+package types
 
 import (
 	"asymmetric-effort/asymmetric-toolkit/src/common/errors"
-	"asymmetric-effort/asymmetric-toolkit/src/common/types"
 	"testing"
 )
 
 func TestDataSource_IsSequence (t *testing.T) {
-	var d types.DataSource
+	var d DataSource
 	d.Set("Sequence")
 	errors.Assert(d.IsSequence(), "Expected sequence(1)")
 	d.Set("sequence")

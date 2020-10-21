@@ -1,10 +1,10 @@
 package logger
 
 import (
-	"asymmetric-effort/asymmetric-toolkit/src/common/logger/level"
+	"asymmetric-effort/asymmetric-toolkit/src/common/logger/logLevel"
 	"fmt"
 )
 
-func (o *Logger) Printf(level level.LogLevel, formatString string, msg ...interface{}) {
+func (o *Logger) Printf(level logLevel.LogLevel, formatString string, msg ...interface{}) {
 	o.Print(level, fmt.Sprintf(formatString, msg...))
 }

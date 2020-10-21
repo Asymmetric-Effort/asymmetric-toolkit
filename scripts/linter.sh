@@ -47,7 +47,10 @@ done
 # Lint golang code
 #
 # shellcheck disable=SC2044
-golangci-lint run --enable-all --disable gomodguard --disable bodyclose
+golangci-lint run --enable-all --disable gomodguard --disable bodyclose \
+                  --disable funlen --disable wsl --disable golint --disable stylecheck \
+                  --disable nlreturn --disable gocognit --disable gofumpt
+
 #
 # Lint yaml code
 #

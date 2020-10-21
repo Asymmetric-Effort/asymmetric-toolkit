@@ -1,4 +1,4 @@
-package writer_test
+package DictionaryWriter
 
 import (
 	"testing"
