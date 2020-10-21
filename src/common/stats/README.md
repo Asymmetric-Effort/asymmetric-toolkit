@@ -1,6 +1,7 @@
-Common Stats Collector
-======================
+Common Stats
+============
 
 ## Purpose
-* Provide a common facility for capturing stats (high-cardinality key-value metrics) 
-  for analysis.  In time this should replace logging for Asymmetric-Toolkit.
+* Provide a common stats collector facility to allow high-cardinality, key-value statistics.
+* Provide common stats data structures.
+* Abstract the software away from any tooling related to observability.
