@@ -1,6 +1,7 @@
-package counter
+package counter_test
 
 import (
+	"asymmetric-effort/asymmetric-toolkit/src/common/counter"
 	"asymmetric-effort/asymmetric-toolkit/src/common/errors"
 	"fmt"
 	"math"
@@ -11,7 +12,7 @@ const (
 	charset="0123456789"
 )
 func TestCounter_IncrementHappy10(t *testing.T) {
-	var c Counter
+	var c counter.Counter
 	const wordsize = 1
 	c.Setup(charset,wordsize)
 	count:=1
@@ -23,10 +24,11 @@ func TestCounter_IncrementHappy10(t *testing.T) {
 		count++
 	}
 	expectedCount:=int64(math.Pow(float64(len(charset)), float64(wordsize)))
-	errors.Assert(int64(count) == expectedCount, fmt.Sprintf("Expected %d iterations.  Encountered:%d",count,expectedCount))
+	errors.Assert(int64(count) == expectedCount,
+		fmt.Sprintf("Expected %d iterations.  Encountered:%d",count,expectedCount))
 }
 func TestCounter_IncrementHappy100(t *testing.T) {
-	var c Counter
+	var c counter.Counter
 	const wordsize = 2
 	c.Setup(charset,wordsize)
 	count:=1
@@ -38,10 +40,11 @@ func TestCounter_IncrementHappy100(t *testing.T) {
 		count++
 	}
 	expectedCount:=int64(math.Pow(float64(len(charset)), float64(wordsize)))
-	errors.Assert(int64(count) == expectedCount, fmt.Sprintf("Expected %d iterations.  Encountered:%d",count,expectedCount))
+	errors.Assert(int64(count) == expectedCount,
+		fmt.Sprintf("Expected %d iterations.  Encountered:%d",count,expectedCount))
 }
 func TestCounter_IncrementHappy1000(t *testing.T) {
-	var c Counter
+	var c counter.Counter
 	const wordsize = 3
 	c.Setup(charset,wordsize)
 	count:=1
@@ -53,5 +56,6 @@ func TestCounter_IncrementHappy1000(t *testing.T) {
 		count++
 	}
 	expectedCount:=int64(math.Pow(float64(len(charset)), float64(wordsize)))
-	errors.Assert(int64(count) == expectedCount, fmt.Sprintf("Expected %d iterations.  Encountered:%d",count,expectedCount))
+	errors.Assert(int64(count) == expectedCount,
+		fmt.Sprintf("Expected %d iterations.  Encountered:%d",count,expectedCount))
 }

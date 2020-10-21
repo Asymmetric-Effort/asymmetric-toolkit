@@ -74,19 +74,17 @@ func (o *Configuration) Parse(cliArguments []string) bool {
 				errors.Fatal(1, fmt.Sprintf("Encountered unexpected argument: %s", args))
 			}
 		case ExpectValue:
-			re:=regexp.MustCompile(`^--.+$`)
+			re := regexp.MustCompile(`^--.+$`)
 			if re.MatchString(args) {
-				errors.Fatal(1, fmt.Sprintf("Expected value, not flag."))
+				errors.Fatal(1, "Expected value, not flag.")
 			}
 			switch lastFlag {
 			case UsageFlag, VersionFlag:
-				break
 			case ConcurrencyFlag:
 				o.Concurrency.Set(args)
 				expected = ExpectFlag
 			case DebugFlag:
 				expected = ExpectFlag
-				break
 			case DepthFlag:
 				expected = ExpectFlag
 				o.Depth.Set(args)
@@ -104,7 +102,6 @@ func (o *Configuration) Parse(cliArguments []string) bool {
 				o.TargetServer.Set(args)
 			case ForceFlag:
 				expected = ExpectFlag
-				break
 			case MaxWordCountFlag:
 				o.MaxWordCount.Set(args)
 				expected = ExpectFlag

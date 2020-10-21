@@ -2,11 +2,11 @@ package logger
 
 import (
 	LogFacility "asymmetric-effort/asymmetric-toolkit/src/common/logger/facility"
-	"asymmetric-effort/asymmetric-toolkit/src/common/logger/logLevel"
+	"asymmetric-effort/asymmetric-toolkit/src/common/logger/level"
 )
 
 type Logger struct {
-	Level    logLevel.LogLevel
+	Level    level.LogLevel
 	Facility LogFacility.Facility
 	Writer   func(*string)
 }

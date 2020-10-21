@@ -1,4 +1,4 @@
-package logLevel
+package level
 
 import (
 	"fmt"

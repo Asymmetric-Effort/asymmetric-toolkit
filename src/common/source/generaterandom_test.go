@@ -16,7 +16,11 @@ func TestSourceGenerateRandom(t *testing.T) {
 	const keyspace = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
 	var s source.Source
 	var config cli.Configuration
-	args := []string{"--domain", "google.com", "--mode", "random", "--dnsServer", "udp:127.0.0.1:53", "--maxWordCount", "20"}
+	args := []string{
+		"--domain", "google.com",
+		"--mode", "random",
+		"--dnsServer", "udp:127.0.0.1:53",
+		"--maxWordCount", "20"}
 	config.Parse(args)
 	s.Config = &config
 	s.Config.WordSize = 100
@@ -55,7 +59,8 @@ func TestSourceGenerateRandom(t *testing.T) {
 	}
 	avgShannons := totalShannons / count
 	errors.Assert(s.Feed.Length() == 0, "Expected to have consumed all elements")
-	errors.Assert(float64(minShannons) > (0.90 * float64(entropy.HighEntropyThreshold)), fmt.Sprintf("Expected high min entropy (%d)",minShannons))
+	errors.Assert(float64(minShannons) > (0.90 * float64(entropy.HighEntropyThreshold)),
+		fmt.Sprintf("Expected high min entropy (%d)",minShannons))
 	errors.Assert(avgShannons > entropy.HighEntropyThreshold, "Expected high average entropy")
 	errors.Assert(maxShannons > entropy.HighEntropyThreshold, "Expected high max entropy")
 	errors.Assert(count == expectedCount, "Expected count match")

@@ -13,7 +13,7 @@ func TestRecord_Set(t *testing.T) {
 	key.Set(&passphrase)
 	expectedEncodedWord:=*encryption.Encrypt(&testWord, &key)
 	expectedId := dictionaryDefinition.CreateId(&testWord)
-	errors.Assert(o.Id() == "", "Expected empty id")
+	errors.Assert(o.ID() == "", "Expected empty id")
 	errors.Assert(o.word == "", "Expected empty word string")
 	o.Set(testWord,&key)
 	errors.Assert(o.id==expectedId, fmt.Sprintf("Expected empty id:\n%x\n%x", o.id, expectedId))

@@ -13,15 +13,13 @@ func TestMiscIsIpAddr(t *testing.T) {
 		addr := fmt.Sprintf("%d.%d.%d.%d", a, a, a, a)
 		errors.Assert(misc.IsIpAddr(addr), fmt.Sprintf("Expected Ip (%s) to work", addr))
 	}
-	for a := 1; a < 255; a += 1 {
-		for b := 0; b < 255; b += 1 {
-			go func() {
-				for c := 0; c < 255; c += 1 {
-					addr := fmt.Sprintf("%d.%d.%d.254", a, b, c)
-					errors.Assert(misc.IsIpAddr(addr), fmt.Sprintf("Expected Ip (%s) to work", addr))
-					count++
-				}
-			}()
+	for a := 1; a < 255; a++ {
+		for b := 0; b < 255; b++{
+			for c := 0; c < 255; c++ {
+				addr := fmt.Sprintf("%d.%d.%d.254", a, b, c)
+				errors.Assert(misc.IsIpAddr(addr), fmt.Sprintf("Expected Ip (%s) to work", addr))
+				count++
+			}
 		}
 		fmt.Println("count:", count)
 	}

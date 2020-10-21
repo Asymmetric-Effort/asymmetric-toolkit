@@ -7,11 +7,11 @@ import (
 )
 
 func TestIntLen(t *testing.T) {
-	errors.Assert(1 == misc.IntLen(1), "Failed 1")
-	errors.Assert(2 == misc.IntLen(10), "Failed 10")
-	errors.Assert(3 == misc.IntLen(100), "Failed 100")
-	errors.Assert(4 == misc.IntLen(1000), "Failed 1000")
-	errors.Assert(5 == misc.IntLen(10000), "Failed 10000")
-	errors.Assert(6 == misc.IntLen(100000), "Failed 100000")
-	errors.Assert(7 == misc.IntLen(1000000), "Failed 1000000")
+	errors.Assert(misc.IntLen(1) == 1, "Failed at 1")
+	errors.Assert(misc.IntLen(10) == 2, "Failed at 10")
+	errors.Assert(misc.IntLen(100) == 3, "Failed at 100")
+	errors.Assert(misc.IntLen(1000) == 4, "Failed at 1000")
+	errors.Assert(misc.IntLen(10000) == 5, "Failed at 10000")
+	errors.Assert(misc.IntLen(100000) == 6, "Failed at 100000")
+	errors.Assert(misc.IntLen(1000000) == 7, "Failed at 1000000")
 }

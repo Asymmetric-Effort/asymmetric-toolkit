@@ -1,12 +1,12 @@
 package logger
 
 import (
-	"asymmetric-effort/asymmetric-toolkit/src/common/logger/logLevel"
+	"asymmetric-effort/asymmetric-toolkit/src/common/logger/level"
 )
 
-func (o *Logger) Warning(format string, v ...interface{}) {
+func (o *Logger) Warningf(format string, v ...interface{}) {
 	switch o.Level.Get() {
-	case logLevel.Warning, logLevel.Info, logLevel.Debug:
-		o.Printf(logLevel.Warning, format, v...)
+	case level.Warning, level.Info, level.Debug:
+		o.Printf(level.Warning, format, v...)
 	}
 }

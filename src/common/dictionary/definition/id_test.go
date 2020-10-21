@@ -14,6 +14,6 @@ func TestRecord_Id(t *testing.T) {
 	errors.Assert(o.Get() == "", "Expected empty word string")
 	o.id= CreateId(&testWord)
 	o.word=expectedEncodedWord
-	errors.Assert(o.Id()==o.id,"Test Record::Get(): expectedId.")
+	errors.Assert(o.ID()==o.id,"Test Record::Get(): expectedId.")
 	 */
 }

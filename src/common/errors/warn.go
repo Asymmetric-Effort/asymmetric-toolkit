@@ -8,5 +8,5 @@ func Warn(s string) {
 	/*
 		Print a simple warning to the screen
 	 */
-	fmt.Printf("Warning: %s\n", s)
+	fmt.Printf("Warningf: %s\n", s)
 }

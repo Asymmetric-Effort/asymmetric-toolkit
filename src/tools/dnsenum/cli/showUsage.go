@@ -5,5 +5,5 @@ import (
 )
 
 func ShowUsage() {
-	fmt.Printf(Usage)
+	fmt.Println(Usage)
 }

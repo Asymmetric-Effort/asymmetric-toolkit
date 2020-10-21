@@ -1,12 +1,13 @@
-package counter
+package counter_test
 
 import (
+	"asymmetric-effort/asymmetric-toolkit/src/common/counter"
 	"asymmetric-effort/asymmetric-toolkit/src/common/errors"
 	"testing"
 )
 
 func TestCounter_String(t *testing.T) {
-	var c Counter
+	var c counter.Counter
 	const charset="0123456789"
 	const wordSize=2
 	c.Runes = func() *[]rune { d := []rune(charset); return &d }()

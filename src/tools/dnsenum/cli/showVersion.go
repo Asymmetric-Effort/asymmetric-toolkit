@@ -5,5 +5,5 @@ import (
 )
 
 func ShowVersion() {
-	fmt.Printf(Version)
+	fmt.Println(Version)
 }

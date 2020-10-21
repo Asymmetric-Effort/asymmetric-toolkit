@@ -1,4 +1,4 @@
-package logLevel
+package level
 
 import (
 	"fmt"
@@ -10,8 +10,6 @@ func (o *LogLevel) Set(v LogLevel) {
 		break
 	default:
 		panic(fmt.Sprintf("Programming error: invalid Log level: %d", v))
-		*o = Debug
-		return
 	}
 	*o = v
 }

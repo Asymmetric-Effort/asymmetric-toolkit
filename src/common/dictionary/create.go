@@ -27,7 +27,8 @@ func (o *Dictionary) Create(filename string, description string, passphrase *str
 	o.content.header.description = []byte(description)
 	o.content.header.descriptionLength = func() (length uint16) {
 		length = uint16(len(o.content.header.description))
-		errors.Assert(length < MaxLengthDictionaryDescription, "Dictionary description must be less than 65535 characters.")
+		errors.Assert(length < MaxLengthDictionaryDescription,
+			"Dictionary description must be less than 65535 characters.")
 		return
 	}()
 	o.content.body.defCount = 0 //Empty content.
@@ -37,7 +38,8 @@ func (o *Dictionary) Create(filename string, description string, passphrase *str
 		//
 		var err error
 		o.runtime.fileHandle, err = os.Create(filename)
-		errors.Assert(err == nil, fmt.Sprintf("Dictionary::Create() encountered error opening filename (%s): %v", filename, err))
+		errors.Assert(err == nil,
+			fmt.Sprintf("Dictionary::Create() encountered error opening filename (%s): %v", filename, err))
 		defer func(){
 			o.runtime.io.reader.Close()
 			o.runtime.io.writer.Close()

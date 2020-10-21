@@ -4,7 +4,7 @@ import (
 	"asymmetric-effort/asymmetric-toolkit/src/common/errors"
 	"asymmetric-effort/asymmetric-toolkit/src/common/logger"
 	"asymmetric-effort/asymmetric-toolkit/src/common/logger/destination"
-	"asymmetric-effort/asymmetric-toolkit/src/common/logger/logLevel"
+	"asymmetric-effort/asymmetric-toolkit/src/common/logger/level"
 	"asymmetric-effort/asymmetric-toolkit/src/tools/dnsenum/cli"
 	"fmt"
 	"strings"
@@ -15,10 +15,10 @@ func TestLogWriterStdOut(t *testing.T) {
 	var log logger.Logger
 	var config cli.Configuration
 	config.Log.Destination.Set(destination.Stdout)
-	config.Log.Level.Set(logLevel.Debug)
+	config.Log.Level.Set(level.Debug)
 	out := catchStdOut(t, func() {
 		log.Setup(&config)
-		log.Printf(logLevel.Debug, "%s", "Test")
+		log.Printf(level.Debug, "%s", "Test")
 	})
 	msg := strings.Split(out, ":")
 	word := strings.TrimSpace(msg[len(msg)-1])
