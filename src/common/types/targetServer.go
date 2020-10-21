@@ -14,7 +14,7 @@ const numberTargetServerFields = 3
 func (o *TargetServer) IsValid() (r bool) {
 	// <tcp|udp>:<ipaddr>:<port>
 	s := strings.Split(string(*o), ":")
-	if len(s) != 3 {
+	if len(s) != numberTargetServerFields {
 		return false
 	}
 	return misc.IsNetworkProtocol(s[0]) && misc.IsIpAddr(s[1]) && misc.IsPort(s[2])

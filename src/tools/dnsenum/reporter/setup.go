@@ -2,6 +2,13 @@ package reporter
 
 import "time"
 
-func (o *Report) Setup(domain *string, depth int, source *string, types *[]string, concurrency int, timeout *time.Duration) {
+func (o *Report) Setup(
+	domain *string,
+	depth int,
+	source *string,
+	types *[]string,
+	concurrency int,
+	timeout *time.Duration) {
+
 
 }

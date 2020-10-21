@@ -13,9 +13,9 @@ const (
 )
 func TestCounter_IncrementHappy10(t *testing.T) {
 	var c counter.Counter
+	var count = 1
 	const wordsize = 1
 	c.Setup(charset,wordsize)
-	count:=1
 	for {
 		fmt.Printf("data:%v\n",*c.Data)
 		if !c.Increment(0) {
@@ -29,9 +29,9 @@ func TestCounter_IncrementHappy10(t *testing.T) {
 }
 func TestCounter_IncrementHappy100(t *testing.T) {
 	var c counter.Counter
+	var count = 1
 	const wordsize = 2
 	c.Setup(charset,wordsize)
-	count:=1
 	for {
 		fmt.Printf("data:%v\n",*c.Data)
 		if !c.Increment(0) {
@@ -45,9 +45,9 @@ func TestCounter_IncrementHappy100(t *testing.T) {
 }
 func TestCounter_IncrementHappy1000(t *testing.T) {
 	var c counter.Counter
+	var count = 1
 	const wordsize = 3
 	c.Setup(charset,wordsize)
-	count:=1
 	for {
 		fmt.Printf("data:%v\n",*c.Data)
 		if !c.Increment(0) {

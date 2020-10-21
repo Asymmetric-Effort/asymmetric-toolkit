@@ -100,7 +100,6 @@ func TestTargetServer_SetZeroAddr(t *testing.T) {
 }
 
 func TestTargetServer_GetHappy(t *testing.T) {
-
 	var ts types.TargetServer = udpAny53
 	errors.Assert(ts.Get() == udpAny53, "Get() failed to get expected server string.")
 }

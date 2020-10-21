@@ -7,24 +7,26 @@ import (
 )
 
 type Configuration struct {
-	Concurrency   types.PositiveInteger
-	Debug         bool
-	Delay         types.PositiveInteger
-	Depth         types.PositiveInteger
-	Dictionary    types.FilePath
-	TargetServer  types.TargetServer
-	Domain        types.DomainName
-	Force         bool
-	Log           struct {
-		Destination destination.LogDestination
-		Target      string //Could be log file or syslog server.
-		Level       level.LogLevel
-	}
-	Mode         types.DataSource
-	Output       types.FilePath
-	Pattern      types.FilterPattern
-	RecordTypes  types.List
+	Debug        bool
+	Force        bool
+	reserved1	 [6]byte //padding needed for proper memory alignment
+	Concurrency  types.PositiveInteger
 	Timeout      types.PositiveInteger
 	WordSize     types.PositiveInteger
 	MaxWordCount types.PositiveInteger
+	Delay        types.PositiveInteger
+	Depth        types.PositiveInteger
+	reserved2	 [16]byte //padding needed for proper memory alignment
+	Dictionary   types.FilePath
+	TargetServer types.TargetServer
+	Domain       types.DomainName
+	Log          struct {
+		Destination destination.LogDestination
+		Level       level.LogLevel
+		Target      string //Could be log file or syslog server.
+	}
+	Mode        types.DataSource
+	Output      types.FilePath
+	Pattern     types.FilterPattern
+	RecordTypes types.List
 }

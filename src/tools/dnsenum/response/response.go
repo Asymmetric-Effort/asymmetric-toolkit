@@ -4,10 +4,10 @@ import "time"
 
 type Response struct {
 	startTime time.Time
-	stopTime  time.Time
+	//stopTime  time.Time
 	connect   bool // Server connected ok
 	ok        bool // Server responded ok
-	data      []byte
+	//data      []byte
 }
 
 type New struct {}
