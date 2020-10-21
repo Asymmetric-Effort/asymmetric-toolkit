@@ -1,4 +1,4 @@
-package fifo
+package queues
 
 func (o *Fifo) Close(){
 	if o.queue == nil {

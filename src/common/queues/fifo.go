@@ -1,4 +1,4 @@
-package fifo
+package queues
 
 type Fifo struct {
 	sz int

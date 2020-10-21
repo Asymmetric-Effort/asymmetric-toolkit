@@ -1,4 +1,4 @@
-package fifo
+package queues
 
 
 func (o *Fifo) Pop() (r string) {

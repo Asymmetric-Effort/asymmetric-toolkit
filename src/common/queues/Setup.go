@@ -1,4 +1,4 @@
-package fifo
+package queues
 
 import "asymmetric-effort/asymmetric-toolkit/src/common/errors"
 

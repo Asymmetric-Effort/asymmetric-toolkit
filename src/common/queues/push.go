@@ -1,4 +1,4 @@
-package fifo
+package queues
 
 import "time"
 
