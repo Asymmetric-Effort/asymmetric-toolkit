@@ -1,7 +1,7 @@
 package counter
 
 type Counter struct {
-	runes *[]rune
-	data *[]uint8
-	maxBase uint8
+	Runes   *[]rune
+	Data    *[]uint8
+	MaxBase uint8
 }

@@ -1,13 +1,14 @@
-package queues
+package queues_test
 
 import (
 	"asymmetric-effort/asymmetric-toolkit/src/common/errors"
+	"asymmetric-effort/asymmetric-toolkit/src/common/queues"
 	"fmt"
 	"testing"
 )
 
 func TestFifo_Pop(t *testing.T) {
-	var q Fifo
+	var q queues.Fifo
 	fmt.Println("Initializing test")
 	errors.Assert(q.Queue == nil, "Queue expected to be nil initially.")
 	q.Queue = make(chan string, 5)

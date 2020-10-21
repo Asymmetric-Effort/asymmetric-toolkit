@@ -16,7 +16,7 @@ func TestCounter_IncrementHappy10(t *testing.T) {
 	c.Setup(charset,wordsize)
 	count:=1
 	for {
-		fmt.Printf("data:%v\n",*c.data)
+		fmt.Printf("data:%v\n",*c.Data)
 		if !c.Increment(0) {
 			break
 		}
@@ -31,7 +31,7 @@ func TestCounter_IncrementHappy100(t *testing.T) {
 	c.Setup(charset,wordsize)
 	count:=1
 	for {
-		fmt.Printf("data:%v\n",*c.data)
+		fmt.Printf("data:%v\n",*c.Data)
 		if !c.Increment(0) {
 			break
 		}
@@ -46,7 +46,7 @@ func TestCounter_IncrementHappy1000(t *testing.T) {
 	c.Setup(charset,wordsize)
 	count:=1
 	for {
-		fmt.Printf("data:%v\n",*c.data)
+		fmt.Printf("data:%v\n",*c.Data)
 		if !c.Increment(0) {
 			break
 		}

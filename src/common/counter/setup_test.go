@@ -35,9 +35,9 @@ func TestCounter_SetupHappy(t *testing.T){
 
 	c.Setup(charset,wordsize)
 	expectedRunes:=[]rune(charset)
-	errors.Assert(string(*c.runes)==string(expectedRunes), "Expected runes mismatched.")
-	errors.Assert(int(c.maxBase) == len(charset)-1, "Expected wordsize mismatch")
+	errors.Assert(string(*c.Runes)==string(expectedRunes), "Expected runes mismatched.")
+	errors.Assert(int(c.MaxBase) == len(charset)-1, "Expected wordsize mismatch")
 	for i:=0;i<wordsize;i++{
-		errors.Assert((*c.data)[i]==0, "Expected counter.data to be initialized with zero state")
+		errors.Assert((*c.Data)[i]==0, "Expected counter.data to be initialized with zero state")
 	}
 }

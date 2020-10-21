@@ -1,7 +1,8 @@
-package queues
+package queues_test
 
 import (
 	"asymmetric-effort/asymmetric-toolkit/src/common/errors"
+	"asymmetric-effort/asymmetric-toolkit/src/common/queues"
 	"fmt"
 	"strconv"
 	"testing"
@@ -9,11 +10,11 @@ import (
 )
 
 func TestFifo_Push(t *testing.T) {
-	var q Fifo
-		q.sz=2
+	var q queues.Fifo
+		q.Setup(2)
 	errors.Assert(q.Queue == nil, "Queue expected to be nil initially.")
-	errors.Assert(q.sz==2, "Queue Size == 2")
-	q.Queue = make(chan string, q.sz)
+	errors.Assert(q.Size()==2, "Queue Size == 2")
+	q.Queue = make(chan string, q.Size())
 	errors.Assert(q.Queue != nil, "Queue is not nil.")
 	count:=0
 	go func() {
