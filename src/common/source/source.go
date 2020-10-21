@@ -7,11 +7,11 @@ import (
 )
 
 type Source struct {
-	config         *cli.Configuration
-	allowedChars   *string
-	sourceBufferSz int
-	isPaused       bool
-	feed           fifo.Fifo
-	counter        int
-	logger 		   *logger.Logger
+	Config         *cli.Configuration
+	AllowedChars   *string
+	SourceBufferSz int
+	IsPaused       bool
+	Feed           fifo.Fifo
+	Counter        int
+	Logger         *logger.Logger
 }

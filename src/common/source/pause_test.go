@@ -2,12 +2,13 @@ package source_test
 
 import (
 	"asymmetric-effort/asymmetric-toolkit/src/common/errors"
+	"asymmetric-effort/asymmetric-toolkit/src/common/source"
 	"testing"
 )
 
 func TestPause(t *testing.T){
-	var s Source
-	errors.Assert(!s.isPaused, "Expected false isPaused as initial state")
+	var s source.Source
+	errors.Assert(!s.IsPaused, "Expected false isPaused as initial state")
 	s.Pause()
-	errors.Assert(s.isPaused,"Expect true isPaused after calling Pause()")
+	errors.Assert(s.IsPaused,"Expect true isPaused after calling Pause()")
 }

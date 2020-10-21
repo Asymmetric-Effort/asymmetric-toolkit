@@ -2,10 +2,10 @@ package source
 
 import "time"
 
-const pauseCheckDelay time.Duration = 5
+const PauseCheckDelay time.Duration = 5
 
 func (o *Source) WaitIfPaused() {
-	for o.isPaused {
-		<-time.After(time.Second * pauseCheckDelay)
+	for o.IsPaused {
+		<-time.After(time.Second * PauseCheckDelay)
 	}
 }

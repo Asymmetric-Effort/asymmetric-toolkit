@@ -3,6 +3,7 @@ package source_test
 import (
 	"asymmetric-effort/asymmetric-toolkit/src/common/errors"
 	"asymmetric-effort/asymmetric-toolkit/src/common/file"
+	"asymmetric-effort/asymmetric-toolkit/src/common/source"
 	"asymmetric-effort/asymmetric-toolkit/src/tools/dnsenum/cli"
 	"fmt"
 	"os"
@@ -17,13 +18,13 @@ const (
 )
 
 func TestSetupHappySequenceNullConfig(t *testing.T) {
-	var s Source
+	var s source.Source
 	defer func() { recover() }()
 	s.Setup(nil, cli.SourceBufferSz, cli.DnsChars)
 }
 
 func TestSetupHappySequenceBadBufferSize(t *testing.T) {
-	var s Source
+	var s source.Source
 	var config cli.Configuration
 	args := []string{"--domain", "google.com", "--mode", "sequence", "--dnsServer","udp:127.0.0.1:53"}
 	config.Parse(args)
@@ -32,7 +33,7 @@ func TestSetupHappySequenceBadBufferSize(t *testing.T) {
 }
 
 func TestSetupHappySequenceBadChars(t *testing.T) {
-	var s Source
+	var s source.Source
 	var config cli.Configuration
 	args := []string{"--domain", "google.com", "--mode", "sequence", "--dnsServer","udp:127.0.0.1:53"}
 	config.Parse(args)
@@ -57,15 +58,15 @@ func TestSetupHappySequence(t *testing.T) {
 	}
 	for r := 1; r <= 4; r++ {
 		fmt.Printf("wordsize: %d\n",r)
-		var s Source
+		var s source.Source
 		var config cli.Configuration
 		args := []string{"--domain", "google.com", "--mode", "sequence", "--dnsServer","udp:127.0.0.1:53", "--wordSize", strconv.Itoa(r), "--maxWordCount", "100"}
 		config.Parse(args)
 		s.Setup(&config, cli.SourceBufferSz, cli.DnsChars)
-		s.isPaused = false
+		s.IsPaused = false
 		testTimeout()
 		for s.HasData() {
-			out := s.feed.Pop()
+			out := s.Feed.Pop()
 			t.Logf("Generator Output:%s", out)
 		}
 	}
@@ -73,15 +74,15 @@ func TestSetupHappySequence(t *testing.T) {
 
 func TestSetupHappyRandom(t *testing.T) {
 	t.SkipNow()
-	var s Source
+	var s source.Source
 	var config cli.Configuration
 	args := []string{"--domain", "google.com", "--mode", "random", "--dnsServer","udp:127.0.0.1:53"}
 	config.Parse(args)
 	s.Setup(&config, cli.SourceBufferSz, cli.DnsChars)
-	s.isPaused = false
+	s.IsPaused = false
 	//go testTimeout(t,TestSetupGeneratorTimeout)
 	for i := 0; i < 10; i++ {
-		out := s.feed.Pop()
+		out := s.Feed.Pop()
 		if len(out) == 0 {
 			t.Fatal("empty output")
 		} else {
@@ -92,7 +93,7 @@ func TestSetupHappyRandom(t *testing.T) {
 
 func TestSetupHappyDictionary(t *testing.T) {
 	t.SkipNow()
-	var s Source
+	var s source.Source
 	var config cli.Configuration
 	//
 	baseDir, err := os.Getwd()
@@ -104,10 +105,10 @@ func TestSetupHappyDictionary(t *testing.T) {
 	args := []string{"--domain", "google.com", "--mode", "dictionary", "--dictionary", dictFile, "--dnsServer","udp:127.0.0.1:53"}
 	config.Parse(args)
 	s.Setup(&config, cli.SourceBufferSz, cli.DnsChars)
-	s.isPaused = false
+	s.IsPaused = false
 	// testTimeout(t,TestSetupGeneratorTimeout)
 	for i := 0; i < 10; i++ {
-		out := s.feed.Pop()
+		out := s.Feed.Pop()
 		if len(out) == 0 {
 			t.Fatal("empty output")
 		} else {
