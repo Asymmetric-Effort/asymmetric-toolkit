@@ -1,4 +1,4 @@
-package DictionaryReader
+package reader
 
 import (
 	"asymmetric-effort/asymmetric-toolkit/src/common/errors"
