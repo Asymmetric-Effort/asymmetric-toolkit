@@ -1,4 +1,4 @@
-package dictionaryDefinition
+package definition
 
 import "asymmetric-effort/asymmetric-toolkit/src/common/encryption"
 

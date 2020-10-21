@@ -9,7 +9,7 @@ const (
 	MaxDepth              types.PositiveInteger = 20 //Maximum number of DNS subdomain levels to attack
 	DefaultTimeout        types.PositiveInteger = 60 //Default number of seconds before connection timeout.
 	DefaultFilterPattern  string                = `.+`
-	DefaultDnsRecordTypes string                = "A,AAAA,MX,CNAME,NS,TXT,SOA,SRV"
+	DefaultDNSRecordTypes string                = "A,AAAA,MX,CNAME,NS,TXT,SOA,SRV"
 	DefaultWordSize       types.PositiveInteger = 5 //For a given sequence or random string, this is the max length of the 'word'
 	DnsChars              string                = "WMEFSABCDGHIJKLNOPQRTUVXYZwmefsabcdghijklnopqrtuvxyz0123456789._-"
 	SourceBufferSz        int                   = 1048576 //Size of the source buffer which feeds the payload (attack) function.

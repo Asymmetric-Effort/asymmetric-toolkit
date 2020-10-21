@@ -100,7 +100,7 @@ func TestSetupHappyDictionary(t *testing.T) {
 	errors.Assert(err == nil, fmt.Sprintf("%v", err))
 	//
 	dictFile := filepath.Join(baseDir, "dictFile")
-	errors.Assert(file.FileExists(dictFile), fmt.Sprintf("File not found:%s", dictFile))
+	errors.Assert(file.ExistsAsFile(dictFile), fmt.Sprintf("File not found:%s", dictFile))
 	//
 	args := []string{"--domain", "google.com", "--mode", "dictionary", "--dictionary", dictFile, "--dnsServer","udp:127.0.0.1:53"}
 	config.Parse(args)

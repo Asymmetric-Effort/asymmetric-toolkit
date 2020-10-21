@@ -1,4 +1,4 @@
-package dictionaryDefinition_test
+package definition_test
 
 import (
 	"testing"
@@ -12,7 +12,7 @@ func TestRecord_Set(t *testing.T) {
 	passphrase:="myPassphrase"
 	key.Set(&passphrase)
 	expectedEncodedWord:=*encryption.Encrypt(&testWord, &key)
-	expectedId := dictionaryDefinition.CreateId(&testWord)
+	expectedId := dictionaryDefinition.CreateID(&testWord)
 	errors.Assert(o.ID() == "", "Expected empty id")
 	errors.Assert(o.word == "", "Expected empty word string")
 	o.Set(testWord,&key)

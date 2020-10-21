@@ -1,4 +1,4 @@
-package dictionaryDefinition_test
+package definition_test
 
 import (
 	dictionaryDefinition "asymmetric-effort/asymmetric-toolkit/src/common/dictionary/definition"

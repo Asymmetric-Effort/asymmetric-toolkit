@@ -21,6 +21,6 @@ func TestConfigurationLoadDefault(t *testing.T) {
 	errors.Assert(cfg.Mode.IsNotSet(), "Expected notset mode")
 	errors.Assert(cfg.Output == "", "Expected empty output filename.")
 	errors.Assert(cfg.Pattern.String() == cli.DefaultFilterPattern, "Expected filter pattern not found.")
-	errors.Assert(cfg.RecordTypes.String() == cli.DefaultDnsRecordTypes, "Expected dns record types not found.")
+	errors.Assert(cfg.RecordTypes.String() == cli.DefaultDNSRecordTypes, "Expected dns record types not found.")
 	errors.Assert(cfg.Timeout == cli.DefaultTimeout, "Expected timeout not found.")
 }

@@ -9,13 +9,15 @@ import (
 	"time"
 )
 
+const numberVersionParts = 3
+
 func (o *Dictionary) Create(filename string, description string, passphrase *string, compressed bool) {
 	errors.Assert(filename != "", "Expected non-empty string as filename for dictionary")
 
-	o.content.header.version = func() (v [3]byte) {
+	o.content.header.version = func() (v [numberVersionParts]byte) {
 		s := strings.Split(Version, ".")
-		errors.Assert(len(s) == 3, "Expected 0.0.0 (three numbers) in version string.")
-		for i := 0; i <= 3; i++ {
+		errors.Assert(len(s) == numberVersionParts, "Expected 0.0.0 (three numbers) in version string.")
+		for i := 0; i <= numberVersionParts; i++ {
 			n, err := strconv.Atoi(s[i])
 			errors.Assert(err == nil, "Unexpected error in Dictionary::Create() parsing version string")
 			v[i] = byte(n)

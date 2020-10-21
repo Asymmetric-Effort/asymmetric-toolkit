@@ -18,11 +18,11 @@ func (o *Configuration) Parse(cliArguments []string) bool {
 			case "-h", "--help":
 				ShowUsage()
 				lastFlag = UsageFlag
-				return ExitTerminate
+				break
 			case "--version", "-v":
 				ShowVersion()
 				lastFlag = VersionFlag
-				return ExitTerminate
+				break
 			case "--concurrency":
 				lastFlag = ConcurrencyFlag
 				expected = ExpectValue
@@ -74,10 +74,12 @@ func (o *Configuration) Parse(cliArguments []string) bool {
 				errors.Fatal(1, fmt.Sprintf("Encountered unexpected argument: %s", args))
 			}
 		case ExpectValue:
-			re := regexp.MustCompile(`^--.+$`)
-			if re.MatchString(args) {
-				errors.Fatal(1, "Expected value, not flag.")
-			}
+			func() {
+				re := regexp.MustCompile(`^--.+$`)
+				if re.MatchString(args) {
+					errors.Fatal(1, "Expected value, not flag.")
+				}
+			}()
 			switch lastFlag {
 			case UsageFlag, VersionFlag:
 			case ConcurrencyFlag:
@@ -133,6 +135,14 @@ func (o *Configuration) Parse(cliArguments []string) bool {
 	//
 	//Perform a final validation...
 	//
+	if lastFlag == UsageFlag {
+		ShowUsage()
+		return ExitTerminate
+	}
+	if lastFlag == VersionFlag {
+		ShowVersion()
+		return ExitTerminate
+	}
 	if o.Domain.Get() == "" {
 		fmt.Println("Missing domain (required).  Use --domain <string> to specify.")
 		return ExitTerminate

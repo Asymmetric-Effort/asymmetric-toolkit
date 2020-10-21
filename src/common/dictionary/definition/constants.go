@@ -1,4 +1,4 @@
-package dictionaryDefinition
+package definition
 
 const (
 	Delimiter string = " "

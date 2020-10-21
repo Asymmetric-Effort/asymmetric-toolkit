@@ -7,6 +7,6 @@ func (o *Configuration) LoadDefault() {
 	o.Depth = DefaultDepth
 	o.Force = false
 	o.Pattern.Set(DefaultFilterPattern)
-	o.RecordTypes.Set(DefaultDnsRecordTypes)
+	o.RecordTypes.Set(DefaultDNSRecordTypes)
 	o.Timeout = DefaultTimeout
 }

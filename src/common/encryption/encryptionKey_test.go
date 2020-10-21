@@ -9,7 +9,6 @@ import (
 )
 
 func TestEncryptionKey(t *testing.T) {
-
 	var key encryption.Key
 
 	passphrases := []string{

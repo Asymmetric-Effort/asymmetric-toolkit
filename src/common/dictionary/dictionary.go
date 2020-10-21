@@ -15,7 +15,7 @@ type Dictionary struct {
 		fileHandle *os.File //File handle for reading/writing the actual file.
 		io         struct {
 			reader reader.Reader
-			writer DictionaryWriter.Writer
+			writer writer.Writer
 		}
 	}
 	content struct {
@@ -29,7 +29,7 @@ type Dictionary struct {
 		}
 		body struct {
 			defCount    uint32 // definition count (number records in body)
-			definitions []dictionaryDefinition.Record
+			definitions []definition.Record
 		}
 		footer [32]byte //hash of file up to the footer.
 	}

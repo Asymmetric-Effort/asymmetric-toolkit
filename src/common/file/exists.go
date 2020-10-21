@@ -2,7 +2,7 @@ package file
 
 import "os"
 
-func Exists(filename string,isFile bool) bool {
+func Exists(filename string, isFile bool) bool {
 	info, err := os.Stat(filename)
 	if os.IsNotExist(err) {
 		return false

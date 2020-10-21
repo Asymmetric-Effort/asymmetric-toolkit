@@ -9,7 +9,7 @@ import (
 
 func TestFileExists(t *testing.T) {
 	baseDir, _ :=os.Getwd()
-	if !file.FileExists(filepath.Join(baseDir,"fileExists_test.go")){
+	if !file.ExistsAsFile(filepath.Join(baseDir,"ExistsAsFile_test.go")){
 		t.FailNow()
 	}
 }

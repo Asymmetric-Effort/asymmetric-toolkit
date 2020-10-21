@@ -1,4 +1,4 @@
-package dictionaryDefinition_test
+package definition_test
 
 import (
 	"testing"

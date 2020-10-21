@@ -13,7 +13,7 @@ func TestDnsEnumCliConstants(t *testing.T){
 	errors.Assert(cli.MaxDepth == 20, "expect 20")
 	errors.Assert(cli.DefaultTimeout == 60, "expect 60")
 	errors.Assert(cli.DefaultFilterPattern != ``, "Expect non-empty string")
-	errors.Assert(cli.DefaultDnsRecordTypes != "", "Expect non-empty string")
+	errors.Assert(cli.DefaultDNSRecordTypes != "", "Expect non-empty string")
 	errors.Assert(cli.DnsChars != "", "expect non-empty string")
 	errors.Assert(cli.SourceBufferSz > 0, "expect int > 0")
 	errors.Assert(cli.ResponseBufferSz > 0, "expect int > 0")
