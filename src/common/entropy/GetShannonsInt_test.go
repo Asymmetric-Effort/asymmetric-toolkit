@@ -1,6 +1,7 @@
 package entropy_test
 
 import (
+	"asymmetric-effort/asymmetric-toolkit/src/common/entropy"
 	"fmt"
 	"testing"
 )
@@ -36,9 +37,11 @@ func TestGetShannonsIntArray(t *testing.T) {
 		},
 	}
 	for i, test := range tests {
-		fmt.Printf("Test %d failed with score %d (expected %d)\n", i, test.score, GetShannonsInt(test.input))
-		if GetShannonsInt(test.input) > test.score {
-			t.Fatalf("Test %d failed with score %d (expected %d)", i, test.score, GetShannonsInt(test.input))
+		fmt.Printf("Test %d failed with score %d (expected %d)\n",
+			i, test.score, entropy.GetShannonsInt(test.input))
+		if entropy.GetShannonsInt(test.input) > test.score {
+			t.Fatalf("Test %d failed with score %d (expected %d)",
+				i, test.score, entropy.GetShannonsInt(test.input))
 		}
 	}
 }

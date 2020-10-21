@@ -16,11 +16,11 @@ func (o *Configuration) Parse(cliArguments []string) bool {
 		case ExpectFlag:
 			switch args {
 			case "-h", "--help":
-				showUsage()
+				ShowUsage()
 				lastFlag = UsageFlag
 				return ExitTerminate
 			case "--version", "-v":
-				showVersion()
+				ShowVersion()
 				lastFlag = VersionFlag
 				return ExitTerminate
 			case "--concurrency":

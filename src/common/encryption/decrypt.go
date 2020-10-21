@@ -31,8 +31,8 @@ func Decrypt(signal *string, key *Key) *string {
 				"Error:%v\n"+
 				"signal:%s",
 				*signal, err))
-		n := sbytes[0:nonceSize]
-		c := sbytes[nonceSize:]
+		n := sbytes[0:NonceSize]
+		c := sbytes[NonceSize:]
 
 		return &c, &n
 	}()

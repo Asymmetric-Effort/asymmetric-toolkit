@@ -1,6 +1,7 @@
 package errors_test
 
 import (
+	"asymmetric-effort/asymmetric-toolkit/src/common/errors"
 	"fmt"
 	"os"
 	"os/exec"
@@ -9,7 +10,7 @@ import (
 
 func TestFatal(t *testing.T) {
 	if os.Getenv("BE_CRASHER") == "1" {
-		Fatal(1, "expect true") //cause assertion error."
+		errors.Fatal(1, "expect true") //cause assertion error."
 		return
 	}
 	prog:=os.Args[0]
