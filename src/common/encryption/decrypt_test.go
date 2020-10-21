@@ -1,12 +1,13 @@
-package encryption
+package encryption_test
 
 import (
+	"asymmetric-effort/asymmetric-toolkit/src/common/encryption"
 	"asymmetric-effort/asymmetric-toolkit/src/common/errors"
 	"testing"
 )
 
 func TestDecrypt(t *testing.T) {
-	var key Key
+	var key encryption.Key
 	cipherText:="c819da91a775de90daedce31b780e58ffe65764104755807c4a286671e494955b5d6aff0275885b7871697529e381" +
 				"fdcb833e1e21a9ec4a94664927e9f2670747bd36509a1a4961263875af9d2d4b074e1a1749b70f3993abba92431f6c" +
 		"bd35df2c1c15d03953206797dc40a09a6f3e3050976c02490259a1839f8a17b8de60311ac1c943026425197625f7c65be318b7" +
@@ -18,6 +19,6 @@ func TestDecrypt(t *testing.T) {
 		"growth."
 	password := "Trump_Thinks_This_Is_Secure_Unless_A_hacker_Gets_15_Percent_Of_The_Password"
 	key.Set(&password)
-	decryptedText := Decrypt(&cipherText, &key)
+	decryptedText := encryption.Decrypt(&cipherText, &key)
 	errors.Assert(plainText == *decryptedText,"plaintext does not match decrypted cipher")
 }

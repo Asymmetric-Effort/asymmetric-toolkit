@@ -10,7 +10,7 @@ import (
 
 func Encrypt(signal *string, key *Key) *string {
 	var err error
-	var nonce []byte = make([]byte, nonceSize)
+	var nonce []byte = make([]byte, NonceSize)
 	var plaintext []byte = []byte(*signal)
 	var ciphertext string
 	var block cipher.Block
