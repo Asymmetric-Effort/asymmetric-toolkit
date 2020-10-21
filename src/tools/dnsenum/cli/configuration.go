@@ -10,14 +10,14 @@ import (
 type Configuration struct {
 	Debug        bool
 	Force        bool
-	reserved1	 [6]byte //padding needed for proper memory alignment
+	reserved1    [6]byte //padding needed for proper memory alignment
 	Concurrency  types.PositiveInteger
 	Timeout      types.PositiveInteger
 	WordSize     types.PositiveInteger
 	MaxWordCount types.PositiveInteger
 	Delay        types.PositiveInteger
 	Depth        types.PositiveInteger
-	reserved2	 [16]byte //padding needed for proper memory alignment
+	reserved2    [16]byte //padding needed for proper memory alignment
 	Dictionary   types.FilePath
 	TargetServer types.TargetServer
 	Domain       types.DomainName

@@ -13,7 +13,7 @@ import (
 
 func TestLoggerWarningError(t *testing.T) {
 	var log Logger
-	var config cli.Configuration
+	var config  Configuration
 	config.Log.Destination.Set(destination.Stdout)
 	config.Log.Level.Set(level.Warning)
 	out := catchStdOut(t, func() {
