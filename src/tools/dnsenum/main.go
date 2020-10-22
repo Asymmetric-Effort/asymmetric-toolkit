@@ -12,7 +12,7 @@ func main() {
 		Parse/validate all commandline arguments and expose them as a single buildConfig
 		object
 	*/
-	var config cli.Configuration
+	var config cli.Configuration //Load the common configuration (cli parser).
 	var log logger.Logger
 	var feed source.Source
 	var exit chan bool = make(chan bool, 1)
