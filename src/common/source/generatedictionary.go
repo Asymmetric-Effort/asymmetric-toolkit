@@ -9,7 +9,7 @@ func (o *Source) generateDictionary() {
 	/*
 		Read the o.dict file (observe pauseFlag)
 	*/
-	errors.Assert(o.config != nil,"Source::generateDictionary() encountered nil config")
+	errors.Assert(o.config != nil,"Source::generateDictionary() encountered nil buildConfig")
 	var dict reader.Reader
 	defer dict.Close()
 	scanner:=dict.Setup(o.config.Dictionary.OpenRead())

@@ -1,7 +1,7 @@
 package cli_test
 
 import (
-	"asymmetric-effort/asymmetric-toolkit/src/tools/dnsenum/cli"
+	"asymmetric-effort/asymmetric-toolkit/src/common/cli"
 	"testing"
 )
 

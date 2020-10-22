@@ -1,15 +1,15 @@
 package main
 
 import (
+	"asymmetric-effort/asymmetric-toolkit/src/common/cli"
 	"asymmetric-effort/asymmetric-toolkit/src/common/logger"
 	"asymmetric-effort/asymmetric-toolkit/src/common/source"
-	"asymmetric-effort/asymmetric-toolkit/src/tools/dnsenum/cli"
 	"os"
 )
 
 func main() {
 	/*
-		Parse/validate all commandline arguments and expose them as a single config
+		Parse/validate all commandline arguments and expose them as a single buildConfig
 		object
 	*/
 	var config cli.Configuration
@@ -21,9 +21,9 @@ func main() {
 		os.Exit(1)
 	}
 	log.Setup(&config)
-	log.Debugf("Main(): Logger is setup and config is loaded.")
+	log.Debug("Main(): Logger is setup and buildConfig is loaded.")
 
-	feed.Setup(&config,cli.SourceBufferSz,cli.DNSChars)
+	feed.Setup(&config, cli.SourceBufferSz, cli.DNSChars)
 
 	//var requestSent chan bool = make(chan bool, 1)
 

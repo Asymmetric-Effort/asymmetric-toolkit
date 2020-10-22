@@ -1,14 +1,14 @@
 package cli_test
 
 import (
+	cli2 "asymmetric-effort/asymmetric-toolkit/src/common/cli"
 	"asymmetric-effort/asymmetric-toolkit/src/common/errors"
-	"asymmetric-effort/asymmetric-toolkit/src/tools/dnsenum/cli"
 	"fmt"
 	"testing"
 )
 
 func TestConfigurationStruct(t *testing.T){
-	var c cli.Configuration
+	var c cli2.Configuration
 	errors.Assert(c.Concurrency==0,"Expect 0")
 	errors.Assert(!c.Debug, "expect false")
 	errors.Assert(c.Delay == 0, "expect 0")

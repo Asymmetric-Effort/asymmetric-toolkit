@@ -1,10 +1,10 @@
 package cli_test
 
 import (
-	"asymmetric-effort/asymmetric-toolkit/src/tools/dnsenum/cli"
+	cli2 "asymmetric-effort/asymmetric-toolkit/src/common/cli"
 	"testing"
 )
 
 func TestCliShowUsage(t *testing.T){
-	cli.ShowUsage()
+	cli2.ShowUsage()
 }

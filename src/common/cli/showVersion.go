@@ -1,10 +1,10 @@
 package cli
 
 import (
-	"asymmetric-effort/asymmetric-toolkit/src/common/cli"
+	buildconfig "asymmetric-effort/asymmetric-toolkit/src/buildConfig"
 	"fmt"
 )
 
 func ShowVersion() {
-	fmt.Println(cli.Version)
+	fmt.Println(buildconfig.Version)
 }

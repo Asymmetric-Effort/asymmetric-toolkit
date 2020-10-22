@@ -8,7 +8,7 @@ func (o *Source) generateSequence() {
 	/*
 		Generate words as a sequence within a given keyspace (allowedChars).
 		For example: A B C AA AB AC BA BB BC CA CB CC and so on where the
-		length of the words is determined by config.WordSize.
+		length of the words is determined by buildConfig.WordSize.
 	 */
 	checkWordCount := func() bool {
 		return o.counter <= int(o.config.MaxWordCount)

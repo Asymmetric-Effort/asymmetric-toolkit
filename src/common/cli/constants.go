@@ -3,7 +3,6 @@ package cli
 import "asymmetric-effort/asymmetric-toolkit/src/common/types"
 
 const (
-	Version               string                = "0.0.1"
 	DefaultConcurrency    types.PositiveInteger = 1  //default number of concurrent queries to run.
 	DefaultDepth          types.PositiveInteger = 1  //default number of DNS subdomain levels to attack
 	MaxDepth              types.PositiveInteger = 20 //Maximum number of DNS subdomain levels to attack
@@ -15,8 +14,9 @@ const (
 	SourceBufferSz        int                   = 1048576 //Size of the source buffer which feeds the payload (attack) function.
 	ResponseBufferSz      int                   = 1048576 //Size of the response buffer for responses pending report processing.
 
-	ExpectFlag  int = 0
-	ExpectValue int = 1
+	ExpectFlag      int = 0
+	ExpectValue     int = 1
+	ExpectTerminate int = 2
 
 	ExitTerminate bool = true
 	ExitParseOk   bool = false

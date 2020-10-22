@@ -1,7 +1,6 @@
 package cli
 
 import (
-	"asymmetric-effort/asymmetric-toolkit/src/common/cli"
 	"asymmetric-effort/asymmetric-toolkit/src/common/errors"
 	"asymmetric-effort/asymmetric-toolkit/src/common/sourcetype"
 	"asymmetric-effort/asymmetric-toolkit/src/common/types"
@@ -9,198 +8,187 @@ import (
 	"regexp"
 )
 
-func (o *cli.Configuration) Parse(cliArguments []string) bool {
+func (o *Configuration) Parse(cliArguments []string) bool {
 	o.LoadDefault()
-	expected := cli.ExpectFlag
-	lastFlag := cli.NoFlag
+	expected := ExpectFlag
+	lastFlag := NoFlag
 	for _, args := range cliArguments {
 		switch expected {
-		case cli.ExpectFlag:
+		case ExpectFlag:
+			expected = ExpectValue
 			switch args {
 			case "-h", "--help":
-				ShowUsage()
-				lastFlag = cli.UsageFlag
+				lastFlag = UsageFlag
 			case "--version", "-v":
-				ShowVersion()
-				lastFlag = cli.VersionFlag
+				lastFlag = VersionFlag
 			case "--concurrency":
-				lastFlag = cli.ConcurrencyFlag
-				expected = cli.ExpectValue
+				lastFlag = ConcurrencyFlag
 			case "--debug":
-				lastFlag = cli.DebugFlag
-				expected = cli.ExpectFlag
+				lastFlag = DebugFlag
+				expected = ExpectFlag
 				o.Debug = true
 			case "--delay":
-				lastFlag = cli.DelayFlag
-				expected = cli.ExpectValue
+				lastFlag = DelayFlag
 			case "--depth":
-				lastFlag = cli.DepthFlag
-				expected = cli.ExpectValue
+				lastFlag = DepthFlag
 			case "--dictionary":
-				lastFlag = cli.DictionaryFlag
-				expected = cli.ExpectValue
+				lastFlag = DictionaryFlag
 			case "--dnsServer":
-				lastFlag = cli.TargetServerFlag
-				expected = cli.ExpectValue
+				lastFlag = TargetServerFlag
 			case "--domain":
-				lastFlag = cli.DomainFlag
-				expected = cli.ExpectValue
+				lastFlag = DomainFlag
 			case "--force":
-				lastFlag = cli.ForceFlag
-				expected = cli.ExpectFlag
+				lastFlag = ForceFlag
+				expected = ExpectFlag
 				o.Force = true
 			case "--maxWordCount":
-				lastFlag = cli.MaxWordCountFlag
-				expected = cli.ExpectValue
+				lastFlag = MaxWordCountFlag
 			case "--mode":
-				lastFlag = cli.ModeFlag
-				expected = cli.ExpectValue
+				lastFlag = ModeFlag
 			case "--output":
-				lastFlag = cli.OutputFlag
-				expected = cli.ExpectValue
+				lastFlag = OutputFlag
 			case "--pattern":
-				lastFlag = cli.PatternFlag
-				expected = cli.ExpectValue
+				lastFlag = PatternFlag
 			case "--recordTypes":
-				lastFlag = cli.RecordTypesFlag
-				expected = cli.ExpectValue
+				lastFlag = RecordTypesFlag
 			case "--timeout":
-				lastFlag = cli.TimeoutFlag
-				expected = cli.ExpectValue
+				lastFlag = TimeoutFlag
 			case "--wordSize":
-				lastFlag = cli.WordSizeFlag
-				expected = cli.ExpectValue
+				lastFlag = WordSizeFlag
 			default:
 				errors.Fatal(1, fmt.Sprintf("Encountered unexpected argument: %s", args))
 			}
-		case cli.ExpectValue:
+		case ExpectValue:
 			func() {
 				re := regexp.MustCompile(`^--.+$`)
 				if re.MatchString(args) {
 					errors.Fatal(1, "Expected value, not flag.")
 				}
 			}()
-
 			switch lastFlag {
-			case cli.NoFlag, cli.UsageFlag:
+			case NoFlag, UsageFlag:
 				ShowUsage()
-			case cli.VersionFlag:
-				break
-			case cli.ConcurrencyFlag:
+				return ExitTerminate
+			case VersionFlag:
+				ShowVersion()
+				return ExitTerminate
+			case ConcurrencyFlag:
 				o.Concurrency.Set(args)
-				expected = cli.ExpectFlag
-			case cli.DebugFlag:
-				expected = cli.ExpectFlag
-			case cli.DepthFlag:
-				expected = cli.ExpectFlag
+				expected = ExpectFlag
+			case DebugFlag:
+				expected = ExpectFlag
+			case DepthFlag:
+				expected = ExpectFlag
 				o.Depth.Set(args)
-			case cli.DelayFlag:
-				expected = cli.ExpectFlag
+			case DelayFlag:
+				expected = ExpectFlag
 				o.Delay.Set(args)
-			case cli.DictionaryFlag:
-				expected = cli.ExpectFlag
+			case DictionaryFlag:
+				expected = ExpectFlag
 				o.Dictionary.Set(args)
-			case cli.DomainFlag:
-				expected = cli.ExpectFlag
+			case DomainFlag:
+				expected = ExpectFlag
 				o.Domain.Set(args)
-			case cli.TargetServerFlag:
-				expected = cli.ExpectFlag
+			case TargetServerFlag:
+				expected = ExpectFlag
 				o.TargetServer.Set(args)
-			case cli.ForceFlag:
-				expected = cli.ExpectFlag
-			case cli.MaxWordCountFlag:
+			case ForceFlag:
+				expected = ExpectFlag
+			case MaxWordCountFlag:
 				o.MaxWordCount.Set(args)
-				expected = cli.ExpectFlag
-			case cli.ModeFlag:
+				expected = ExpectFlag
+			case ModeFlag:
 				o.Mode.Set(args)
-				expected = cli.ExpectFlag
-			case cli.OutputFlag:
+				expected = ExpectFlag
+			case OutputFlag:
 				o.Output.Set(args)
-				expected = cli.ExpectFlag
-			case cli.PatternFlag:
+				expected = ExpectFlag
+			case PatternFlag:
 				o.Pattern.Set(args)
-				expected = cli.ExpectFlag
-			case cli.RecordTypesFlag:
+				expected = ExpectFlag
+			case RecordTypesFlag:
 				o.RecordTypes.Set(args)
-				expected = cli.ExpectFlag
-			case cli.TimeoutFlag:
+				expected = ExpectFlag
+			case TimeoutFlag:
 				o.Timeout.Set(args)
-				expected = cli.ExpectFlag
-			case cli.WordSizeFlag:
+				expected = ExpectFlag
+			case WordSizeFlag:
 				o.WordSize.Set(args)
-				expected = cli.ExpectFlag
+				expected = ExpectFlag
 			default:
 				panic("invalid flag")
 			}
 		default:
-			panic(fmt.Sprintf("Expected either expectFlag or expectValue.  Encountered: %v", expected))
+			panic(
+				fmt.Sprintf("Expected either expectFlag or expectValue.  Encountered: %v",
+					expected))
 		}
 	} /* end for */
 	//
 	//Perform a final validation...
 	//
-	if lastFlag == cli.UsageFlag {
+	if lastFlag == UsageFlag {
 		ShowUsage()
-		return cli.ExitTerminate
+		return ExitTerminate
 	}
-	if lastFlag == cli.VersionFlag {
+	if lastFlag == VersionFlag {
 		ShowVersion()
-		return cli.ExitTerminate
+		return ExitTerminate
 	}
 	if o.Domain.Get() == "" {
 		fmt.Println("Missing domain (required).  Use --domain <string> to specify.")
-		return cli.ExitTerminate
+		return ExitTerminate
 	}
 
 	if o.Mode.Get() == sourcetype.NotSet {
 		fmt.Println("Missing mode (required).  Use --mode <sequence|random|dictionary> to specify.")
-		return cli.ExitTerminate
+		return ExitTerminate
 	}
 
 	if o.TargetServer.Get() == "" {
 		fmt.Println("Missing dnsServer (required).  Use --dnsServer <udp|tcp>:<ipaddr>:<port> to specify.")
-		return cli.ExitTerminate
+		return ExitTerminate
 	}
 
 	if o.Mode.IsDictionary() {
 		if o.Dictionary == "" {
 			fmt.Println("Missing Dictionary.  Use --dictionary <string> when --mode dictionary is used.")
-			return cli.ExitTerminate
+			return ExitTerminate
 		}
 		if !o.Dictionary.Exists() {
 			fmt.Printf("Dictionary file not found (%s)\n", o.Dictionary)
-			return cli.ExitTerminate
+			return ExitTerminate
 		}
 		if o.WordSize >= 0 {
 			fmt.Printf("In Dictionary mode --wordSize is not allowed")
-			return cli.ExitTerminate
+			return ExitTerminate
 		}
 		if o.MaxWordCount >= 0 {
 			fmt.Printf("In Dictionary mode --maxWordCount is not allowed")
-			return cli.ExitTerminate
+			return ExitTerminate
 		}
 	}
 	if o.Mode.IsRandom() || o.Mode.IsSequence() {
 		if o.Dictionary != "" {
 			fmt.Println("Do not use --dictionary <file> with random or sequential mode.")
-			return cli.ExitTerminate
+			return ExitTerminate
 		}
 		if o.MaxWordCount == 0 {
-			o.MaxWordCount = types.PositiveInteger(int(o.WordSize) * len(cli.DNSChars))
+			o.MaxWordCount = types.PositiveInteger(int(o.WordSize) * len(DNSChars))
 		}
 		if o.WordSize == 0 {
-			o.WordSize = cli.DefaultWordSize
+			o.WordSize = DefaultWordSize
 		}
 	}
 	if o.Output != "" {
 		if !o.Force && o.Output.Exists() {
 			fmt.Println("Output file exists.  Use --force to overwrite")
-			return cli.ExitTerminate
+			return ExitTerminate
 		}
 	}
-	if o.Depth > cli.MaxDepth {
-		fmt.Printf("Depth (--depth) exceeds maxDepth (%d)\n", cli.MaxDepth)
-		return cli.ExitTerminate
+	if o.Depth > MaxDepth {
+		fmt.Printf("Depth (--depth) exceeds maxDepth (%d)\n", MaxDepth)
+		return ExitTerminate
 	}
-	return cli.ExitParseOk
+	return ExitParseOk
 }
