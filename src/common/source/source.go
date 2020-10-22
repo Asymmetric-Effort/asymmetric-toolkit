@@ -3,7 +3,7 @@ package source
 import (
 	"asymmetric-effort/asymmetric-toolkit/src/common/queues"
 	"asymmetric-effort/asymmetric-toolkit/src/common/logger"
-	"asymmetric-effort/asymmetric-toolkit/tools/dnsenum/cli"
+	" asymmetric-effort/asymmetric-toolkit/src/common/cli"
 )
 
 type Source struct {

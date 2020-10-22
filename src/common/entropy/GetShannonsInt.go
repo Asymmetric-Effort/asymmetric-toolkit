@@ -1,7 +1,7 @@
 package entropy
 
 import (
-	"asymmetric-effort/asymmetric-toolkit/src/common/misc"
+	"asymmetric-effort/asymmetric-toolkit/src/common/utils"
 	"math"
 )
 
@@ -12,7 +12,7 @@ func GetShannonsInt(data int) int {
 		totalLength := len(*input)
 		var sum float64 = 0
 		for _, i := range *input {
-			for _, v := range *misc.CountNumberFrequency(i) {
+			for _, v := range *utils.CountNumberFrequency(i) {
 				var f = float64(v) / float64(totalLength)
 				sum += f * math.Log2(f)
 			}
@@ -35,12 +35,12 @@ func GetShannonsInt(data int) int {
 		where count(i) is the count of characters n(i) (or frequency)
 	*/
 	var entropy float64 = 0
-	freqMap:=misc.CountNumberFrequency(data)
+	freqMap:= utils.CountNumberFrequency(data)
 	if data == 0 {
 		return 0
 	}
 	for i := 0; i < 10; i++ {
-		px := float64((*freqMap)[i]) / float64(misc.IntLen(data))
+		px := float64((*freqMap)[i]) / float64(utils.IntLen(data))
 		if px > 0 {
 			entropy += -px * math.Log2(px)
 		}

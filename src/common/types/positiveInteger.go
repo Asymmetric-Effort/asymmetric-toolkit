@@ -6,7 +6,7 @@ import (
 	"strconv"
 )
 
-type PositiveInteger int
+type PositiveInteger uint
 
 func (o *PositiveInteger) Set(s string) {
 	i, e := strconv.Atoi(s)

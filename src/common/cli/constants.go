@@ -14,10 +14,4 @@ const (
 	SourceBufferSz        int                   = 1048576 //Size of the source buffer which feeds the payload (attack) function.
 	ResponseBufferSz      int                   = 1048576 //Size of the response buffer for responses pending report processing.
 
-	ExpectFlag      int = 0
-	ExpectValue     int = 1
-	ExpectTerminate int = 2
-
-	ExitTerminate bool = true
-	ExitParseOk   bool = false
 )

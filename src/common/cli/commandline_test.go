@@ -4,6 +4,6 @@ import (
 	"testing"
 )
 
-func TestDnsEnumCliConstants(t *testing.T){
+func TestConfigurationStruct(t *testing.T){
 	t.SkipNow()
 }

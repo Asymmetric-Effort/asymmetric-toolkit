@@ -3,7 +3,7 @@ package source_test
 import (
 	"asymmetric-effort/asymmetric-toolkit/src/common/errors"
 	"asymmetric-effort/asymmetric-toolkit/src/common/source"
-	"asymmetric-effort/asymmetric-toolkit/tools/dnsenum/cli"
+	" asymmetric-effort/asymmetric-toolkit/src/common/cli"
 	"fmt"
 	"testing"
 )

@@ -2,7 +2,7 @@ package types
 
 import (
 	"asymmetric-effort/asymmetric-toolkit/src/common/errors"
-	"asymmetric-effort/asymmetric-toolkit/src/common/misc"
+	"asymmetric-effort/asymmetric-toolkit/src/common/utils"
 	"strconv"
 	"strings"
 )
@@ -15,7 +15,7 @@ func (o *TargetServer) IsValid() (r bool) {
 	if len(s) != 3 {
 		return false
 	}
-	return misc.IsTcpUdpProtocol(s[0]) && misc.IsIpAddr(s[1]) && misc.IsPort(s[2])
+	return utils.IsTcpUdpProtocol(s[0]) && utils.IsIpAddr(s[1]) && utils.IsPort(s[2])
 }
 
 func (o *TargetServer) Set(s string) {
@@ -49,7 +49,7 @@ func (o *TargetServer) Addr() string {
 	s := strings.Split(string(*o), ":")
 	errors.Assert(len(s) == 3, "TargetServer::Addr(): Badly formatted TargetServer string.  "+
 		"Expected protocol:address:port")
-	errors.Assert(misc.IsIpAddr(s[1]), "TargetServer::Addr(): Expected valid IP address.")
+	errors.Assert(utils.IsIpAddr(s[1]), "TargetServer::Addr(): Expected valid IP address.")
 	return string(s[1])
 }
 
@@ -57,6 +57,6 @@ func (o *TargetServer) Protocol() string {
 	s := strings.Split(string(*o), ":")
 	errors.Assert(len(s) == 3, "TargetServer::Protocol(): Badly formatted TargetServer string.  "+
 		"Expected protocol:address:port")
-	errors.Assert(misc.IsTcpUdpProtocol(s[0]), "TargetServer::IsTcpUdpProtocol(): Expected udp or tcp protocol.")
+	errors.Assert(utils.IsTcpUdpProtocol(s[0]), "TargetServer::IsTcpUdpProtocol(): Expected udp or tcp protocol.")
 	return string(s[0])
 }
