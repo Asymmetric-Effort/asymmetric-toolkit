@@ -1,4 +1,4 @@
-package cli
+package main
 
 const (
 	Usage            string = `
