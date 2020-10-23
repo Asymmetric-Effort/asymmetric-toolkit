@@ -83,5 +83,3 @@ func (o *Configuration) Setup(spec *Specification) (err error) {
 	*/
 	return err
 }
-
-func isFlag(s *string) bool {re := regexp.MustCompile("^--.+$");return re.MatchString(*s)}
