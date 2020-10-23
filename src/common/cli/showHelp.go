@@ -5,7 +5,7 @@ import (
 	"fmt"
 )
 
-func (o *Configuration) ShowHelp() {
+func (o *CommandLine) ShowHelp() {
 	fmt.Printf("Starting %s (%s)...\n"+
 		"\n"+
 		"Copyright (c) %s %s.  All Rights Reserved.  <%s> \n"+

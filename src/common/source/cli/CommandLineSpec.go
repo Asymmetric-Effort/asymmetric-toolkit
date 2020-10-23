@@ -1,17 +1,17 @@
-package source
+package sourcecli
 
 import (
 	"asymmetric-effort/asymmetric-toolkit/src/common/cli"
 	"asymmetric-effort/asymmetric-toolkit/src/common/utils"
 )
 
-func CommandLineSpecification(config *cli.Configuration) *cli.Specification {
+func CommandLineSpecification(config *cli.CommandLine) *cli.Specification {
 	return &cli.Specification{
 
-		cli.FlagPrefix + FlagMaxWordCount: {
-			cli.NotRequired,
-			cli.ValueRequired,
-			config.Int(
+		FlagPrefix + FlagMaxWordCount: {
+			NotRequired,
+			ValueRequired,
+			config.ValidateInteger(
 				FlagMaxWordCount,
 				FlagMaxWordCountDefault,
 				FlagMaxWordCountLow,
@@ -19,9 +19,9 @@ func CommandLineSpecification(config *cli.Configuration) *cli.Specification {
 			FlagMaxWordCountText,
 		},
 
-		cli.FlagPrefix + FlagSource: {
-			cli.Required,
-			cli.ValueRequired,
+		FlagPrefix + FlagSource: {
+			Required,
+			ValueRequired,
 			config.Enum(
 				FlagSource,
 				FlagSourceSequence,
@@ -33,30 +33,30 @@ func CommandLineSpecification(config *cli.Configuration) *cli.Specification {
 			FlagSourceText,
 		},
 
-		cli.FlagPrefix + FlagDictionary: {
-			cli.NotRequired,
-			cli.ValueRequired,
-			config.String(
+		FlagPrefix + FlagDictionary: {
+			NotRequired,
+			ValueRequired,
+			config.ValidateString(
 				FlagDictionary,
 				FlagDictionaryDefault,
 				utils.RegExDotPlusMan),
 			FlagDictionaryText,
 		},
 
-		cli.FlagPrefix + FlagPattern: {
-			cli.NotRequired,
-			cli.ValueRequired,
-			config.String(
+		FlagPrefix + FlagPattern: {
+			NotRequired,
+			ValueRequired,
+			config.ValidateString(
 				FlagPattern,
 				FlagPatternDefault,
 				utils.RegExDotPlusMan),
 			FlagPatternText,
 		},
 
-		cli.FlagPrefix + FlagWordsize: {
-			cli.NotRequired,
-			cli.ValueRequired,
-			config.Int(
+		FlagPrefix + FlagWordsize: {
+			NotRequired,
+			ValueRequired,
+			config.ValidateInteger(
 				FlagWordsize,
 				FlagWordSizeDefault,
 				FlagWordSizeLow,

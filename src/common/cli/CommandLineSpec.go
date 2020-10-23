@@ -5,33 +5,33 @@ package cli
 	Unless a tool overrides these terms, the specification will be consistent across
 	all tools providing help, versioning and forced override flags.
 */
-func CommandLineSpecification(config *Configuration) *Specification {
+func CommandLineSpecification(config *CommandLine) *Specification {
 	return &Specification{
 		FlagShortHelp: {
 			NotRequired,
 			NoValueNeeded,
-			config.Bool(FlagHelp, false),
+			config.ValidateBool(FlagHelp, false),
 			FlagHelpText,
 		},
 
 		FlagPrefix + FlagHelp: { // Example: --help
 			NotRequired,
 			NoValueNeeded,
-			config.Bool(FlagHelp, false),
+			config.ValidateBool(FlagHelp, false),
 			FlagHelpText,
 		},
 
 		FlagPrefix + FlagVersion: {
 			NotRequired,
 			NoValueNeeded,
-			config.Bool(FlagVersion, false),
+			config.ValidateBool(FlagVersion, false),
 			FlagVersionText,
 		},
 
 		FlagPrefix + FlagForce: {
 			NotRequired,
 			NoValueNeeded,
-			config.Bool(FlagForce, false),
+			config.ValidateBool(FlagForce, false),
 			FlagForceText,
 		},
 	}

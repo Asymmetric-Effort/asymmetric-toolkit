@@ -1,4 +1,4 @@
-package logger
+package loggercli
 
 import (
 	logLevel "github.com/combat-diver-foundation/common/logger/log_level"
@@ -24,4 +24,19 @@ const (
 	FlagLogServerText    = "Specify the FQDN and port for sending logs to a syslog server."
 	FlagLogServerDefault = "udp:127.0.0.1:514"
 	//ToDo: add TLS options for syslog.
+)
+
+const (
+	/*
+		miscellaneous parts.
+	*/
+	FlagPrefix    = "--"
+
+	//Require argument
+	Required    = true
+	NotRequired = false
+
+	//ExpectValue argument
+	ValueRequired = true
+	NoValueNeeded = false
 )

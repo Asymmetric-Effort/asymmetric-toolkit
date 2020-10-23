@@ -20,16 +20,16 @@ func (o *TargetServer) IsValid() (r bool) {
 
 func (o *TargetServer) Set(s string) {
 	*o = TargetServer(s)
-	errors.Assert(o.IsValid(), "TargetServer::Set(): Expected valid Target Server String: protocol:address:port")
+	errors.Assert(o.IsValid(), "TargetServer::Set(): Expected valid Target Server ValidateString: protocol:address:port")
 }
 
 func (o *TargetServer) Get() (s string) {
-	errors.Assert(o.IsValid(), "TargetServer::Get(): Expected valid Target Server String: protocol:address:port")
+	errors.Assert(o.IsValid(), "TargetServer::Get(): Expected valid Target Server ValidateString: protocol:address:port")
 	return string(*o)
 }
 
 func (o *TargetServer) String() string {
-	errors.Assert(o.IsValid(), "TargetServer::String(): Expected valid Target Server String: protocol:address:port")
+	errors.Assert(o.IsValid(), "TargetServer::ValidateString(): Expected valid Target Server ValidateString: protocol:address:port")
 	return string(*o)
 }
 func (o *TargetServer) Port() (p int) {

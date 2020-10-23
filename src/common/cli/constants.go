@@ -15,3 +15,10 @@ const (
 	ResponseBufferSz      int                   = 1048576 //Size of the response buffer for responses pending report processing.
 
 )
+
+
+const (
+	//Used in routing logic in CommandLine::Setup()
+	expectFlag  = 0
+	expectValue = 1
+)

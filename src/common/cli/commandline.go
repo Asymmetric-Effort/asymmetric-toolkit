@@ -1,15 +1,12 @@
 package cli
 
-type Arguments map[string]interface{}
+import (
+	args "asymmetric-effort/asymmetric-toolkit/src/common/cli/args"
+)
 
-type Configuration struct {
+type CommandLine struct {
 	ProgramName string
 	Terminate   bool
-	args        Arguments
+	args        args.Arguments
 	spec        *Specification
 }
-
-const (
-	expectFlag  = 0
-	expectValue = 1
-)

@@ -2,14 +2,14 @@ package logger
 
 import (
 	"asymmetric-effort/asymmetric-toolkit/src/common/logger/LogDestination"
-	"asymmetric-effort/asymmetric-toolkit/tools/dnsenum/cli"
+	"asymmetric-effort/asymmetric-toolkit/src/common/cli"
 )
 
-func (o *Logger) Setup(config *cli.Configuration) {
+func (o *Logger) Setup(config *cli.CommandLine) {
 	/*
 		Initialize the log destination file handle (fp)
 	*/
-	o.level.Set(config.Log.Level)
+	o.level.Set(config.Get("LogLevel"))
 	o.facility.Set(defaultLoggerFacility)
 
 	switch config.Log.Target {

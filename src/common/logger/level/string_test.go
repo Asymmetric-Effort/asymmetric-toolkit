@@ -7,5 +7,5 @@ import (
 
 func TestLogLevelGetStr_Happy(t *testing.T){
 	var o Level = Debug
-	errors.Assert(o.String()=="DEBUG", "Expected Debug String")
+	errors.Assert(o.String()=="DEBUG", "Expected Debug ValidateString")
 }

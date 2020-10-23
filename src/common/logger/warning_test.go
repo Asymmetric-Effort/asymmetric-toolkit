@@ -13,7 +13,7 @@ import (
 
 func TestLoggerWarningError(t *testing.T) {
 	var log Logger
-	var config cli.Configuration
+	var config cli.CommandLine
 	config.Log.Destination.Set(LogDestination.Stdout)
 	config.Log.Level.Set(level.Warning)
 	out := catchStdOut(t, func() {
@@ -27,7 +27,7 @@ func TestLoggerWarningError(t *testing.T) {
 
 func TestLoggerWarningCritical(t *testing.T) {
 	var log Logger
-	var config cli.Configuration
+	var config cli.CommandLine
 	config.Log.Destination.Set(LogDestination.Stdout)
 	config.Log.Level.Set(level.Warning)
 	out := catchStdOut(t, func() {
@@ -41,7 +41,7 @@ func TestLoggerWarningCritical(t *testing.T) {
 
 func TestLoggerWarningDebug(t *testing.T) {
 	var log Logger
-	var config cli.Configuration
+	var config cli.CommandLine
 	config.Log.Destination.Set(LogDestination.Stdout)
 	config.Log.Level.Set(level.Debug)
 	out := catchStdOut(t, func() {

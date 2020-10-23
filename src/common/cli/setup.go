@@ -1,15 +1,16 @@
 package cli
 
 import (
-	"asymmetric-effort/asymmetric-toolkit/src/common/logger"
-	"asymmetric-effort/asymmetric-toolkit/src/common/source"
+	"asymmetric-effort/asymmetric-toolkit/src/common/cli/args"
+	"asymmetric-effort/asymmetric-toolkit/src/common/logger/cli"
+	sourcecli "asymmetric-effort/asymmetric-toolkit/src/common/source/cli"
 	"fmt"
 	"os"
 	"regexp"
 	"strings"
 )
 
-func (o *Configuration) Setup(spec *Specification) (err error) {
+func (o *CommandLine) Setup(spec *Specification) (err error) {
 	var currentFlag string
 	var count int         //count the flags for later comparison.
 	var next = ExpectFlag // We always expect the first arg to be a --flag.
@@ -18,12 +19,12 @@ func (o *Configuration) Setup(spec *Specification) (err error) {
 		into a single final view.  Each subsequent layer can override the previous.
 	*/
 	o.spec = CommandLineSpecification(o)
-	MergeMaps(o.spec, logger.CommandLineSpecification(o))
-	MergeMaps(o.spec, source.CommandLineSpecification(o))
+	MergeMaps(o.spec, sourcecli.CommandLineSpecification(o))
+	MergeMaps(o.spec, loggercli.CommandLineSpecification(o))
 	MergeMaps(o.spec, spec)
 
 	// Initialize the arguments object for use before parsing.
-	o.args = make(Arguments)
+	o.args = make(cliargs.Arguments)
 	/*
 		Parse the arguments
 	*/

@@ -5,6 +5,6 @@ import (
 	"fmt"
 )
 
-func (o *Configuration) ShowVersion() {
+func (o *CommandLine) ShowVersion() {
 	fmt.Println(buildconfig.Version)
 }

@@ -15,7 +15,7 @@ func TestSourceGenerateRandom(t *testing.T) {
 	*/
 	const keyspace = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
 	var s source.Source
-	var config cli.Configuration
+	var config cli.C
 	args := []string{"--domain", "google.com", "--mode", "random", "--dnsServer", "udp:127.0.0.1:53", "--maxWordCount", "20"}
 	config.Parse(args)
 	s.config = &config

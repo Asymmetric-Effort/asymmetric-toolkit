@@ -1,4 +1,4 @@
-package source
+package sourcecli
 
 import "asymmetric-effort/asymmetric-toolkit/src/common/utils"
 
@@ -34,4 +34,20 @@ const (
 	FlagWordSizeDefault = 0
 	FlagWordSizeLow     = 1
 	FlagWordSizeHigh    = 1024
+)
+
+const (
+	/*
+		miscellaneous parts.
+	*/
+	FlagPrefix    = "--"
+	FlagShortHelp = "-h"
+
+	//Require argument
+	Required    = true
+	NotRequired = false
+
+	//ExpectValue argument
+	ValueRequired = true
+	NoValueNeeded = false
 )

@@ -1,4 +1,4 @@
-package logger
+package loggercli
 
 import (
 	"asymmetric-effort/asymmetric-toolkit/src/common/cli"
@@ -7,17 +7,17 @@ import (
 	logLevel "github.com/combat-diver-foundation/common/logger/log_level"
 )
 
-func CommandLineSpecification(config *cli.Configuration) *cli.Specification {
+func CommandLineSpecification(config *cli.CommandLine) *cli.Specification {
 	return &cli.Specification{
 
-		cli.FlagPrefix + FlagDebug: {
-			cli.NotRequired,
-			cli.NoValueNeeded,
-			config.Bool(FlagDebug, false),
+		FlagPrefix + FlagDebug: {
+			NotRequired,
+			NoValueNeeded,
+			config.ValidateBool(FlagDebug, false),
 			FlagDebugText,
 		},
 
-		cli.FlagPrefix + FlagLogDestination: {
+		FlagPrefix + FlagLogDestination: {
 			false,
 			true,
 			config.Enum(
@@ -30,17 +30,17 @@ func CommandLineSpecification(config *cli.Configuration) *cli.Specification {
 			FlagLogDestinationText,
 		},
 
-		cli.FlagPrefix + FlagLogFile: {
+		FlagPrefix + FlagLogFile: {
 			false,
 			true,
-			config.String(
+			config.ValidateString(
 				FlagLogFile,
 				FlagLogFileDefault,
 				utils.RegExDotPlusMan),
 			FlagLogFileText,
 		},
 
-		cli.FlagPrefix + FlagLogLevel: {
+		FlagPrefix + FlagLogLevel: {
 			false,
 			true,
 			config.Enum(
@@ -55,10 +55,10 @@ func CommandLineSpecification(config *cli.Configuration) *cli.Specification {
 			FlagLogLevelText,
 		},
 
-		cli.FlagPrefix + FlagLogServer: {
+		FlagPrefix + FlagLogServer: {
 			false,
 			true,
-			config.String(
+			config.ValidateString(
 				FlagLogServer,
 				FlagLogServerDefault,
 				utils.RegExServerString),

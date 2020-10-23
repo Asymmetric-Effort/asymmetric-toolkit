@@ -17,14 +17,14 @@ func main() {
 	var feed source.Source
 	var exit chan bool = make(chan bool, 1)
 
-	var config cli.Configuration //Load the common configuration (cli parser).
+	var config cli.CommandLine //Load the common configuration (cli parser).
 	config.ProgramName = ProgramName
 	err = config.Setup(&cli.Specification{
 		//ToDo: Move to the attacker package
 		cli.FlagPrefix + cli.FlagConcurrency: {
 			cli.NotRequired,
 			cli.ValueRequired,
-			config.Int(
+			config.ValidateInteger(
 				cli.FlagConcurrency,
 				cli.FlagConcurrencyDefault,
 				cli.FlagConcurrencyLow,
@@ -36,7 +36,7 @@ func main() {
 		cli.FlagPrefix + cli.FlagDelay: {
 			cli.NotRequired,
 			cli.ValueRequired,
-			config.Int(
+			config.ValidateInteger(
 				cli.FlagDelay,
 				cli.FlagDelayDefault,
 				cli.FlagDelayLow,
@@ -48,7 +48,7 @@ func main() {
 		cli.FlagPrefix + cli.FlagDepth: {
 			cli.NotRequired,
 			cli.ValueRequired,
-			config.Int(
+			config.ValidateInteger(
 				cli.FlagDepth,
 				cli.FlagDepthDefault,
 				cli.FlagDepthLow,
@@ -60,7 +60,7 @@ func main() {
 		cli.FlagPrefix + cli.FlagTarget: {
 			cli.NotRequired,
 			cli.ValueRequired,
-			config.String(
+			config.ValidateString(
 				cli.FlagTarget,
 				cli.FlagTargetDefaultDns,
 				utils.RegExDotPlusMan),
@@ -71,7 +71,7 @@ func main() {
 		cli.FlagPrefix + cli.FlagDomain: {
 			cli.NotRequired,
 			cli.ValueRequired,
-			config.String(
+			config.ValidateString(
 				cli.FlagDomain,
 				cli.FlagDomainDefault,
 				utils.RegExDotPlusMan),
@@ -82,7 +82,7 @@ func main() {
 		cli.FlagPrefix + cli.FlagOutput: {
 			cli.NotRequired,
 			cli.ValueRequired,
-			config.String(
+			config.ValidateString(
 				cli.FlagOutput,
 				cli.FlagOutputDefault,
 				utils.RegExDotPlusMan),
@@ -93,7 +93,7 @@ func main() {
 		cli.FlagPrefix + cli.FlagDNSRecordTypes: {
 			cli.NotRequired,
 			cli.ValueRequired,
-			config.String(
+			config.ValidateString(
 				cli.FlagDNSRecordTypes,
 				cli.DefaultDNSRecordTypes,
 				utils.RegExDotPlusMan),
@@ -104,7 +104,7 @@ func main() {
 		cli.FlagPrefix + cli.FlagTimeout: {
 			cli.NotRequired,
 			cli.ValueRequired,
-			config.Int(
+			config.ValidateInteger(
 				cli.FlagTimeout,
 				cli.FlagTimeoutDefault,
 				cli.FlagTimeoutLow,

@@ -83,7 +83,7 @@ func TestTargetServer_GetBad(t *testing.T) {
 func TestTargetServer_StringHappy(t *testing.T) {
 	var ts types.TargetServer
 	ts = "udp:0.0.0.0:53"
-	errors.Assert(ts.String() == "udp:0.0.0.0:53", "String() failed to get expected server string.")
+	errors.Assert(ts.String() == "udp:0.0.0.0:53", "ValidateString() failed to get expected server string.")
 }
 
 func TestTargetServer_StringBad(t *testing.T) {
