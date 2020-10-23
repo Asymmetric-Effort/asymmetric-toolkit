@@ -7,3 +7,6 @@ log/
 *.iml
 .idea/
 .DS_Store
+*.coverprofile
+*.orig
+coverage.txt
