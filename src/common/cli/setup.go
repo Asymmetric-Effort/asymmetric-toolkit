@@ -13,7 +13,6 @@ func (o *Configuration) Setup(spec *Specification) (err error) {
 	var currentFlag string
 	var count int         //count the flags for later comparison.
 	var next = ExpectFlag // We always expect the first arg to be a --flag.
-
 	/*
 		This is where we aggregate (left join) our commandline specifications
 		into a single final view.  Each subsequent layer can override the previous.
@@ -31,30 +30,37 @@ func (o *Configuration) Setup(spec *Specification) (err error) {
 	for _, arg := range os.Args[1:] {
 		switch next {
 		case expectFlag:
-			if isFlag(&arg) {
-				currentFlag = getFlag(&arg)
-			} else {
+			// Is the argument a flag?....
+			isFlagRe:=regexp.MustCompile("^--.+$")
+			if !isFlagRe.MatchString(arg) {
 				return fmt.Errorf("A flag was expected but not found.  " +
 					"Please use -h or --help for usage information.")
 			}
-			if o.specificationExpectsFlag(&currentFlag) {
-				if (*o.spec)[currentFlag].ExpectValue {
-					next = expectValue
-					count++
-					continue
-				} //else we're gonna grab another flag.
-			} else {
+			currentFlag = func() string {
+				// Extract the --flag
+				re := regexp.MustCompile("^--.+$")
+				if re.MatchString(arg) {
+					return strings.ToLower((arg)[2:])
+				} else {
+					panic("Expected flag but encountered non flag arg.")
+				}
+			}()
+			count++
+			if !o.specificationExpectsFlag(&currentFlag) {
 				return fmt.Errorf("This tool expects a certain number of flags and parameters.  "+
 					"But the given flag (%s) was not expected.\n", currentFlag)
 			}
+			if (*o.spec)[currentFlag].ExpectValue {
+				next = expectValue
+			} // else we're gonna grab another flag.
 		case ExpectValue:
-			if (*o.spec)[currentFlag].Validation(&arg) { // Set, validate flag value and move on.
-				next = expectFlag
-				continue
-			} else {
+			if !(*o.spec)[currentFlag].Validation(&arg) { // Set, validate flag value and move on.
 				return fmt.Errorf("Unexpected value for %s flag.  Encountered '%s'.  "+
 					"Please use -h or --help for usage information.\n", currentFlag, arg)
 			}
+			next = expectFlag
+			continue
+
 		default:
 			return fmt.Errorf("internal error parsing command line options")
 		}
@@ -78,16 +84,4 @@ func (o *Configuration) Setup(spec *Specification) (err error) {
 	return err
 }
 
-func getFlag(s *string) string {
-	re := regexp.MustCompile("^--.+$")
-	if re.MatchString(*s) {
-		return strings.ToLower((*s)[2:])
-	} else {
-		panic("Expected flag but encountered non flag arg.")
-	}
-}
-
-func isFlag(s *string) bool {
-	re := regexp.MustCompile("^--.+$")
-	return re.MatchString(*s)
-}
+func isFlag(s *string) bool {re := regexp.MustCompile("^--.+$");return re.MatchString(*s)}
