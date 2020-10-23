@@ -9,7 +9,15 @@ import (
 
 func CommandLineSpecification(config *cli.Configuration) *cli.Specification {
 	return &cli.Specification{
-		FlagLogDestination: {
+
+		cli.FlagPrefix + FlagDebug: {
+			cli.NotRequired,
+			cli.NoValueNeeded,
+			config.Bool(FlagDebug, false),
+			FlagDebugText,
+		},
+
+		cli.FlagPrefix + FlagLogDestination: {
 			false,
 			true,
 			config.Enum(
@@ -22,7 +30,7 @@ func CommandLineSpecification(config *cli.Configuration) *cli.Specification {
 			FlagLogDestinationText,
 		},
 
-		FlagLogFile: {
+		cli.FlagPrefix + FlagLogFile: {
 			false,
 			true,
 			config.String(
@@ -32,7 +40,7 @@ func CommandLineSpecification(config *cli.Configuration) *cli.Specification {
 			FlagLogFileText,
 		},
 
-		FlagLogLevel: {
+		cli.FlagPrefix + FlagLogLevel: {
 			false,
 			true,
 			config.Enum(
@@ -47,7 +55,7 @@ func CommandLineSpecification(config *cli.Configuration) *cli.Specification {
 			FlagLogLevelText,
 		},
 
-		FlagLogServer: {
+		cli.FlagPrefix + FlagLogServer: {
 			false,
 			true,
 			config.String(

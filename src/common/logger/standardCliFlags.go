@@ -5,6 +5,9 @@ import (
 )
 
 const (
+	FlagDebug     = "debug"
+	FlagDebugText = "Enable debug (verbose) logging in the logger facilities."
+
 	FlagLogDestination        = "logdestination"
 	FlagLogDestinationText    = "Specify the destination for log activity (e.g. stdout, file, syslog)"
 	FlagLogDestinationDefault = "stdout"

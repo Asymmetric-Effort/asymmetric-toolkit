@@ -17,41 +17,7 @@ func main() {
 
 	var config cli.Configuration //Load the common configuration (cli parser).
 	err = config.Setup(&cli.Specification{
-		cli.FlagShortHelp: {
-			cli.NotRequired,
-			cli.NoValueNeeded,
-			config.Bool(cli.FlagHelp, false),
-			cli.FlagHelpText,
-		},
-
-		cli.FlagPrefix + cli.FlagHelp: { // Example: --help
-			cli.NotRequired,
-			cli.NoValueNeeded,
-			config.Bool(cli.FlagHelp, false),
-			cli.FlagHelpText,
-		},
-
-		cli.FlagPrefix + cli.FlagVersion: {
-			cli.NotRequired,
-			cli.NoValueNeeded,
-			config.Bool(cli.FlagVersion, false),
-			cli.FlagVersionText,
-		},
-
-		cli.FlagPrefix + cli.FlagDebug: {
-			cli.NotRequired,
-			cli.NoValueNeeded,
-			config.Bool(cli.FlagDebug, false),
-			cli.FlagDebugText,
-		},
-
-		cli.FlagPrefix + cli.FlagForce: {
-			cli.NotRequired,
-			cli.NoValueNeeded,
-			config.Bool(cli.FlagForce, false),
-			cli.FlagForceText,
-		},
-
+		//ToDo: Move to the attacker package
 		cli.FlagPrefix + cli.FlagConcurrency: {
 			cli.NotRequired,
 			cli.ValueRequired,
@@ -63,6 +29,7 @@ func main() {
 			cli.FlagConcurrencyText,
 		},
 
+		//ToDo: Move to the attacker package
 		cli.FlagPrefix + cli.FlagDelay: {
 			cli.NotRequired,
 			cli.ValueRequired,
@@ -74,6 +41,7 @@ func main() {
 			cli.FlagDelayText,
 		},
 
+		//ToDo: Move to the attacker package
 		cli.FlagPrefix + cli.FlagDepth: {
 			cli.NotRequired,
 			cli.ValueRequired,
@@ -85,6 +53,7 @@ func main() {
 			cli.FlagDepthText,
 		},
 
+		//ToDo: Move to the attacker package
 		cli.FlagPrefix + cli.FlagTarget: {
 			cli.NotRequired,
 			cli.ValueRequired,
@@ -95,6 +64,7 @@ func main() {
 			cli.FlagTargetText,
 		},
 
+		//ToDo: Move to the attacker package
 		cli.FlagPrefix + cli.FlagDomain: {
 			cli.NotRequired,
 			cli.ValueRequired,
@@ -105,6 +75,7 @@ func main() {
 			cli.FlagDomainText,
 		},
 
+		//ToDo: Move to the reporter package
 		cli.FlagPrefix + cli.FlagOutput: {
 			cli.NotRequired,
 			cli.ValueRequired,
@@ -114,6 +85,7 @@ func main() {
 				utils.RegExDotPlusMan),
 			cli.FlagOutputText,
 		},
+
 
 		cli.FlagPrefix + cli.FlagDNSRecordTypes: {
 			cli.NotRequired,
@@ -125,6 +97,7 @@ func main() {
 			cli.FlagDNSRecordTypesText,
 		},
 
+		//ToDo: Move to the attacker package
 		cli.FlagPrefix + cli.FlagTimeout: {
 			cli.NotRequired,
 			cli.ValueRequired,
