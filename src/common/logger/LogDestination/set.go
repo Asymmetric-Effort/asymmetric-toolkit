@@ -1,4 +1,4 @@
-package destination
+package LogDestination
 
 func (o *LogDestination) Set(d LogDestination){
 	switch LogDestination(d) {

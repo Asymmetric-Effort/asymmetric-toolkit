@@ -1,4 +1,4 @@
-package destination
+package LogDestination
 
 func (o *LogDestination) Get() LogDestination {
 	switch *o {

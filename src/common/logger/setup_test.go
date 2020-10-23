@@ -2,7 +2,7 @@ package logger
 
 import (
 	"asymmetric-effort/asymmetric-toolkit/src/common/errors"
-	"asymmetric-effort/asymmetric-toolkit/src/common/logger/destination"
+	"asymmetric-effort/asymmetric-toolkit/src/common/logger/LogDestination"
 	"asymmetric-effort/asymmetric-toolkit/src/common/logger/level"
 	"asymmetric-effort/asymmetric-toolkit/tools/dnsenum/cli"
 	"testing"
@@ -11,7 +11,7 @@ import (
 func TestLoggerSetupStdOutHappy(t *testing.T) {
 	var log Logger
 	var config cli.Configuration
-	config.Log.Destination.Set(destination.Stdout)
+	config.Log.Destination.Set(LogDestination.Stdout)
 	config.Log.Level.Set(level.Debug)
 	log.Setup(&config)
 	errors.Assert(log.facility.String() == defaultLoggerFacility, "Unexpected initial logger facility.")

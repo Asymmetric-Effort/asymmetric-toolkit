@@ -1,7 +1,7 @@
 package logger
 
 import (
-	"asymmetric-effort/asymmetric-toolkit/src/common/logger/destination"
+	"asymmetric-effort/asymmetric-toolkit/src/common/logger/LogDestination"
 	"asymmetric-effort/asymmetric-toolkit/tools/dnsenum/cli"
 )
 
@@ -12,13 +12,13 @@ func (o *Logger) Setup(config *cli.Configuration) {
 	o.level.Set(config.Log.Level)
 	o.facility.Set(defaultLoggerFacility)
 
-	switch config.Log.Destination {
-	case destination.Stdout:
+	switch config.Log.Target {
+	case LogDestination.Stdout:
 		o.writer = o.logWriterStdOut
-	case destination.File:
+	case LogDestination.File:
 		panic("not implemented (logger file writer)")
 		//o.writer =  o.logWriterFile
-	case destination.Syslog:
+	case LogDestination.Syslog:
 		panic("not implemented (logger syslog writer")
 		//o.writer =  o.LogWriterSyslog
 	default:

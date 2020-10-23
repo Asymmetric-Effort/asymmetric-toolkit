@@ -2,7 +2,7 @@ package logger
 
 import (
 	"asymmetric-effort/asymmetric-toolkit/src/common/errors"
-	"asymmetric-effort/asymmetric-toolkit/src/common/logger/destination"
+	"asymmetric-effort/asymmetric-toolkit/src/common/logger/LogDestination"
 	"asymmetric-effort/asymmetric-toolkit/src/common/logger/level"
 	"asymmetric-effort/asymmetric-toolkit/tools/dnsenum/cli"
 	"fmt"
@@ -13,7 +13,7 @@ import (
 func TestLoggerDebugWarn(t *testing.T) {
 	var log Logger
 	var config cli.Configuration
-	config.Log.Destination.Set(destination.Stdout)
+	config.Log.Destination.Set(LogDestination.Stdout)
 	config.Log.Level.Set(level.Debug)
 	out := catchStdOut(t, func() {
 		log.Setup(&config)
@@ -27,7 +27,7 @@ func TestLoggerDebugWarn(t *testing.T) {
 func TestLoggerDebugCritical(t *testing.T) {
 	var log Logger
 	var config cli.Configuration
-	config.Log.Destination.Set(destination.Stdout)
+	config.Log.Destination.Set(LogDestination.Stdout)
 	config.Log.Level.Set(level.Debug)
 	out := catchStdOut(t, func() {
 		log.Setup(&config)
@@ -41,7 +41,7 @@ func TestLoggerDebugCritical(t *testing.T) {
 func TestLoggerDebugError(t *testing.T) {
 	var log Logger
 	var config cli.Configuration
-	config.Log.Destination.Set(destination.Stdout)
+	config.Log.Destination.Set(LogDestination.Stdout)
 	config.Log.Level.Set(level.Debug)
 	out := catchStdOut(t, func() {
 		log.Setup(&config)
@@ -56,7 +56,7 @@ func TestLoggerDebugError(t *testing.T) {
 func TestLoggerDebugInfo(t *testing.T) {
 	var log Logger
 	var config cli.Configuration
-	config.Log.Destination.Set(destination.Stdout)
+	config.Log.Destination.Set(LogDestination.Stdout)
 	config.Log.Level.Set(level.Debug)
 	out := catchStdOut(t, func() {
 		log.Setup(&config)

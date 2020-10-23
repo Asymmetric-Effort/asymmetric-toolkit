@@ -1,4 +1,4 @@
-package destination
+package LogDestination
 
 import (
 	"asymmetric-effort/asymmetric-toolkit/src/common/errors"
