@@ -2,7 +2,7 @@ package sourcetype_test
 
 import (
 	"asymmetric-effort/asymmetric-toolkit/src/common/errors"
-	"asymmetric-effort/asymmetric-toolkit/src/common/sourcetype"
+	"asymmetric-effort/asymmetric-toolkit/src/common/source/sourcetype"
 	"strconv"
 	"testing"
 )

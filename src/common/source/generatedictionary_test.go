@@ -1,8 +1,8 @@
 package source_test
 
 import (
-	writer2 "asymmetric-effort/asymmetric-toolkit/src/common/dictionary/writer"
-	"asymmetric-effort/asymmetric-toolkit/src/common/file"
+	writer2 "asymmetric-effort/asymmetric-toolkit/src/common/source/dictionary/writer"
+	"asymmetric-effort/asymmetric-toolkit/src/common/utils/file"
 	"fmt"
 	"os"
 	"path/filepath"

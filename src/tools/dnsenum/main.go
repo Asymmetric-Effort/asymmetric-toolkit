@@ -2,126 +2,141 @@ package main
 
 import (
 	"asymmetric-effort/asymmetric-toolkit/src/common/cli"
+	"asymmetric-effort/asymmetric-toolkit/src/common/errors"
 	"asymmetric-effort/asymmetric-toolkit/src/common/logger"
 	"asymmetric-effort/asymmetric-toolkit/src/common/source"
+	"asymmetric-effort/asymmetric-toolkit/src/common/utils"
+	"fmt"
 )
 
 func main() {
+	var err error
 	var log logger.Logger
 	var feed source.Source
 	var exit chan bool = make(chan bool, 1)
 
 	var config cli.Configuration //Load the common configuration (cli parser).
-	config.Setup(&cli.Specification{
+	err = config.Setup(&cli.Specification{
 		cli.FlagShortHelp: {
-			false,
-			false,
+			cli.NotRequired,
+			cli.NoValueNeeded,
 			config.Bool(cli.FlagHelp, false),
 			cli.FlagHelpText,
 		},
+
 		cli.FlagPrefix + cli.FlagHelp: { // Example: --help
-			false,
-			false,
+			cli.NotRequired,
+			cli.NoValueNeeded,
 			config.Bool(cli.FlagHelp, false),
 			cli.FlagHelpText,
 		},
+
 		cli.FlagPrefix + cli.FlagVersion: {
-			false,
-			false,
+			cli.NotRequired,
+			cli.NoValueNeeded,
 			config.Bool(cli.FlagVersion, false),
 			cli.FlagVersionText,
 		},
+
 		cli.FlagPrefix + cli.FlagDebug: {
-			false,
-			false,
+			cli.NotRequired,
+			cli.NoValueNeeded,
 			config.Bool(cli.FlagDebug, false),
 			cli.FlagDebugText,
 		},
+
 		cli.FlagPrefix + cli.FlagForce: {
-			false,
-			false,
+			cli.NotRequired,
+			cli.NoValueNeeded,
 			config.Bool(cli.FlagForce, false),
 			cli.FlagForceText,
 		},
+
 		cli.FlagPrefix + cli.FlagConcurrency: {
-			false,
-			true,
-			config.Int(cli.FlagConcurrency, 10, 0, 100000),
+			cli.NotRequired,
+			cli.ValueRequired,
+			config.Int(
+				cli.FlagConcurrency,
+				cli.FlagConcurrencyDefault,
+				cli.FlagConcurrencyLow,
+				cli.FlagConcurrencyHigh),
 			cli.FlagConcurrencyText,
 		},
+
 		cli.FlagPrefix + cli.FlagDelay: {
-			false,
-			true,
-			config.Int(cli.FlagDelay, 0, 0, 100000),
+			cli.NotRequired,
+			cli.ValueRequired,
+			config.Int(
+				cli.FlagDelay,
+				cli.FlagDelayDefault,
+				cli.FlagDelayLow,
+				cli.FlagDelayHigh),
 			cli.FlagDelayText,
 		},
+
 		cli.FlagPrefix + cli.FlagDepth: {
-			false,
-			true,
-			config.Int(cli.FlagDepth, 1, 1, 1000),
+			cli.NotRequired,
+			cli.ValueRequired,
+			config.Int(
+				cli.FlagDepth,
+				cli.FlagDepthDefault,
+				cli.FlagDepthLow,
+				cli.FlagDepthHigh),
 			cli.FlagDepthText,
 		},
-		cli.FlagPrefix + cli.FlagDictionary: {
-			false,
-			true,
-			config.String(cli.FlagDictionary, "", ".+"),
-			cli.FlagDictionaryText,
-		},
+
 		cli.FlagPrefix + cli.FlagTarget: {
-			false,
-			true,
-			config.String(cli.FlagTarget, "", ".+"),
+			cli.NotRequired,
+			cli.ValueRequired,
+			config.String(
+				cli.FlagTarget,
+				cli.FlagTargetDefaultDns,
+				utils.RegExDotPlusMan),
 			cli.FlagTargetText,
 		},
+
 		cli.FlagPrefix + cli.FlagDomain: {
-			false,
-			true,
-			config.String(cli.FlagDomain, "", ".+"),
+			cli.NotRequired,
+			cli.ValueRequired,
+			config.String(
+				cli.FlagDomain,
+				cli.FlagDomainDefault,
+				utils.RegExDotPlusMan),
 			cli.FlagDomainText,
 		},
-		cli.FlagPrefix + cli.FlagMaxWordCount: {
-			false,
-			true,
-			config.Int(cli.FlagMaxWordCount, 0, 1, 1000000000),
-			cli.FlagMaxWordCountText,
-		},
+
 		cli.FlagPrefix + cli.FlagOutput: {
-			false,
-			true,
-			config.String(cli.FlagOutput, "", ".+"),
+			cli.NotRequired,
+			cli.ValueRequired,
+			config.String(
+				cli.FlagOutput,
+				cli.FlagOutputDefault,
+				utils.RegExDotPlusMan),
 			cli.FlagOutputText,
 		},
-		cli.FlagPrefix + cli.FlagPattern: {
-			false,
-			true,
-			config.String(cli.FlagPattern, "", ".+"),
-			cli.FlagPatternText,
-		},
+
 		cli.FlagPrefix + cli.FlagDNSRecordTypes: {
-			false,
-			true,
-			config.String(cli.FlagDNSRecordTypes, "", ".+"),
+			cli.NotRequired,
+			cli.ValueRequired,
+			config.String(
+				cli.FlagDNSRecordTypes,
+				cli.DefaultDNSRecordTypes,
+				utils.RegExDotPlusMan),
 			cli.FlagDNSRecordTypesText,
 		},
+
 		cli.FlagPrefix + cli.FlagTimeout: {
-			false,
-			true,
-			config.Int(cli.FlagTimeout, 60, 1, 100000),
+			cli.NotRequired,
+			cli.ValueRequired,
+			config.Int(
+				cli.FlagTimeout,
+				cli.FlagTimeoutDefault,
+				cli.FlagTimeoutLow,
+				cli.FlagTimeoutHigh),
 			cli.FlagTimeoutText,
 		},
-		cli.FlagPrefix + cli.FlagWordsize: {
-			false,
-			true,
-			config.Int(cli.FlagWordsize, 0, 1, 1024),
-			cli.FlagWordSizeText,
-		},
-		cli.FlagPrefix + cli.FlagSource: {
-			false,
-			true,
-			config.Enum(cli.FlagSource, "sequence", "sequence", "random", "dictionary"),
-			cli.FlagSourceText,
-		},
 	})
+	errors.Assert(err == nil, fmt.Sprintf("%v", err))
 
 	log.Setup(&config)
 	log.Debug("Main(): Logger is setup and buildConfig is loaded.")

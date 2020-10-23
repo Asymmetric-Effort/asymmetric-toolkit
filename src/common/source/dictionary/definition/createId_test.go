@@ -1,8 +1,8 @@
 package definition_test
 
 import (
-	dictionaryDefinition "asymmetric-effort/asymmetric-toolkit/src/common/dictionary/definition"
 	"asymmetric-effort/asymmetric-toolkit/src/common/errors"
+	dictionaryDefinition "asymmetric-effort/asymmetric-toolkit/src/common/source/dictionary/definition"
 	"testing"
 )
 

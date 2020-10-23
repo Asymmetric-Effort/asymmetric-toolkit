@@ -17,7 +17,7 @@ TBD
 ```go
 package dictionary_example
 import (
-    "asymmetric-effort/asymmetric-toolkit/src/common/dictionary/reader"
+    "asymmetric-effort/asymmetric-toolkit/src/common/source/dictionary/reader"
     "os"
 )
 
@@ -42,7 +42,7 @@ read()
 ```go
 package dictionary_example
 import (
-    "asymmetric-effort/asymmetric-toolkit/src/common/dictionary/writer"
+    "asymmetric-effort/asymmetric-toolkit/src/common/source/dictionary/writer"
     "os"
 )
 

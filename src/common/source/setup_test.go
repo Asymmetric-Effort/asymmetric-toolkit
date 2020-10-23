@@ -1,10 +1,10 @@
 package source_test
 
 import (
-	"asymmetric-effort/asymmetric-toolkit/src/common/errors"
-	"asymmetric-effort/asymmetric-toolkit/src/common/file"
-	"asymmetric-effort/asymmetric-toolkit/src/common/source"
 	" asymmetric-effort/asymmetric-toolkit/src/common/cli"
+	"asymmetric-effort/asymmetric-toolkit/src/common/errors"
+	"asymmetric-effort/asymmetric-toolkit/src/common/source"
+	"asymmetric-effort/asymmetric-toolkit/src/common/utils/file"
 	"fmt"
 	"os"
 	"path/filepath"

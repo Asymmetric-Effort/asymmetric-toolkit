@@ -1,9 +1,9 @@
 package dictionary
 
 import (
-	"asymmetric-effort/asymmetric-toolkit/src/common/dictionary/definition"
-	"asymmetric-effort/asymmetric-toolkit/src/common/dictionary/reader"
-	"asymmetric-effort/asymmetric-toolkit/src/common/dictionary/writer"
+	"asymmetric-effort/asymmetric-toolkit/src/common/source/dictionary/definition"
+	"asymmetric-effort/asymmetric-toolkit/src/common/source/dictionary/reader"
+	"asymmetric-effort/asymmetric-toolkit/src/common/source/dictionary/writer"
 	"os"
 )
 

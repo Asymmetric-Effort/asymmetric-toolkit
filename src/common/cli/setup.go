@@ -2,6 +2,7 @@ package cli
 
 import (
 	"asymmetric-effort/asymmetric-toolkit/src/common/logger"
+	"asymmetric-effort/asymmetric-toolkit/src/common/source"
 	"fmt"
 	"os"
 	"regexp"
@@ -13,8 +14,9 @@ func (o *Configuration) Setup(spec *Specification) (err error) {
 	var count int         //count the flags for later comparison.
 	var next = ExpectFlag // We always expect the first arg to be a --flag.
 
-	o.spec = logger.CommandLineSpecification(o) //Get the logger cli specification.
-	MergeMaps(o.spec, spec)                     // This is the design of our cli expectation.
+	o.spec = logger.CommandLineSpecification(o)           // Get the logger cli specification.
+	MergeMaps(o.spec, source.CommandLineSpecification(0)) // Adding source CLI.
+	MergeMaps(o.spec, spec)                               // This is the design of our cli expectation.
 
 	o.args = make(Arguments) // Initialize the arguments object for use before parsing.
 	/*

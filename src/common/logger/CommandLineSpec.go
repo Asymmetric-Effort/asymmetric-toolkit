@@ -9,52 +9,52 @@ import (
 
 func CommandLineSpecification(config *cli.Configuration) *cli.Specification {
 	return &cli.Specification{
-		cli.FlagLogDestination: {
+		FlagLogDestination: {
 			false,
 			true,
 			config.Enum(
-				cli.FlagLogDestination,
-				cli.FlagLogDestinationDefault,
+				FlagLogDestination,
+				FlagLogDestinationDefault,
 				cli.EnumeratedValues{
 					LogDestination.StdoutText,
 					LogDestination.FileText,
 					LogDestination.SyslogText}),
-			cli.FlagLogDestinationText,
+			FlagLogDestinationText,
 		},
 
-		cli.FlagLogFile: {
+		FlagLogFile: {
 			false,
 			true,
 			config.String(
-				cli.FlagLogFile,
-				cli.FlagLogFileDefault,
+				FlagLogFile,
+				FlagLogFileDefault,
 				utils.RegExDotPlusMan),
-			cli.FlagLogFileText,
+			FlagLogFileText,
 		},
 
-		cli.FlagLogLevel: {
+		FlagLogLevel: {
 			false,
 			true,
 			config.Enum(
-				cli.FlagLogLevel,
-				cli.FlagLogLevelDefault,
+				FlagLogLevel,
+				FlagLogLevelDefault,
 				cli.EnumeratedValues{
 					logLevel.DebugText,
 					logLevel.InfoText,
 					logLevel.WarningText,
 					logLevel.ErrorText,
 					logLevel.CriticalText}),
-			cli.FlagLogLevelText,
+			FlagLogLevelText,
 		},
 
-		cli.FlagLogServer: {
+		FlagLogServer: {
 			false,
 			true,
 			config.String(
-				cli.FlagLogServer,
-				cli.FlagLogServerDefault,
+				FlagLogServer,
+				FlagLogServerDefault,
 				utils.RegExServerString),
-			cli.FlagLogServerText,
+			FlagLogServerText,
 		},
 
 		//ToDo: Add TLS options for syslog
