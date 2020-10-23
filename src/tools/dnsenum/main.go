@@ -9,6 +9,8 @@ import (
 	"fmt"
 )
 
+const ProgramName = "dnsEnum"
+
 func main() {
 	var err error
 	var log logger.Logger
@@ -16,6 +18,7 @@ func main() {
 	var exit chan bool = make(chan bool, 1)
 
 	var config cli.Configuration //Load the common configuration (cli parser).
+	config.ProgramName = ProgramName
 	err = config.Setup(&cli.Specification{
 		//ToDo: Move to the attacker package
 		cli.FlagPrefix + cli.FlagConcurrency: {

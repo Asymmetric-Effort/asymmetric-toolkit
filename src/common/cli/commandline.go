@@ -1,11 +1,12 @@
 package cli
 
-type Arguments map[string] interface{}
+type Arguments map[string]interface{}
 
 type Configuration struct {
-	Terminate bool
-	args Arguments
-	spec *Specification
+	ProgramName string
+	Terminate   bool
+	args        Arguments
+	spec        *Specification
 }
 
 const (
