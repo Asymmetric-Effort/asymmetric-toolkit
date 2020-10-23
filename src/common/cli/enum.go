@@ -1,6 +1,6 @@
 package cli
 
-func (o *Configuration) Enum(name string, defaultValue string, enumeratedValues ...string) ValidationFunc {
+func (o *Configuration) Enum(name string, defaultValue string, enumeratedValues EnumeratedValues) ValidationFunc {
 /*	return func(i *string) ValidationFunc {
 		return func(i *string) bool {
 			var retval string
