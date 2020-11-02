@@ -1,4 +1,10 @@
 package cli
+/*
+	The Argument represents the processed commandline argument
+	still in string format but validated.  The program can use
+	this struct to extract integers, booleans, floats, etc. into
+	the program's internal state.
+ */
 
 type Argument struct {
 	Type  ArgumentType

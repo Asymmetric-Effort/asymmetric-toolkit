@@ -1,5 +1,9 @@
 package cli
-
+/*
+	CommandLine::Parse() is the top-level commandline argument parser which takes a given Specification object
+	and applies it to the command line arguments in os.Args[1:] to produce a set of Argument objects the program
+	can use to configure its internal state.
+ */
 import (
 	"fmt"
 	"os"
@@ -17,7 +21,7 @@ func (o *CommandLine) Parse(spec *Specification) (exit bool, err error) {
 	var expected NextExpected = ExpectFlag
 	var lastFlag *ArgumentDescriptor = nil
 
-	spec.AddUsage()  // If our help flags (-h and --help) are not set, we will add them here.
+	spec.AddUsage()   // If our help flags (-h and --help) are not set, we will add them here.
 	spec.AddVersion() // If our version flags (-v and --version) are not set, we will add them here.
 
 	for _, currentArgument := range os.Args[1:] {
@@ -31,14 +35,14 @@ func (o *CommandLine) Parse(spec *Specification) (exit bool, err error) {
 			// If we expect a flag (--long or -l), we will parse the flag and
 			// determine its specifications to process the next argument.
 			//
-			isFlag,arg:=stripPrefix(&currentArgument)
-			if !isFlag{
+			isFlag, arg := stripPrefix(&currentArgument)
+			if !isFlag {
 				//
 				// What we encountered is not a flag, but some other identifier.
 				// This is an error.  Terminate execution.
 				//
-				return true, fmt.Errorf("expected flag but encountered " +
-					"non-flag argument (%s)",currentArgument)
+				return true, fmt.Errorf("expected flag but encountered "+
+					"non-flag argument (%s)", currentArgument)
 				//
 			}
 			if knownSpec, ok := spec.Argument[arg]; ok {
@@ -52,7 +56,7 @@ func (o *CommandLine) Parse(spec *Specification) (exit bool, err error) {
 					// If we expect nothing (e.g. --help, --debug, --verbose) where the flag is the value
 					// in and of itself, we simply process it now rather than wait another cycle (which would process
 					// the next argument).
-					if err, o.Arguments[lastFlag.FlagId] = lastFlag.Parse(); err == nil {
+					if err, o.Arguments[lastFlag.FlagId] = lastFlag.Parse(&currentArgument); err == nil {
 						if o.Arguments[lastFlag.FlagId] == nil {
 							// If our flag Parse() function returned nil in this case
 							// we would know the Parse() function is terminal and we should exit without error,
@@ -67,7 +71,6 @@ func (o *CommandLine) Parse(spec *Specification) (exit bool, err error) {
 						return true, err
 					}
 				}
-				continue
 			} else {
 				//
 				// Terminate with an error.  We failed to find the current argument as an
@@ -75,7 +78,7 @@ func (o *CommandLine) Parse(spec *Specification) (exit bool, err error) {
 				//
 				return true, fmt.Errorf("missing or unrecognized argument: %s", arg)
 			}
-			//
+			continue
 		case ExpectValue:
 			//
 			// If we expect a value, we presume a flag was detected first to which we can map the
@@ -86,7 +89,7 @@ func (o *CommandLine) Parse(spec *Specification) (exit bool, err error) {
 				// If we have no argument (arg) flag, we return an error because we cannot map a value
 				// without a flag to represent what the value actually means.
 				//
-				return true, fmt.Errorf("a value was found with no flag: %s", arg)
+				return true, fmt.Errorf("a value was found with no flag: %s", currentArgument)
 			}
 			//
 			// Our lastFlag (ArgumentDescriptor) defines how we should proceed to parse, validate and
@@ -100,7 +103,6 @@ func (o *CommandLine) Parse(spec *Specification) (exit bool, err error) {
 				// argument and move on to the next flag.
 				//
 				expected = ExpectFlag
-				continue
 			} else {
 				var err error
 				//
@@ -134,6 +136,7 @@ func (o *CommandLine) Parse(spec *Specification) (exit bool, err error) {
 						"Argument pointer (%d)", lastFlag.FlagId)
 				}
 			}
+			continue
 		case ExpectEnd:
 			//
 			// No other arguments will be processed.  We expect to exit the program.
@@ -147,6 +150,7 @@ func (o *CommandLine) Parse(spec *Specification) (exit bool, err error) {
 			// all hope and terminate execution.
 			//
 			return true, fmt.Errorf("unexpected argument parser state. Expected: %d", expected)
+			//
 		}
 	}
 	//
