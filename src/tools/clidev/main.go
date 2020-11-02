@@ -14,17 +14,21 @@ func main() {
 		Copyright:   "(c) 2018 Sam Caldwell.  All Rights Reserved.",
 		Version:     "0.0.1",
 		Argument: map[string]cli.ArgumentDescriptor{
-			"help": {
+			"test": {
+				1000, // >= 1000 is a project-defined FlagId
 				cli.None,
 				"",
-				"Show help / usage screen.",
-				cli.NoopParser,
+				"This is an option.",
+				cli.ParserNoop,
+				cli.ExpectFlag,
 			},
-			"version": {
+			"myOption": {
+				1001, // >= 1000 is a project-defined FlagId
 				cli.None,
 				"",
-				"Show version string",
-				cli.NoopParser,
+				"This is a Second Option",
+				cli.ParserNoop,
+				cli.ExpectValue,
 			},
 		},
 	}

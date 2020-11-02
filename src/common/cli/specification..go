@@ -1,5 +1,4 @@
 package cli
-
 /*
 	The specification is the collection of arguments which are processed at runtime to determine how the
 	commandline processor will interpret a given set of arguments.
@@ -17,47 +16,4 @@ type Specification struct {
 	Copyright   string                        //Copyright string (used in usage notes and elsewhere)
 	Version     string                        //Application version (used in usage notes and elsewhere)
 	Argument    map[string]ArgumentDescriptor //map of all arguments using the argument name as the key
-}
-
-func (o *Specification) ShowUsage() error {
-	/*
-		Calculate and show the usage message (all help messages).
-	*/
-	return nil
-}
-func (o *Specification) ShowVersion() error {
-	/*
-		Show the version string.
-	*/
-	return nil
-}
-
-func (o *Specification) AddUsage() {
-	o.Argument["--help"] = ArgumentDescriptor{
-		None,
-		"",
-		"Show help / usage screen.",
-		o.ShowUsage,
-	}
-	o.Argument["-h"] = ArgumentDescriptor{
-		None,
-		"",
-		"Show help / usage screen.",
-		o.ShowUsage,
-	}
-}
-
-func (o *Specification) AddVersion() {
-	o.Argument["--version"] = ArgumentDescriptor{
-		None,
-		"",
-		"Show version string",
-		o.ShowVersion,
-	}
-	o.Argument["-v"] = ArgumentDescriptor{
-		None,
-		"",
-		"Show version string",
-		o.ShowVersion,
-	}
 }

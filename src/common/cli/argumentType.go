@@ -1,5 +1,11 @@
 package cli
+/*
+	The ArgumentType indicates the expected datatype of the commandline argument once all parsing and pre-processing
+	is done.  This is used to validate the input and allow for its extraction to the final state before the command
+	line processor terminates and its memory is free.
 
+	The ArgumentType is limited to the primitive types.
+ */
 type ArgumentType int
 
 const (
@@ -10,15 +16,3 @@ const (
 	Boolean ArgumentType = 4
 	Enum    ArgumentType = 5
 )
-
-/*
-"version":cli.ArgumentDescriptor{
-				cli.None,
-				"",
-				"Display version",
-				func() {},
-			},
-			"debug":{
-
-			},
- */
