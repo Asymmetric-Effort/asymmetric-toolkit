@@ -7,4 +7,4 @@ package cli
 	If the ParserFunction pointer is nil, then the CommandLine::Parse() function will assume a noop.
 	Programs might be more specific and use ParserNoop() instead as this will allow future logging facilities, etc.
  */
-type ParserFunction func() (err error, val *Argument)
+type ParserFunction func(arg *string) (err error, val *Argument)

@@ -1,5 +1,14 @@
 package main
 
+/*
+	CliDev
+	------
+	This is the commandline development program intended for use in
+	developing and testing the common/cli module and at the same time
+	providing a template for how it is used by programmers working to
+	build new tools in the asymmetric-toolkit.
+ */
+
 import (
 	"asymmetric-effort/asymmetric-toolkit/src/common/cli"
 	"fmt"
@@ -33,13 +42,13 @@ func main() {
 		},
 	}
 	var ui cli.CommandLine
-	exit, err:=ui.Parse(&spec)
-	if err!=nil {
-		fmt.Printf("Error:%v",err)
+	exit, err := ui.Parse(&spec)
+	if err != nil {
+		fmt.Printf("Error:%v", err)
 		os.Exit(cli.ErrArgumentParseError)
 	}
 	if exit {
-		fmt.Printf("%v",err)
+		fmt.Printf("%v", err)
 		os.Exit(cli.ErrArgumentParseError)
 	}
 }

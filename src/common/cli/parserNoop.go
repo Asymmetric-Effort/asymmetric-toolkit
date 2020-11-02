@@ -5,6 +5,6 @@ package cli
 	a placeholder useful for flags that have no value (e.g. --help, -h, -v or --version).  It will return a nil
 	error and Argument and literally do nothing.  This comment does more.
 */
-func ParserNoop() (err error, val *Argument) {
+func ParserNoop(arg *string) (err error, val *Argument) {
 	return nil, nil
 }

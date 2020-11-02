@@ -1,5 +1,9 @@
 package main_test
 
+/*
+	This is the top-level test program for testing CliDev.
+ */
+
 import (
 	"fmt"
 	"os"
@@ -49,18 +53,18 @@ func TestMain(m *testing.M) {
 			},
 		},
 	}
-	startArgs:=os.Args //Get state
-	for _,test:=range tests {
+	startArgs := os.Args //Get state
+	for _, test := range tests {
 		os.Args = startArgs //Reset args to original state.
-		for _,i:=range test.args {
+		for _, i := range test.args {
 			//Copy in new args
 			os.Args = append(os.Args, i)
 		}
-		fmt.Printf("Starting test: %s (%v) code:%d\n",test.name,test.args,test.code)
-		if  m.Run() == test.code {
-			fmt.Printf("TestMain() exit as expected with code %d\n\n",test.code)
+		fmt.Printf("Starting test: %s (%v) code:%d\n", test.name, test.args, test.code)
+		if m.Run() == test.code {
+			fmt.Printf("TestMain() exit as expected with code %d\n\n", test.code)
 			continue
-		}else{
+		} else {
 			fmt.Println("Unknown or unexpected error")
 			os.Exit(1)
 		}

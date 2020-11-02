@@ -12,9 +12,9 @@ type CommandLine struct {
 		These functions are used to craft argument-specific features to process specific arguments by type
 		and return a validated, sanitized state.
 	*/
-	DecodeString map[string]func() string
-	DecodeInt    map[string]func() int
-	DecodeBool   map[string]func() bool
-	DecodeFloat  map[string]func() float64
-	DecodeEnum   map[string]func() string
+	DecodeString map[ArgumentFlag]func() string
+	DecodeInt    map[ArgumentFlag]func() int
+	DecodeBool   map[ArgumentFlag]func() bool
+	DecodeFloat  map[ArgumentFlag]func() float64
+	DecodeEnum   map[ArgumentFlag]func() string
 }

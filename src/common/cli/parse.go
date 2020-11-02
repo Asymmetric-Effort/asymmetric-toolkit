@@ -17,10 +17,10 @@ func (o *CommandLine) Parse(spec *Specification) (exit bool, err error) {
 	var expected NextExpected = ExpectFlag
 	var lastFlag *ArgumentDescriptor = nil
 
-	spec.AddUsage()
-	spec.AddVersion()
+	spec.AddUsage()  // If our help flags (-h and --help) are not set, we will add them here.
+	spec.AddVersion() // If our version flags (-v and --version) are not set, we will add them here.
 
-	for _, arg := range os.Args[1:] {
+	for _, currentArgument := range os.Args[1:] {
 		//
 		// Iterate through all arguments on the commandline.  We expect either
 		// a long flag (--flag), a short flag (-f) or a contiguous string value.
@@ -31,7 +31,17 @@ func (o *CommandLine) Parse(spec *Specification) (exit bool, err error) {
 			// If we expect a flag (--long or -l), we will parse the flag and
 			// determine its specifications to process the next argument.
 			//
-			if knownSpec, ok := spec.Argument[stripPrefix(arg)]; ok {
+			isFlag,arg:=stripPrefix(&currentArgument)
+			if !isFlag{
+				//
+				// What we encountered is not a flag, but some other identifier.
+				// This is an error.  Terminate execution.
+				//
+				return true, fmt.Errorf("expected flag but encountered " +
+					"non-flag argument (%s)",currentArgument)
+				//
+			}
+			if knownSpec, ok := spec.Argument[arg]; ok {
 				//
 				// For the current argument, does it exist in our specification's argument map?
 				// If it does exist, we have a detected flag we can process...
@@ -51,6 +61,9 @@ func (o *CommandLine) Parse(spec *Specification) (exit bool, err error) {
 						}
 						expected = ExpectFlag // Reset and get another flag.
 					} else {
+						//
+						//We encountered an error on our last flag (expectNone parser function).
+						//
 						return true, err
 					}
 				}
@@ -96,7 +109,11 @@ func (o *CommandLine) Parse(spec *Specification) (exit bool, err error) {
 				// We expect the Parse() function will return an Argument object containing the
 				// processed value and any additional features.
 				//
-				if err, o.Arguments[lastFlag.FlagId] = lastFlag.Parse(); err == nil {
+				if err, o.Arguments[lastFlag.FlagId] = lastFlag.Parse(&currentArgument); err == nil {
+					//
+					// We have properly processed the cli argument value and we will now reset
+					// to expect a flag next to start the process over again.
+					//
 					expected = ExpectFlag
 				} else {
 					//
@@ -108,25 +125,34 @@ func (o *CommandLine) Parse(spec *Specification) (exit bool, err error) {
 				}
 				if o.Arguments[lastFlag.FlagId] == nil {
 					//
-					// Perform a nil pointer check.  Parse() functions cannot return nil Arguments
-					// without returning an error.  A nil Argument implies that the argument failed
-					// to parse/validate.
+					// After parsing the current argument value from the commandline, we perform a nil
+					// pointer check to avoid application crashes.  Parse() functions cannot return nil
+					// Arguments without returning an error.  A nil Argument implies that the argument
+					// failed to parse/validate.
 					//
 					return true, fmt.Errorf("our flag parse() function cannot return a nil "+
 						"Argument pointer (%d)", lastFlag.FlagId)
 				}
 			}
 		case ExpectEnd:
-			//No other arguments will be processed.  We expect to exit.
+			//
+			// No other arguments will be processed.  We expect to exit the program.
+			//
 			return true, nil
+			//
 		default:
+			//
+			// We have reached an internal programming error.  We expected something as a NextExpected
+			// value which is not known to Commandline::Parse().  At this point, we are forced to abandon
+			// all hope and terminate execution.
+			//
 			return true, fmt.Errorf("unexpected argument parser state. Expected: %d", expected)
 		}
 	}
+	//
+	// We have parsed all arguments and none of the arguments encountered errors or instructed our program
+	// to terminate.  At this point we will set exit = false and return a nil error object and allow the
+	// program to continue execution as designed.
+	//
 	return false, nil
-}
-
-func stripPrefix(arg string) string {
-	//ToDo: Strip prefix
-	return arg
 }
