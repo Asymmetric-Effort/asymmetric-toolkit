@@ -4,9 +4,9 @@ import (
 	"testing"
 	"time"
 )
-func TestMain(m *testing.M) {
+func TestDnsEnum(t *testing.T){
 	go func(){
 		<-time.After(time.Minute * 30)
-		m.Run()
+		t.Fatal("Main() Test: Terminating after timeout (30min)")
 	}()
 }

@@ -1,12 +1,20 @@
 package source
 
 import (
+	writer2 "asymmetric-effort/asymmetric-toolkit/src/common/dictionary/writer"
+	"asymmetric-effort/asymmetric-toolkit/src/common/file"
+	"fmt"
+	"os"
+	"path/filepath"
 	"testing"
+	"time"
 )
 
 func TestSourceGenerateDictionary(t *testing.T) {
-	/*
 	dictionary:=func() string {
+		/*
+			Setup the test by creating a test dictionary file.
+		*/
 		checkError := func(err error) {
 			if err != nil {
 				panic(err)
@@ -25,7 +33,7 @@ func TestSourceGenerateDictionary(t *testing.T) {
 			return fh
 		}()
 		var writer writer2.Writer
-		writeDict:=writer.Setup(file,nil) //Need crypto key
+		writeDict:=writer.Setup(file)
 		defer writer.Close()
 		for i := 1; i < 10; i++ {
 			writeDict(fmt.Sprintf("Password%d", i))
@@ -33,7 +41,6 @@ func TestSourceGenerateDictionary(t *testing.T) {
 		//We have created the dictionary and we can now close the file and return the filename
 		return file.Name()
 	}()
-	*/
 	/*
 		Setup the test by configuring our dictionary source.
 	 */

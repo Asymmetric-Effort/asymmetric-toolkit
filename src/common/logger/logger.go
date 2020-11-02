@@ -8,5 +8,5 @@ import (
 type Logger struct {
 	level    logLevel.LogLevel
 	facility LogFacility.Facility
-	writer   func(*string)
+	writer func(*string)
 }

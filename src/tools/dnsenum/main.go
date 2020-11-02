@@ -12,10 +12,10 @@ func main() {
 		Parse/validate all commandline arguments and expose them as a single config
 		object
 	*/
+	var exit chan bool = make(chan bool, 1)
 	var config cli.Configuration
 	var log logger.Logger
 	var feed source.Source
-	var exit chan bool = make(chan bool, 1)
 
 	if config.Parse(os.Args) {
 		os.Exit(1)
@@ -23,7 +23,7 @@ func main() {
 	log.Setup(&config)
 	log.Debug("Main(): Logger is setup and config is loaded.")
 
-	feed.Setup(&config, cli.SourceBufferSz, cli.DnsChars)
+	feed.Setup(&config,cli.SourceBufferSz,cli.DnsChars)
 
 	//var requestSent chan bool = make(chan bool, 1)
 
@@ -36,8 +36,8 @@ func main() {
 		var collector response.Collector
 		collector.Setup(responseBufferSz)
 	*/
+	/*
 	go func() {
-		/*
 				Consume the feed data to perform attacks.
 			 *//*
 			for source.HasData() {
@@ -49,10 +49,9 @@ func main() {
 				}
 			}
 			requestSent <- false
-
-		*/
 	}()
-	go func() {
+	*/
+	/*go func() {
 		/*
 			Consume server responses and write the report.
 		*/
@@ -65,7 +64,6 @@ func main() {
 			}
 			report.Close()
 			exit <- true
-		*/
-	}()
+	}()*/
 	<-exit
 }

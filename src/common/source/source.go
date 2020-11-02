@@ -13,5 +13,5 @@ type Source struct {
 	isPaused       bool
 	feed           fifo.Fifo
 	counter        int
-	logger         *logger.Logger
+	logger 		   *logger.Logger
 }

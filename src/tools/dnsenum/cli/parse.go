@@ -187,8 +187,8 @@ func (o *Configuration) Parse(cliArguments []string) bool {
 			return ExitTerminate
 		}
 	}
-	if o.Depth > maxDepth {
-		fmt.Printf("Depth (--depth) exceeds maxDepth (%d)\n", maxDepth)
+	if o.Depth > maxDepth{
+		fmt.Printf("Depth (--depth) exceeds maxDepth (%d)\n",maxDepth)
 		return ExitTerminate
 	}
 	return ExitParseOk

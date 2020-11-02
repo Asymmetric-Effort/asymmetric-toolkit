@@ -1,11 +1,14 @@
 package source
 
+import (
+	"asymmetric-effort/asymmetric-toolkit/src/common/dictionary/reader"
+	"asymmetric-effort/asymmetric-toolkit/src/common/errors"
+)
+
 func (o *Source) generateDictionary() {
-	panic("Not implemented")
 	/*
 		Read the o.dict file (observe pauseFlag)
 	*/
-	/*
 	errors.Assert(o.config != nil,"Source::generateDictionary() encountered nil config")
 	var dict reader.Reader
 	defer dict.Close()
@@ -15,5 +18,4 @@ func (o *Source) generateDictionary() {
 		o.feed.Push(*line)
 		o.counter++
 	}
-	 */
 }

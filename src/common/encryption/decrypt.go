@@ -15,6 +15,7 @@ import (
 func Decrypt(signal *string, key *Key) *string {
 	var err error
 	var nonce *[]byte
+	var plainText []byte
 	var cipherText *[]byte
 	var block cipher.Block
 
@@ -44,9 +45,9 @@ func Decrypt(signal *string, key *Key) *string {
 	gcm, err := cipher.NewGCM(block)
 	errors.Assert(err == nil, fmt.Sprintf("Failed to create new GCM. Error:%v", err))
 
-	plaintext, err := gcm.Open(nil, *nonce, *cipherText, nil)
+	plainText, err = gcm.Open(nil, *nonce, *cipherText, nil)
 	errors.Assert(err == nil, fmt.Sprintf("Decryption failed. Error:%v", err))
-	s := string(plaintext)
+	s := string(plainText)
 
 	return &s
 }

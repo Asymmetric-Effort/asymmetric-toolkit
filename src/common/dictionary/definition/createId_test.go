@@ -1,4 +1,4 @@
-package definition
+package dictionaryDefinition
 
 import (
 	"asymmetric-effort/asymmetric-toolkit/src/common/errors"

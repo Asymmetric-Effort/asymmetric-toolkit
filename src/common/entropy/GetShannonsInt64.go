@@ -35,7 +35,7 @@ func GetShannonsInt64(data int64) int64 {
 			where count(i) is the count of characters n(i) (or frequency)
 	*/
 	var entropy float64 = 0
-	freqMap:= misc.CountNumberFrequency64(data)
+	freqMap:=misc.CountNumberFrequency64(data)
 	if data == 0 {
 		return 0
 	}

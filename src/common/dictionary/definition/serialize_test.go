@@ -1,1 +1,1 @@
-package definition
+package dictionaryDefinition

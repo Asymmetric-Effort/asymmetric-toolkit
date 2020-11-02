@@ -12,7 +12,7 @@ type Response struct {
 
 type New struct {}
 
-func (o New) NewResponse() *Response {
+func (o New) NewResponse() *Response{
 	var r Response
 		r.startTime=time.Now()
 	return &r
