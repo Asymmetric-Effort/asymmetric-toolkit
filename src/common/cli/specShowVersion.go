@@ -1,8 +1,14 @@
 package cli
 
-func (o *Specification) ShowVersion() error {
+import (
+	"fmt"
+)
+
+func (o *Specification) ShowVersion() (err error, val *Argument) {
 	/*
 		Show the version string.
 	*/
-	return nil
+
+	fmt.Printf("%s (%s)", o.ProgramName, o.Version)
+	return nil, nil
 }

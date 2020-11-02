@@ -6,7 +6,7 @@ package cli
 */
 
 type CommandLine struct {
-	Arguments map[string]Argument
+	Arguments map[ArgumentFlag]*Argument
 	/*
 		Decoder functions are setup by the Parse() method which gets them from the Specification object.
 		These functions are used to craft argument-specific features to process specific arguments by type

@@ -38,6 +38,22 @@ func (o *CommandLine) Parse(spec *Specification) (exit bool, err error) {
 				//
 				lastFlag = &knownSpec        // Save the current ArgumentDescriptor for the flag.
 				expected = knownSpec.Expects // Route the next argument as expected in the spec.
+				if expected == ExpectNone {
+					// If we expect nothing (e.g. --help, --debug, --verbose) where the flag is the value
+					// in and of itself, we simply process it now rather than wait another cycle (which would process
+					// the next argument).
+					if err, o.Arguments[lastFlag.FlagId] = lastFlag.Parse(); err == nil {
+						if o.Arguments[lastFlag.FlagId] == nil {
+							// If our flag Parse() function returned nil in this case
+							// we would know the Parse() function is terminal and we should exit without error,
+							// as in the --help or --version use cases.
+							return true, nil
+						}
+						expected = ExpectFlag // Reset and get another flag.
+					} else {
+						return true, err
+					}
+				}
 				continue
 			} else {
 				//
@@ -72,18 +88,32 @@ func (o *CommandLine) Parse(spec *Specification) (exit bool, err error) {
 				//
 				expected = ExpectFlag
 				continue
-			}else{
+			} else {
+				var err error
 				//
 				// If a Parse() function is provided for validation, we will execute the same
-				// to parse and validate our data specific to its context.
+				// to parse and validate our data specific to its context. If no error occurs,
+				// We expect the Parse() function will return an Argument object containing the
+				// processed value and any additional features.
 				//
-				if err := lastFlag.Parse(); err != nil {
+				if err, o.Arguments[lastFlag.FlagId] = lastFlag.Parse(); err == nil {
+					expected = ExpectFlag
+				} else {
 					//
 					// For each ArgumentDescriptor, a Parse() function is provided.  This function
 					// will perform any context-specific validation and store the value as an Argument
 					// object in CommandLine (o).
 					//
 					return true, err
+				}
+				if o.Arguments[lastFlag.FlagId] == nil {
+					//
+					// Perform a nil pointer check.  Parse() functions cannot return nil Arguments
+					// without returning an error.  A nil Argument implies that the argument failed
+					// to parse/validate.
+					//
+					return true, fmt.Errorf("our flag parse() function cannot return a nil "+
+						"Argument pointer (%d)", lastFlag.FlagId)
 				}
 			}
 		case ExpectEnd:

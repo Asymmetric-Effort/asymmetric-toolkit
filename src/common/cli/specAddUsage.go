@@ -8,7 +8,7 @@ func (o *Specification) AddUsage() {
 		"",
 		"Show help / usage screen.",
 		o.ShowUsage,
-		ExpectEnd,
+		ExpectNone,
 	}
 	o.Argument[helpArgShort] = ArgumentDescriptor{
 		flagHelp,
@@ -16,6 +16,6 @@ func (o *Specification) AddUsage() {
 		"",
 		"Show help / usage screen.",
 		o.ShowUsage,
-		ExpectEnd,
+		ExpectNone,
 	}
 }

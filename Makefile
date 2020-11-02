@@ -1,3 +1,6 @@
+#Makefile
+#(c) 2018 Sam Caldwell.  See LICENSE.txt.
+#
 .DEFAULT=help
 ROOT_DIR:=$(shell pwd -P)
 
@@ -11,11 +14,11 @@ help:
 	@echo " "
 	exit 1
 
-dnsenum_test:
-	@(cd tools/dnsenum && go test -v)
-	#ToDo: Makefile needs reusable pieces.  I'm lazy, remember.
+setup:
+	@./scripts/setup.sh
 
-dnsenum: dnsenum_test
-	@(cd tools/dnsenum/ && go build -o ../../build/tools/dnsenum main.go)
-	#ToDo: We need to build macos, windows, linux spread here.
-	#ToDo: Makefile needs reusable pieces.  I'm lazy, remember.
+lint:
+	@echo "lint"
+
+test:
+	find ./ -name "main.go" -exec go test -v {} \;
