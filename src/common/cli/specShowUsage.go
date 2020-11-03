@@ -1,4 +1,8 @@
 package cli
+/*
+	ShowUsage is a ParserFunction, following the same pattern.  However, this parser function will not actually
+	parse any argument or create any value.  It simply calculates then displays program usage information (flags, etc).
+ */
 
 import (
 	"fmt"

@@ -1,9 +1,10 @@
 package cli
+
 /*
 	CommandLine::Parse() is the top-level commandline argument parser which takes a given Specification object
 	and applies it to the command line arguments in os.Args[1:] to produce a set of Argument objects the program
 	can use to configure its internal state.
- */
+*/
 import (
 	"fmt"
 	"os"
@@ -23,6 +24,11 @@ func (o *CommandLine) Parse(spec *Specification) (exit bool, err error) {
 
 	spec.AddUsage()   // If our help flags (-h and --help) are not set, we will add them here.
 	spec.AddVersion() // If our version flags (-v and --version) are not set, we will add them here.
+
+	if err := o.SetDefaults(spec); err != nil {
+		return true, fmt.Errorf("error applying default values in commandline processor. " +
+			"%v",err)
+	}
 
 	for _, currentArgument := range os.Args[1:] {
 		//
