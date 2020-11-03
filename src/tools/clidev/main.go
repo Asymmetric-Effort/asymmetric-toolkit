@@ -26,17 +26,89 @@ func main() {
 			"test": {
 				1000, // >= 1000 is a project-defined FlagId
 				cli.None,
-				"",
+				"noop default won't change",
 				"This is an option.",
 				cli.ParserNoop,
 				cli.ExpectFlag,
 			},
-			"myOption": {
+			"myUnboundedIntOption": {
 				1001, // >= 1000 is a project-defined FlagId
-				cli.None,
-				"",
+				cli.Integer,
+				"5",
 				"This is a Second Option",
-				cli.ParserNoop,
+				cli.ParserInt(),
+				cli.ExpectValue,
+			},
+			"myIntOption": {
+				1001, // >= 1000 is a project-defined FlagId
+				cli.Integer,
+				"5",
+				"This is a Second Option",
+				cli.ParserInt(0,10),
+				cli.ExpectValue,
+			},
+			"myUnboundedStringOption": {
+				1002, // >= 1000 is a project-defined FlagId
+				cli.String,
+				"test",
+				"This is a Second Option",
+				cli.ParserString(),
+				cli.ExpectValue,
+			},
+			"myStringOption": {
+				1002, // >= 1000 is a project-defined FlagId
+				cli.String,
+				"test",
+				"This is a Second Option",
+				cli.ParserString(`.+`),
+				cli.ExpectValue,
+			},
+			"myUnboundedFloat32Option": {
+				1002, // >= 1000 is a project-defined FlagId
+				cli.String,
+				"1.2",
+				"This is a Second Option",
+				cli.ParserFloat32(),
+				cli.ExpectValue,
+			},
+			"myFloat32Option": {
+				1002, // >= 1000 is a project-defined FlagId
+				cli.String,
+				"1.2",
+				"This is a Second Option",
+				cli.ParserFloat32(0.0,1.0),
+				cli.ExpectValue,
+			},
+			"myUnboundedFloat64Option": {
+				1002, // >= 1000 is a project-defined FlagId
+				cli.String,
+				"1.2",
+				"This is a Second Option",
+				cli.ParserFloat64(),
+				cli.ExpectValue,
+			},
+			"myFloat64Option": {
+				1002, // >= 1000 is a project-defined FlagId
+				cli.String,
+				"1.2",
+				"This is a Second Option",
+				cli.ParserFloat64(0.0,1.0),
+				cli.ExpectValue,
+			},
+			"myBooleanOption": {
+				1002, // >= 1000 is a project-defined FlagId
+				cli.String,
+				"false",
+				"This is a Second Option",
+				cli.ParserBoolean(),
+				cli.ExpectValue,
+			},
+			"myEnumOption": {
+				1002, // >= 1000 is a project-defined FlagId
+				cli.String,
+				"a",
+				"This is a Second Option",
+				cli.ParserEnum("a","b","c"),
 				cli.ExpectValue,
 			},
 		},
