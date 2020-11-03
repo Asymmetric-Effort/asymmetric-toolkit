@@ -12,4 +12,5 @@ const ( //Reserved 0...1000 for core use.  1000+ are program-defined.
 	noFlag      ArgumentFlag = 0
 	flagHelp    ArgumentFlag = 1
 	flagVersion ArgumentFlag = 2
+	flagDebug   ArgumentFlag = 3
 )

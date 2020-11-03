@@ -24,6 +24,7 @@ func (o *CommandLine) Parse(spec *Specification) (exit bool, err error) {
 
 	spec.AddUsage()   // If our help flags (-h and --help) are not set, we will add them here.
 	spec.AddVersion() // If our version flags (-v and --version) are not set, we will add them here.
+	spec.AddDebug() // If our debug flag (--debug) is not set, we will add them here.
 
 	if err := o.SetDefaults(spec); err != nil {
 		return true, fmt.Errorf("error applying default values in commandline processor. " +
