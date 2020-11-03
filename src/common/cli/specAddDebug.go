@@ -21,7 +21,7 @@ func (o *Specification) AddDebug(){
 			"false",
 			"Enable debug logging.",
 			ParserFlag,
-			ExpectFlag,
+			ExpectNone,
 		}
 	}
 }
