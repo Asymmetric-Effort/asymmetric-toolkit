@@ -63,36 +63,20 @@ func main() {
 				cli.ParserString(`.+`),
 				cli.ExpectValue,
 			},
-			"myUnboundedFloat32Option": {
+			"myUnboundedFloatOption": {
 				1002, // >= 1000 is a project-defined FlagId
 				cli.String,
 				"1.2",
 				"This is a Second Option",
-				cli.ParserFloat32(),
+				cli.ParserFloat(),
 				cli.ExpectValue,
 			},
-			"myFloat32Option": {
+			"myFloatOption": {
 				1002, // >= 1000 is a project-defined FlagId
 				cli.String,
 				"1.2",
 				"This is a Second Option",
-				cli.ParserFloat32(0.0,1.0),
-				cli.ExpectValue,
-			},
-			"myUnboundedFloat64Option": {
-				1002, // >= 1000 is a project-defined FlagId
-				cli.String,
-				"1.2",
-				"This is a Second Option",
-				cli.ParserFloat64(),
-				cli.ExpectValue,
-			},
-			"myFloat64Option": {
-				1002, // >= 1000 is a project-defined FlagId
-				cli.String,
-				"1.2",
-				"This is a Second Option",
-				cli.ParserFloat64(0.0,1.0),
+				cli.ParserFloat(0.0,1.0),
 				cli.ExpectValue,
 			},
 			"myBooleanOption": {
@@ -100,7 +84,7 @@ func main() {
 				cli.String,
 				"false",
 				"This is a Second Option",
-				cli.ParserBoolean(),
+				cli.ParserBool(),
 				cli.ExpectValue,
 			},
 			"myEnumOption": {

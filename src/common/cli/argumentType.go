@@ -15,5 +15,4 @@ const (
 	Integer    ArgumentType = 2
 	Float      ArgumentType = 3
 	Boolean    ArgumentType = 4
-	Enum       ArgumentType = 5 // Enumerated list of strings
 )
