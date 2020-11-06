@@ -8,15 +8,15 @@ func TestArgument_Integer(t *testing.T) {
 		o.Type = Integer
 
 		o.Value = "0"
-		if o.Float() != 0 {
+		if o.Integer() != 0 {
 			t.Error("Expected parsed result")
 		}
 		o.Value = "1"
-		if o.Float() != 1 {
+		if o.Integer() != 1 {
 			t.Error("Expected parsed result")
 		}
 		o.Value = "-1"
-		if o.Float() != -1 {
+		if o.Integer() != -1 {
 			t.Error("Expected parsed result")
 		}
 	}()
@@ -26,15 +26,15 @@ func TestArgument_Integer(t *testing.T) {
 		defer func() { recover() }()
 		o.Type = Integer
 		o.Value = "1"
-		_ = o.Float()
+		_ = o.Integer()
 		o.Value = "1.0"
-		_ = o.Float()
+		_ = o.Integer()
 		o.Value = "foo"
-		_ = o.Float()
+		_ = o.Integer()
 		o.Value = ""
-		_ = o.Float()
+		_ = o.Integer()
 		o.Value = "true"
-		_ = o.Float()
+		_ = o.Integer()
 	}()
 
 }

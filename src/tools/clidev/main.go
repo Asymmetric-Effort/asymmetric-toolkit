@@ -28,7 +28,7 @@ func main() {
 				cli.None,
 				"noop default won't change",
 				"This is an option.",
-				cli.ParserNoop,
+				cli.ParserNoop(),
 				cli.ExpectFlag,
 			},
 			"myUnboundedIntOption": {
