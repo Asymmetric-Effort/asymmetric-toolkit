@@ -9,6 +9,7 @@ package cli
 import (
 	"fmt"
 	"strconv"
+	"strings"
 )
 
 func ParserBool() (parser func(arg *string) (err error, val *Argument)) {
@@ -24,14 +25,15 @@ func ParserBool() (parser func(arg *string) (err error, val *Argument)) {
 		// When our parser function runs, we trump and shift the command line argument to lower-case
 		// so our evaluation is case insensitive.  This allows a simple evaluation and validation.
 		//
-		if _, e := strconv.ParseBool(*arg); e != nil {
+		strippedString := strings.ToLower(strings.TrimSpace(*arg))
+		if _, e := strconv.ParseBool(strippedString); e != nil {
 			err = fmt.Errorf("error parsing expected boolean value.  Encountered (%s): %v", *arg, e)
 			val = nil
 		} else {
 			err = nil
 			val = &Argument{
 				Boolean,
-				*arg,
+				strippedString,
 			}
 		}
 		return
