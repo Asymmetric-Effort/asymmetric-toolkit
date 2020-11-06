@@ -12,6 +12,7 @@ func (o *CommandLine) SetDefaults(spec *Specification) (err error) {
 	//
 	// Iterate through the specification
 	//
+	o.Arguments = make(map[ArgumentFlag]*Argument)
 	for flag, flagSpec := range spec.Argument {
 		//
 		// Call the parser function for each argument and pass the default value.
@@ -22,10 +23,12 @@ func (o *CommandLine) SetDefaults(spec *Specification) (err error) {
 		//
 		// Stop processing on error
 		//
-		return fmt.Errorf("flag:%s, error: %v", flag, err)
+		if err != nil {
+			err= fmt.Errorf("flag:%s, error: %v", flag, err)
+		}
 	}
 	//
 	// return result (no error expected here).
 	//
-	return
+	return err
 }

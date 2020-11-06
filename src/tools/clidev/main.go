@@ -76,7 +76,7 @@ func main() {
 				cli.String,
 				"1.2",
 				"This is a Second Option",
-				cli.ParserFloat(0.0,1.0),
+				cli.ParserFloat(0.0,2.0),
 				cli.ExpectValue,
 			},
 			"myBooleanOption": {
