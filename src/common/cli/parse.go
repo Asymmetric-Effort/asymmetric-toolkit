@@ -26,8 +26,7 @@ func (o *CommandLine) Parse(spec *Specification) (exit bool, err error) {
 	spec.AddVersion() // If our version flags (-v and --version) are not set, we will add them here.
 	spec.AddDebug() // If our debug flag (--debug) is not set, we will add them here.
 
-	//ToDo: Scan the specification and ensure that no two argument descriptors have the same FlagId value.
-	//		A collision of FlagIds would cause the first argument to be overwritten by the second.
+	spec.EnsureUniqueFlagId() //Scan the specification.
 
 	if err := o.SetDefaults(spec); err != nil {
 		return true, fmt.Errorf("error applying default values in commandline processor. " +

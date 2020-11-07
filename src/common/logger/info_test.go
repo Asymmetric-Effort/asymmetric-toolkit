@@ -13,7 +13,7 @@ import (
 
 func TestLoggerInfoError(t *testing.T) {
 	var log Logger
-	var config cli.Configuration
+	var config Configuration
 	config.Log.Destination.Set(destination.Stdout)
 	config.Log.Level.Set(logLevel.Info)
 	out := catchStdOut(t, func() {
@@ -27,7 +27,7 @@ func TestLoggerInfoError(t *testing.T) {
 
 func TestLoggerInfoCritical(t *testing.T) {
 	var log Logger
-	var config cli.Configuration
+	var config Configuration
 	config.Log.Destination.Set(destination.Stdout)
 	config.Log.Level.Set(logLevel.Info)
 	out := catchStdOut(t, func() {
@@ -41,7 +41,7 @@ func TestLoggerInfoCritical(t *testing.T) {
 
 func TestLoggerInfoDebug(t *testing.T) {
 	var log Logger
-	var config cli.Configuration
+	var config Configuration
 	config.Log.Destination.Set(destination.Stdout)
 	config.Log.Level.Set(logLevel.Debug)
 	out := catchStdOut(t, func() {

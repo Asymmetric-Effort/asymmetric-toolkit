@@ -1,4 +1,5 @@
 package cli
+
 /*
 	The specification is the collection of arguments which are processed at runtime to determine how the
 	commandline processor will interpret a given set of arguments.

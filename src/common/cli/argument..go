@@ -7,5 +7,5 @@ package cli
 
 type Argument struct {
 	Type  ArgumentType // This is an Argument's type when it is finally decoded by the Decode<type>() function.
-	Value string       // This is the parsed, validated but not decoded (i.e. string) value parsed from the cli.
+	Value string       // This is the parsed, validated but not decoded (i.e. string) value parsed from the
 }
