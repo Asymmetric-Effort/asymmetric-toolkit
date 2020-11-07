@@ -23,7 +23,7 @@ func (o *Specification) AddVersion() {
 		None,
 		versionDefault,
 		versionHelpText,
-		o.ShowVersion,
+		ParserNoop(),
 		ExpectEnd,
 	}
 	//
@@ -34,7 +34,7 @@ func (o *Specification) AddVersion() {
 		None,
 		versionDefault,
 		versionHelpText,
-		o.ShowVersion,
+		ParserNoop(),
 		ExpectEnd,
 	}
 }

@@ -98,7 +98,7 @@ func main() {
 		},
 	}
 	var ui cli.CommandLine
-	exit, err := ui.Parse(&spec)
+	exit, err := ui.Parse(&spec, os.Args[1:])
 	if err != nil {
 		fmt.Printf("Error:%v", err)
 		os.Exit(cli.ErrArgumentParseError)

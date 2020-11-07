@@ -7,10 +7,9 @@ package cli
 */
 import (
 	"fmt"
-	"os"
 )
 
-func (o *CommandLine) Parse(spec *Specification) (exit bool, err error) {
+func (o *CommandLine) Parse(spec *Specification, args []string) (exit bool, err error) {
 	/*
 		Parse the existing command line arguments, perform validation and store the
 		values into the internal state.
@@ -33,7 +32,8 @@ func (o *CommandLine) Parse(spec *Specification) (exit bool, err error) {
 			"%v",err)
 	}
 
-	for _, currentArgument := range os.Args[1:] {
+	for _, currentArgument := range args {
+		fmt.Println("---flag:", currentArgument)
 		//
 		// Iterate through all arguments on the commandline.  We expect either
 		// a long flag (--flag), a short flag (-f) or a contiguous string value.
