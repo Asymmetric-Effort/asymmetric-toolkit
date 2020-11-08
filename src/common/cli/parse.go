@@ -33,7 +33,6 @@ func (o *CommandLine) Parse(spec *Specification, args []string) (exit bool, err 
 	}
 
 	for _, currentArgument := range args {
-		fmt.Println("---DEBUG: flag:", currentArgument)
 		//
 		// Iterate through all arguments on the commandline.  We expect either
 		// a long flag (--flag), a short flag (-f) or a contiguous string value.
@@ -44,9 +43,7 @@ func (o *CommandLine) Parse(spec *Specification, args []string) (exit bool, err 
 			// If we expect a flag (--long or -l), we will parse the flag and
 			// determine its specifications to process the next argument.
 			//
-			fmt.Println("---DEBUG: ExpectFlag")
 			isFlag, arg := stripPrefix(&currentArgument)
-			fmt.Println("---DEBUG: isFlag", isFlag, " arg:", arg)
 			if !isFlag {
 				//
 				// What we encountered is not a flag, but some other identifier.
@@ -57,7 +54,6 @@ func (o *CommandLine) Parse(spec *Specification, args []string) (exit bool, err 
 				//
 			}
 			if knownSpec, ok := spec.Argument[arg]; ok {
-				fmt.Println("---DEBUG: KnownSpec?", ok)
 				//
 				// For the current argument, does it exist in our specification's argument map?
 				// If it does exist, we have a detected flag we can process...
@@ -66,14 +62,12 @@ func (o *CommandLine) Parse(spec *Specification, args []string) (exit bool, err 
 				expected = knownSpec.Expects // Route the next argument as expected in the spec.
 				//
 				if expected == ExpectNone {
-					fmt.Println("---DEBUG: ExpectNone")
 					//
 					// If we expect nothing (e.g. --help, --debug, --verbose) where the flag is the value
 					// in and of itself, we simply process it now rather than wait another cycle (which would process
 					// the next argument).
 					//
 					if err, o.Arguments[lastFlag.FlagId] = lastFlag.Parse(&currentArgument); err == nil {
-						fmt.Println("---DEBUG: Parser executed with no error.")
 						if o.Arguments[lastFlag.FlagId] == nil {
 							// If our flag Parse() function returned nil in this case
 							// we would know the Parse() function is terminal and we should exit without error,
@@ -82,7 +76,6 @@ func (o *CommandLine) Parse(spec *Specification, args []string) (exit bool, err 
 						}
 						expected = ExpectFlag // Reset and get another flag.
 					} else {
-						fmt.Println("---DEBUG: Parser encountered error.")
 						//
 						//We encountered an error on our last flag (expectNone parser function).
 						//
@@ -90,7 +83,6 @@ func (o *CommandLine) Parse(spec *Specification, args []string) (exit bool, err 
 					}
 				}
 			} else {
-				fmt.Println("---DEBUG: KnownSpec? no")
 				//
 				// Terminate with an error.  We failed to find the current argument as an
 				// argument in our current specification.
@@ -103,7 +95,6 @@ func (o *CommandLine) Parse(spec *Specification, args []string) (exit bool, err 
 			// If we expect a value, we presume a flag was detected first to which we can map the
 			// parsed value currently in arg.
 			//
-			fmt.Println("---DEBUG: lastFlag", lastFlag.FlagId, lastFlag.Type)
 			if lastFlag == nil {
 				//
 				// If we have no argument (arg) flag, we return an error because we cannot map a value
@@ -132,7 +123,6 @@ func (o *CommandLine) Parse(spec *Specification, args []string) (exit bool, err 
 				// processed value and any additional features.
 				//
 				if err, o.Arguments[lastFlag.FlagId] = lastFlag.Parse(&currentArgument); err == nil {
-					fmt.Println("---DEBUG: Argument[", lastFlag.FlagId, "]: ", o.Arguments[lastFlag.FlagId].Type)
 					//
 					// We have properly processed the cli argument value and we will now reset
 					// to expect a flag next to start the process over again.
