@@ -10,17 +10,21 @@ import (
 	"fmt"
 )
 
+const (
+	bannerFmt string = "\n%s (%s) %s\n\nUsage:\n"
+	lineFmt   string = "\t%s\t\t%s [Default: %s]\n"
+)
+
 func (o *Specification) ShowUsage(arg *string) (err error, val *Argument) {
 	/*
 		Calculate and show the usage message (all help messages).
 	*/
 	errors.Assert(arg != nil, "Expected non nil argument.")
-	fmt.Printf("\n" +
-		"%s (%s)\n\n" +
-		"%s\n\n" +
-		"Usage:\n",o.ProgramName,o.Version,o.Copyright)
+	output := ""
+	output = fmt.Sprintf(bannerFmt, o.ProgramName, o.Version, o.Copyright)
 	for flag, arg := range o.Argument {
-		fmt.Printf("\t%s\t\t%s\t[Default: %s]\n", flag, arg.Help, arg.Default)
+		output += fmt.Sprintf(lineFmt, flag, arg.Help, arg.Default)
 	}
+	fmt.Printf(output)
 	return nil, nil
 }
