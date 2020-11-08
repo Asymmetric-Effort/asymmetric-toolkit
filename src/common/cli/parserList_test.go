@@ -1,14 +1,15 @@
 package cli
 
 import (
+	"fmt"
 	"testing"
 )
 
 func TestParseList(t *testing.T) {
 	func() {
 		testRun := func(v string, delimiter string) {
-
-			parser := ParseList(delimiter)
+			fmt.Println("Processing...", v)
+			parser := ParserList(delimiter)
 
 			err, val := parser(&v)
 
@@ -16,10 +17,10 @@ func TestParseList(t *testing.T) {
 				panic(err)
 			}
 
-			if val.Value != v {
-				t.Errorf("Value mismatch: %s", v)
+			expected := fmt.Sprintf("%d%s%s", len(delimiter), delimiter, v)
+			if val.Value != expected {
+				t.Errorf("Value mismatch: %s", expected)
 			}
-
 		}
 
 		tests := []struct {
@@ -35,6 +36,9 @@ func TestParseList(t *testing.T) {
 			}, {
 				"C",
 				",",
+			}, {
+				"C:=D:=",
+				":=",
 			},
 		}
 

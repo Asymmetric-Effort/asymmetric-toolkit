@@ -1,16 +1,16 @@
 package cli
 
-import (
-	"fmt"
-	"math"
-	"strconv"
-)
-
 /*
 	ParserInt() is a parser function factory which returns a parser function to the caller.
 	This parser function will evaluate a given commandline argument (arg *string) and perform
 	any validation before returning an appropriate error and Argument object pointer.
 */
+
+import (
+	"fmt"
+	"math"
+	"strconv"
+)
 
 func ParserInt(p ...int) (parser func(arg *string) (err error, val *Argument)) {
 	/*
