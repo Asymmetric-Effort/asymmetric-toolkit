@@ -20,8 +20,8 @@ func TestCommandLine_Parse_Happy(t *testing.T) {
 				None,
 				"false",
 				"This is a flag.",
-				ParserBool(),
-				ExpectFlag,
+				ParserFlag(),
+				ExpectNone, //We expect None (no value) which will expect a flag in the end.
 			},
 			"intVal": {
 				1001, // >= 1000 is a project-defined FlagId
@@ -50,20 +50,42 @@ func TestCommandLine_Parse_Happy(t *testing.T) {
 		},
 	}
 	var ui CommandLine
+
 	_, err := ui.Parse(&spec, args)
+
 	if err != nil {
 		panic(err)
 	}
-	errors.Assert(ui.Arguments[1000].Type == Boolean, fmt.Sprintf("1.Expected type(%v): %v", Boolean, ui.Arguments[1000].Type))
 
-	errors.Assert(ui.Arguments[1001].Type == Integer, fmt.Sprintf("2.Expected type(%v): %v", Integer, ui.Arguments[1001].Type))
+	errors.Assert(
+		ui.Arguments[1000].Type == Boolean,
+		fmt.Sprintf("1.Expected type(%v): %v", Boolean, ui.Arguments[1000].Type))
 
-	errors.Assert(ui.Arguments[1002].Type == Integer, fmt.Sprintf("3.Expected type(%v): %v", Integer, ui.Arguments[1002].Type))
+	errors.Assert(
+		ui.Arguments[1001].Type == Integer,
+		fmt.Sprintf("2.Expected type(%v): %v", Integer, ui.Arguments[1001].Type))
 
-	errors.Assert(ui.Arguments[1003].Type == String, fmt.Sprintf("4.Expected type(%v): %v", String, ui.Arguments[1003].Type))
+	errors.Assert(
+		ui.Arguments[1002].Type == Integer,
+		fmt.Sprintf("3.Expected type(%v): %v", Integer, ui.Arguments[1002].Type))
 
-	errors.Assert(ui.Arguments[1000].String() == "true", "Unexpected Value")
-	errors.Assert(ui.Arguments[1001].String() == "10", "Unexpected Value")
-	errors.Assert(ui.Arguments[1002].String() == "5", "Unexpected Value")
-	errors.Assert(ui.Arguments[1003].String() == "myValue", "Unexpected Value")
+	errors.Assert(
+		ui.Arguments[1003].Type == String,
+		fmt.Sprintf("4.Expected type(%v): %v", String, ui.Arguments[1003].Type))
+
+	errors.Assert(
+		ui.Arguments[1000].String() == "true",
+		fmt.Sprintf("Unexpected Value:%v", ui.Arguments[1000].String()))
+
+	errors.Assert(
+		ui.Arguments[1001].String() == "10",
+		fmt.Sprintf("Unexpected Value:%v", ui.Arguments[1000].String()))
+
+	errors.Assert(
+		ui.Arguments[1002].String() == "5",
+		fmt.Sprintf("Unexpected Value:%v", ui.Arguments[1000].String()))
+
+	errors.Assert(
+		ui.Arguments[1003].String() == "myValue",
+		fmt.Sprintf("Unexpected Value:%v", ui.Arguments[1000].String()))
 }

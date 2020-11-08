@@ -22,7 +22,7 @@ func (o *Specification) AddDebug() {
 		Boolean,
 		debugDefault,
 		debugHelpText,
-		ParserFlag,
+		ParserFlag(),
 		ExpectNone,
 	}
 }
