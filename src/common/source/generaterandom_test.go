@@ -3,7 +3,7 @@ package source
 import (
 	"asymmetric-effort/asymmetric-toolkit/src/common/entropy"
 	"asymmetric-effort/asymmetric-toolkit/src/common/errors"
-	"asymmetric-effort/asymmetric-toolkit/src/tools/dnsenum/cli"
+	"asymmetric-effort/asymmetric-toolkit/src/tools/dnsenum/deprecated_cli"
 	"fmt"
 	"testing"
 )
@@ -14,14 +14,14 @@ func TestSourceGenerateRandom(t *testing.T) {
 	*/
 	const keyspace = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
 	var s Source
-	var config cli.Configuration
+	var config deprecated_cli.Configuration
 	args := []string{"--domain", "google.com", "--mode", "random", "--dnsServer", "udp:127.0.0.1:53", "--maxWordCount", "20"}
 	config.Parse(args)
 	s.config = &config
 	s.config.WordSize = 100
 	s.config.MaxWordCount = 100
 	s.allowedChars = func() *string { str := keyspace; return &str }()
-	s.feed.Setup(cli.SourceBufferSz)
+	s.feed.Setup(deprecated_cli.SourceBufferSz)
 	/*
 		Run Generator
 	*/

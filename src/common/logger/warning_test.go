@@ -4,7 +4,7 @@ import (
 	"asymmetric-effort/asymmetric-toolkit/src/common/errors"
 	"asymmetric-effort/asymmetric-toolkit/src/common/logger/destination"
 	"asymmetric-effort/asymmetric-toolkit/src/common/logger/logLevel"
-	"asymmetric-effort/asymmetric-toolkit/src/tools/dnsenum/cli"
+	"asymmetric-effort/asymmetric-toolkit/src/tools/dnsenum/deprecated_cli"
 	"fmt"
 	"regexp"
 	"strings"
@@ -13,7 +13,7 @@ import (
 
 func TestLoggerWarningError(t *testing.T) {
 	var log Logger
-	var config cli.Configuration
+	var config deprecated_cli.Configuration
 	config.Log.Destination.Set(destination.Stdout)
 	config.Log.Level.Set(logLevel.Warning)
 	out := catchStdOut(t, func() {
@@ -27,7 +27,7 @@ func TestLoggerWarningError(t *testing.T) {
 
 func TestLoggerWarningCritical(t *testing.T) {
 	var log Logger
-	var config cli.Configuration
+	var config deprecated_cli.Configuration
 	config.Log.Destination.Set(destination.Stdout)
 	config.Log.Level.Set(logLevel.Warning)
 	out := catchStdOut(t, func() {
@@ -41,7 +41,7 @@ func TestLoggerWarningCritical(t *testing.T) {
 
 func TestLoggerWarningDebug(t *testing.T) {
 	var log Logger
-	var config cli.Configuration
+	var config deprecated_cli.Configuration
 	config.Log.Destination.Set(destination.Stdout)
 	config.Log.Level.Set(logLevel.Debug)
 	out := catchStdOut(t, func() {

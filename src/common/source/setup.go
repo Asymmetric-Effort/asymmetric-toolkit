@@ -2,10 +2,10 @@ package source
 
 import (
 	"asymmetric-effort/asymmetric-toolkit/src/common/errors"
-	"asymmetric-effort/asymmetric-toolkit/src/tools/dnsenum/cli"
+	"asymmetric-effort/asymmetric-toolkit/src/tools/dnsenum/deprecated_cli"
 )
 
-func (o *Source) Setup(config *cli.Configuration, bufferSz int, allowedChars string) {
+func (o *Source) Setup(config *deprecated_cli.Configuration, bufferSz int, allowedChars string) {
 	errors.Assert(config != nil, "Encountered nil configuration in Source::Setup()")
 	errors.Assert(bufferSz > 1, "Expected sourceBufferSz > 1")
 	errors.Assert(allowedChars != "", "Expected non-empty string in allowedChars")

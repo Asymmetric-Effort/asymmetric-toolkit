@@ -3,7 +3,7 @@ package source
 import (
 	"asymmetric-effort/asymmetric-toolkit/src/common/errors"
 	"asymmetric-effort/asymmetric-toolkit/src/common/file"
-	"asymmetric-effort/asymmetric-toolkit/src/tools/dnsenum/cli"
+	"asymmetric-effort/asymmetric-toolkit/src/tools/dnsenum/deprecated_cli"
 	"fmt"
 	"os"
 	"path/filepath"
@@ -19,25 +19,25 @@ const (
 func TestSetupHappySequenceNullConfig(t *testing.T) {
 	var s Source
 	defer func() { recover() }()
-	s.Setup(nil, cli.SourceBufferSz, cli.DnsChars)
+	s.Setup(nil, deprecated_cli.SourceBufferSz, deprecated_cli.DnsChars)
 }
 
 func TestSetupHappySequenceBadBufferSize(t *testing.T) {
 	var s Source
-	var config cli.Configuration
+	var config deprecated_cli.Configuration
 	args := []string{"--domain", "google.com", "--mode", "sequence", "--dnsServer","udp:127.0.0.1:53"}
 	config.Parse(args)
 	defer func() { recover() }()
-	s.Setup(&config, 0, cli.DnsChars)
+	s.Setup(&config, 0, deprecated_cli.DnsChars)
 }
 
 func TestSetupHappySequenceBadChars(t *testing.T) {
 	var s Source
-	var config cli.Configuration
+	var config deprecated_cli.Configuration
 	args := []string{"--domain", "google.com", "--mode", "sequence", "--dnsServer","udp:127.0.0.1:53"}
 	config.Parse(args)
 	defer func() { recover() }()
-	s.Setup(&config, cli.SourceBufferSz, "")
+	s.Setup(&config, deprecated_cli.SourceBufferSz, "")
 }
 
 func TestSetupHappySequence(t *testing.T) {
@@ -58,10 +58,10 @@ func TestSetupHappySequence(t *testing.T) {
 	for r := 1; r <= 4; r++ {
 		fmt.Printf("wordsize: %d\n",r)
 		var s Source
-		var config cli.Configuration
+		var config deprecated_cli.Configuration
 		args := []string{"--domain", "google.com", "--mode", "sequence", "--dnsServer","udp:127.0.0.1:53", "--wordSize", strconv.Itoa(r), "--maxWordCount", "100"}
 		config.Parse(args)
-		s.Setup(&config, cli.SourceBufferSz, cli.DnsChars)
+		s.Setup(&config, deprecated_cli.SourceBufferSz, deprecated_cli.DnsChars)
 		s.isPaused = false
 		testTimeout()
 		for s.HasData() {
@@ -74,10 +74,10 @@ func TestSetupHappySequence(t *testing.T) {
 func TestSetupHappyRandom(t *testing.T) {
 	t.SkipNow()
 	var s Source
-	var config cli.Configuration
+	var config deprecated_cli.Configuration
 	args := []string{"--domain", "google.com", "--mode", "random", "--dnsServer","udp:127.0.0.1:53"}
 	config.Parse(args)
-	s.Setup(&config, cli.SourceBufferSz, cli.DnsChars)
+	s.Setup(&config, deprecated_cli.SourceBufferSz, deprecated_cli.DnsChars)
 	s.isPaused = false
 	//go testTimeout(t,TestSetupGeneratorTimeout)
 	for i := 0; i < 10; i++ {
@@ -93,7 +93,7 @@ func TestSetupHappyRandom(t *testing.T) {
 func TestSetupHappyDictionary(t *testing.T) {
 	t.SkipNow()
 	var s Source
-	var config cli.Configuration
+	var config deprecated_cli.Configuration
 	//
 	baseDir, err := os.Getwd()
 	errors.Assert(err == nil, fmt.Sprintf("%v", err))
@@ -103,7 +103,7 @@ func TestSetupHappyDictionary(t *testing.T) {
 	//
 	args := []string{"--domain", "google.com", "--mode", "dictionary", "--dictionary", dictFile, "--dnsServer","udp:127.0.0.1:53"}
 	config.Parse(args)
-	s.Setup(&config, cli.SourceBufferSz, cli.DnsChars)
+	s.Setup(&config, deprecated_cli.SourceBufferSz, deprecated_cli.DnsChars)
 	s.isPaused = false
 	// testTimeout(t,TestSetupGeneratorTimeout)
 	for i := 0; i < 10; i++ {

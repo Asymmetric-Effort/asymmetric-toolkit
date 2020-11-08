@@ -6,5 +6,5 @@ package cli
 */
 
 type CommandLine struct {
-	Arguments map[ArgumentFlag]*Argument
+	Arguments ArgumentMap
 }

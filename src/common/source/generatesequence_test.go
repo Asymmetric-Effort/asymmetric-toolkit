@@ -2,7 +2,7 @@ package source
 
 import (
 	"asymmetric-effort/asymmetric-toolkit/src/common/errors"
-	"asymmetric-effort/asymmetric-toolkit/src/tools/dnsenum/cli"
+	"asymmetric-effort/asymmetric-toolkit/src/tools/dnsenum/deprecated_cli"
 	"fmt"
 	"testing"
 )
@@ -14,7 +14,7 @@ func TestSourceGenerateSequence(t *testing.T) {
 	const keyspace = "0123456789"
 	const maxWordSize = 9
 	var s Source
-	var config cli.Configuration
+	var config deprecated_cli.Configuration
 	args := []string{"--domain", "google.com", "--mode", "sequence", "--dnsServer", "udp:127.0.0.1:53"}
 	config.Parse(args)
 	s.config = &config
@@ -22,7 +22,7 @@ func TestSourceGenerateSequence(t *testing.T) {
 	for s.config.WordSize = 1; s.config.WordSize < maxWordSize; s.config.WordSize++ {
 		s.config.MaxWordCount = 1000000000
 		s.allowedChars = func() *string { str := keyspace; return &str }()
-		s.feed.Setup(cli.SourceBufferSz * 1000)
+		s.feed.Setup(deprecated_cli.SourceBufferSz * 1000)
 		/*
 			Run Generator
 		*/
@@ -53,14 +53,14 @@ func TestSourceGenerateSequenceBinary(t *testing.T) {
 	const keyspace = "01"
 	const maxWordSize = 9
 	var s Source
-	var config cli.Configuration
+	var config deprecated_cli.Configuration
 	args := []string{"--domain", "google.com", "--mode", "sequence", "--dnsServer","udp:127.0.0.1:53"}
 	config.Parse(args)
 	s.config = &config
 	for s.config.WordSize = 1; s.config.WordSize < maxWordSize; s.config.WordSize++ {
 		s.config.MaxWordCount = 1000000000
 		s.allowedChars = func() *string { str := keyspace; return &str }()
-		s.feed.Setup(cli.SourceBufferSz * 1000)
+		s.feed.Setup(deprecated_cli.SourceBufferSz * 1000)
 		/*
 			Run Generator
 		*/
