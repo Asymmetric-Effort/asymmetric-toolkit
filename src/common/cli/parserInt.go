@@ -85,7 +85,7 @@ func ParserInt(p ...int) (parser func(arg *string) (err error, val *Argument)) {
 			// Bounds check okay, return the processed argument as a string to be extracted later.
 			//
 			return nil, &Argument{
-				Float,
+				Integer,
 				*arg,
 			}
 		} else {

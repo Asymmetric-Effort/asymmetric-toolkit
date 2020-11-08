@@ -1,9 +1,13 @@
 package cli
 
-import "testing"
+import (
+	"asymmetric-effort/asymmetric-toolkit/src/common/errors"
+	"fmt"
+	"testing"
+)
 
-func TestCommandLine_Parse(t *testing.T) {
-	args:=[]string{"flag","intVal","10","strVal","myValue"}
+func TestCommandLine_Parse_Happy(t *testing.T) {
+	args := []string{"--flag", "--intVal", "10", "--strVal", "myValue"}
 	var spec Specification = Specification{
 		Author:      "Sam Caldwell",
 		AuthorEmail: "mail@samcaldwell.net",
@@ -32,7 +36,7 @@ func TestCommandLine_Parse(t *testing.T) {
 				Integer,
 				"5",
 				"This tests default value (5)",
-				ParserInt(0,10),
+				ParserInt(0, 10),
 				ExpectValue,
 			},
 			"strVal": {
@@ -46,8 +50,20 @@ func TestCommandLine_Parse(t *testing.T) {
 		},
 	}
 	var ui CommandLine
-	_, err := ui.Parse(&spec,args)
+	_, err := ui.Parse(&spec, args)
 	if err != nil {
 		panic(err)
 	}
+	errors.Assert(ui.Arguments[1000].Type == Boolean, fmt.Sprintf("1.Expected type(%v): %v", Boolean, ui.Arguments[1000].Type))
+
+	errors.Assert(ui.Arguments[1001].Type == Integer, fmt.Sprintf("2.Expected type(%v): %v", Integer, ui.Arguments[1001].Type))
+
+	errors.Assert(ui.Arguments[1002].Type == Integer, fmt.Sprintf("3.Expected type(%v): %v", Integer, ui.Arguments[1002].Type))
+
+	errors.Assert(ui.Arguments[1003].Type == String, fmt.Sprintf("4.Expected type(%v): %v", String, ui.Arguments[1003].Type))
+
+	errors.Assert(ui.Arguments[1000].String() == "true", "Unexpected Value")
+	errors.Assert(ui.Arguments[1001].String() == "10", "Unexpected Value")
+	errors.Assert(ui.Arguments[1002].String() == "5", "Unexpected Value")
+	errors.Assert(ui.Arguments[1003].String() == "myValue", "Unexpected Value")
 }

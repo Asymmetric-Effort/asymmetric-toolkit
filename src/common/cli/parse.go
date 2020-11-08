@@ -23,17 +23,17 @@ func (o *CommandLine) Parse(spec *Specification, args []string) (exit bool, err 
 
 	spec.AddUsage()   // If our help flags (-h and --help) are not set, we will add them here.
 	spec.AddVersion() // If our version flags (-v and --version) are not set, we will add them here.
-	spec.AddDebug() // If our debug flag (--debug) is not set, we will add them here.
+	spec.AddDebug()   // If our debug flag (--debug) is not set, we will add them here.
 
 	spec.EnsureUniqueFlagId() //Scan the specification.
 
 	if err := o.SetDefaults(spec); err != nil {
-		return true, fmt.Errorf("error applying default values in commandline processor. " +
-			"%v",err)
+		return true, fmt.Errorf("error applying default values in commandline processor. "+
+			"%v", err)
 	}
 
 	for _, currentArgument := range args {
-		fmt.Println("---flag:", currentArgument)
+		fmt.Println("---DEBUG: flag:", currentArgument)
 		//
 		// Iterate through all arguments on the commandline.  We expect either
 		// a long flag (--flag), a short flag (-f) or a contiguous string value.
@@ -44,7 +44,9 @@ func (o *CommandLine) Parse(spec *Specification, args []string) (exit bool, err 
 			// If we expect a flag (--long or -l), we will parse the flag and
 			// determine its specifications to process the next argument.
 			//
+			fmt.Println("---DEBUG: ExpectFlag")
 			isFlag, arg := stripPrefix(&currentArgument)
+			fmt.Println("---DEBUG: isFlag", isFlag, " arg:", arg)
 			if !isFlag {
 				//
 				// What we encountered is not a flag, but some other identifier.
@@ -93,6 +95,7 @@ func (o *CommandLine) Parse(spec *Specification, args []string) (exit bool, err 
 			// If we expect a value, we presume a flag was detected first to which we can map the
 			// parsed value currently in arg.
 			//
+			fmt.Println("---DEBUG: lastFlag", lastFlag.FlagId, lastFlag.Type)
 			if lastFlag == nil {
 				//
 				// If we have no argument (arg) flag, we return an error because we cannot map a value
@@ -121,6 +124,7 @@ func (o *CommandLine) Parse(spec *Specification, args []string) (exit bool, err 
 				// processed value and any additional features.
 				//
 				if err, o.Arguments[lastFlag.FlagId] = lastFlag.Parse(&currentArgument); err == nil {
+					fmt.Println("---DEBUG: Argument[", lastFlag.FlagId, "]: ", o.Arguments[lastFlag.FlagId].Type)
 					//
 					// We have properly processed the cli argument value and we will now reset
 					// to expect a flag next to start the process over again.

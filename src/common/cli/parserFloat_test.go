@@ -1,6 +1,7 @@
 package cli
 
 import (
+	"asymmetric-effort/asymmetric-toolkit/src/common/errors"
 	"fmt"
 	"math"
 	"strconv"
@@ -8,6 +9,28 @@ import (
 )
 
 func TestParserFloat(t *testing.T) {
+	func() {
+		fmt.Println("general test")
+		min := 1.0
+		value := 2.0
+		strValue := "2.0"
+		max := 5.0
+		parser := ParserFloat(min, max)
+
+		err, val := parser(&strValue)
+		if err != nil {
+			panic(err)
+		}
+		errors.Assert(val.Type == Float, "Expected Float type")
+		errors.Assert(val.String() == strValue, "unexpected value.")
+		errors.Assert(val.Float() == value, "unexpected float value.")
+		defer func() { recover() }()
+		errors.Assert(val.Integer() != int(value), "Expected failure")
+		errors.Assert(val.Boolean(), "Expected failure")
+		errors.Assert(!val.Boolean(), "Expected failure")
+		fmt.Println("General Test Passes")
+	}()
+
 	go func() { //Lower and Upper bound.
 		fmt.Println("upper/lower bound test started")
 		min := 1.0
