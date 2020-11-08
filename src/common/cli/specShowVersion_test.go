@@ -7,23 +7,25 @@ import (
 )
 
 func TestSpecification_ShowVersion(t *testing.T) {
-	var o Specification
+	test := func(arg string) {
+		var o Specification
 
-	fmt.Println("Starting TestSpecification_ShowVersion()")
+		fmt.Println("Starting TestSpecification_ShowVersion()")
 
-	o.Version = "1.1.1"
-	o.ProgramName = "show_version_test"
+		o.Version = "1.1.1"
+		o.ProgramName = "show_version_test"
 
-	inp := "--version"
+		output := errors.CaptureStdOut(func() {
+			o.ShowVersion(&arg)
+		})
+		fmt.Printf("--DEBUG:\n"+
+			"\tVersion:     '%s'\n"+
+			"\tProgramName: '%s'\n"+
+			"\tOutput:      '%s'\n"+
+			"---DEBUG\n", o.Version, o.ProgramName, output)
 
-	output := errors.CaptureStdOut(func() {
-		o.ShowVersion(&inp)
-	})
-	fmt.Printf("--DEBUG:\n"+
-		"\tVersion:     '%s'\n"+
-		"\tProgramName: '%s'\n"+
-		"\tOutput:      '%s'\n"+
-		"---DEBUG\n", o.Version, o.ProgramName, output)
-
-	errors.Assert(output == fmt.Sprintf("%s (%s)\n", o.ProgramName, o.Version), "version mismatch")
+		errors.Assert(output == fmt.Sprintf("%s (%s)\n", o.ProgramName, o.Version), "version mismatch")
+	}
+	test("-v")
+	test("--version")
 }
