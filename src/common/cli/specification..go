@@ -13,6 +13,7 @@ package cli
 type Specification struct {
 	Author      string                        //Author name (used in usage notes and elsewhere)
 	AuthorEmail string                        //Author email (used in usage notes and elsewhere)
+	//ToDo: Add a description field.
 	ProgramName string                        //program name (used in usage notes and elsewhere)
 	Copyright   string                        //Copyright string (used in usage notes and elsewhere)
 	Version     string                        //Application version (used in usage notes and elsewhere)
