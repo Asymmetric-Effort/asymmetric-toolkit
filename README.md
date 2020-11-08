@@ -8,7 +8,7 @@ This is a work in progress.  It's still pretty early, and all the things are sub
 ### Milestones:
 Note these milestones are not exhaustive but provide a summary of latest efforts/achievements/priotized tasks:
 * [Documentation](docs/README.md).
-* [common/cli](src/common/cli/README.md) is working.  Tests are witten
+* [common/cli](src/common/cli/README.md) is working.  Tests written.
 
 ### ToDo:
 * Finish [clidev](src/tools/clidev/README.md) (example implementation of [common/cli](src/common/cli/README.md)
