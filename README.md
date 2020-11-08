@@ -34,4 +34,4 @@ Note these milestones are not exhaustive but provide a summary of latest efforts
   laws of the United States.
 
 ## Documentation
-* [General Documentation Index](docs/index.md)
+* [General Documentation Index](docs/README.md)
