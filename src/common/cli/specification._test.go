@@ -10,6 +10,7 @@ func TestSpecification(t *testing.T){
 	errors.Assert(o.Author == "", "expect empty string")
 	errors.Assert(o.AuthorEmail == "", "expect empty string")
 	errors.Assert(o.ProgramName == "", "expect empty string")
+	errors.Assert(o.Description == "", "expect empty string")
 	errors.Assert(o.Copyright == "", "expect empty string")
 	errors.Assert(o.Version == "", "expect empty string")
 	errors.Assert(o.Argument == nil, "expect nil")

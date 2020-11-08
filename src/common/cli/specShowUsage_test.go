@@ -8,7 +8,7 @@ import (
 
 func TestSpecification_ShowUsage(t *testing.T) {
 
-	test:=func(arg string) {
+	test := func(arg string) {
 		var o Specification
 
 		fmt.Println("Starting TestSpecification_ShowVersion()")
@@ -16,6 +16,7 @@ func TestSpecification_ShowUsage(t *testing.T) {
 		o.Version = "1.1.1"
 		o.ProgramName = "program"
 		o.Copyright = "copyright"
+		o.Description = "programDescription"
 		o.Argument = make(map[string]ArgumentDescriptor)
 		o.Argument["myFlag1"] = ArgumentDescriptor{
 			1000,
@@ -40,7 +41,7 @@ func TestSpecification_ShowUsage(t *testing.T) {
 			}
 		})
 
-		expected := fmt.Sprintf(bannerFmt, o.ProgramName, o.Version, o.Copyright) +
+		expected := fmt.Sprintf(bannerFmt, o.ProgramName, o.Version, o.Copyright, o.Description) +
 			fmt.Sprintf(lineFmt, "myFlag1", "MyHelpString1", "String", "myDefault1") +
 			fmt.Sprintf(lineFmt, "myFlag2", "MyHelpString2", "String", "myDefault2")
 

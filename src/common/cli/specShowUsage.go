@@ -11,7 +11,7 @@ import (
 )
 
 const (
-	bannerFmt string = "\n%s (%s) %s\n\nUsage:\n"
+	bannerFmt string = "\n%s (%s) %s\n\n%s\n\nUsage:\n"
 	lineFmt   string = "\t%s\t\t%s [Default(%s): %s]\n"
 )
 
@@ -21,7 +21,7 @@ func (o *Specification) ShowUsage(arg *string) (err error, val *Argument) {
 	*/
 	errors.Assert(arg != nil, "Expected non nil argument.")
 	output := ""
-	output = fmt.Sprintf(bannerFmt, o.ProgramName, o.Version, o.Copyright)
+	output = fmt.Sprintf(bannerFmt, o.ProgramName, o.Version, o.Copyright, o.Description)
 	for flag, arg := range o.Argument {
 		output += fmt.Sprintf(lineFmt, flag, arg.Help, arg.Type.String(), arg.Default)
 	}
