@@ -95,6 +95,14 @@ func main() {
 				cli.ParserEnum("a","b","c"),
 				cli.ExpectValue,
 			},
+			"myListOption": {
+				1002, // >= 1000 is a project-defined FlagId
+				cli.String,
+				"a",
+				"This is a Second Option",
+				cli.ParserList(","),
+				cli.ExpectValue,
+			},
 		},
 	}
 	var ui cli.CommandLine
