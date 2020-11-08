@@ -21,7 +21,7 @@ func TestCommandLine_Parse_Debug(t *testing.T) {
 				None,
 				"false",
 				"This is a flag.",
-				ParserFlag(),
+				ParserFlag(debugArgLong),
 				ExpectNone, //We expect None (no value) which will expect a flag in the end.
 			},
 		},

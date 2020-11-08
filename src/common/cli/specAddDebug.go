@@ -2,7 +2,7 @@ package cli
 
 const (
 	debugHelpText string = "Show debug logging"
-	debugDefault  string = ""
+	debugDefault  string = "false"
 	debugArgLong         = "debug"
 )
 
@@ -22,7 +22,7 @@ func (o *Specification) AddDebug() {
 		Boolean,
 		debugDefault,
 		debugHelpText,
-		ParserFlag(),
+		ParserFlag(debugArgLong),
 		ExpectNone,
 	}
 }

@@ -24,7 +24,7 @@ func (o *Specification) AddUsage() {
 		None,
 		usageDefault,
 		usageHelpText,
-		ParserNoop(),
+		o.ShowUsage,
 		ExpectNone,
 	}
 	//
@@ -35,7 +35,7 @@ func (o *Specification) AddUsage() {
 		None,
 		usageDefault,
 		usageHelpText,
-		ParserNoop(),
+		o.ShowUsage,
 		ExpectNone,
 	}
 }

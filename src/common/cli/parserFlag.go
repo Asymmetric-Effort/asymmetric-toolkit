@@ -4,7 +4,7 @@ package cli
 	Parse a no-value flag to produce a boolean value Argument.
  */
 
-func ParserFlag() (parser func(arg *string) (err error, val *Argument)) {
+func ParserFlag(flag string) (parser func(arg *string) (err error, val *Argument)) {
 	/*
 		Create the parser function and return it at the end.
 
@@ -17,9 +17,16 @@ func ParserFlag() (parser func(arg *string) (err error, val *Argument)) {
 		// When our parser function runs, we trump and shift the command line argument to lower-case
 		// so our evaluation is case insensitive.  This allows a simple evaluation and validation.
 		//
-		return nil, &Argument{
-			Boolean,
-			"true",
+		if *arg == flag {
+			return nil, &Argument{
+				Boolean,
+				"true",
+			}
+		}else{
+			return nil, &Argument{
+				Boolean,
+				"false",
+			}
 		}
 	}
 	//return the parser function to the Specification.

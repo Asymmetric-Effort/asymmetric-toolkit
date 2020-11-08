@@ -22,7 +22,7 @@ func (o *Specification) AddForce() {
 		Boolean,
 		forceDefault,
 		forceHelpText,
-		ParserFlag(),
+		ParserFlag(forceArgLong),
 		ExpectNone,
 	}
 }

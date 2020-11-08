@@ -1,7 +1,9 @@
 package cli
 
 import (
+	"asymmetric-effort/asymmetric-toolkit/src/common/errors"
 	"fmt"
+	"strconv"
 	"testing"
 )
 
@@ -13,37 +15,26 @@ func TestSpecification_AddDebug(t *testing.T) {
 		panic("debugArgLong mismatch")
 	}
 
-	if o.Argument != nil {
-		panic("Expected nil ArgumentDescriptor in Specification.")
-	}
+	errors.Assert(o.Argument == nil, "Expected nil ArgumentDescriptor in Specification.")
 
 	o.AddDebug()
 
-	if o.Argument == nil {
-		panic("Expected nil ArgumentDescriptor in Specification.")
-	}
+	errors.Assert(o.Argument != nil, "Expected nil ArgumentDescriptor in Specification.")
+	errors.Assert(o.Argument[debugArgLong].FlagId == flagDebug,
+		fmt.Sprintf("(%s) expected.  FlagId:%d", debugArgLong, o.Argument[debugArgLong].FlagId))
+	errors.Assert(o.Argument[debugArgLong].Type == Boolean,
+		fmt.Sprintf("String Argument type expected.  Type:%d", o.Argument[debugArgLong].Type))
+	errors.Assert(o.Argument[debugArgLong].Default == debugDefault, fmt.Sprintf("Default should be empty for %s", debugArgLong))
+	errors.Assert(o.Argument[debugArgLong].Help == debugHelpText, "usageHelpText mismatch")
+	errors.Assert(o.Argument[debugArgLong].Parse != nil, "Expect non-nil function pointer")
 
-	if o.Argument[debugArgLong].FlagId != flagDebug {
-		panic(fmt.Sprintf("(%s) expected.  FlagId:%d", debugArgLong, o.Argument[debugArgLong].FlagId))
-	}
+	errors.Assert(o.Argument[debugArgLong].Expects == ExpectNone, "Next expected should be ExpectNone")
 
-	if o.Argument[debugArgLong].Type != Boolean {
-		panic(fmt.Sprintf("String Argument type expected.  Type:%d", o.Argument[debugArgLong].Type))
+	val, err := strconv.ParseBool(o.Argument[debugArgLong].Default)
+	if err != nil {
+		panic(err)
 	}
-
-	if o.Argument[debugArgLong].Default != debugDefault {
-		panic(fmt.Sprintf("Default should be empty for %s", debugArgLong))
-	}
-
-	if o.Argument[debugArgLong].Help != debugHelpText {
-		panic("usageHelpText mismatch")
-	}
-
-	if o.Argument[debugArgLong].Parse == nil {
-		panic("Expect non-nil function pointer")
-	}
-
-	if o.Argument[debugArgLong].Expects != ExpectNone {
-		panic("Next expected should be ExpectNone")
+	if val {
+		panic("Default should be false for debug flag.")
 	}
 }

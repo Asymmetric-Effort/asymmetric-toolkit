@@ -23,7 +23,8 @@ func (o *CommandLine) Parse(spec *Specification, args []string) (exit bool, err 
 
 	spec.AddUsage()   // If our help flags (-h and --help) are not set, we will add them here.
 	spec.AddVersion() // If our version flags (-v and --version) are not set, we will add them here.
-	spec.AddDebug()   // If our debug flag (--debug) is not set, we will add them here.
+	spec.AddDebug()   // If our debug flag (--debug) is not set, we will add it here.
+	spec.AddForce()   // If our force flag (--force) is not set, we will add it here.
 
 	spec.EnsureUniqueFlagId() //Scan the specification.
 
