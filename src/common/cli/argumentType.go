@@ -10,9 +10,11 @@ package cli
 type ArgumentType int
 
 const (
-	None       ArgumentType = 0
-	String     ArgumentType = 1
-	Integer    ArgumentType = 2
-	Float      ArgumentType = 3
-	Boolean    ArgumentType = 4
+	None          ArgumentType = 0
+	String        ArgumentType = 1
+	Integer       ArgumentType = 2
+	Float         ArgumentType = 3
+	Boolean       ArgumentType = 4
+	argumentTypes              = "None,String,Integer,Float,Boolean"
+	comma                      = ","
 )

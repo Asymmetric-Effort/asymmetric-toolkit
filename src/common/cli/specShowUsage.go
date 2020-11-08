@@ -12,7 +12,7 @@ import (
 
 const (
 	bannerFmt string = "\n%s (%s) %s\n\nUsage:\n"
-	lineFmt   string = "\t%s\t\t%s [Default: %s]\n"
+	lineFmt   string = "\t%s\t\t%s [Default(%s): %s]\n"
 )
 
 func (o *Specification) ShowUsage(arg *string) (err error, val *Argument) {
@@ -23,7 +23,7 @@ func (o *Specification) ShowUsage(arg *string) (err error, val *Argument) {
 	output := ""
 	output = fmt.Sprintf(bannerFmt, o.ProgramName, o.Version, o.Copyright)
 	for flag, arg := range o.Argument {
-		output += fmt.Sprintf(lineFmt, flag, arg.Help, arg.Default)
+		output += fmt.Sprintf(lineFmt, flag, arg.Help, arg.Type.String(), arg.Default)
 	}
 	fmt.Printf(output)
 	return nil, nil
