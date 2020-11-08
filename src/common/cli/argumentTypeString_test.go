@@ -74,17 +74,10 @@ func TestArgumentType_String(t *testing.T) {
 	}
 
 	fmt.Println("lenArgTypes:", len(strings.Split(argumentTypes, comma)))
-
 	for i, test := range tests {
-
 		fmt.Println("Start: ", i)
-
 		testRun(test.pass, test.token, test.expected)
-
 		fmt.Println("Pass: ", i)
-
 		fmt.Println("---")
-
 	}
-
 }
