@@ -1,5 +1,7 @@
 package cli
-
+/*
+	Specification::AddUsage() implements the -h and --help flags.
+ */
 const (
 	usageHelpText string = "Show help / usage screen."
 	usageDefault  string = ""
@@ -9,13 +11,7 @@ const (
 )
 
 func (o *Specification) AddUsage() {
-	//
-	// Initialize the Argument object.
-	//
-	if o.Argument == nil {
-		o.Argument = make(map[string]ArgumentDescriptor)
-		o.Argument[""] = ArgumentDescriptor{}
-	}
+	o.Initialize()
 	//
 	// We add a long argument for help (--help)
 	//

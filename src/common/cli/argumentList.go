@@ -18,7 +18,7 @@ func (o *Argument) List() []string {
 		//
 		// Get the delimiter from our encoded list string (delimiterLen,delimiterStr,ListString)
 		//
-		delimLength, err := strconv.Atoi(string(o.Value))
+		delimLength, err := strconv.Atoi(string(o.Value[0]))
 		if err != nil {
 			panic(err)
 		}

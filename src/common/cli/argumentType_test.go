@@ -26,6 +26,9 @@ func TestArgumentType(t *testing.T) {
 			{
 				Boolean, 4,
 			},
+			{
+				List, 5,
+			},
 		}
 		for _, test := range tests {
 			errors.Assert(int(test.Type) == test.Value, "Expected value mismatch")

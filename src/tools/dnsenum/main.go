@@ -10,19 +10,14 @@ import (
 	"asymmetric-effort/asymmetric-toolkit/src/common/cli"
 	"asymmetric-effort/asymmetric-toolkit/src/common/logger"
 	"asymmetric-effort/asymmetric-toolkit/src/common/source"
+	"asymmetric-effort/asymmetric-toolkit/src/common/types"
 	"fmt"
 	"os"
 )
 
 const (
-	programName    = "dnsName"
-	dnsRecordTypes = "A,AAAA,MX,TXT,SOA,NS,CNAME"
-	sourceBufferSz = 1048576
-)
-
-/*
-const (
-	Version               string                = "0.0.1"
+	programName                                 = "dnsName"
+	dnsRecordTypes                              = "A,AAAA,MX,TXT,SOA,NS,CNAME"
 	defaultConcurrency    types.PositiveInteger = 1  //default number of concurrent queries to run.
 	defaultDepth          types.PositiveInteger = 1  //default number of DNS subdomain levels to attack
 	maxDepth              types.PositiveInteger = 20 //Maximum number of DNS subdomain levels to attack
@@ -30,18 +25,10 @@ const (
 	defaultFilterPattern  string                = `.+`
 	defaultDnsRecordTypes string                = "A,AAAA,MX,CNAME,NS,TXT,SOA,SRV"
 	defaultWordSize       types.PositiveInteger = 5 //For a given sequence or random string, this is the max length of the 'word'
-	DnsChars              string                = "WMEFSABCDGHIJKLNOPQRTUVXYZwmefsabcdghijklnopqrtuvxyz0123456789._-"
-	SourceBufferSz        int                   = 1048576 //Size of the source buffer which feeds the payload (attack) function.
-	ResponseBufferSz      int                   = 1048576 //Size of the response buffer for responses pending report processing.
-
-	expectFlag  int = 0
-	expectValue int = 1
-
-	ExitTerminate bool = true
-	ExitParseOk   bool = false
+	dnsChars              string                = "WMEFSABCDGHIJKLNOPQRTUVXYZwmefsabcdghijklnopqrtuvxyz0123456789._-"
+	sourceBufferSz        int                   = 1048576 //Size of the source buffer which feeds the payload (attack) function.
+	responseBufferSz      int                   = 1048576 //Size of the response buffer for responses pending report processing.
 )
-
-*/
 
 func main() {
 	//
@@ -65,11 +52,12 @@ func main() {
 					cli.String,
 					dnsRecordTypes,
 					"Specify the DNS record types to be enumerated.",
-					cli.ParseList(","),
+					cli.ParserList(","),
 					cli.ExpectValue,
 				},
 			},
 		}
+		spec.AddConcurrency()
 		var ui cli.CommandLine
 		exitProgram, err := ui.Parse(&spec, os.Args[1:])
 		if err != nil {

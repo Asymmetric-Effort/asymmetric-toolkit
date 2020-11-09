@@ -40,8 +40,16 @@ func TestCommandLine_Parse(t *testing.T) {
 					ParserInt(0, 10),
 					ExpectValue,
 				},
-				"strVal": {
+				"strList": {
 					1003, // >= 1000 is a project-defined FlagId
+					List,
+					"A,B,C,D",
+					"This tests a default list",
+					ParserList(","),
+					ExpectValue,
+				},
+				"strVal": {
+					1004, // >= 1000 is a project-defined FlagId
 					String,
 					"defaultValueShouldNotBeThere",
 					"This is a string value.",
@@ -79,23 +87,27 @@ func TestCommandLine_Parse(t *testing.T) {
 			fmt.Sprintf("3.Expected type(%v): %v", Integer, ui.Arguments[1002].Type))
 
 		errors.Assert(
-			ui.Arguments[1003].Type == String,
-			fmt.Sprintf("4.Expected type(%v): %v", String, ui.Arguments[1003].Type))
-
-		errors.Assert(
 			ui.Arguments[1000].String() == "false",
 			fmt.Sprintf("Unexpected Value:%v", ui.Arguments[1000].String()))
 
 		errors.Assert(
 			ui.Arguments[1001].String() == "10",
-			fmt.Sprintf("Unexpected Value:%v", ui.Arguments[1000].String()))
+			fmt.Sprintf("Unexpected Value:%v", ui.Arguments[1001].String()))
 
 		errors.Assert(
 			ui.Arguments[1002].String() == "5",
-			fmt.Sprintf("Unexpected Value:%v", ui.Arguments[1000].String()))
+			fmt.Sprintf("Unexpected Value:%v", ui.Arguments[1002].String()))
 
 		errors.Assert(
-			ui.Arguments[1003].String() == "myValue",
-			fmt.Sprintf("Unexpected Value:%v", ui.Arguments[1000].String()))
+			ui.Arguments[1003].String() == "A,B,C,D",
+			fmt.Sprintf("Unexpected Value:%v", ui.Arguments[1003].String()))
+
+		errors.Assert(
+			ui.Arguments[1004].Type == String,
+			fmt.Sprintf("4.Expected type(%v): %v", String, ui.Arguments[1004].Type))
+
+		errors.Assert(
+			ui.Arguments[1004].String() == "myValue",
+			fmt.Sprintf("Unexpected Value:%v", ui.Arguments[1004].String()))
 	}()
 }
