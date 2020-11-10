@@ -24,8 +24,8 @@ func TestSpecification_AddMaxWordCount(t *testing.T) {
 
 		errors.Assert(o.Argument != nil, "Expected nil ArgumentDescriptor in Specification.")
 
-		errors.Assert(o.Argument[maxWordCountArgLong].FlagId == flagSourceMaxWordCount,
-			fmt.Sprintf("(%s) expected (%d)  FlagId:%d", maxWordCountArgLong, flagSourceMaxWordCount,
+		errors.Assert(o.Argument[maxWordCountArgLong].FlagId == FlagSourceMaxWordCount,
+			fmt.Sprintf("(%s) expected (%d)  FlagId:%d", maxWordCountArgLong, FlagSourceMaxWordCount,
 				o.Argument[maxWordCountArgLong].FlagId))
 
 		errors.Assert(o.Argument[maxWordCountArgLong].Type == Integer,
@@ -46,7 +46,7 @@ func TestSpecification_AddMaxWordCount(t *testing.T) {
 			panic(err)
 		}
 		if val != testDefault {
-			panic(fmt.Sprintf("Default should be false for delay flag (%d): '%d'", flagSourceMaxWordCount, val))
+			panic(fmt.Sprintf("Default should be false for delay flag (%d): '%d'", FlagSourceMaxWordCount, val))
 		}
 	}()
 }

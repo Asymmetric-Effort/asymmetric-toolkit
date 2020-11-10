@@ -7,8 +7,8 @@ import (
 
 func TestArgumentFlags(t *testing.T){
 	assert.Error(noFlag == 0, "Expect 0")
-	assert.Error(flagHelp == 1, "Expect 1")
-	assert.Error(flagVersion == 2, "Expect 2")
-	assert.Error(flagDebug == 3, "Expect 3")
+	assert.Error(FlagHelp == 1, "Expect 1")
+	assert.Error(FlagVersion == 2, "Expect 2")
+	assert.Error(FlagDebug == 3, "Expect 3")
 
 }

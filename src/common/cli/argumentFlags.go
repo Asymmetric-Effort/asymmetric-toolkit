@@ -12,33 +12,33 @@ type ArgumentFlag int
 
 const ( //Reserved 0...1000 for core use.  1000+ are program-defined.
 	noFlag      ArgumentFlag = 0 // noop
-	flagHelp    ArgumentFlag = 1 // Displays usage
-	flagVersion ArgumentFlag = 2 // Displays version string
-	flagDebug   ArgumentFlag = 3 // Indicates debug logging.
+	FlagHelp    ArgumentFlag = 1 // Displays usage
+	FlagVersion ArgumentFlag = 2 // Displays version string
+	FlagDebug   ArgumentFlag = 3 // Indicates debug logging.
 
-	// ToDo: Add as a common flag in common/cli
-	flagForce  ArgumentFlag = 4 // Indicates force is to be used in all operations.
-	flagOutput ArgumentFlag = 5 // Identifies the target (path/file, url) where results should be written.
+	// ToDo: Add as a common Flag in common/cli
+	FlagForce  ArgumentFlag = 4 // Indicates force is to be used in all operations.
+	FlagOutput ArgumentFlag = 5 // Identifies the target (path/file, url) where results should be written.
 
-	// General attack flags
-	//		These flags are common across many tools
-	flagConcurrency ArgumentFlag = 10 // Indicates attack concurrency (number of attackers)
-	flagDelay       ArgumentFlag = 11 // Indicates delay between attacks by any autonomous process.
-	flagDnsServer   ArgumentFlag = 12 // Specifies the DNS server to be used by attackers.
-	flagDomain      ArgumentFlag = 13 // Specifies a fully qualified domain name.
-	flagTimeout     ArgumentFlag = 14 // Provides a connection timeout for any attacker process.
+	// General attack Flags
+	//		These Flags are common across many tools
+	FlagConcurrency ArgumentFlag = 10 // Indicates attack concurrency (number of attackers)
+	FlagDelay       ArgumentFlag = 11 // Indicates delay between attacks by any autonomous process.
+	FlagDnsServer   ArgumentFlag = 12 // Specifies the DNS server to be used by attackers.
+	FlagDomain      ArgumentFlag = 13 // Specifies a fully qualified domain name.
+	FlagTimeout     ArgumentFlag = 14 // Provides a connection timeout for any attacker process.
 
-	// Enumeration flags
-	flagDepth ArgumentFlag = 40 // Indicates the depth of any enumeration attack.
+	// Enumeration Flags
+	FlagDepth ArgumentFlag = 40 // Indicates the depth of any enumeration attack.
 
-	// Source-Control flags
-	flagSource             ArgumentFlag = 60 // Declares a source mode (random, sequential, dictionary)
-	flagSourceDictionary   ArgumentFlag = 61 // Defines a dictionary path/filename (requires --source dictionary)
-	flagSourceMaxWordCount ArgumentFlag = 62 // Defines the maximum number of words to generate.
-	flagSourcePattern      ArgumentFlag = 63 // Specifies a regex patterns all generated words must match to be used.
-	flagSourceMinWordSize  ArgumentFlag = 64 // defines the minimum word size a generator should target.
-	flagSourceMaxWordSize  ArgumentFlag = 65 // defines the maximum word size a generator should target.
+	// Source-Control Flags
+	FlagSource             ArgumentFlag = 60 // Declares a source mode (random, sequential, dictionary)
+	FlagSourceDictionary   ArgumentFlag = 61 // Defines a dictionary path/filename (requires --source dictionary)
+	FlagSourceMaxWordCount ArgumentFlag = 62 // Defines the maximum number of words to generate.
+	FlagSourcePattern      ArgumentFlag = 63 // Specifies a regex patterns all generated words must match to be used.
+	FlagSourceMinWordSize  ArgumentFlag = 64 // defines the minimum word size a generator should target.
+	FlagSourceMaxWordSize  ArgumentFlag = 65 // defines the maximum word size a generator should target.
 
-	// DNS tool-specific flags
-	flagDnsRecordType ArgumentFlag = 900 //Dns record type identifier flag.
+	// DNS tool-specific Flags
+	FlagDnsRecordType ArgumentFlag = 900 //Dns record type identifier Flag.
 )

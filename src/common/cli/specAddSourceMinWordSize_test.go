@@ -24,8 +24,8 @@ func TestSpecification_AddMinWordSize(t *testing.T) {
 
 		errors.Assert(o.Argument != nil, "Expected nil ArgumentDescriptor in Specification.")
 
-		errors.Assert(o.Argument[minWordSizeArgLong].FlagId == flagSourceMinWordSize,
-			fmt.Sprintf("(%s) expected (%d)  FlagId:%d", minWordSizeArgLong, flagSourceMinWordSize,
+		errors.Assert(o.Argument[minWordSizeArgLong].FlagId == FlagSourceMinWordSize,
+			fmt.Sprintf("(%s) expected (%d)  FlagId:%d", minWordSizeArgLong, FlagSourceMinWordSize,
 				o.Argument[minWordSizeArgLong].FlagId))
 
 		errors.Assert(o.Argument[minWordSizeArgLong].Type == Integer,
@@ -46,7 +46,7 @@ func TestSpecification_AddMinWordSize(t *testing.T) {
 			panic(err)
 		}
 		if val != testDefault {
-			panic(fmt.Sprintf("Default should be false for delay flag (%d): '%d'", flagSourceMinWordSize, val))
+			panic(fmt.Sprintf("Default should be false for delay flag (%d): '%d'", FlagSourceMinWordSize, val))
 		}
 	}()
 }

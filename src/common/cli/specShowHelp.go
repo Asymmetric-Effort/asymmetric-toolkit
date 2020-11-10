@@ -1,7 +1,7 @@
 package cli
 
 /*
-	ShowUsage is a ParserFunction, following the same pattern.  However, this parser function will not actually
+	ShowHelp is a ParserFunction, following the same pattern.  However, this parser function will not actually
 	parse any argument or create any value.  It simply calculates then displays program usage information (flags, etc).
 */
 
@@ -15,7 +15,7 @@ const (
 	lineFmt   string = "\t%s\t\t%s [Default(%s): %s]\n"
 )
 
-func (o *Specification) ShowUsage(arg *string) (err error, val *Argument) {
+func (o *Specification) ShowHelp(arg *string) (err error, val *Argument) {
 	/*
 		Calculate and show the usage message (all help messages).
 	*/

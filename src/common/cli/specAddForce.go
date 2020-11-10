@@ -12,7 +12,7 @@ func (o *Specification) AddForce() {
 	// We add a long argument for debug (--debug)
 	//
 	o.Argument[forceArgLong] = ArgumentDescriptor{
-		flagForce,
+		FlagForce,
 		Boolean,
 		forceDefault,
 		forceHelpText,

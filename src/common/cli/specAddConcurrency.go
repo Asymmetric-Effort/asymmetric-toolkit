@@ -19,7 +19,7 @@ func (o *Specification) AddConcurrency(defaultValue int) {
 	}
 	o.Initialize()
 	o.Argument[concurrencyArgLong] = ArgumentDescriptor{
-		flagConcurrency,
+		FlagConcurrency,
 		Integer,
 		strconv.Itoa(defaultValue),
 		concurrencyHelpText,

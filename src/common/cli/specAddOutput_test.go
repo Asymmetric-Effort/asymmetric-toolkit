@@ -23,9 +23,9 @@ func TestSpecification_AddOutput(t *testing.T) {
 
 		errors.Assert(o.Argument != nil, "Expected nil ArgumentDescriptor in Specification.")
 
-		errors.Assert(o.Argument[outputArgLong].FlagId == flagOutput,
+		errors.Assert(o.Argument[outputArgLong].FlagId == FlagOutput,
 			fmt.Sprintf("(%s) expected (%d)  FlagId:%d",
-				outputArgLong, flagOutput, o.Argument[outputArgLong].FlagId))
+				outputArgLong, FlagOutput, o.Argument[outputArgLong].FlagId))
 
 		errors.Assert(o.Argument[outputArgLong].Type == String,
 			fmt.Sprintf("String Argument type expected.  Type:%d", o.Argument[outputArgLong].Type))
@@ -40,7 +40,7 @@ func TestSpecification_AddOutput(t *testing.T) {
 		errors.Assert(o.Argument[outputArgLong].Expects == ExpectNone, "Next expected should be ExpectNone")
 
 		if o.Argument[outputArgLong].Default != testDefault {
-			panic(fmt.Sprintf("Default should be false for output (%d)", flagOutput))
+			panic(fmt.Sprintf("Default should be false for output (%d)", FlagOutput))
 		}
 	}()
 }

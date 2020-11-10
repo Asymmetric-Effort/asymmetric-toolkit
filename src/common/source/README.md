@@ -5,7 +5,7 @@ Common Source Generator
 > This library exists to provide a commandline flag (e.g. -source),
 > its validation logic, parser and a generator of feed data.  When
 > implemented in a project, the implementing project will inherit
-> the commandline flaga and the ability to generate feed data given
+> the commandline flag and the ability to generate feed data given
 > input parameters.
 
 ## Usage

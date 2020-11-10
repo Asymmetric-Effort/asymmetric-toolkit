@@ -21,7 +21,7 @@ func (o *Specification) AddDomain(defaultValue string) {
 	}
 	o.Initialize()
 	o.Argument[domainArgLong] = ArgumentDescriptor{
-		flagDomain,
+		FlagDomain,
 		String,
 		defaultValue,
 		domainHelpText,

@@ -22,8 +22,8 @@ func TestSpecification_AddDnsRecordType(t *testing.T) {
 
 		errors.Assert(o.Argument != nil, "Expected nil ArgumentDescriptor in Specification.")
 
-		errors.Assert(o.Argument[dnsRecordTypesArgLong].FlagId == flagDnsRecordType,
-			fmt.Sprintf("(%s) expected (%d)  FlagId:%d", dnsRecordTypesArgLong, flagDnsRecordType,
+		errors.Assert(o.Argument[dnsRecordTypesArgLong].FlagId == FlagDnsRecordType,
+			fmt.Sprintf("(%s) expected (%d)  FlagId:%d", dnsRecordTypesArgLong, FlagDnsRecordType,
 				o.Argument[dnsRecordTypesArgLong].FlagId))
 
 		errors.Assert(o.Argument[dnsRecordTypesArgLong].Type == List,

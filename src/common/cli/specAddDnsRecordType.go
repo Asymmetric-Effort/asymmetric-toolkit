@@ -14,7 +14,7 @@ func (o *Specification) AddDnsRecordType(defaultValue string) {
 	//
 	o.Initialize()
 	o.Argument[dnsRecordTypesArgLong] = ArgumentDescriptor{
-		flagDnsRecordType,
+		FlagDnsRecordType,
 		List,
 		defaultValue,
 		dnsRecordTypesHelpText,

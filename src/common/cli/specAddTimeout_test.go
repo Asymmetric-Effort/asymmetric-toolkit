@@ -24,8 +24,8 @@ func TestSpecification_AddTimeout(t *testing.T) {
 
 		errors.Assert(o.Argument != nil, "Expected nil ArgumentDescriptor in Specification.")
 
-		errors.Assert(o.Argument[timeoutArgLong].FlagId == flagTimeout,
-			fmt.Sprintf("(%s) expected (%d)  FlagId:%d", timeoutArgLong, flagTimeout,
+		errors.Assert(o.Argument[timeoutArgLong].FlagId == FlagTimeout,
+			fmt.Sprintf("(%s) expected (%d)  FlagId:%d", timeoutArgLong, FlagTimeout,
 				o.Argument[timeoutArgLong].FlagId))
 
 		errors.Assert(o.Argument[timeoutArgLong].Type == Integer,
@@ -46,7 +46,7 @@ func TestSpecification_AddTimeout(t *testing.T) {
 			panic(err)
 		}
 		if val != testTimeoutDefault {
-			panic(fmt.Sprintf("Default should be false for timeout flag (%d): '%d'", flagTimeout, val))
+			panic(fmt.Sprintf("Default should be false for timeout flag (%d): '%d'", FlagTimeout, val))
 		}
 	}()
 }

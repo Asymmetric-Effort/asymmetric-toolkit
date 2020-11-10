@@ -27,7 +27,7 @@ func (o *Specification) AddSourcePattern(defaultValue string) {
 		panic(fmt.Sprintf("defaultValue must be a valid regular expression. Error:%v", err))
 	}
 	o.Argument[sourcePatternArgLong] = ArgumentDescriptor{
-		flagSourcePattern,
+		FlagSourcePattern,
 		String,
 		defaultValue,
 		sourcePatternHelpText,

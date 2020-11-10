@@ -18,7 +18,7 @@ func (o *Specification) AddDelay(defaultValue int) {
 	//
 	o.Initialize()
 	o.Argument[delayArgLong] = ArgumentDescriptor{
-		flagDelay,
+		FlagDelay,
 		Integer,
 		strconv.Itoa(defaultValue),
 		delayHelpText,

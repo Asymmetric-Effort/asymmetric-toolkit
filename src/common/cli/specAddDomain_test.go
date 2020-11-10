@@ -23,9 +23,9 @@ func TestSpecification_AddDomain(t *testing.T) {
 
 		errors.Assert(o.Argument != nil, "Expected nil ArgumentDescriptor in Specification.")
 
-		errors.Assert(o.Argument[domainArgLong].FlagId == flagDomain,
+		errors.Assert(o.Argument[domainArgLong].FlagId == FlagDomain,
 			fmt.Sprintf("(%s) expected (%d)  FlagId:%d",
-				domainArgLong, flagDomain, o.Argument[domainArgLong].FlagId))
+				domainArgLong, FlagDomain, o.Argument[domainArgLong].FlagId))
 
 		errors.Assert(o.Argument[domainArgLong].Type == String,
 			fmt.Sprintf("String Argument type expected.  Type:%d", o.Argument[domainArgLong].Type))
@@ -40,7 +40,7 @@ func TestSpecification_AddDomain(t *testing.T) {
 		errors.Assert(o.Argument[domainArgLong].Expects == ExpectNone, "Next expected should be ExpectNone")
 
 		if o.Argument[domainArgLong].Default != testDefault {
-			panic(fmt.Sprintf("Default should be false for domain flag (%d)", flagDomain))
+			panic(fmt.Sprintf("Default should be false for domain flag (%d)", FlagDomain))
 		}
 	}()
 }

@@ -16,6 +16,8 @@ const (
 	Float         ArgumentType = 3
 	Boolean       ArgumentType = 4
 	List          ArgumentType = 5
+
 	argumentTypes              = "None,String,Integer,Float,Boolean,List"
+
 	comma                      = ","
 )

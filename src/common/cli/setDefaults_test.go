@@ -7,11 +7,11 @@ import (
 )
 
 func TestCommandLine_SetDefaults(t *testing.T) {
-	func() { //test AddUsage only
+	func() { //test AddHelp only
 		var o CommandLine
 		var spec Specification
 		fmt.Println("Test 1: --help ...starting")
-		spec.AddUsage()
+		spec.AddHelp()
 		err := o.SetDefaults(&spec) //Set defaults in the specification.
 		if err != nil {
 			panic(err)
@@ -29,8 +29,8 @@ func TestCommandLine_SetDefaults(t *testing.T) {
 		if err != nil {
 			panic(err)
 		}
-		errors.Assert(o.Arguments[flagDebug].Value=="false","Expect debug false.  Got "+o.Arguments[flagDebug].Value)
-		errors.Assert(!o.Arguments[flagDebug].Boolean(),"Expect debug false.  Got "+o.Arguments[flagDebug].Value)
+		errors.Assert(o.Arguments[FlagDebug].Value=="false","Expect debug false.  Got "+o.Arguments[FlagDebug].Value)
+		errors.Assert(!o.Arguments[FlagDebug].Boolean(),"Expect debug false.  Got "+o.Arguments[FlagDebug].Value)
 		fmt.Println("Test 2 --debug ...passes")
 	}()
 
@@ -44,8 +44,8 @@ func TestCommandLine_SetDefaults(t *testing.T) {
 		if err != nil {
 			panic(err)
 		}
-		errors.Assert(o.Arguments[flagForce].Value=="false","Expect force false.  Got "+o.Arguments[flagForce].Value)
-		errors.Assert(!o.Arguments[flagForce].Boolean(),"Expect force false.  Got "+o.Arguments[flagForce].Value)
+		errors.Assert(o.Arguments[FlagForce].Value=="false","Expect force false.  Got "+o.Arguments[FlagForce].Value)
+		errors.Assert(!o.Arguments[FlagForce].Boolean(),"Expect force false.  Got "+o.Arguments[FlagForce].Value)
 		fmt.Println("Test 3 --force ...passes")
 	}()
 
@@ -66,7 +66,7 @@ func TestCommandLine_SetDefaults(t *testing.T) {
 		var o CommandLine
 		var spec Specification
 		fmt.Println("Test 5")
-		spec.AddUsage()
+		spec.AddHelp()
 		spec.AddDebug()
 		spec.AddForce()
 		spec.AddVersion()
@@ -75,10 +75,10 @@ func TestCommandLine_SetDefaults(t *testing.T) {
 		if err != nil {
 			panic(err)
 		}
-		errors.Assert(o.Arguments[flagDebug].Value=="false","Expect debug false.  Got "+o.Arguments[flagDebug].Value)
-		errors.Assert(!o.Arguments[flagDebug].Boolean(),"Expect debug false.  Got "+o.Arguments[flagDebug].Value)
-		errors.Assert(o.Arguments[flagForce].Value=="false","Expect force false.  Got "+o.Arguments[flagForce].Value)
-		errors.Assert(!o.Arguments[flagForce].Boolean(),"Expect force false.  Got "+o.Arguments[flagForce].Value)
+		errors.Assert(o.Arguments[FlagDebug].Value=="false","Expect debug false.  Got "+o.Arguments[FlagDebug].Value)
+		errors.Assert(!o.Arguments[FlagDebug].Boolean(),"Expect debug false.  Got "+o.Arguments[FlagDebug].Value)
+		errors.Assert(o.Arguments[FlagForce].Value=="false","Expect force false.  Got "+o.Arguments[FlagForce].Value)
+		errors.Assert(!o.Arguments[FlagForce].Boolean(),"Expect force false.  Got "+o.Arguments[FlagForce].Value)
 		fmt.Println("Test 5 ALL ...passes")
 	}()
 	/*

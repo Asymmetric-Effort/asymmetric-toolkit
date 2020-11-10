@@ -15,7 +15,7 @@ func (o *Specification) AddDebug() {
 	// We add a long argument for debug (--debug)
 	//
 	o.Argument[debugArgLong] = ArgumentDescriptor{
-		flagDebug,
+		FlagDebug,
 		Boolean,
 		debugDefault,
 		debugHelpText,

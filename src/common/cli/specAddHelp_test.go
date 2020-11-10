@@ -21,7 +21,7 @@ func TestSpecification_AddUsage(t *testing.T) {
 		panic("Expected nil ArgumentDescriptor in Specification.")
 	}
 
-	o.AddUsage()
+	o.AddHelp()
 
 	if o.Argument == nil {
 		panic("Expected nil ArgumentDescriptor in Specification.")
@@ -29,7 +29,7 @@ func TestSpecification_AddUsage(t *testing.T) {
 
 	for i, argFlag := range []string{helpArgShort, helpArgLong} {
 
-		if o.Argument[argFlag].FlagId != flagHelp {
+		if o.Argument[argFlag].FlagId != FlagHelp {
 			panic(fmt.Sprintf("%d(%s) expected.  FlagId:%d", i, argFlag, o.Argument[argFlag].FlagId))
 		}
 

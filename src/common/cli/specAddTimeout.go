@@ -20,7 +20,7 @@ func (o *Specification) AddTimeout(defaultValue int) {
 	//
 	o.Initialize()
 	o.Argument[timeoutArgLong] = ArgumentDescriptor{
-		flagTimeout,
+		FlagTimeout,
 		Integer,
 		strconv.Itoa(func()int{
 			if defaultValue == 0 {

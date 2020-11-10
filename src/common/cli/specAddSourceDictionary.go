@@ -1,9 +1,5 @@
 package cli
 
-import (
-	"strings"
-)
-
 /*
 	Specification::AddSourceDictionary() implements --dictionary <string> flags.
 */
@@ -16,12 +12,9 @@ func (o *Specification) AddSourceDictionary(defaultValue string) {
 	//
 	// Initialize the Argument object.
 	//
-	if strings.TrimSpace(defaultValue) == "" {
-		panic("source file/path cannot be empty string.")
-	}
 	o.Initialize()
 	o.Argument[sourceDictionaryArgLong] = ArgumentDescriptor{
-		flagSourceDictionary,
+		FlagSourceDictionary,
 		String,
 		defaultValue,
 		sourceDictionaryHelpText,

@@ -35,7 +35,7 @@ func TestSpecification_ShowUsage(t *testing.T) {
 			ExpectNone,
 		}
 		output := errors.CaptureStdOut(func() {
-			_, err := o.ShowUsage(&arg)
+			_, err := o.ShowHelp(&arg)
 			if err != nil {
 				panic(err)
 			}

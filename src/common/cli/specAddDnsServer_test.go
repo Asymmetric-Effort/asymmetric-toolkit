@@ -23,9 +23,9 @@ func TestSpecification_AddDnsServer(t *testing.T) {
 
 		errors.Assert(o.Argument != nil, "Expected nil ArgumentDescriptor in Specification.")
 
-		errors.Assert(o.Argument[dnsServerArgLong].FlagId == flagDnsServer,
+		errors.Assert(o.Argument[dnsServerArgLong].FlagId == FlagDnsServer,
 			fmt.Sprintf("(%s) expected (%d)  FlagId:%d",
-				dnsServerArgLong, flagDnsServer, o.Argument[dnsServerArgLong].FlagId))
+				dnsServerArgLong, FlagDnsServer, o.Argument[dnsServerArgLong].FlagId))
 
 		errors.Assert(o.Argument[dnsServerArgLong].Type == String,
 			fmt.Sprintf("String Argument type expected.  Type:%d", o.Argument[dnsServerArgLong].Type))
@@ -41,7 +41,7 @@ func TestSpecification_AddDnsServer(t *testing.T) {
 		errors.Assert(o.Argument[dnsServerArgLong].Expects == ExpectNone, "Next expected should be ExpectNone")
 
 		if o.Argument[dnsServerArgLong].Default != testDnsServerDefault {
-			panic(fmt.Sprintf("Default should be false for dnsServer flag (%d)", flagDnsServer))
+			panic(fmt.Sprintf("Default should be false for dnsServer flag (%d)", FlagDnsServer))
 		}
 	}()
 }

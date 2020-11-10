@@ -21,7 +21,7 @@ func (o *Specification) AddDnsServer(defaultValue string) {
 	}
 	o.Initialize()
 	o.Argument[dnsServerArgLong] = ArgumentDescriptor{
-		flagDnsServer,
+		FlagDnsServer,
 		String,
 		defaultValue,
 		dnsServerHelpText,

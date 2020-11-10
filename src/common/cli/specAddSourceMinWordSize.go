@@ -18,7 +18,7 @@ func (o *Specification) AddMinWordSize(defaultValue int) {
 	//
 	o.Initialize()
 	o.Argument[minWordSizeArgLong] = ArgumentDescriptor{
-		flagSourceMinWordSize,
+		FlagSourceMinWordSize,
 		Integer,
 		strconv.Itoa(defaultValue),
 		minWordSizeHelpText,

@@ -21,7 +21,7 @@ func TestSpecification_AddDebug(t *testing.T) {
 
 	errors.Assert(o.Argument != nil, "Expected nil ArgumentDescriptor in Specification.")
 
-	errors.Assert(o.Argument[debugArgLong].FlagId == flagDebug,
+	errors.Assert(o.Argument[debugArgLong].FlagId == FlagDebug,
 		fmt.Sprintf("(%s) expected.  FlagId:%d", debugArgLong, o.Argument[debugArgLong].FlagId))
 
 	errors.Assert(o.Argument[debugArgLong].Type == Boolean,

@@ -23,9 +23,9 @@ func TestSpecification_AddSource(t *testing.T) {
 
 		errors.Assert(o.Argument != nil, "Expected nil ArgumentDescriptor in Specification.")
 
-		errors.Assert(o.Argument[sourceArgLong].FlagId == flagSource,
+		errors.Assert(o.Argument[sourceArgLong].FlagId == FlagSource,
 			fmt.Sprintf("(%s) expected (%d)  FlagId:%d",
-				sourceArgLong, flagSource, o.Argument[sourceArgLong].FlagId))
+				sourceArgLong, FlagSource, o.Argument[sourceArgLong].FlagId))
 
 		errors.Assert(o.Argument[sourceArgLong].Type == String,
 			fmt.Sprintf("String Argument type expected.  Type:%d", o.Argument[sourceArgLong].Type))
@@ -41,7 +41,7 @@ func TestSpecification_AddSource(t *testing.T) {
 		errors.Assert(o.Argument[sourceArgLong].Expects == ExpectNone, "Next expected should be ExpectNone")
 
 		if o.Argument[sourceArgLong].Default != testDefault {
-			panic(fmt.Sprintf("Default should be false for domain flag (%d)", flagSource))
+			panic(fmt.Sprintf("Default should be false for domain flag (%d)", FlagSource))
 		}
 	}()
 }

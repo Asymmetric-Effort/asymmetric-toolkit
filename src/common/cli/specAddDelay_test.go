@@ -24,8 +24,8 @@ func TestSpecification_AddDelay(t *testing.T) {
 
 		errors.Assert(o.Argument != nil, "Expected nil ArgumentDescriptor in Specification.")
 
-		errors.Assert(o.Argument[delayArgLong].FlagId == flagDelay,
-			fmt.Sprintf("(%s) expected (%d)  FlagId:%d", delayArgLong, flagDelay,
+		errors.Assert(o.Argument[delayArgLong].FlagId == FlagDelay,
+			fmt.Sprintf("(%s) expected (%d)  FlagId:%d", delayArgLong, FlagDelay,
 				o.Argument[delayArgLong].FlagId))
 
 		errors.Assert(o.Argument[delayArgLong].Type == Integer,
@@ -46,7 +46,7 @@ func TestSpecification_AddDelay(t *testing.T) {
 			panic(err)
 		}
 		if val != testDelayDefault {
-			panic(fmt.Sprintf("Default should be false for delay flag (%d): '%d'", flagDelay, val))
+			panic(fmt.Sprintf("Default should be false for delay flag (%d): '%d'", FlagDelay, val))
 		}
 	}()
 }

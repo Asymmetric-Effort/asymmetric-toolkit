@@ -21,7 +21,7 @@ func (o *Specification) AddOutput(defaultValue string) {
 	}
 	o.Initialize()
 	o.Argument[outputArgLong] = ArgumentDescriptor{
-		flagOutput,
+		FlagOutput,
 		String,
 		defaultValue,
 		outputHelpText,

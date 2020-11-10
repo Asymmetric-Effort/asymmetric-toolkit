@@ -34,7 +34,7 @@ func TestSpecification_AddVersion(t *testing.T) {
 
 	for i, argFlag := range []string{versionArgShort, versionArgLong} {
 
-		if o.Argument[argFlag].FlagId != flagVersion {
+		if o.Argument[argFlag].FlagId != FlagVersion {
 			panic(fmt.Sprintf("%d(%s) expected.  FlagId:%d", i, argFlag, o.Argument[argFlag].FlagId))
 		}
 

@@ -21,7 +21,7 @@ func (o *Specification) AddSource(defaultValue string) {
 	}
 	o.Initialize()
 	o.Argument[sourceArgLong] = ArgumentDescriptor{
-		flagSource,
+		FlagSource,
 		String,
 		defaultValue,
 		sourceHelpText,

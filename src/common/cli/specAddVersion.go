@@ -13,7 +13,7 @@ func (o *Specification) AddVersion() {
 	// We add a long argument for version (--version)
 	//
 	o.Argument[versionArgLong] = ArgumentDescriptor{
-		flagVersion,
+		FlagVersion,
 		None,
 		versionDefault,
 		versionHelpText,
@@ -24,7 +24,7 @@ func (o *Specification) AddVersion() {
 	// We add a short argument for version (-v)
 	//
 	o.Argument[versionArgShort] = ArgumentDescriptor{
-		flagVersion,
+		FlagVersion,
 		None,
 		versionDefault,
 		versionHelpText,

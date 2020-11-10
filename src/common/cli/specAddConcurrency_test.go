@@ -21,7 +21,7 @@ func TestSpecification_AddConcurrency(t *testing.T) {
 
 	errors.Assert(o.Argument != nil, "Expected nil ArgumentDescriptor in Specification.")
 
-	errors.Assert(o.Argument[concurrencyArgLong].FlagId == flagConcurrency,
+	errors.Assert(o.Argument[concurrencyArgLong].FlagId == FlagConcurrency,
 		fmt.Sprintf("(%s) expected.  FlagId:%d", concurrencyArgLong, o.Argument[concurrencyArgLong].FlagId))
 
 	errors.Assert(o.Argument[concurrencyArgLong].Type == Integer,

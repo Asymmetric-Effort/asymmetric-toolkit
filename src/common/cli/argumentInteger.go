@@ -5,7 +5,10 @@ package cli
 	and return the same integer value to the caller.
 */
 
-import "strconv"
+import (
+	"fmt"
+	"strconv"
+)
 
 func (o *Argument) Integer() int {
 	if o.Type == Integer {
@@ -17,6 +20,7 @@ func (o *Argument) Integer() int {
 			return i
 		}()
 	} else {
-		panic("Type mismatch.  Attempted to extract integer from non-integer Argument.")
+		panic(fmt.Sprintf("Type mismatch.  "+
+			"Attempted to extract integer from non-integer (%s) Argument.", o.Type.String()))
 	}
 }

@@ -18,7 +18,7 @@ func (o *Specification) AddMaxWordSize(defaultValue int) {
 	//
 	o.Initialize()
 	o.Argument[maxWordSizeArgLong] = ArgumentDescriptor{
-		flagSourceMaxWordSize,
+		FlagSourceMaxWordSize,
 		Integer,
 		strconv.Itoa(defaultValue),
 		maxWordSizeHelpText,

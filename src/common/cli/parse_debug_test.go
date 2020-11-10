@@ -27,7 +27,7 @@ func TestCommandLine_Parse_Debug(t *testing.T) {
 		},
 	}
 	var ui CommandLine
-	_, err := ui.Parse(&spec, args)
+	_, err := ui.Parse(&spec, &args)
 	if err != nil {
 		panic(err)
 	}

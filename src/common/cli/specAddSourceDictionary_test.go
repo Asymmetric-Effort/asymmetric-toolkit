@@ -23,9 +23,9 @@ func TestSpecification_AddSourceDictionary(t *testing.T) {
 
 		errors.Assert(o.Argument != nil, "Expected nil ArgumentDescriptor in Specification.")
 
-		errors.Assert(o.Argument[sourceDictionaryArgLong].FlagId == flagSourceDictionary,
+		errors.Assert(o.Argument[sourceDictionaryArgLong].FlagId == FlagSourceDictionary,
 			fmt.Sprintf("(%s) expected (%d)  FlagId:%d",
-				sourceDictionaryArgLong, flagSourceDictionary, o.Argument[sourceDictionaryArgLong].FlagId))
+				sourceDictionaryArgLong, FlagSourceDictionary, o.Argument[sourceDictionaryArgLong].FlagId))
 
 		errors.Assert(o.Argument[sourceDictionaryArgLong].Type == String,
 			fmt.Sprintf("String Argument type expected.  Type:%d", o.Argument[sourceDictionaryArgLong].Type))
@@ -41,7 +41,7 @@ func TestSpecification_AddSourceDictionary(t *testing.T) {
 		errors.Assert(o.Argument[sourceDictionaryArgLong].Expects == ExpectNone, "Next expected should be ExpectNone")
 
 		if o.Argument[sourceDictionaryArgLong].Default != testDefault {
-			panic(fmt.Sprintf("Default should be false for domain flag (%d)", flagSourceDictionary))
+			panic(fmt.Sprintf("Default should be false for domain flag (%d)", FlagSourceDictionary))
 		}
 	}()
 }

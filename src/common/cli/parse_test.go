@@ -59,20 +59,20 @@ func TestCommandLine_Parse(t *testing.T) {
 			},
 		}
 		var ui CommandLine
-		_, err := ui.Parse(&spec, args)
+		_, err := ui.Parse(&spec, &args)
 		if err != nil {
 			panic(err)
 		}
 
-		errors.Assert(ui.Arguments[flagHelp] == nil, "Expected nil help argument")
+		errors.Assert(ui.Arguments[FlagHelp] == nil, "Expected nil help argument")
 
-		errors.Assert(ui.Arguments[flagVersion] == nil, "Expected nil version argument")
+		errors.Assert(ui.Arguments[FlagVersion] == nil, "Expected nil version argument")
 
-		errors.Assert(ui.Arguments[flagDebug] != nil, "Expected non-nil debug argument")
+		errors.Assert(ui.Arguments[FlagDebug] != nil, "Expected non-nil debug argument")
 
-		errors.Assert(!ui.Arguments[flagDebug].Boolean(), "Expected false debug argument")
+		errors.Assert(!ui.Arguments[FlagDebug].Boolean(), "Expected false debug argument")
 		/*
-			errors.Assert(ui.Arguments[flagForce] == nil , "Expected nil force argument")
+			errors.Assert(ui.Arguments[FlagForce] == nil , "Expected nil force argument")
 		*/
 		errors.Assert(
 			ui.Arguments[1000].Type == Boolean,

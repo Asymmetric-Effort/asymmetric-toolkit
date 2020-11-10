@@ -23,7 +23,7 @@ func TestSpecification_AddForce(t *testing.T) {
 		panic("Expected nil ArgumentDescriptor in Specification.")
 	}
 
-	if o.Argument[forceArgLong].FlagId != flagForce {
+	if o.Argument[forceArgLong].FlagId != FlagForce {
 		panic(fmt.Sprintf("(%s) expected.  FlagId:%d", forceArgLong, o.Argument[forceArgLong].FlagId))
 	}
 

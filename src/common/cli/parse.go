@@ -9,7 +9,7 @@ import (
 	"fmt"
 )
 
-func (o *CommandLine) Parse(spec *Specification, args []string) (exit bool, err error) {
+func (o *CommandLine) Parse(spec *Specification, args *[]string) (exit bool, err error) {
 	/*
 		Parse the existing command line arguments, perform validation and store the
 		values into the internal state.
@@ -21,19 +21,23 @@ func (o *CommandLine) Parse(spec *Specification, args []string) (exit bool, err 
 	var expected NextExpected = ExpectFlag
 	var lastFlag *ArgumentDescriptor = nil
 
-	spec.AddUsage()   // If our help flags (-h and --help) are not set, we will add them here.
+	if len(*args) == 0 { // No argument?  Exit.
+		return true, nil
+	}
+
+	spec.AddHelp()    // If our help flags (-h and --help) are not set, we will add them here.
 	spec.AddVersion() // If our version flags (-v and --version) are not set, we will add them here.
 	spec.AddDebug()   // If our debug flag (--debug) is not set, we will add it here.
 	spec.AddForce()   // If our force flag (--force) is not set, we will add it here.
 
-	spec.EnsureUniqueFlagId() //Scan the specification.
+	spec.EnsureUniqueFlagId() //Scan the specification and ensure we have unique flagIDs.
 
 	if err := o.SetDefaults(spec); err != nil {
 		return true, fmt.Errorf("error applying default values in commandline processor. "+
 			"%v", err)
 	}
 
-	for _, currentArgument := range args {
+	for _, currentArgument := range *args {
 		//
 		// Iterate through all arguments on the commandline.  We expect either
 		// a long flag (--flag), a short flag (-f) or a contiguous string value.
