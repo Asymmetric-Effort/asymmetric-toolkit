@@ -38,7 +38,7 @@ func TestSpecification_AddSource(t *testing.T) {
 
 		errors.Assert(o.Argument[sourceArgLong].Parse != nil, "Expect non-nil function pointer")
 
-		errors.Assert(o.Argument[sourceArgLong].Expects == ExpectNone, "Next expected should be ExpectNone")
+		errors.Assert(o.Argument[sourceArgLong].Expects == ExpectValue, "Next expected should be ExpectValue")
 
 		if o.Argument[sourceArgLong].Default != testDefault {
 			panic(fmt.Sprintf("Default should be false for domain flag (%d)", FlagSource))

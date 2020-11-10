@@ -32,6 +32,6 @@ func (o *Specification) AddSourcePattern(defaultValue string) {
 		defaultValue,
 		sourcePatternHelpText,
 		ParserFlag(sourcePatternArgLong),
-		ExpectNone,
+		ExpectValue,
 	}
 }

@@ -37,6 +37,6 @@ func TestSpecification_AddDnsRecordType(t *testing.T) {
 
 		errors.Assert(o.Argument[dnsRecordTypesArgLong].Parse != nil, "Expect non-nil function pointer")
 
-		errors.Assert(o.Argument[dnsRecordTypesArgLong].Expects == ExpectNone, "Next expected should be ExpectNone")
+		errors.Assert(o.Argument[dnsRecordTypesArgLong].Expects == ExpectValue, "Next expected should be ExpectValue")
 	}()
 }

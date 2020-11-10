@@ -38,7 +38,7 @@ func TestSpecification_AddDepth(t *testing.T) {
 
 		errors.Assert(o.Argument[depthArgLong].Parse != nil, "Expect non-nil function pointer")
 
-		errors.Assert(o.Argument[depthArgLong].Expects == ExpectValue, "Next expected should be ExpectNone")
+		errors.Assert(o.Argument[depthArgLong].Expects == ExpectValue, "Next expected should be ExpectValue")
 
 		val, err := strconv.Atoi(o.Argument[depthArgLong].Default)
 		if err != nil {

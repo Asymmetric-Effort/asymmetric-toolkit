@@ -31,6 +31,6 @@ func (o *Specification) AddTimeout(defaultValue int) {
 		}()),
 		timeoutHelpText,
 		ParserInt(0,math.MaxInt32),
-		ExpectNone,
+		ExpectValue,
 	}
 }

@@ -38,7 +38,7 @@ func TestSpecification_AddDnsServer(t *testing.T) {
 
 		errors.Assert(o.Argument[dnsServerArgLong].Parse != nil, "Expect non-nil function pointer")
 
-		errors.Assert(o.Argument[dnsServerArgLong].Expects == ExpectNone, "Next expected should be ExpectNone")
+		errors.Assert(o.Argument[dnsServerArgLong].Expects == ExpectValue, "Next expected should be ExpectValue")
 
 		if o.Argument[dnsServerArgLong].Default != testDnsServerDefault {
 			panic(fmt.Sprintf("Default should be false for dnsServer flag (%d)", FlagDnsServer))

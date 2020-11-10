@@ -39,7 +39,7 @@ func TestSpecification_AddDelay(t *testing.T) {
 
 		errors.Assert(o.Argument[delayArgLong].Parse != nil, "Expect non-nil function pointer")
 
-		errors.Assert(o.Argument[delayArgLong].Expects == ExpectNone, "Next expected should be ExpectNone")
+		errors.Assert(o.Argument[delayArgLong].Expects == ExpectValue, "Next expected should be ExpectValue")
 
 		val, err := strconv.Atoi(o.Argument[delayArgLong].Default)
 		if err != nil {

@@ -23,6 +23,6 @@ func (o *Specification) AddMaxWordSize(defaultValue int) {
 		strconv.Itoa(defaultValue),
 		maxWordSizeHelpText,
 		ParserFlag(maxWordCountArgLong),
-		ExpectNone,
+		ExpectValue,
 	}
 }

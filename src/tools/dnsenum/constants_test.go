@@ -13,7 +13,7 @@ func TestConstants(t *testing.T) {
 
 	errors.Assert(DefaultConcurrency == 1, "DNS Concurrency mismatch")
 
-	errors.Assert(DefaultDepth == 20, "DNS Depth mismatch")
+	errors.Assert(DefaultAttackDepth == 20, "DNS Depth mismatch")
 
 	errors.Assert(DefaultTimeout == 60, "DefaultTimeout mismatch")
 

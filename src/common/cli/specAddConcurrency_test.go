@@ -34,7 +34,7 @@ func TestSpecification_AddConcurrency(t *testing.T) {
 
 	errors.Assert(o.Argument[concurrencyArgLong].Parse != nil, "Expect non-nil function pointer")
 
-	errors.Assert(o.Argument[concurrencyArgLong].Expects == ExpectNone, "Next expected should be ExpectNone")
+	errors.Assert(o.Argument[concurrencyArgLong].Expects == ExpectValue, "Next expected should be ExpectValue")
 
 	val, err := strconv.Atoi(o.Argument[concurrencyArgLong].Default)
 	if err != nil {

@@ -26,6 +26,6 @@ func (o *Specification) AddSource(defaultValue string) {
 		defaultValue,
 		sourceHelpText,
 		ParserFlag(sourceArgLong),
-		ExpectNone,
+		ExpectValue,
 	}
 }

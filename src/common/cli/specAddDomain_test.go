@@ -37,7 +37,7 @@ func TestSpecification_AddDomain(t *testing.T) {
 
 		errors.Assert(o.Argument[domainArgLong].Parse != nil, "Expect non-nil function pointer")
 
-		errors.Assert(o.Argument[domainArgLong].Expects == ExpectNone, "Next expected should be ExpectNone")
+		errors.Assert(o.Argument[domainArgLong].Expects == ExpectValue, "Next expected should be ExpectValue")
 
 		if o.Argument[domainArgLong].Default != testDefault {
 			panic(fmt.Sprintf("Default should be false for domain flag (%d)", FlagDomain))

@@ -39,7 +39,7 @@ func TestSpecification_AddMaxWordSize(t *testing.T) {
 
 		errors.Assert(o.Argument[maxWordSizeArgLong].Parse != nil, "Expect non-nil function pointer")
 
-		errors.Assert(o.Argument[maxWordSizeArgLong].Expects == ExpectNone, "Next expected should be ExpectNone")
+		errors.Assert(o.Argument[maxWordSizeArgLong].Expects == ExpectValue, "Next expected should be ExpectValue")
 
 		val, err := strconv.Atoi(o.Argument[maxWordSizeArgLong].Default)
 		if err != nil {

@@ -20,6 +20,6 @@ func (o *Specification) AddSourceDictionary(defaultValue string) {
 		defaultValue,
 		sourceDictionaryHelpText,
 		ParserString(pathFileRegex),
-		ExpectNone,
+		ExpectValue,
 	}
 }

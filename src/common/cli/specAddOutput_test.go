@@ -37,7 +37,7 @@ func TestSpecification_AddOutput(t *testing.T) {
 
 		errors.Assert(o.Argument[outputArgLong].Parse != nil, "Expect non-nil function pointer")
 
-		errors.Assert(o.Argument[outputArgLong].Expects == ExpectNone, "Next expected should be ExpectNone")
+		errors.Assert(o.Argument[outputArgLong].Expects == ExpectValue, "Next expected should be ExpectValue")
 
 		if o.Argument[outputArgLong].Default != testDefault {
 			panic(fmt.Sprintf("Default should be false for output (%d)", FlagOutput))

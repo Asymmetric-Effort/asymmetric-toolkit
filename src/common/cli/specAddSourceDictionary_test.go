@@ -38,7 +38,8 @@ func TestSpecification_AddSourceDictionary(t *testing.T) {
 
 		errors.Assert(o.Argument[sourceDictionaryArgLong].Parse != nil, "Expect non-nil function pointer")
 
-		errors.Assert(o.Argument[sourceDictionaryArgLong].Expects == ExpectNone, "Next expected should be ExpectNone")
+		errors.Assert(o.Argument[sourceDictionaryArgLong].Expects == ExpectValue,
+			"Next expected should be ExpectValue")
 
 		if o.Argument[sourceDictionaryArgLong].Default != testDefault {
 			panic(fmt.Sprintf("Default should be false for domain flag (%d)", FlagSourceDictionary))

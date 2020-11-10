@@ -23,6 +23,6 @@ func (o *Specification) AddMinWordSize(defaultValue int) {
 		strconv.Itoa(defaultValue),
 		minWordSizeHelpText,
 		ParserFlag(minWordSizeArgLong),
-		ExpectNone,
+		ExpectValue,
 	}
 }

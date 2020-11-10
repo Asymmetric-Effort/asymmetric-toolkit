@@ -39,7 +39,7 @@ func TestSpecification_AddTimeout(t *testing.T) {
 
 		errors.Assert(o.Argument[timeoutArgLong].Parse != nil, "Expect non-nil function pointer")
 
-		errors.Assert(o.Argument[timeoutArgLong].Expects == ExpectNone, "Next expected should be ExpectNone")
+		errors.Assert(o.Argument[timeoutArgLong].Expects == ExpectValue, "Next expected should be ExpectValue")
 
 		val, err := strconv.Atoi(o.Argument[timeoutArgLong].Default)
 		if err != nil {
