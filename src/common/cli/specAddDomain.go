@@ -25,7 +25,7 @@ func (o *Specification) AddDomain(defaultValue string) {
 		String,
 		defaultValue,
 		domainHelpText,
-		ParserFlag(domainArgLong),
-		ExpectNone,
+		ParserString(fqdnOrIpRegex),
+		ExpectValue,
 	}
 }

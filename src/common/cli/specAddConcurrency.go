@@ -23,7 +23,7 @@ func (o *Specification) AddConcurrency(defaultValue int) {
 		Integer,
 		strconv.Itoa(defaultValue),
 		concurrencyHelpText,
-		ParserFlag(concurrencyArgLong),
-		ExpectNone,
+		ParserInt(0,65536),
+		ExpectValue,
 	}
 }

@@ -10,13 +10,15 @@ import (
 const (
 	dnsServerHelpText = "Specifies the DNS server to be used by attackers."
 	dnsServerArgLong  = "dnsServer"
+	fqdnOrIpRegex    = ".+"
+	//ToDo: Add regex string pattern for dns fqdn or ip address.
 )
 
 func (o *Specification) AddDnsServer(defaultValue string) {
 	//
 	// Initialize the Argument object.
 	//
-	if strings.TrimSpace(defaultValue)==""{
+	if strings.TrimSpace(defaultValue) == "" {
 		panic("dnsServer cannot be empty string.")
 	}
 	o.Initialize()
@@ -25,7 +27,7 @@ func (o *Specification) AddDnsServer(defaultValue string) {
 		String,
 		defaultValue,
 		dnsServerHelpText,
-		ParserFlag(dnsServerArgLong),
-		ExpectNone,
+		ParserString(fqdnOrIpRegex),
+		ExpectValue,
 	}
 }

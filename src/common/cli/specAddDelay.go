@@ -1,11 +1,12 @@
 package cli
 
 import (
+	"math"
 	"strconv"
 )
 
 /*
-	Specification::AddConcurrency() implements --delay <int> flags.
+	Specification::AddDelay() implements --delay <int> flags.
 */
 const (
 	delayHelpText = "Indicates the delay each attacker will observe between attacks"
@@ -22,7 +23,7 @@ func (o *Specification) AddDelay(defaultValue int) {
 		Integer,
 		strconv.Itoa(defaultValue),
 		delayHelpText,
-		ParserFlag(delayArgLong),
-		ExpectNone,
+		ParserInt(0, math.MaxInt32),
+		ExpectValue,
 	}
 }

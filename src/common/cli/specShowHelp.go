@@ -23,7 +23,15 @@ func (o *Specification) ShowHelp(arg *string) (err error, val *Argument) {
 	output := ""
 	output = fmt.Sprintf(bannerFmt, o.ProgramName, o.Version, o.Copyright, o.Description)
 	for flag, arg := range o.Argument {
-		output += fmt.Sprintf(lineFmt, flag, arg.Help, arg.Type.String(), arg.Default)
+		flagStr := func() (f string) {
+			if len(flag) == 1 {
+				f = fmt.Sprintf("-%s", flag)
+			} else {
+				f = fmt.Sprintf("--%s", flag)
+			}
+			return f
+		}()
+		output += fmt.Sprintf(lineFmt, flagStr, arg.Help, arg.Type.String(), arg.Default)
 	}
 	fmt.Printf(output)
 	return nil, nil

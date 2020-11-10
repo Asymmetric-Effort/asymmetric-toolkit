@@ -21,7 +21,7 @@ func (o *CommandLine) SetDefaults(spec *Specification) (err error) {
 		// This ensures the default value is validated just like a user-provided value,
 		// then process any error.
 		//
-		fmt.Printf("SetDefaults():'%v'(%v) to '%v'\n", flag, flagSpec.FlagId, flagSpec.Default)
+		//fmt.Printf("SetDefaults():'%v'(%v) to '%v'\n", flag, flagSpec.FlagId, flagSpec.Default)
 		err, o.Arguments[flagSpec.FlagId] = flagSpec.Parse(&flagSpec.Default)
 		//
 		// Stop processing on error

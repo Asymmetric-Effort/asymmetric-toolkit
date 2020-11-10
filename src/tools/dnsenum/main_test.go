@@ -15,7 +15,7 @@ func TestDnsEnum(t *testing.T) {
 
 func TestProcessSpecification(t *testing.T) {
 	func() {
-		args := []string{""}
+		args := []string{"--help"}
 		config, exitProgram, err := ProcessSpecification(args)
 		if err != nil {
 			t.Errorf("[main_test]: TestProcessSpecifcation(): %v", err)

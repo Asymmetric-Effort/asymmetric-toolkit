@@ -105,6 +105,7 @@ func (o *CommandLine) Parse(spec *Specification, args *[]string) (exit bool, err
 				// If we have no argument (arg) flag, we return an error because we cannot map a value
 				// without a flag to represent what the value actually means.
 				//
+				fmt.Println("lastFlag is nil")
 				return true, fmt.Errorf("a value was found with no flag: %s", currentArgument)
 			}
 			//

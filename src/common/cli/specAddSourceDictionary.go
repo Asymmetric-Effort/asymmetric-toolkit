@@ -6,6 +6,7 @@ package cli
 const (
 	sourceDictionaryHelpText = "Declares a source mode (random, sequential, dictionary)"
 	sourceDictionaryArgLong  = "dictionary"
+	pathFileRegex = ".+" //ToDo: add regex for source path/filename.
 )
 
 func (o *Specification) AddSourceDictionary(defaultValue string) {
@@ -18,7 +19,7 @@ func (o *Specification) AddSourceDictionary(defaultValue string) {
 		String,
 		defaultValue,
 		sourceDictionaryHelpText,
-		ParserFlag(sourceDictionaryArgLong),
+		ParserString(pathFileRegex),
 		ExpectNone,
 	}
 }

@@ -25,7 +25,7 @@ func (o *Specification) AddOutput(defaultValue string) {
 		String,
 		defaultValue,
 		outputHelpText,
-		ParserFlag(domainArgLong),
-		ExpectNone,
+		ParserString(pathFileRegex),
+		ExpectValue,
 	}
 }

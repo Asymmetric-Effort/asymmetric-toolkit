@@ -42,8 +42,8 @@ func TestSpecification_ShowUsage(t *testing.T) {
 		})
 
 		expected := fmt.Sprintf(bannerFmt, o.ProgramName, o.Version, o.Copyright, o.Description) +
-			fmt.Sprintf(lineFmt, "myFlag1", "MyHelpString1", "String", "myDefault1") +
-			fmt.Sprintf(lineFmt, "myFlag2", "MyHelpString2", "String", "myDefault2")
+			fmt.Sprintf(lineFmt, "--myFlag1", "MyHelpString1", "String", "myDefault1") +
+			fmt.Sprintf(lineFmt, "--myFlag2", "MyHelpString2", "String", "myDefault2")
 
 		fmt.Printf("---START---\nERROR: Usage mismatch\n\n"+
 			"Expected:\n%s\n"+

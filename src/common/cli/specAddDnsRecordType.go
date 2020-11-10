@@ -18,7 +18,7 @@ func (o *Specification) AddDnsRecordType(defaultValue string) {
 		List,
 		defaultValue,
 		dnsRecordTypesHelpText,
-		ParserFlag(dnsRecordTypesArgLong),
-		ExpectNone,
+		ParserList(comma),
+		ExpectValue,
 	}
 }

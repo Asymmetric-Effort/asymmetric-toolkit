@@ -6,7 +6,7 @@ const (
 	 */
 	DefaultAttackDelay      int    = 1                    // Default number of seconds between attack payload executions.
 	DefaultConcurrency      int    = 1                    // Default number of concurrent queries to run.
-	DefaultDepth            int    = 20                   // Default number of DNS subdomain levels to attack
+	DefaultAttackDepth      int    = 20                   // Default number of DNS subdomain levels to attack
 	DefaultDnsDomain        string = "localdomain"        // Default domain to be enumerated.
 	DefaultDnsServer        string = "udp://127.0.0.1:53" // Default DNS server.
 	DefaultFilterPattern    string = `.+`                 // Default source pattern.
