@@ -18,7 +18,7 @@ func TestSpecification_ShowUsage(t *testing.T) {
 		o.Copyright = "copyright"
 		o.Description = "programDescription"
 		o.Argument = make(map[string]ArgumentDescriptor)
-		o.Argument["myFlag1"] = ArgumentDescriptor{
+		o.Argument["myFlagLong"] = ArgumentDescriptor{
 			1000,
 			String,
 			"myDefault1",
@@ -26,7 +26,7 @@ func TestSpecification_ShowUsage(t *testing.T) {
 			nil,
 			ExpectNone,
 		}
-		o.Argument["myFlag2"] = ArgumentDescriptor{
+		o.Argument["myFlag"] = ArgumentDescriptor{
 			1000,
 			String,
 			"myDefault2",
@@ -42,8 +42,8 @@ func TestSpecification_ShowUsage(t *testing.T) {
 		})
 
 		expected := fmt.Sprintf(bannerFmt, o.ProgramName, o.Version, o.Copyright, o.Description) +
-			fmt.Sprintf(lineFmt, "--myFlag1", "MyHelpString1", "String", "myDefault1") +
-			fmt.Sprintf(lineFmt, "--myFlag2", "MyHelpString2", "String", "myDefault2")
+			"\t--myFlagLong   MyHelpString1 [Default(String): myDefault1]\n" +
+			"\t--myFlag       MyHelpString2 [Default(String): myDefault2]\n"
 
 		fmt.Printf("---START---\nERROR: Usage mismatch\n\n"+
 			"Expected:\n%s\n"+
