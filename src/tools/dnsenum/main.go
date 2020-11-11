@@ -2,6 +2,7 @@ package main
 
 import (
 	"asymmetric-effort/asymmetric-toolkit/src/common/cli"
+	"asymmetric-effort/asymmetric-toolkit/src/common/errors"
 	"os"
 )
 
@@ -22,9 +23,8 @@ func main() {
 	if exitProgram {
 		exit<-cli.ErrSuccess
 	}
-	if config == nil {
-		panic("Internal error nil config encountered.")
-	}
+	errors.Assert(config == nil, "Internal error nil config encountered.")
+
 	//var log logger.Logger                 // Global logger
 	//var feed source.Source                // Source Generator
 	//var attack dnsEnumerator			  // Attacker Payload
