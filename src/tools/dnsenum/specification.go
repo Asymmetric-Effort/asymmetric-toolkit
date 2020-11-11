@@ -1,27 +1,17 @@
 package main
 
+/*
+	Define and process the commandline specification using standardized
+	arguments then extract the result into the Configuration struct and return
+	the same by reference.  When this function falls out of scope the memory
+	used by the commandline specification will be freed.
+*/
+
 import (
 	buildconfig "asymmetric-effort/asymmetric-toolkit/buildConfig"
 	"asymmetric-effort/asymmetric-toolkit/src/common/cli"
 	"fmt"
 )
-
-type Configuration struct {
-	Concurrency    int
-	delay          int
-	depth          int
-	dictionary     string
-	dnsServer      string
-	dnsRecordTypes string
-	domain         string
-	maxWordCount   int
-	minWordSize    int
-	maxWordSize    int
-	output         string
-	pattern        string
-	source         string
-	timeout        int
-}
 
 func ProcessSpecification(args []string) (cfg *Configuration, exit bool, err error) {
 	//
