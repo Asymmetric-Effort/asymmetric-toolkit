@@ -97,10 +97,9 @@ func TestParserFloat(t *testing.T) {
 				t.Errorf("Value mismatch: %s", v)
 			}
 		}
-		for i := math.SmallestNonzeroFloat64; i < math.MaxFloat64; i+=10.0 {
+		for i := math.SmallestNonzeroFloat64; i < math.MaxFloat64; i*=1.5 {
 			testRun(strconv.FormatFloat(i,'f',-1,64), true)
 		}
 		fmt.Println("unbounded test passes")
 	}()
-
 }
