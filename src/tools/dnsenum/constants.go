@@ -15,7 +15,7 @@ const (
 	DefaultMaxWordSize      int    = 5                    // Default maximum character length of each word.
 	DefaultOutput           string = "output.txt"         // Default output path/file for reporting results.
 	DefaultSource           string = "sequence"           // Default word source for our enumeration attack.
-	DefaultSourceDictionary string = ""                   //Default path/file to a dictionary (we will have none).
+	DefaultSourceDictionary string = "my_dictionary.atk"  //Default path/file to a dictionary (we will have none).
 	DefaultSourcePattern    string = ".+"                 // Default regex pattern string to filter words to be used in an attack.
 	//ResponseBufferSz int = 1048576 // Size of the response buffer for responses pending report processing.
 	//SourceBufferSz   int = 1048576 // Size of the source buffer which feeds the payload (attack) function.

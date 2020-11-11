@@ -28,7 +28,9 @@ func TestProcessSpecification(t *testing.T) {
 			t.Error("Internal error nil config encountered.")
 		}
 	}()
+
 	func() {
+		fmt.Println("---Process Specification -h")
 		args := []string{"-h"}
 		config, exitProgram, err := ProcessSpecification(args)
 		if err != nil {
@@ -42,7 +44,9 @@ func TestProcessSpecification(t *testing.T) {
 			t.Error("Internal error nil config encountered.")
 		}
 	}()
+
 	func() {
+		fmt.Println("---Process Specification --version")
 		args := []string{"--version"}
 		config, exitProgram, err := ProcessSpecification(args)
 		if err != nil {
@@ -56,5 +60,4 @@ func TestProcessSpecification(t *testing.T) {
 			t.Error("Internal error nil config encountered.")
 		}
 	}()
-
 }

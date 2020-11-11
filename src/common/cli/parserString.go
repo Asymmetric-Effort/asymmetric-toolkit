@@ -32,7 +32,7 @@ func ParserString(p ...string) (parser func(arg *string) (err error, val *Argume
 			// Note: we could add more options here as well after p[0]
 			//
 			return p[0]
-		}else{
+		} else {
 			//
 			// If p[0] does not exist, our default is .* (anything).
 			//
@@ -66,11 +66,10 @@ func ParserString(p ...string) (parser func(arg *string) (err error, val *Argume
 			// If a commandline argument string is evaluated against the regular expression,
 			// and no match is found, we will return an error object and a nil Argument pointer.
 			//
-			return fmt.Errorf("error: String fails to match " +
+			return fmt.Errorf("error: String fails to match "+
 				"pattern (%s) when evaluating '%s'", regexPattern, *arg), nil
 		}
 	}
 	//return the parser function to the Specification.
 	return parser
 }
-

@@ -26,7 +26,7 @@ func (o *Argument) String() string {
 	}
 	switch o.Type {
 	case List:
-		return strings.Join(o.List(),getDelimiter())
+		return strings.Join(o.List(), getDelimiter())
 	default:
 		return o.Value
 	}

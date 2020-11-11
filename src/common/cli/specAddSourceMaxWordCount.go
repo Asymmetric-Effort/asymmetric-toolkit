@@ -1,6 +1,7 @@
 package cli
 
 import (
+	"math"
 	"strconv"
 )
 
@@ -22,7 +23,7 @@ func (o *Specification) AddMaxWordCount(defaultValue int) {
 		Integer,
 		strconv.Itoa(defaultValue),
 		maxWordCountHelpText,
-		ParserFlag(maxWordCountArgLong),
+		ParserInt(1, math.MaxInt32),
 		ExpectValue,
 	}
 }
