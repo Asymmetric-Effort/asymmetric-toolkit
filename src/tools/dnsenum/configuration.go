@@ -1,5 +1,10 @@
 package main
 
+import (
+	LogFacility "asymmetric-effort/asymmetric-toolkit/src/common/logger/facility"
+	"asymmetric-effort/asymmetric-toolkit/src/common/logger/logLevel"
+)
+
 /*
 	Configuration is a final internal state of the application after the
 	command line arguments are parsed and processed.
@@ -13,6 +18,11 @@ type Configuration struct {
 	dnsServer      string
 	dnsRecordTypes string
 	domain         string
+	log struct {
+		level logLevel.LogLevel
+		facility LogFacility.Facility
+		target string
+	}
 	maxWordCount   int
 	minWordSize    int
 	maxWordSize    int

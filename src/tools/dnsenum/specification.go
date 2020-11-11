@@ -10,6 +10,8 @@ package main
 import (
 	buildconfig "asymmetric-effort/asymmetric-toolkit/buildConfig"
 	"asymmetric-effort/asymmetric-toolkit/src/common/cli"
+	LogFacility "asymmetric-effort/asymmetric-toolkit/src/common/logger/facility"
+	"asymmetric-effort/asymmetric-toolkit/src/common/logger/logLevel"
 	"fmt"
 )
 
@@ -53,6 +55,7 @@ func ProcessSpecification(args []string) (cfg *Configuration, exit bool, err err
 	spec.AddSourcePattern(DefaultSourcePattern)
 	spec.AddSource(DefaultSource)
 	spec.AddTimeout(DefaultTimeout)
+	spec.AddLogLevel(logLevel.Info)
 	//
 	// Parse the commandline arguments and in response
 	// we expect a boolean (exitProgram) and error object
@@ -75,6 +78,9 @@ func ProcessSpecification(args []string) (cfg *Configuration, exit bool, err err
 	Config.pattern = ui.Arguments[cli.FlagSourcePattern].String()
 	Config.source = ui.Arguments[cli.FlagSource].String()
 	Config.timeout = ui.Arguments[cli.FlagTimeout].Integer()
+	Config.log.level = logLevel.LogLevel(ui.Arguments[cli.FlagLogLevel].Integer())
+	Config.log.facility = LogFacility.Facility(ui.Arguments[cli.FlagLogFacility].String())
+	Config.log.target = ui.Arguments[cli.FlagTarget]
 	//
 	// Evaluate the error object.
 	//

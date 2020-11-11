@@ -1,5 +1,10 @@
 package main
 
+import (
+	logLevel "github.com/graph.baby/src/common/logger/log_level"
+)
+
 const (
-	DefaultSourceDictionary = "my-dictionary.atk"
+	DefaultLogLevel         logLevel.LogLevel = logLevel.Info // Default log level is INFO.
+	DefaultSourceDictionary                   = "my-dictionary.atk"
 )

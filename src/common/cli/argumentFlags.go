@@ -11,14 +11,17 @@ package cli
 type ArgumentFlag int
 
 const ( //Reserved 0...1000 for core use.  1000+ are program-defined.
-	noFlag      ArgumentFlag = 0 // noop
-	FlagHelp    ArgumentFlag = 1 // Displays usage
-	FlagVersion ArgumentFlag = 2 // Displays version string
-	FlagDebug   ArgumentFlag = 3 // Indicates debug logging.
+	noFlag          ArgumentFlag = 0 // noop
+	FlagHelp        ArgumentFlag = 1 // Displays usage
+	FlagVersion     ArgumentFlag = 2 // Displays version string
+	FlagDebug       ArgumentFlag = 3 // Indicates debug logging.
+	FlagLogLevel    ArgumentFlag = 4 // Indicates the logging level.
+	FlagLogFacility ArgumentFlag = 5 // Indicates the logging facility.
+	FlagLogTarget   ArgumentFlag = 6 // Indicates the logging target (stdout, file, syslog).
 
 	// ToDo: Add as a common Flag in common/cli
-	FlagForce  ArgumentFlag = 4 // Indicates force is to be used in all operations.
-	FlagOutput ArgumentFlag = 5 // Identifies the target (path/file, url) where results should be written.
+	FlagForce  ArgumentFlag = 8 // Indicates force is to be used in all operations.
+	FlagOutput ArgumentFlag = 9 // Identifies the target (path/file, url) where results should be written.
 
 	// General attack Flags
 	//		These Flags are common across many tools

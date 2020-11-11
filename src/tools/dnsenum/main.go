@@ -18,14 +18,16 @@ func main() {
 	var exit chan int = make(chan int, 1) // We will block until an exit code is written to this channel.
 	config, exitProgram, err := ProcessSpecification(os.Args[1:])
 	if err != nil {
-		exit<-cli.ErrArgumentParseError
+		exit <- cli.ErrArgumentParseError
 	}
 	if exitProgram {
-		exit<-cli.ErrSuccess
+		exit <- cli.ErrSuccess
 	}
 	errors.Assert(config == nil, "Internal error nil config encountered.")
 
-	//var log logger.Logger                 // Global logger
+	var log logger.Logger // Global logger
+	log.Setup(config)
+	log.Debug("log is setup")
 	//var feed source.Source                // Source Generator
 	//var attack dnsEnumerator			  // Attacker Payload
 	//log.Setup(&ui)
