@@ -12,6 +12,7 @@ func TestLoggerDebugWarn(t *testing.T) {
 	var log Logger
 	var config Configuration
 	config.Destination.Set(Stdout)
+	config.Facility="LoggerFacility"
 	config.Level.Set(Debug)
 	out := catchStdOut(t, func() {
 		log.Setup(&config)
@@ -26,6 +27,7 @@ func TestLoggerDebugCritical(t *testing.T) {
 	var log Logger
 	var config Configuration
 	config.Destination.Set(Stdout)
+	config.Facility="LoggerFacility"
 	config.Level.Set(Debug)
 	out := catchStdOut(t, func() {
 		log.Setup(&config)
@@ -40,6 +42,7 @@ func TestLoggerDebugError(t *testing.T) {
 	var log Logger
 	var config Configuration
 	config.Destination.Set(Stdout)
+	config.Facility="LoggerFacility"
 	config.Level.Set(Debug)
 	out := catchStdOut(t, func() {
 		log.Setup(&config)
@@ -54,6 +57,7 @@ func TestLoggerDebugInfo(t *testing.T) {
 	var log Logger
 	var config Configuration
 	config.Destination.Set(Stdout)
+	config.Facility="LoggerFacility"
 	config.Level.Set(Debug)
 	out := catchStdOut(t, func() {
 		log.Setup(&config)
