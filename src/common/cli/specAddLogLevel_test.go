@@ -2,14 +2,14 @@ package cli
 
 import (
 	"asymmetric-effort/asymmetric-toolkit/src/common/errors"
-	"asymmetric-effort/asymmetric-toolkit/src/common/logger/logLevel"
+	"asymmetric-effort/asymmetric-toolkit/src/common/logger"
 	"fmt"
 	"testing"
 )
 
 func TestSpecification_AddLogLevel(t *testing.T) {
 
-	const testDefault = logLevel.Debug
+	const testDefault = logger.Debug
 
 	var o Specification
 
@@ -34,7 +34,7 @@ func TestSpecification_AddLogLevel(t *testing.T) {
 		fmt.Sprintf("Default (debug) should be '%s' for %s",
 			o.Argument[logLevelArgLong].Default,
 			logLevelArgLong))
-	errors.Assert(o.Argument[logLevelArgLong].Help == fmt.Sprintf(logLevelHelpText,logLevel.LevelStrings),
+	errors.Assert(o.Argument[logLevelArgLong].Help == fmt.Sprintf(logLevelHelpText, logger.LevelStrings),
 		"help mismatch.")
 
 	errors.Assert(o.Argument[logLevelArgLong].Parse != nil, "Expect non-nil function pointer")

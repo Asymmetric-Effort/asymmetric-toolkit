@@ -1,22 +1,22 @@
-package logtarget
+package logger
 
 import (
 	"asymmetric-effort/asymmetric-toolkit/src/common/errors"
 	"testing"
 )
 
-func TestLogDestinationGetHappy(t *testing.T){
+func TestLogDestinationSetHappy(t *testing.T){
 	var ld Destination
-	ld= Stdout
+	ld.Set(Stdout)
 	errors.Assert(ld.Get() == Stdout, "Expected Stdout")
-	ld= File
+	ld.Set(File)
 	errors.Assert(ld.Get() == File, "Expected File")
-	ld= Syslog
+	ld.Set(Syslog)
 	errors.Assert(ld.Get() == Syslog, "Expected Syslog")
 }
-func TestLogDestinationGetSad(t *testing.T){
-	var ld Destination = 9
+func TestLogDestinationSetSad(t *testing.T){
+	var ld Destination
 	defer func(){recover()}()
-	_ = ld.Get()
+	ld.Set(9)
 	t.Fatal("expected error")
 }

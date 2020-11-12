@@ -1,5 +1,7 @@
-package logFacility
-
+package logger
+/*
+	Facility::String() returns the string state of the logging facility.
+ */
 import "regexp"
 
 func (f *Facility) String() string {

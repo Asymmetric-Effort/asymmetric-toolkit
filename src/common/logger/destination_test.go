@@ -1,4 +1,4 @@
-package logtarget
+package logger
 
 import (
 	"asymmetric-effort/asymmetric-toolkit/src/common/errors"

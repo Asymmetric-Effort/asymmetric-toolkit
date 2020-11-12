@@ -29,7 +29,7 @@ func catchStdOut(t *testing.T, runnable func()) string {
 
 func TestLoggerHappy(t *testing.T) {
 	var log Logger
-	errors.Assert(log.level == 0, "expect 0")
-	errors.Assert(log.facility == "", "expect empty string")
-	errors.Assert(log.writer == nil, "Expect nil writer function pointer")
+	errors.Assert(log.Level == 0, "expect 0")
+	errors.Assert(log.Facility == "", "expect empty string")
+	errors.Assert(log.Writer == nil, "Expect nil Writer function pointer")
 }

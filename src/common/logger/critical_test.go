@@ -1,10 +1,10 @@
 package logger
-
+/*
+	Commandline configuration struct.  This will be the internal state
+	of the logger which will be loaded by the commandline arguments
+*/
 import (
 	"asymmetric-effort/asymmetric-toolkit/src/common/errors"
-	"asymmetric-effort/asymmetric-toolkit/src/common/logger/destination"
-	"asymmetric-effort/asymmetric-toolkit/src/common/logger/logLevel"
-	"asymmetric-effort/asymmetric-toolkit/src/tools/dnsenum/deprecated_cli"
 	"fmt"
 	"regexp"
 	"strings"
@@ -13,9 +13,11 @@ import (
 
 func TestLoggerCriticalCritical(t *testing.T) {
 	var log Logger
-	var config deprecated_cli.Configuration
-	config.Log.Destination.Set(destination.Stdout)
-	config.Log.Level.Set(logLevel.Critical)
+
+	var config Configuration
+	config.Level.Set(Critical)
+	config.Destination.Set(Stdout)
+	config.Level.Set(Critical)
 	out := catchStdOut(t, func() {
 		log.Setup(&config)
 		log.Critical("Test")
@@ -27,9 +29,9 @@ func TestLoggerCriticalCritical(t *testing.T) {
 
 func TestLoggerCriticalDebug(t *testing.T) {
 	var log Logger
-	var config deprecated_cli.Configuration
-	config.Log.Destination.Set(destination.Stdout)
-	config.Log.Level.Set(logLevel.Debug)
+	var config Configuration
+	config.Destination.Set(Stdout)
+	config.Level.Set(Debug)
 	out := catchStdOut(t, func() {
 		log.Setup(&config)
 		log.Critical("Test")

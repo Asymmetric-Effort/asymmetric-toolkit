@@ -10,7 +10,7 @@ package main
 import (
 	buildconfig "asymmetric-effort/asymmetric-toolkit/buildConfig"
 	"asymmetric-effort/asymmetric-toolkit/src/common/cli"
-	"asymmetric-effort/asymmetric-toolkit/src/common/logger/logLevel"
+	"asymmetric-effort/asymmetric-toolkit/src/common/logger"
 	"fmt"
 )
 
@@ -40,7 +40,7 @@ func ProcessSpecification(args []string) (cfg *Configuration, exit bool, err err
 	// Update the Specification with standard parameters
 	// using the standardized configuration.
 	//
-	spec.AddLogLevel(logLevel.Info)
+	spec.AddLogLevel(logger.Info)
 	spec.AddSourceDictionary(DefaultSourceDictionary)
 	//
 	// Parse the commandline arguments and in response

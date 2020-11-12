@@ -2,19 +2,17 @@ package logger
 
 import (
 	"asymmetric-effort/asymmetric-toolkit/src/common/errors"
-	"asymmetric-effort/asymmetric-toolkit/src/common/logger/destination"
-	"asymmetric-effort/asymmetric-toolkit/src/common/logger/logLevel"
-	"asymmetric-effort/asymmetric-toolkit/src/tools/dnsenum/deprecated_cli"
 	"fmt"
 	"regexp"
 	"strings"
 	"testing"
 )
+
 func TestLoggerDebugWarn(t *testing.T) {
 	var log Logger
-	var config deprecated_cli.Configuration
-	config.Log.Destination.Set(destination.Stdout)
-	config.Log.Level.Set(logLevel.Debug)
+	var config Configuration
+	config.Destination.Set(Stdout)
+	config.Level.Set(Debug)
 	out := catchStdOut(t, func() {
 		log.Setup(&config)
 		log.Warning("Test")
@@ -26,9 +24,9 @@ func TestLoggerDebugWarn(t *testing.T) {
 
 func TestLoggerDebugCritical(t *testing.T) {
 	var log Logger
-	var config deprecated_cli.Configuration
-	config.Log.Destination.Set(destination.Stdout)
-	config.Log.Level.Set(logLevel.Debug)
+	var config Configuration
+	config.Destination.Set(Stdout)
+	config.Level.Set(Debug)
 	out := catchStdOut(t, func() {
 		log.Setup(&config)
 		log.Critical("Test")
@@ -40,9 +38,9 @@ func TestLoggerDebugCritical(t *testing.T) {
 
 func TestLoggerDebugError(t *testing.T) {
 	var log Logger
-	var config deprecated_cli.Configuration
-	config.Log.Destination.Set(destination.Stdout)
-	config.Log.Level.Set(logLevel.Debug)
+	var config Configuration
+	config.Destination.Set(Stdout)
+	config.Level.Set(Debug)
 	out := catchStdOut(t, func() {
 		log.Setup(&config)
 		log.Error("Test")
@@ -52,12 +50,11 @@ func TestLoggerDebugError(t *testing.T) {
 	errors.Assert(re.MatchString(strings.TrimRight(out, "\n")), fmt.Sprintf("Pattern failed to match: %s", out))
 }
 
-
 func TestLoggerDebugInfo(t *testing.T) {
 	var log Logger
-	var config deprecated_cli.Configuration
-	config.Log.Destination.Set(destination.Stdout)
-	config.Log.Level.Set(logLevel.Debug)
+	var config Configuration
+	config.Destination.Set(Stdout)
+	config.Level.Set(Debug)
 	out := catchStdOut(t, func() {
 		log.Setup(&config)
 		log.Info("Test")

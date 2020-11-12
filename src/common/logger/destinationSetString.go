@@ -1,4 +1,8 @@
-package logtarget
+package logger
+
+/*
+	Destination::SetString() will set the internal logging destination based on an input string value.
+*/
 
 import "strings"
 

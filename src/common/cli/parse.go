@@ -6,7 +6,7 @@ package cli
 	can use to configure its internal state.
 */
 import (
-	"asymmetric-effort/asymmetric-toolkit/src/common/logger/logLevel"
+	"asymmetric-effort/asymmetric-toolkit/src/common/logger"
 	"fmt"
 )
 
@@ -31,7 +31,7 @@ func (o *CommandLine) Parse(spec *Specification, args *[]string) (exit bool, err
 	spec.AddDebug()   // If our debug flag (--debug) is not set, we will add it here.
 	spec.AddForce()   // If our force flag (--force) is not set, we will add it here.
 
-	spec.AddLogLevel(logLevel.Info)
+	spec.AddLogLevel(logger.Info)
 	//spec.AddLogFacility(ProgramName)
 	//spec.AddLogTarget("stdout")
 

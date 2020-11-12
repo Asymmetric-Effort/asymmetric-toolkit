@@ -1,7 +1,7 @@
 package cli
 
 import (
-	"asymmetric-effort/asymmetric-toolkit/src/common/logger/logLevel"
+	"asymmetric-effort/asymmetric-toolkit/src/common/logger"
 	"fmt"
 )
 
@@ -13,7 +13,7 @@ const (
 	logLevelArgLong  = "loglevel"
 )
 
-func (o *Specification) AddLogLevel(defaultValue logLevel.LogLevel) {
+func (o *Specification) AddLogLevel(defaultValue logger.LogLevel) {
 	//
 	// Initialize the Argument object.
 	//
@@ -22,7 +22,7 @@ func (o *Specification) AddLogLevel(defaultValue logLevel.LogLevel) {
 		FlagLogLevel,
 		String,
 		defaultValue.String(),
-		fmt.Sprintf(logLevelHelpText, logLevel.LevelStrings),
+		fmt.Sprintf(logLevelHelpText, logger.LevelStrings),
 		ParserEnum("critical", "error", "warning", "info", "debug"),
 		ExpectValue,
 	}
