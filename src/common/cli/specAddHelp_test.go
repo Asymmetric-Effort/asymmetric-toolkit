@@ -33,8 +33,8 @@ func TestSpecification_AddUsage(t *testing.T) {
 			panic(fmt.Sprintf("%d(%s) expected.  FlagId:%d", i, argFlag, o.Argument[argFlag].FlagId))
 		}
 
-		if o.Argument[argFlag].Type != None {
-			panic(fmt.Sprintf("String Argument type expected.  Type:%d", o.Argument[argFlag].Type))
+		if o.Argument[argFlag].Type != Boolean {
+			panic(fmt.Sprintf("Boolean Argument type expected.  Type:%d", o.Argument[argFlag].Type))
 		}
 
 		if o.Argument[argFlag].Default != usageDefault {

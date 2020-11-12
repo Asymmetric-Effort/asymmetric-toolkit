@@ -76,7 +76,7 @@ func TestParserInt(t *testing.T) {
 		}
 		testRun("0", false)
 		testRun("1", true)
-		for i := 1; i < math.MaxInt32; i *= 2 {
+		for i := 1; i < math.MaxInt32; i *= 10 {
 			testRun(strconv.Itoa(i), true)
 		}
 		fmt.Println("No-Upper-bound test passes")
@@ -99,7 +99,7 @@ func TestParserInt(t *testing.T) {
 				t.Errorf("Value mismatch: %s", v)
 			}
 		}
-		for i := math.MinInt32; i < math.MaxInt32; i *= 2 {
+		for i := math.MinInt32; i < math.MaxInt32; i *= 10 {
 			testRun(strconv.Itoa(i), true)
 		}
 		fmt.Println("unbounded test passes")

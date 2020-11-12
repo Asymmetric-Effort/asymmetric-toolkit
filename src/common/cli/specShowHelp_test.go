@@ -6,7 +6,7 @@ import (
 	"testing"
 )
 
-func TestSpecification_ShowUsage(t *testing.T) {
+func TestSpecification_ShowHelp(t *testing.T) {
 
 	test := func(arg string) {
 		var o Specification
@@ -55,7 +55,8 @@ func TestSpecification_ShowUsage(t *testing.T) {
 			"ActualLen:   %d\n",
 			len(expected), len(output))
 
-		errors.Assert(output == expected, "Usage mismatch")
+		errors.Assert(output == expected, fmt.Sprintf(
+			"Usage mismatch\noutput:\n--\n%s\n--\nexpected:\n%s\n---\n",output, expected))
 	}
 	test("-h")
 	test("--help")
