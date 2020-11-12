@@ -12,6 +12,6 @@ func TestLogLevel_Happy(t *testing.T) {
 	errors.Assert(Warning == 2, "Expect 2")
 	errors.Assert(Info == 3, "Expect 3")
 	errors.Assert(Debug == 4, "Expect 4")
-	errors.Assert(LevelStrings == "CRIT,ERROR,WARN,INFO,DEBUG", "LevelStrings has changed or has error")
+	errors.Assert(LevelStrings == "critical,error,warning,info,debug", "LevelStrings has changed or has error")
 	errors.Assert(len(strings.Split(LevelStrings, ",")) == 5, "Expected 5 level strings.  Found more or less")
 }

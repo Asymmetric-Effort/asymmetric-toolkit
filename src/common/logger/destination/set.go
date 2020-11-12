@@ -1,8 +1,9 @@
-package destination
+package logtarget
 
-func (o *LogDestination) Set(d LogDestination){
-	switch LogDestination(d) {
-	case Stdout, File, Syslog: *o = LogDestination(d)
+func (o *Destination) Set(d Destination) {
+	switch Destination(d) {
+	case Stdout, File, Syslog:
+		*o = Destination(d)
 	default:
 		panic("Invalid log destination")
 	}

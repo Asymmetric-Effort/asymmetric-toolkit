@@ -10,8 +10,6 @@ package main
 import (
 	buildconfig "asymmetric-effort/asymmetric-toolkit/buildConfig"
 	"asymmetric-effort/asymmetric-toolkit/src/common/cli"
-	LogFacility "asymmetric-effort/asymmetric-toolkit/src/common/logger/facility"
-	"asymmetric-effort/asymmetric-toolkit/src/common/logger/logLevel"
 	"fmt"
 )
 
@@ -55,7 +53,9 @@ func ProcessSpecification(args []string) (cfg *Configuration, exit bool, err err
 	spec.AddSourcePattern(DefaultSourcePattern)
 	spec.AddSource(DefaultSource)
 	spec.AddTimeout(DefaultTimeout)
-	spec.AddLogLevel(logLevel.Info)
+	//spec.AddLogLevel(logLevel.Info)
+	//spec.AddLogFacility(ProgramName)
+	//spec.AddLogTarget("stdout")
 	//
 	// Parse the commandline arguments and in response
 	// we expect a boolean (exitProgram) and error object
@@ -64,6 +64,8 @@ func ProcessSpecification(args []string) (cfg *Configuration, exit bool, err err
 	//
 	exit, err = ui.Parse(&spec, &args)
 	var Config Configuration
+	Config.Force = ui.Arguments[cli.FlagForce].Boolean()
+	Config.Debug = ui.Arguments[cli.FlagDebug].Boolean()
 	Config.Concurrency = ui.Arguments[cli.FlagConcurrency].Integer()
 	Config.delay = ui.Arguments[cli.FlagDelay].Integer()
 	Config.depth = ui.Arguments[cli.FlagDepth].Integer()
@@ -78,9 +80,9 @@ func ProcessSpecification(args []string) (cfg *Configuration, exit bool, err err
 	Config.pattern = ui.Arguments[cli.FlagSourcePattern].String()
 	Config.source = ui.Arguments[cli.FlagSource].String()
 	Config.timeout = ui.Arguments[cli.FlagTimeout].Integer()
-	Config.log.level = logLevel.LogLevel(ui.Arguments[cli.FlagLogLevel].Integer())
-	Config.log.facility = LogFacility.Facility(ui.Arguments[cli.FlagLogFacility].String())
-	Config.log.target = ui.Arguments[cli.FlagTarget]
+	//Config.log.Level = logLevel.LogLevel(ui.Arguments[cli.FlagLogLevel].Integer())
+	//Config.log.facility = LogFacility.Facility(ui.Arguments[cli.FlagLogFacility].String())
+	//Config.log.target = ui.Arguments[cli.FlagLogTarget].String()
 	//
 	// Evaluate the error object.
 	//

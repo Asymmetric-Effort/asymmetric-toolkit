@@ -1,4 +1,4 @@
-package destination
+package logtarget
 
 import (
 	"asymmetric-effort/asymmetric-toolkit/src/common/errors"
@@ -6,7 +6,7 @@ import (
 )
 
 func TestDestination(t *testing.T) {
-	var ld LogDestination
+	var ld Destination
 	errors.Assert(ld == 0, "Expect 0")
 	errors.Assert(ld == Stdout, "Expect stdout")
 

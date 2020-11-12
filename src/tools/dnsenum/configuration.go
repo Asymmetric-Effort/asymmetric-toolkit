@@ -1,9 +1,6 @@
 package main
 
-import (
-	LogFacility "asymmetric-effort/asymmetric-toolkit/src/common/logger/facility"
-	"asymmetric-effort/asymmetric-toolkit/src/common/logger/logLevel"
-)
+import "asymmetric-effort/asymmetric-toolkit/src/common/logger"
 
 /*
 	Configuration is a final internal state of the application after the
@@ -11,6 +8,8 @@ import (
 */
 
 type Configuration struct {
+	Force          bool
+	Debug          bool
 	Concurrency    int
 	delay          int
 	depth          int
@@ -18,11 +17,7 @@ type Configuration struct {
 	dnsServer      string
 	dnsRecordTypes string
 	domain         string
-	log struct {
-		level logLevel.LogLevel
-		facility LogFacility.Facility
-		target string
-	}
+	log            logger.Configuration
 	maxWordCount   int
 	minWordSize    int
 	maxWordSize    int

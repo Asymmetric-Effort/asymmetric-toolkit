@@ -9,5 +9,5 @@ const (
 	Info     LogLevel = 3
 	Debug    LogLevel = 4
 
-	LevelStrings string = "CRITICAL,ERROR,WARNING,INFO,DEBUG"
+	LevelStrings string = "critical,error,warning,info,debug"
 )

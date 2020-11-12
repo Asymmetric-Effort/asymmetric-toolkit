@@ -1,4 +1,4 @@
-package destination
+package logtarget
 
 import (
 	"asymmetric-effort/asymmetric-toolkit/src/common/errors"
@@ -6,7 +6,7 @@ import (
 )
 
 func TestLogDestinationSetHappy(t *testing.T){
-	var ld LogDestination
+	var ld Destination
 	ld.Set(Stdout)
 	errors.Assert(ld.Get() == Stdout, "Expected Stdout")
 	ld.Set(File)
@@ -15,7 +15,7 @@ func TestLogDestinationSetHappy(t *testing.T){
 	errors.Assert(ld.Get() == Syslog, "Expected Syslog")
 }
 func TestLogDestinationSetSad(t *testing.T){
-	var ld LogDestination
+	var ld Destination
 	defer func(){recover()}()
 	ld.Set(9)
 	t.Fatal("expected error")

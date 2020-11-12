@@ -27,7 +27,7 @@ func ProcessSpecification(args []string) (cfg *Configuration, exit bool, err err
 	// parameters this program will use when it
 	// is executed.
 	//
-	var spec cli.Specification = cli.Specification{
+	var spec = cli.Specification{
 		Author:      buildconfig.Author,
 		AuthorEmail: buildconfig.AuthorEmail,
 		Description: Description,

@@ -3,6 +3,7 @@ package main
 import (
 	"asymmetric-effort/asymmetric-toolkit/src/common/cli"
 	"asymmetric-effort/asymmetric-toolkit/src/common/errors"
+	"asymmetric-effort/asymmetric-toolkit/src/common/logger"
 	"os"
 )
 
@@ -26,8 +27,9 @@ func main() {
 	errors.Assert(config == nil, "Internal error nil config encountered.")
 
 	var log logger.Logger // Global logger
-	log.Setup(config)
+	log.Setup(&config.log)
 	log.Debug("log is setup")
+
 	//var feed source.Source                // Source Generator
 	//var attack dnsEnumerator			  // Attacker Payload
 	//log.Setup(&ui)

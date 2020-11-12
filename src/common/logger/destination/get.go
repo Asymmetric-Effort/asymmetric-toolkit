@@ -1,6 +1,6 @@
-package destination
+package logtarget
 
-func (o *LogDestination) Get() LogDestination {
+func (o *Destination) Get() Destination {
 	switch *o {
 	case Stdout, File, Syslog: return *o
 	default:

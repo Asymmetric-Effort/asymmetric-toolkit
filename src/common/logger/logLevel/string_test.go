@@ -6,6 +6,12 @@ import (
 )
 
 func TestLogLevelGetStr_Happy(t *testing.T){
-	var o LogLevel = Debug
-	errors.Assert(o.String()=="DEBUG", "Expected Debug String")
+	func(){
+		var o LogLevel = Debug
+		errors.Assert(o.String()=="debug", "Expected Debug String")
+	}()
+	func(){
+		var o LogLevel
+		errors.Assert(o.String()=="critical", "Expected Critical String")
+	}()
 }

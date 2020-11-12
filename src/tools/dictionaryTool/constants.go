@@ -5,6 +5,6 @@ import (
 )
 
 const (
-	DefaultLogLevel         logLevel.LogLevel = logLevel.Info // Default log level is INFO.
-	DefaultSourceDictionary                   = "my-dictionary.atk"
+	DefaultLogLevel         = logLevel.Info // Default log level is INFO.
+	DefaultSourceDictionary = "my-dictionary.atk"
 )
