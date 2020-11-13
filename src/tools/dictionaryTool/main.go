@@ -28,7 +28,7 @@ func main() {
 	errors.Assert(config == nil, "Internal error nil config encountered.")
 
 	var log logger.Logger
-	log.Setup(config)
+	log.Setup(&config.log)
 
 	log.Debug("log is setup")
 

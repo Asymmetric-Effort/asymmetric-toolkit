@@ -5,7 +5,7 @@ package logger
 	of the logger which will be loaded by the commandline arguments
 */
 type Configuration struct {
-	Level       LogLevel
+	Level       Level
 	Facility    Facility
 	Destination Destination
 }

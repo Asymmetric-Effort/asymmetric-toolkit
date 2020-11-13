@@ -13,7 +13,7 @@ const (
 	logLevelArgLong  = "loglevel"
 )
 
-func (o *Specification) AddLogLevel(defaultValue logger.LogLevel) {
+func (o *Specification) AddLogLevel(defaultValue logger.Level) {
 	//
 	// Initialize the Argument object.
 	//

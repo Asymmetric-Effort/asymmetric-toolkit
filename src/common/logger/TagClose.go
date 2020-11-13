@@ -7,6 +7,6 @@ package logger
 */
 
 func (o *Logger) TagClose(tagId TagId) {
-	//ToDo: emit a tag event indicating that tagId is closed.
-	o.Printf(o.Level, "TagClose(%d)", tagId)
+	o.tags.Close(tagId)
+	o.Printf(o.Level, EventTagClose, &[]TagId{tagId},nil, int(tagId))
 }

@@ -1,11 +1,11 @@
 package logger
 
 /*
-	Logger::TagCreate() creates a new TagId
+	Logger::TagCreate() creates a new TagId and emits a descriptive event.
 */
 
 func (o *Logger) TagCreate(tagName string) (tagId TagId) {
-	o.nextTag++
-	//ToDo: emit a tag event relating the associated TagId and TagName.
-	return o.nextTag
+	tagId = o.tags.Create(&tagName)
+	o.Printf(o.Level, EventTagClose, &[]TagId{tagId}, &tagName, int(tagId))
+	return tagId
 }

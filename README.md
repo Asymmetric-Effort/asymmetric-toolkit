@@ -8,13 +8,13 @@ This is a work in progress.  It's still pretty early, and all the things are sub
 ### Milestones:
 Note these milestones are not exhaustive but provide a summary of latest efforts/achievements/priotized tasks:
 * [Documentation](docs/README.md).
-* [common/cli](src/common/cli/README.md) is working.  Tests written.
+* [common/cli](src/common/cli/README.md) is working.  Tests written. [clidev](src/tools/clidev/README.md) is
+  ready, providing an example implementation of [common/cli](src/common/cli/README.md).
 
 ### ToDo:
-* Finish [clidev](src/tools/clidev/README.md) (example implementation of [common/cli](src/common/cli/README.md)
-  > This tool will provide a reference implementation of the commandline processor for further development.
-  > It also acts as a high-level integration test for the commandline features.  If the tests in `clidev` pass then
-  > any issues aren't in the library most likely.
+* Working on [common/logger](src/common/logger/README.md) to provide rich, high-cardinality structured event logging
+  to stdout, file or syslog ensuring the efficient use of network and system resources.  This leaves the path open
+  for a compression and encryption layer to our logging strategy.
 * Continue work on [dnsEnum](src/tools/dnsenum/README.md).
   > This tool is our first attempt at and end-to-end golang solution within the framework.  Proof-of-concept efforts
   > have been the basis for all work performed within the project thus far.  Now with 

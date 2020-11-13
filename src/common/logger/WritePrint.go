@@ -5,7 +5,7 @@ import (
 	"time"
 )
 
-func (o *Logger) Print(level LogLevel, msg string) {
+func (o *Logger) Print(level Level, msg string) {
 	if o.Writer != nil {
 		formattedMessage:=fmt.Sprintf(
 			LogFormat,
