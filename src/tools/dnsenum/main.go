@@ -28,8 +28,7 @@ func main() {
 
 	var log logger.Logger // Global logger
 	log.Setup(&config.log)
-	//log.Debug(<event>,<value>,<tags...>)
-	log.Debug()
+	log.Debug(logger.EventInit,"logging is setup")
 
 	//var feed source.Source                // Source Generator
 	//var attack dnsEnumerator			  // Attacker Payload

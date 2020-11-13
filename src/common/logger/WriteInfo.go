@@ -1,8 +1,8 @@
 package logger
 
-func (o *Logger) Info(eventId EventId,value string, tag ...TagId){
+func (o *Logger) Info(eventId EventId, value string, tag ...TagId){
 	switch o.Level.Get() {
-	case Debug:
-		o.Printf(Info, eventId, value, tag)
+	case Info:
+		o.Printf(Info, eventId, &tag, &value)
 	}
 }

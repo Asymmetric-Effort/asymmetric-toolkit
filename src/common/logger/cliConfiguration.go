@@ -5,6 +5,7 @@ package logger
 	of the logger which will be loaded by the commandline arguments
 */
 type Configuration struct {
-	Level       Level
-	Destination Destination
+	Level       Level              // Specifies the logging level.
+	Destination Destination        // Specifies the log destination
+	Settings    *map[string]string // Simple key-value store
 }

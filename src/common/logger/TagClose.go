@@ -6,7 +6,12 @@ package logger
 	time.  We may find it necessary in the future to panic if tags are used after they are closed.
 */
 
+import (
+	"fmt"
+)
+
 func (o *Logger) TagClose(tagId TagId) {
 	o.tags.Close(tagId)
-	o.Printf(o.Level, EventTagClose, &[]TagId{tagId},nil, int(tagId))
+	tagData := fmt.Sprintf("%d", tagId)
+	o.Printf(AnyLevel, EventTagClose, nil, &tagData)
 }
