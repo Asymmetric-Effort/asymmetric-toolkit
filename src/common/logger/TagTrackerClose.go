@@ -1,10 +1,11 @@
 package logger
 
 func (o *TagTracker) Close(id TagId) {
+	o.lock.Lock()
+	defer o.lock.Unlock()
 	if o.tagIds == nil {
 		panic("TagTracker must be initialized before Close() is called.")
 	}
-	o.lock.Lock()
 	if o.IsValid(id) {
 		if _, ok := o.global[id]; ok {
 			delete(o.global, id)
@@ -14,5 +15,4 @@ func (o *TagTracker) Close(id TagId) {
 	}else{
 		panic("TagTracker::Close() attempted to close a non-existent tag.")
 	}
-	o.lock.Unlock()
 }

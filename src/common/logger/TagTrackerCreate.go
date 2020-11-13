@@ -28,14 +28,12 @@ func (o *TagTracker) Create(rawTagName *string) TagId {
 
 	if re.MatchString(tagName) {
 		o.lock.Lock()
+		defer o.lock.Unlock()
 		o.tagIds[id] = tagName
 		o.tagNames[tagName] = id
 		o.nextTag++
-		o.lock.Unlock()
 	} else {
 		panic("Invalid Logger/TagName.  Expected:" + tagPattern)
 	}
-
 	return id
-
 }

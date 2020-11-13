@@ -55,7 +55,7 @@ func (o *Logger) Printf(lvl Level, eventId EventId, tags *[]TagId, msg *string, 
 			if tags == nil {
 				return ""
 			}
-			format := `%s,"tag:%d"`
+			format := `%s,"%d"`
 			for _, tag := range *tags {
 				s = fmt.Sprintf(format, s, tag)
 			}

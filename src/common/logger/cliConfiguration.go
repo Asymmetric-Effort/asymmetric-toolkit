@@ -6,6 +6,5 @@ package logger
 */
 type Configuration struct {
 	Level       Level
-	Facility    Facility
 	Destination Destination
 }

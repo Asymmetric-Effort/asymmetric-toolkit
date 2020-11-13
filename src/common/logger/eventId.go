@@ -6,10 +6,8 @@ package logger
 type EventId uint32
 
 const (
-	EventNoop      EventId = 0 //Unspecified event.
-	EventInit      EventId = 1
-	EventPanic     EventId = 2 //This indicates a general Panic augmented by tags.
-	EventError     EventId = 3 //A general error
-	EventTagCreate EventId = 4 //Create tag event
-	EventTagClose  EventId = 5 //Close tag event
+	EventStd      EventId = 0 //Standard EventId for all normal log emissions.
+	EventInit      EventId = 1 //Logging client is initialized.
+	EventTagCreate EventId = 2 //Create tag event (descriptor).
+	EventTagClose  EventId = 3 //Close tag event (descriptor).
 )
