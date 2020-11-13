@@ -8,14 +8,17 @@ import "sync"
 	tag is in this `global` table.
 */
 const (
-	tagPattern = `[a-zA-Z][a-zA-Z0-9]{0,63}`
+	tagPattern                  = `[a-zA-Z][a-zA-Z0-9]{0,63}`
 	maxTagTrackerDictionarySize = 16384
 )
 
 type TagTracker struct {
 	lock     sync.Mutex
-	nextTag  TagId            // Next tagId to issue.
-	global   map[TagId]bool   // This is the set of globally applied tags (they appear in all events until removed).
-	tagNames map[string]TagId // Dictionary of tagNames and TagIds currently known to the system.
-	tagIds   map[TagId]string // Dictionary of TagIds in the system for quick forward lookup
+	nextTag  TagId             // Next tagId to issue.
+	global   TagTable          // This is the set of globally applied tags (they appear in all events until removed).
+	tagNames TagNameDictionary // Dictionary of tagNames and TagIds currently known to the system.
+	tagIds   TagDictionary     // Dictionary of TagIds in the system for quick forward lookup
 }
+
+
+

@@ -1,7 +1,6 @@
 package logger
 
 import (
-	"asymmetric-effort/asymmetric-toolkit/src/common/errors"
 	"io/ioutil"
 	"os"
 	"testing"
@@ -25,11 +24,4 @@ func catchStdOut(t *testing.T, runnable func()) string {
 	exitOnError(err, t)
 	exitOnError(r.Close(), t)
 	return string(newOutBytes)
-}
-
-func TestLoggerHappy(t *testing.T) {
-	var log Logger
-	errors.Assert(log.Level == 0, "expect 0")
-	errors.Assert(log.Facility == "", "expect empty string")
-	errors.Assert(log.Writer == nil, "Expect nil Writer function pointer")
 }

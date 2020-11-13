@@ -2,11 +2,57 @@ Common Logger
 =============
 
 ## Purpose
-* Provide a common logging facility which provides resource-efficient high-cardinality structured event logging
-  for the toolkit.  This facility should allow any tool in the repository to quickly implement the logging with
-  common/cli integration.  Further, the logs emitted by this solution should be compressed and allow for future log
-  encryption prior to transmission or storage.
-  
+* Provide a common logging facility which allows tool developers to use structured, rich event logging rather than
+  string-based unstructured logs with future extensibility to support compression and expansion on a per-record basis.
+
+* Reduce the resource overhead to transmit, receive and store logs by eliminating arbitrary strings in favor of numeric
+  log data representative of complex concepts usually represented in string logs.
+
+* Improve the security of the toolkit by minimizing the number of static strings in the code base.
+
+## Discussion
+### Storage Efficiency Strategies
+An arbitrary string logged using historical logging systems will consume n-bytes in ASCII or 2*n-bytes in unicode
+for each character logged.  By contrast, a complex string-based concept could be represented by a fixed-length 
+numeric identifier to reduce resource overhead.  This numeric representation could be hard coded as a constant
+value in the mono repo as shared knowledge across the codebase (from the log producer to the log consumer).
+Alternatively, we can 'register' a string concept once with an associated numeric identifier and thereafter use
+the numeric representation to reduce overhead.
+
+In [common/logger](./README.md) we use both strategies.  First, we hard-code EventIds in the 
+[common/logger](./README.md).  Second we use registered identifiers for our tagging strategy.  Both strategies used
+to optimize the situation for a given use case.  This does not preclude the use of string identifiers for arbitrary
+message content.  This is still allowed, but its need is minimized.
+
+### EventId Use Case
+We know that at any given point in code where we wish to convey a particular meaning/message which is unchanging in the
+context of the code where the event occurs, the meaning can be encapsulated in an identifier name representing a numeric
+value.  The identifier may be n*characters occupying n or 2*n bytes but the numeric value will be a fixed 8-bytes for a
+32-bit identifier.  For example, look at the following print statement:
+```
+fmt.Println("Error: File not found.")
+```
+The message alone (just the string portion) consumes twenty-two (22) characters (ASCII 22 bytes, Unicode 44 bytes).
+But we could represent this as follows in just eight (8) bytes as follows:
+```
+const ErrFileNotFound = 10 // This eventId indicates that a file is not found.
+logger.Error(ErrFileNotFound)
+```
+Here wwe see that the constant defines the `eventId` and the `logger` needs only to process the numeric value.  This 
+provides not only a storage and transmission benefit (e.g. less on-disk space and lower bandwidth costs), it provides
+an event which can be processed faster than a string evaluation.  Numeric data, after all is easier to search, index and
+process.
+
+### TagId Use Case
+Predicting EventIds requires more discipline when writing software, and it solves the logging problem for a static code 
+context.  However, there are cases where dynamic structures and contexts exist only during runtime.  In these cases we 
+must be able to create identifiers (`tags`) for these complex concepts.  Here we minimize string data by registering a
+tag to produce a numeric `tagId` we can log for as long as it is needed.  This numeric `tagId` realizes the same 
+benefits we see from an `EventId` (though at a more modest scale) because we only need to transmit the `tagId` and 
+`tagName` (string) association once (at tag creation) and thereafter use the numeric representation.  Further, we can
+define global tags and apply those for the duration of their lifetimes with less programmer effort.
+
+
 ## Usage
 * Assumptions:
     1. We assume the application has a `Configuration` struct which contains a `common/logger` `Configuration` struct.

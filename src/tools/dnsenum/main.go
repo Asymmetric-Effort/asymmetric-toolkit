@@ -31,11 +31,8 @@ func main() {
 	log.Debug(logger.EventInit)
 
 	//var feed source.Source                // Source Generator
-	//var attack dnsEnumerator			  // Attacker Payload
-	//log.Setup(&ui)
-	//log.Debug("Main(): Logger is setup and config is loaded.")
-
 	//feed.Setup(&ui, deprecated_cli.SourceBufferSz, deprecated_cli.DnsChars)
+	//var attack dnsEnumerator			  // Attacker Payload
 
 	//var requestSent chan bool = make(chan bool, 1)
 
