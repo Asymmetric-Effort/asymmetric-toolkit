@@ -7,11 +7,16 @@ package logger
 */
 
 import (
-	"fmt"
+	"time"
 )
 
 func (o *Logger) TagClose(tagId TagId) {
 	o.tags.Close(tagId)
-	tagData := fmt.Sprintf("%d", tagId)
-	o.Printf(AnyLevel, EventTagClose, nil, &tagData)
+	o.PrintEvent(&LogEventStruct{
+		eventId: EventTagClose,
+		time:    time.Now(),
+		level:   Any,
+		tags:    &[]TagId{tagId},
+		message: nil,
+	})
 }

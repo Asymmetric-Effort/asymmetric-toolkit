@@ -2,12 +2,12 @@ package logger
 
 import "time"
 
-func (o *Logger) Warning(eventId EventId, value string, tags ...TagId){
+func (o *Logger) DebugStr(eventId EventId, message string, tags ...TagId) {
 	o.PrintEvent(&LogEventStruct{
 		eventId: eventId,
 		time:    time.Now(),
-		level:   Warning,
+		level:   Debug,
 		tags:    &tags,
-		message: nil,
+		message: &message,
 	})
 }

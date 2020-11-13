@@ -7,8 +7,7 @@ package logger
 type Level int
 
 const (
-	AnyLevel Level = -1 //This is a special logging level that applies EVERYWHERE.
-
+	Any      Level = -1
 	Critical Level = 0
 	Error    Level = 1
 	Warning  Level = 2

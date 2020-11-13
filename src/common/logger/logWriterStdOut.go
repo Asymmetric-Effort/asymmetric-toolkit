@@ -7,9 +7,9 @@ import (
 	"os"
 )
 
-func (o *Logger) logWriterStdOut(msg *string) {
+func (o *Logger) logWriterStdOut(msg *[]byte) {
 	writer := bufio.NewWriter(os.Stdout)
-	_, err := writer.WriteString(*msg)
+	_, err:=writer.Write(*msg)
 	errors.Assert(err == nil, fmt.Sprintf("%v",err))
 	_ = writer.Flush()
 }

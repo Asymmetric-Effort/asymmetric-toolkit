@@ -1,8 +1,16 @@
 package logger
 
-func (o *Logger) Info(eventId EventId, value string, tag ...TagId){
-	switch o.Level.Get() {
-	case Info:
-		o.Printf(Info, eventId, &tag, &value)
-	}
+import "time"
+
+/*
+	Logger::Info() is the preferred logging method for informational messages using only a numeric event Id and tags.
+*/
+func (o *Logger) Info(eventId EventId, tags ...TagId) {
+	o.PrintEvent(&LogEventStruct{
+		eventId: eventId,
+		time:    time.Now(),
+		level:   Info,
+		tags:    &tags,
+		message: nil,
+	})
 }

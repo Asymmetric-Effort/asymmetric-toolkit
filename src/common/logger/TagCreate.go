@@ -5,12 +5,17 @@ package logger
 */
 
 import (
-	"fmt"
+	"time"
 )
 
 func (o *Logger) TagCreate(tagName string) (tagId TagId) {
 	tagId = o.tags.Create(&tagName)
-	tagData := fmt.Sprintf("%s:%d", tagName, tagId)
-	o.Printf(AnyLevel, EventTagCreate, nil, &tagData)
+	o.PrintEvent(&LogEventStruct{
+		eventId: EventTagClose,
+		time:    time.Now(),
+		level:   Any,
+		tags:    &[]TagId{tagId},
+		message: &tagName,
+	})
 	return tagId
 }
