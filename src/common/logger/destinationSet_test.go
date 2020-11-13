@@ -14,6 +14,7 @@ func TestLogDestinationSetHappy(t *testing.T){
 	ld.Set(Syslog)
 	errors.Assert(ld.Get() == Syslog, "Expected Syslog")
 }
+
 func TestLogDestinationSetSad(t *testing.T){
 	var ld Destination
 	defer func(){recover()}()
