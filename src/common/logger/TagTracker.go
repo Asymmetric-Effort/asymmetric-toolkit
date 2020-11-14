@@ -7,10 +7,7 @@ import "sync"
 	of all tags known to the system as well as a `global` map of tags which will apply to all events so long as the
 	tag is in this `global` table.
 */
-const (
-	tagPattern                  = `[a-zA-Z][a-zA-Z0-9]{0,63}`
-	maxTagTrackerDictionarySize = 16384
-)
+
 
 type TagTracker struct {
 	lock     sync.Mutex
