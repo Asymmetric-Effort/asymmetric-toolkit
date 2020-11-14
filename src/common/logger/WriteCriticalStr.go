@@ -7,7 +7,7 @@ func (o *Logger) CriticalStr(eventId EventId, message string, tags ...TagId) {
 		eventId: eventId,
 		time:    time.Now(),
 		level:   Critical,
-		tags:    &tags,
-		message: &message,
+		tags:    tags,
+		message: message,
 	})
 }

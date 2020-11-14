@@ -7,7 +7,7 @@ func (o *Logger) DebugStr(eventId EventId, message string, tags ...TagId) {
 		eventId: eventId,
 		time:    time.Now(),
 		level:   Debug,
-		tags:    &tags,
-		message: &message,
+		tags:    tags,
+		message: message,
 	})
 }

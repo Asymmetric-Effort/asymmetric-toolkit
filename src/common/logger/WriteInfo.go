@@ -10,7 +10,7 @@ func (o *Logger) Info(eventId EventId, tags ...TagId) {
 		eventId: eventId,
 		time:    time.Now(),
 		level:   Info,
-		tags:    &tags,
-		message: nil,
+		tags:    tags,
+		message: "",
 	})
 }

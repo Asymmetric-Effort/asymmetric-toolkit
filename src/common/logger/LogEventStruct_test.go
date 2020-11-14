@@ -12,5 +12,5 @@ func TestLogEventStruct(t *testing.T) {
 	errors.Assert(o.time == time.Time{}, "expect 0")
 	errors.Assert(o.level == Critical, "expect critical (0)")
 	errors.Assert(o.tags == nil, "expect nil")
-	errors.Assert(o.message == nil, "expect nil")
+	errors.Assert(o.message == "", "expect nil")
 }

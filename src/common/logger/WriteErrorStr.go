@@ -7,7 +7,7 @@ func (o *Logger) ErrorStr(eventId EventId, message string, tags ...TagId) {
 		eventId: eventId,
 		time:    time.Now(),
 		level:   Error,
-		tags:    &tags,
-		message: &message,
+		tags:    tags,
+		message: message,
 	})
 }

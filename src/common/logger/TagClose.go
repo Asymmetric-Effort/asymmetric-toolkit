@@ -16,7 +16,7 @@ func (o *Logger) TagClose(tagId TagId) {
 		eventId: EventTagClose,
 		time:    time.Now(),
 		level:   Any,
-		tags:    &[]TagId{tagId},
-		message: nil,
+		tags:    []TagId{tagId},
+		message: "",
 	})
 }

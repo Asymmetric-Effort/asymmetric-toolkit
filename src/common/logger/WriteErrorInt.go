@@ -11,7 +11,7 @@ func (o *Logger) ErrorInt(eventId EventId, value int, tags ...TagId) {
 		eventId: eventId,
 		time:    time.Now(),
 		level:   Error,
-		tags:    &tags,
-		message: &message,
+		tags:    tags,
+		message: message,
 	})
 }

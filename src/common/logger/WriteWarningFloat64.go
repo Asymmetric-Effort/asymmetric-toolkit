@@ -11,7 +11,7 @@ func (o *Logger) WarningFloat64(eventId EventId, value float64, tags ...TagId) {
 		eventId: eventId,
 		time:    time.Now(),
 		level:   Warning,
-		tags:    &tags,
-		message: &message,
+		tags:    tags,
+		message: message,
 	})
 }

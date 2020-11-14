@@ -11,7 +11,7 @@ func (o *Logger) InfoFloat64(eventId EventId, value float64, tags ...TagId) {
 		eventId: eventId,
 		time:    time.Now(),
 		level:   Info,
-		tags:    &tags,
-		message: &message,
+		tags:    tags,
+		message: message,
 	})
 }

@@ -7,7 +7,7 @@ func (o *Logger) InfoStr(eventId EventId, message string, tags ...TagId) {
 		eventId: eventId,
 		time:    time.Now(),
 		level: Info,
-		tags:    &tags,
-		message: &message,
+		tags:    tags,
+		message: message,
 	})
 }

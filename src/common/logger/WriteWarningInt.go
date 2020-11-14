@@ -11,7 +11,7 @@ func (o *Logger) WarningInt(eventId EventId, value int, tags ...TagId) {
 		eventId: eventId,
 		time:    time.Now(),
 		level:   Warning,
-		tags:    &tags,
-		message: &message,
+		tags:    tags,
+		message: message,
 	})
 }

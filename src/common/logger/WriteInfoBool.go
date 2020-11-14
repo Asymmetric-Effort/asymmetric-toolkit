@@ -11,7 +11,7 @@ func (o *Logger) InfoBool(eventId EventId, value bool, tags ...TagId) {
 		eventId: eventId,
 		time:    time.Now(),
 		level:   Info,
-		tags:    &tags,
-		message: &message,
+		tags:    tags,
+		message: message,
 	})
 }

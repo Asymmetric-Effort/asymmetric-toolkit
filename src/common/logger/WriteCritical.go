@@ -11,7 +11,7 @@ func (o *Logger) Critical(eventId EventId, tags ...TagId) {
 		eventId: eventId,
 		time:    time.Now(),
 		level:   Critical,
-		tags:    &tags,
-		message: nil,
+		tags:    tags,
+		message: "",
 	})
 }

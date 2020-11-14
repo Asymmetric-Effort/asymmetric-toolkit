@@ -27,6 +27,6 @@ func TestLogger_TapMerge(t *testing.T) {
 	}
 	startLen:=len(*tags)
 	mergedTags:=o.tagMerge(tags)
-	mergedTagLen:=len(*mergedTags)
+	mergedTagLen:=len(mergedTags)
 	errors.Assert((mergedTagLen - startLen) == 1, "expected tag list to be one greater.")
 }

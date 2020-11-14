@@ -11,7 +11,7 @@ func (o *Logger) ErrorBool(eventId EventId, value bool, tags ...TagId) {
 		eventId: eventId,
 		time:    time.Now(),
 		level:   Error,
-		tags:    &tags,
-		message: &message,
+		tags:    tags,
+		message: message,
 	})
 }

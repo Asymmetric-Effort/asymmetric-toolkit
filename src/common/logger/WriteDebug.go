@@ -10,7 +10,7 @@ func (o *Logger) Debug(eventId EventId, tags ...TagId) {
 		eventId: eventId,
 		time:    time.Now(),
 		level:   Debug,
-		tags:    &tags,
-		message: nil,
+		tags:    tags,
+		message: "",
 	})
 }

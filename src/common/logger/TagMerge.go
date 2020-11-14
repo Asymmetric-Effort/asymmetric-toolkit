@@ -1,6 +1,6 @@
 package logger
 
-func (o *Logger) tagMerge(tags *[]TagId) *[]TagId {
+func (o *Logger) tagMerge(tags *[]TagId) []TagId {
 	var mergedTags = make(TagTable, 1)
 	for tag, _ := range o.tags.global {
 		mergedTags[tag] = struct{}{}
@@ -14,5 +14,5 @@ func (o *Logger) tagMerge(tags *[]TagId) *[]TagId {
 	for tag,_:=range mergedTags{
 		result=append(result,tag)
 	}
-	return &result
+	return result
 }

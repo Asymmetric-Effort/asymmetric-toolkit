@@ -14,8 +14,8 @@ func (o *Logger) TagCreate(tagName string) (tagId TagId) {
 		eventId: EventTagCreate,
 		time:    time.Now(),
 		level:   Any,
-		tags:    &[]TagId{tagId},
-		message: &tagName,
+		tags:    []TagId{tagId},
+		message: tagName,
 	})
 	return tagId
 }

@@ -6,15 +6,19 @@ package logger
 */
 import (
 	"encoding/json"
+	"fmt"
 )
 
 func (o *Logger) PrintEvent(event *LogEventStruct) {
+
 	if o.PrintThisLine(event.level) && (o.Writer != nil) {
-		event.tags = o.tagMerge(event.tags)
+		event.tags = o.tagMerge(&event.tags)
 		msg, err := json.Marshal(*event)
 		if err != nil {
 			panic(err)
 		}
-		o.Writer(&msg)
+		fmt.Print("PrintEvent:", *event,"\n")
+		out:=string(msg)
+		o.Writer(&out)
 	}
 }

@@ -11,8 +11,8 @@ func (o *Logger) DebugInt(eventId EventId, value int, tags ...TagId) {
 		eventId: eventId,
 		time:    time.Now(),
 		level:   Debug,
-		tags:    &tags,
-		message: &message,
+		tags:    tags,
+		message: message,
 	})
 }
 

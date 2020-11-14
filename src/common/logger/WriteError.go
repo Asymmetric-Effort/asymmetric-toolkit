@@ -10,7 +10,7 @@ func (o *Logger) Error(eventId EventId, tags ...TagId) {
 		eventId: eventId,
 		time:    time.Now(),
 		level:   Error,
-		tags:    &tags,
-		message: nil,
+		tags:    tags,
+		message: "",
 	})
 }

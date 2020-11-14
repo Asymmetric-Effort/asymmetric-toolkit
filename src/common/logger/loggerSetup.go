@@ -28,4 +28,10 @@ func (o *Logger) Setup(config *Configuration) { //given a logger configuration..
 	default:
 		panic("Invalid logging destination.")
 	}
+	o.tags = TagTracker{
+		nextTag:0,
+		global:TagTable{},
+		tagNames:make(TagNameDictionary,1),
+		tagIds:make(TagDictionary,1),
+	}
 }

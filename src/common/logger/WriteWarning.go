@@ -7,7 +7,7 @@ func (o *Logger) Warning(eventId EventId, value string, tags ...TagId){
 		eventId: eventId,
 		time:    time.Now(),
 		level:   Warning,
-		tags:    &tags,
-		message: nil,
+		tags:    tags,
+		message: "",
 	})
 }
