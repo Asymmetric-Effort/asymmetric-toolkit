@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"strings"
 	"testing"
-	"time"
 )
 
 func TestLogWriterStdOut(t *testing.T) {
@@ -17,16 +16,11 @@ func TestLogWriterStdOut(t *testing.T) {
 	log.Setup(&config)
 
 	out := catchStdOut(t, func() {
-		log.PrintEvent(&LogEventStruct{
-			eventId: EventStd,
-			time:    time.Now(),
-			level:   Debug,
-			tags:    nil,
-			message: nil,
-		})
+		msg := []byte("test")
+		log.logWriterStdOut(&msg)
 	})
 	msg := strings.Split(out, ":")
 	word := strings.TrimSpace(msg[len(msg)-1])
-	fmt.Println("out:", out)
-	errors.Assert(word != "{}", fmt.Sprintf("Expected '{}'. Encountered: '%s'", word))
+	fmt.Printf("out:'%s'\n", out)
+	errors.Assert(word == "test", fmt.Sprintf("Expected 'test'. Encountered: '%s'", word))
 }
