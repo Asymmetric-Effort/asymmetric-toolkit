@@ -24,8 +24,10 @@ func (o *Logger) tagMerge(tags *[]TagId) *[]TagId {
 	for tag, _ := range o.tags.global {
 		mergedTags[tag] = struct{}{}
 	}
-	for _, tag :=range *tags{
-		mergedTags[tag] = struct{}{}
+	if tags != nil {
+		for _, tag := range *tags {
+			mergedTags[tag] = struct{}{}
+		}
 	}
 	var result []TagId
 	for tag,_:=range mergedTags{

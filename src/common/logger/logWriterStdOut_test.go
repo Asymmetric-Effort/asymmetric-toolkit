@@ -1,6 +1,13 @@
 package logger
 
-/*
+import (
+	"asymmetric-effort/asymmetric-toolkit/src/common/errors"
+	"fmt"
+	"strings"
+	"testing"
+	"time"
+)
+
 func TestLogWriterStdOut(t *testing.T) {
 	var log Logger
 	var config Configuration
@@ -8,10 +15,16 @@ func TestLogWriterStdOut(t *testing.T) {
 	config.Level.Set(Debug)
 	out := catchStdOut(t, func() {
 		log.Setup(&config)
-		log.Printf(Debug, "%s", "Test")
+		log.PrintEvent(&LogEventStruct{
+			eventId: EventStd,
+			time:    time.Now(),
+			level:   Debug,
+			tags:    nil,
+			message: nil,
+		})
 	})
 	msg := strings.Split(out, ":")
 	word := strings.TrimSpace(msg[len(msg)-1])
-	errors.Assert(word == "Test", fmt.Sprintf("Expected 'Test'. Encountered: '%s'", word))
+	fmt.Println("out:", out)
+	errors.Assert(word == "{}", fmt.Sprintf("Expected '{}'. Encountered: '%s'", word))
 }
-*/
