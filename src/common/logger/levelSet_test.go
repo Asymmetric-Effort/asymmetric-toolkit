@@ -1,27 +1,25 @@
 package logger
 
 import (
-	"asymmetric-effort/asymmetric-toolkit/src/common/errors"
+	"math"
 	"testing"
 )
+func TestLogLevel_Set(t *testing.T){
+	recoverOnError:=func(){recover()}
+	for i:=math.MinInt8;i<math.MaxInt8;i++ {
+		func() {
+			pre:=func(){}
+			post:=func(){}
+			if i < 0 || i >4 {
+				pre=recoverOnError
+				post=func(){panic("expected error")}
 
-func TestLogLevelSet_Happy(t *testing.T) {
-	var l Level
-	errors.Assert(l == Critical, "Expect Critical (Default)")
-
-	l.Set(Error)
-	errors.Assert(l.Get() == Error, "Expect Error")
-	l.Set(Warning)
-	errors.Assert(l.Get() == Warning, "Expect Warning")
-	l.Set(Info)
-	errors.Assert(l.Get() == Info, "Expect Info")
-	l.Set(Debug)
-	errors.Assert(l.Get() == Debug, "Expect Debug")
-}
-
-func TestLogLevelSet_Sad(t *testing.T) {
-	var l Level
-	defer func() { recover() }()
-	l.Set(BadLevel)
-	t.Error("expected error")
+			}
+			defer pre()
+			var n=Level(i)
+			var L = Level(i)
+			L.Set(n)
+			post()
+		}()
+	}
 }

@@ -17,5 +17,5 @@ type Logger struct {
 	Writer      func(*[]byte) // Payload log writer function (configured as per Destination.
 
 	// Private properties
-	tags TagTracker //This is a map of all tags in the system.
+	tags TagTracker
 }

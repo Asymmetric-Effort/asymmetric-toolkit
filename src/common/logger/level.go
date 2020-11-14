@@ -4,7 +4,7 @@ package logger
 	Level is a numeric type showing log level.
 */
 
-type Level int
+type Level int8
 
 const (
 	Any      Level = -1
