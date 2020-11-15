@@ -9,5 +9,5 @@ const (
 
 const (
 	tagPattern                  = `[a-zA-Z][a-zA-Z0-9]{0,63}`
-	maxTagTrackerDictionarySize = 16384
+	maxTagTrackerDictionarySize = 256
 )

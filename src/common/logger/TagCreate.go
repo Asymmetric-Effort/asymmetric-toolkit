@@ -9,7 +9,7 @@ import (
 )
 
 func (o *Logger) TagCreate(tagName string) (tagId TagId) {
-	tagId = o.tags.Create(&tagName)
+	tagId = o.tags.Create(tagName)
 	o.PrintEvent(&LogEventStruct{
 		eventId: EventTagCreate,
 		time:    time.Now(),
