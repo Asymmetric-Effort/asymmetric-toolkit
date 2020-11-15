@@ -47,5 +47,6 @@ func TestLogger_PrintEvent(t *testing.T) {
 		return string(newOutBytes)
 	}()
 	fmt.Println("out:", out)
-	//errors.Assert(out != "{}", fmt.Sprintf("Encountered: '%v'", out))
+	t.Skip("We need to unmarshal the structured log.")
+	//errors.Assert(out == "{}", fmt.Sprintf("Encountered: '%v'", out))
 }
