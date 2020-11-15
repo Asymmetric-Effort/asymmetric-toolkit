@@ -6,7 +6,6 @@ package logger
 */
 import (
 	"encoding/json"
-	"fmt"
 )
 
 func (o *Logger) PrintEvent(event *LogEventStruct) {
@@ -17,7 +16,7 @@ func (o *Logger) PrintEvent(event *LogEventStruct) {
 		if err != nil {
 			panic(err)
 		}
-		fmt.Print("PrintEvent:", *event,"\n")
+		//fmt.Print(*event)
 		out:=string(msg)
 		o.Writer(&out)
 	}

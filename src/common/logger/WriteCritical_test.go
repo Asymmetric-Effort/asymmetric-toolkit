@@ -66,11 +66,17 @@ func TestLogger_Critical(t *testing.T) {
 			var event LogEventStruct
 			err := json.Unmarshal([]byte(out), &event)
 			if err != nil {
-				panic(fmt.Sprintf("Error:%v  (%v)",err, event))
+				panic(
+					fmt.Sprintf("\n"+
+						"LogLevel: %d\n"+
+						"Error:    %v\n"+
+						"Event:    %v\n",
+						test.level, err, out))
 			}
 			errors.Assert(event.eventId == EventStd, fmt.Sprintf("Expected '0'. Encountered: '%d'", event.eventId))
 		} else {
-			errors.Assert(out == "", fmt.Sprintf("Expected no log written for level %d.", test.level))
+			errors.Assert(out == "{}", fmt.Sprintf("Expected no log written for level %d.\noutput: %v\n",
+				test.level, out))
 		}
 		fmt.Printf("\tTest with log level '%8s'(%1d): OK\n", test.level.String(), test.level)
 	}
