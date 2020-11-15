@@ -10,7 +10,7 @@ import (
 
 func (o *Logger) PrintEvent(event *LogEventStruct) {
 
-	if o.PrintThisLine(event.Level) && (o.Writer != nil) {
+	if (event.Level.Get() <= o.Level.Get()) && (o.Writer != nil) {
 		event.Tags = o.tagMerge(&event.Tags)
 		msg, err := json.Marshal(*event)
 		if err != nil {

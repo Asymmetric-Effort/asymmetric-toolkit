@@ -11,37 +11,63 @@ import (
 
 func TestLogger_Critical(t *testing.T) {
 	var log Logger
+	var config = Configuration{
+		Level:       Critical,
+		Settings:    nil,
+		Destination: Stdout,
+	}
+	log.Setup(&config)
 
 	tests := []struct {
-		level Level
-		pass  bool
+		Level          Level
+		ExpectPrintMsg bool
 	}{
 		{
-			level: Critical,
-			pass:  true,
+			Level:          Debug,
+			ExpectPrintMsg: false,
 		}, {
-			level: Error,
-			pass:  false,
+			Level:          Info,
+			ExpectPrintMsg: false,
 		}, {
-			level: Warning,
-			pass:  false,
+			Level:          Warning,
+			ExpectPrintMsg: false,
 		}, {
-			level: Info,
-			pass:  false,
+			Level:          Error,
+			ExpectPrintMsg: false,
 		}, {
-			level: Debug,
-			pass:  false,
+			Level:          Critical,
+			ExpectPrintMsg: true,
 		},
 	}
 
 	for _, test := range tests {
-		var config = Configuration{
-			Level:       test.level,
-			Settings:    nil,
-			Destination: Stdout,
+		fmt.Printf("PrintThisLine:\n"+
+			"\ttest level     : %v\n"+
+			"\tExpectPrintMsg : %v\n"+
+			"\tPrintThisLine  : %v\n",
+			test.Level.String(),
+			test.ExpectPrintMsg,
+			log.PrintThisLine(test.Level))
+
+		if test.ExpectPrintMsg {
+			if log.PrintThisLine(test.Level) {
+				fmt.Println("PrintThisLine() outcome hit: pass")
+			} else {
+				panic("PrintThisLine() outcome mismatch: pass")
+			}
 		}
-		log.Setup(&config)
-		errors.Assert(log.Level == test.level, fmt.Sprintf("Expect %s", test.level.String()))
+	}
+	fmt.Println("")
+	fmt.Println("------------")
+	fmt.Println("second phase")
+	fmt.Println("------------")
+	fmt.Println("")
+
+	for _, test := range tests {
+		var event LogEventStruct
+
+		log.Level = test.Level
+		errors.Assert(log.Level == test.Level, fmt.Sprintf("Expect %s", test.Level.String()))
 
 		out := func() string {
 			realStdout := os.Stdout
@@ -62,22 +88,22 @@ func TestLogger_Critical(t *testing.T) {
 			exitOnError(r.Close(), t)
 			return string(newOutBytes)
 		}()
-		if test.pass {
-			var event LogEventStruct
+
+		fmt.Println("\tExpect a print message:",test.ExpectPrintMsg)
+		if test.ExpectPrintMsg {
 			err := json.Unmarshal([]byte(out), &event)
-			if err != nil {
-				panic(
-					fmt.Sprintf("\n"+
-						"LogLevel: %d\n"+
-						"Error:    %v\n"+
-						"Event:    %v\n",
-						test.level, err, out))
-			}
-			errors.Assert(event.EventId == EventStd, fmt.Sprintf("Expected '0'. Encountered: '%d'", event.EventId))
-		} else {
-			errors.Assert(out == "{}", fmt.Sprintf("Expected no log written for level %d.\noutput: %v\n",
-				test.level, out))
+			errors.Assert(err == nil, fmt.Sprintf("\n"+
+				"\tLogLevel: %d\n"+
+				"\tError: %v\n"+
+				"\tEvent: %v\n",
+				test.Level, err, out))
+
+			errors.Assert(event.EventId == EventStd, fmt.Sprintf("Expected '%d'. "+
+				"Encountered: '%d'", Critical, event.EventId))
+
+			errors.Assert(event.Level <= Critical, "Expected Critical level.")
+
+			fmt.Printf("\tTest with log level '%8s'(%1d): OK\n", test.Level.String(), test.Level)
 		}
-		fmt.Printf("\tTest with log level '%8s'(%1d): OK\n", test.level.String(), test.level)
 	}
 }

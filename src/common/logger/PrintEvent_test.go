@@ -13,7 +13,7 @@ import (
 func TestLogger_PrintEvent(t *testing.T) {
 	var config Configuration
 	config.Destination.Set(Stdout)
-	config.Level.Set(Debug)
+	config.Level.Set(Critical)
 
 	var log Logger
 	log.Setup(&config)
@@ -23,7 +23,7 @@ func TestLogger_PrintEvent(t *testing.T) {
 	evt := LogEventStruct{
 		EventId: EventStd,
 		Time:    currentTime,
-		Level:   Debug,
+		Level:   Critical,
 		Tags:    []TagId{1, 2, 3, 4},
 		Message: msgStr,
 	}
