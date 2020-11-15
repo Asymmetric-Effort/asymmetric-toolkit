@@ -13,10 +13,10 @@ import (
 func (o *Logger) TagClose(tagId TagId) {
 	o.tags.Close(tagId)
 	o.PrintEvent(&LogEventStruct{
-		eventId: EventTagClose,
-		time:    time.Now(),
-		level:   Any,
-		tags:    []TagId{tagId},
-		message: "",
+		EventId: EventTagClose,
+		Time:    time.Now().UnixNano(),
+		Level:   Any,
+		Tags:    []TagId{tagId},
+		Message: "",
 	})
 }

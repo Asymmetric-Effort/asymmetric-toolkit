@@ -3,41 +3,53 @@ package logger
 import (
 	"asymmetric-effort/asymmetric-toolkit/src/common/errors"
 	"encoding/json"
+	"fmt"
 	"testing"
 	"time"
 )
 
 func TestLogEventStruct(t *testing.T) {
-	var o LogEventStruct
-	var blob []byte
-	var err error
-
 	for level := Level(Critical); level <= Level(Debug); level++ {
 		for id := EventId(0); id <= EventId(3); id++ {
 
-			o.eventId = id
-			o.time = time.Time{}
-			o.level = level
+			currTime := time.Now().UnixNano()
 
-			func() { // Verify that all expected fields are in initial state.
-				errors.Assert(o.eventId == id, "expect 0")
-				errors.Assert(o.time == time.Time{}, "expect 0")
-				errors.Assert(o.level == level, "expect critical (0)")
-				errors.Assert(o.tags == nil, "expect nil")
-				errors.Assert(o.message == "", "expect nil")
-			}()
+			var src LogEventStruct = LogEventStruct{
+				EventId: id,
+				Time:    currTime,
+				Level:   level,
+				Tags:    []TagId{},
+				Message: "",
+			}
+			var blob []byte
+			var err error
 
-			func() { // Marshall struct to JSON
-				blob, err = json.Marshal(o)
+			fmt.Printf("\tlevel:%v, id:%v, time:%v\n", level, id, currTime)
+
+			func() {
+				errors.Assert(src.EventId == id, fmt.Sprintf("expect eventId %v == %v", src.EventId, id))
+				errors.Assert(src.Time == currTime, fmt.Sprintf("expect time (pre) %v", src.Time))
+				errors.Assert(src.Level == level,
+					fmt.Sprintf("expect level %v (%v)", src.Level.String(), src.Level))
+				errors.Assert(src.Message == "", fmt.Sprintf("expect message %v", src.Message))
+				blob, err = json.Marshal(src)
 				if err != nil {
 					panic(err)
 				}
-				errors.Assert(string(blob) != "", "expect non-empty string.")
 			}()
 
 			func() { // Unmarshall JSON blob into struct
-				var event LogEventStruct
-				err = json.Unmarshal(blob, &event)
+				var dest LogEventStruct
+				err = json.Unmarshal(blob, &dest)
+				errors.Assert(dest.EventId == id, "expect EventStd")
+				errors.Assert(dest.Level == level, "expect critical (0)")
+				errors.Assert(dest.Message == "", "expect message ''")
+				errors.Assert(src.Time == currTime,
+					fmt.Sprintf("expect %v in pre-test %v", src.Time, currTime))
+
+				errors.Assert(dest.Time == currTime,
+					fmt.Sprintf("expect time (post) %v | %v", dest.Time, currTime))
+
 				if err != nil {
 					panic(err)
 				}

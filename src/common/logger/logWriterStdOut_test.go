@@ -38,7 +38,6 @@ func TestLogWriterStdOut(t *testing.T) {
 		return string(newOutBytes)
 	}()
 
-	msg := out
-	word := msg
+	word := out
 	errors.Assert(word == "test", fmt.Sprintf("Expected 'test'. Encountered: '%s'", word))
 }

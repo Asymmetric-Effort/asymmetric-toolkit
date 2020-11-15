@@ -7,10 +7,10 @@ import "time"
 */
 func (o *Logger) Error(eventId EventId, tags ...TagId) {
 	o.PrintEvent(&LogEventStruct{
-		eventId: eventId,
-		time:    time.Now(),
-		level:   Error,
-		tags:    tags,
-		message: "",
+		EventId: eventId,
+		Time:    time.Now().UnixNano(),
+		Level:   Error,
+		Tags:    tags,
+		Message: "",
 	})
 }

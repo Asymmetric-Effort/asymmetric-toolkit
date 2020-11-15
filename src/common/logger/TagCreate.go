@@ -11,11 +11,11 @@ import (
 func (o *Logger) TagCreate(tagName string) (tagId TagId) {
 	tagId = o.tags.Create(tagName)
 	o.PrintEvent(&LogEventStruct{
-		eventId: EventTagCreate,
-		time:    time.Now(),
-		level:   Any,
-		tags:    []TagId{tagId},
-		message: tagName,
+		EventId: EventTagCreate,
+		Time:    time.Now().UnixNano(),
+		Level:   Any,
+		Tags:    []TagId{tagId},
+		Message: tagName,
 	})
 	return tagId
 }

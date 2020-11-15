@@ -1,13 +1,9 @@
 package logger
 
-import (
-	"time"
-)
-
 type LogEventStruct struct {
-	eventId EventId
-	time    time.Time
-	level   Level
-	tags    []TagId
-	message string
+	EventId EventId `json: "EventId"`
+	Time    int64   `json: "Time"`
+	Level   Level   `json: "Level"`
+	Tags    []TagId `json: "Tags"`
+	Message string  `json: "Message"`
 }

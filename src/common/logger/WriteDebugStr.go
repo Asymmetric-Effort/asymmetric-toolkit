@@ -4,10 +4,10 @@ import "time"
 
 func (o *Logger) DebugStr(eventId EventId, message string, tags ...TagId) {
 	o.PrintEvent(&LogEventStruct{
-		eventId: eventId,
-		time:    time.Now(),
-		level:   Debug,
-		tags:    tags,
-		message: message,
+		EventId: eventId,
+		Time:    time.Now().UnixNano(),
+		Level:   Debug,
+		Tags:    tags,
+		Message: message,
 	})
 }

@@ -8,10 +8,10 @@ import (
 func (o *Logger) CriticalInt(eventId EventId, value int, tags ...TagId) {
 	message := fmt.Sprintf("%d", value)
 	o.PrintEvent(&LogEventStruct{
-		eventId: eventId,
-		time:    time.Now(),
-		level:   Critical,
-		tags:    tags,
-		message: message,
+		EventId: eventId,
+		Time:    time.Now().UnixNano(),
+		Level:   Critical,
+		Tags:    tags,
+		Message: message,
 	})
 }

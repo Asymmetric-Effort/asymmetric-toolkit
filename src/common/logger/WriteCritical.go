@@ -8,10 +8,10 @@ import "time"
 
 func (o *Logger) Critical(eventId EventId, tags ...TagId) {
 	o.PrintEvent(&LogEventStruct{
-		eventId: eventId,
-		time:    time.Now(),
-		level:   Critical,
-		tags:    tags,
-		message: "",
+		EventId: eventId,
+		Time:    time.Now().UnixNano(),
+		Level:   Critical,
+		Tags:    tags,
+		Message: "",
 	})
 }

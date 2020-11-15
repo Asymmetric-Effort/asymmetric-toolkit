@@ -73,7 +73,7 @@ func TestLogger_Critical(t *testing.T) {
 						"Event:    %v\n",
 						test.level, err, out))
 			}
-			errors.Assert(event.eventId == EventStd, fmt.Sprintf("Expected '0'. Encountered: '%d'", event.eventId))
+			errors.Assert(event.EventId == EventStd, fmt.Sprintf("Expected '0'. Encountered: '%d'", event.EventId))
 		} else {
 			errors.Assert(out == "{}", fmt.Sprintf("Expected no log written for level %d.\noutput: %v\n",
 				test.level, out))

@@ -8,10 +8,10 @@ import (
 func (o *Logger) InfoInt(eventId EventId, value int, tags ...TagId) {
 	message := fmt.Sprintf("%d", value)
 	o.PrintEvent(&LogEventStruct{
-		eventId: eventId,
-		time:    time.Now(),
-		level:   Info,
-		tags:    tags,
-		message: message,
+		EventId: eventId,
+		Time:    time.Now().UnixNano(),
+		Level:   Info,
+		Tags:    tags,
+		Message: message,
 	})
 }
