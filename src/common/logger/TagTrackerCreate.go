@@ -38,13 +38,13 @@ func (o *TagTracker) Create(rawTagName string) TagId {
 
 func (o *TagTracker) initTagNames() {
 	if o.tagNames == nil {
-		o.tagNames = make(map[string]TagId, 1)
+		o.tagNames = make(TagNameDictionary, 1)
 	}
 }
 
 func (o *TagTracker) initTagIds() {
 	if o.tagIds == nil {
-		o.tagIds = make(map[TagId]string, 1)
+		o.tagIds = make(TagDictionary, 1)
 	}
 }
 
