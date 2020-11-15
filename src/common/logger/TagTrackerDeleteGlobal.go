@@ -8,5 +8,4 @@ func (o *TagTracker) DeleteGlobal(id TagId) {
 	} else {
 		panic("TagTracker::DeleteGlobal() called with invalid TagId")
 	}
-
 }
