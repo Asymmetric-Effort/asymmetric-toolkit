@@ -10,6 +10,8 @@ package main
 import (
 	buildconfig "asymmetric-effort/asymmetric-toolkit/buildConfig"
 	"asymmetric-effort/asymmetric-toolkit/src/common/cli"
+	"asymmetric-effort/asymmetric-toolkit/src/common/logger"
+	"asymmetric-effort/asymmetric-toolkit/src/common/source"
 	"fmt"
 )
 
@@ -53,9 +55,11 @@ func ProcessSpecification(args []string) (cfg *Configuration, exit bool, err err
 	spec.AddSourcePattern(DefaultSourcePattern)
 	spec.AddSource(DefaultSource)
 	spec.AddTimeout(DefaultTimeout)
-	//spec.AddLogLevel(logLevel.Info)
-	//spec.AddLogFacility(ProgramName)
-	//spec.AddLogTarget("stdout")
+	spec.AddLogLevel(logger.Info)
+	//
+	//ToDo: Integration for the logger to the Specification and common/cli.
+	//
+	//spec.AddLogDestination("stdout")
 	//
 	// Parse the commandline arguments and in response
 	// we expect a boolean (exitProgram) and error object
@@ -63,26 +67,42 @@ func ProcessSpecification(args []string) (cfg *Configuration, exit bool, err err
 	// executing or abandon hope.
 	//
 	exit, err = ui.Parse(&spec, &args)
+	//
+	// Log configuration (common/log)
+	//
+	var ConfigureLog logger.Configuration
+	ConfigureLog.Level.Set(logger.Level(ui.Arguments[cli.FlagLogLevel].Integer()))
+	ConfigureLog.Destination.Set(logger.Destination(ui.Arguments[cli.FlagLogDestination].Integer()))
+	// ToDo: Pass in settings string.
+	//
+	// Source Configuration (common/source)
+	//
+	var SourceConfig source.Configuration
+	SourceConfig.Dictionary = ui.Arguments[cli.FlagSourceDictionary].String()
+	SourceConfig.Mode = ui.Arguments[cli.FlagSource].String()
+	SourceConfig.MaxWordCount = ui.Arguments[cli.FlagSourceMaxWordCount].Integer()
+	SourceConfig.MaxWordSize = ui.Arguments[cli.FlagSourceMaxWordSize].Integer()
+	SourceConfig.MinWordSize = ui.Arguments[cli.FlagSourceMinWordSize].Integer()
+	SourceConfig.Pattern = ui.Arguments[cli.FlagSourcePattern].String()
+	//
+	// General Configuration (common/cli) integration.
+	//
 	var Config Configuration
-	Config.Force = ui.Arguments[cli.FlagForce].Boolean()
-	Config.Debug = ui.Arguments[cli.FlagDebug].Boolean()
+	Config.Log = ConfigureLog
+	Config.Source = SourceConfig
+	//
+	// General Log configuration.
+	//
 	Config.Concurrency = ui.Arguments[cli.FlagConcurrency].Integer()
-	Config.delay = ui.Arguments[cli.FlagDelay].Integer()
-	Config.depth = ui.Arguments[cli.FlagDepth].Integer()
-	Config.dictionary = ui.Arguments[cli.FlagSourceDictionary].String()
-	Config.dnsRecordTypes = ui.Arguments[cli.FlagDnsRecordType].String()
-	Config.dnsServer = ui.Arguments[cli.FlagDnsServer].String()
-	Config.domain = ui.Arguments[cli.FlagDomain].String()
-	Config.maxWordCount = ui.Arguments[cli.FlagSourceMaxWordCount].Integer()
-	Config.maxWordSize = ui.Arguments[cli.FlagSourceMaxWordSize].Integer()
-	Config.minWordSize = ui.Arguments[cli.FlagSourceMinWordSize].Integer()
-	Config.output = ui.Arguments[cli.FlagOutput].String()
-	Config.pattern = ui.Arguments[cli.FlagSourcePattern].String()
-	Config.source = ui.Arguments[cli.FlagSource].String()
-	Config.timeout = ui.Arguments[cli.FlagTimeout].Integer()
-	//Config.log.Level = logLevel.LogLevel(ui.Arguments[cli.FlagLogLevel].Integer())
-	//Config.log.facility = LogFacility.Facility(ui.Arguments[cli.FlagLogFacility].String())
-	//Config.log.target = ui.Arguments[cli.FlagLogTarget].String()
+	Config.Debug = ui.Arguments[cli.FlagDebug].Boolean()
+	Config.Delay = ui.Arguments[cli.FlagDelay].Integer()
+	Config.Depth = ui.Arguments[cli.FlagDepth].Integer()
+	Config.DnsRecordTypes = ui.Arguments[cli.FlagDnsRecordType].String()
+	Config.DnsServer = ui.Arguments[cli.FlagDnsServer].String()
+	Config.Domain = ui.Arguments[cli.FlagDomain].String()
+	Config.Force = ui.Arguments[cli.FlagForce].Boolean()
+	Config.Output = ui.Arguments[cli.FlagOutput].String()
+	Config.Timeout = ui.Arguments[cli.FlagTimeout].Integer()
 	//
 	// Evaluate the error object.
 	//

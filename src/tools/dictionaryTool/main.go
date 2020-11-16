@@ -29,8 +29,7 @@ func main() {
 
 	var log logger.Logger
 	log.Setup(&config.log)
-
-	log.Debug("log is setup")
+	log.Debug(logger.EventInit)
 
 	// the next line will just exit the application.
 	exit <- cli.ErrSuccess

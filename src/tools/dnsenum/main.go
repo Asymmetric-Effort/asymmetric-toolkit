@@ -4,6 +4,7 @@ import (
 	"asymmetric-effort/asymmetric-toolkit/src/common/cli"
 	"asymmetric-effort/asymmetric-toolkit/src/common/errors"
 	"asymmetric-effort/asymmetric-toolkit/src/common/logger"
+	"asymmetric-effort/asymmetric-toolkit/src/common/source"
 	"os"
 )
 
@@ -30,8 +31,9 @@ func main() {
 	log.Setup(&config.log)
 	log.Debug(logger.EventInit)
 
-	//var feed source.Source                // Source Generator
-	//feed.Setup(&ui, deprecated_cli.SourceBufferSz, deprecated_cli.DnsChars)
+	var feed source.Source	// Source Generator
+	feed.Setup(&config.source)		//		Pass the config object to the source.
+
 	//var attack dnsEnumerator			  // Attacker Payload
 
 	//var requestSent chan bool = make(chan bool, 1)

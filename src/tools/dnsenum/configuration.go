@@ -1,6 +1,9 @@
 package main
 
-import "asymmetric-effort/asymmetric-toolkit/src/common/logger"
+import (
+	"asymmetric-effort/asymmetric-toolkit/src/common/logger"
+	"asymmetric-effort/asymmetric-toolkit/src/common/source"
+)
 
 /*
 	Configuration is a final internal state of the application after the
@@ -11,18 +14,13 @@ type Configuration struct {
 	Force          bool
 	Debug          bool
 	Concurrency    int
-	delay          int
-	depth          int
-	dictionary     string
-	dnsServer      string
-	dnsRecordTypes string
-	domain         string
-	log            logger.Configuration
-	maxWordCount   int
-	minWordSize    int
-	maxWordSize    int
-	output         string
-	pattern        string
-	source         string
-	timeout        int
+	Delay          int
+	Depth          int
+	DnsServer      string
+	DnsRecordTypes string
+	Domain         string
+	Log            logger.Configuration
+	Source         source.Configuration
+	Output         string
+	Timeout        int
 }
