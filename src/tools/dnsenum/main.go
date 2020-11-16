@@ -28,11 +28,11 @@ func main() {
 	errors.Assert(config == nil, "Internal error nil config encountered.")
 
 	var log logger.Logger // Global logger
-	log.Setup(&config.log)
+	log.Setup(&config.Log)
 	log.Debug(logger.EventInit)
 
 	var feed source.Source	// Source Generator
-	feed.Setup(&config.source)		//		Pass the config object to the source.
+	feed.Setup(&config.Source)		//		Pass the config object to the source.
 
 	//var attack dnsEnumerator			  // Attacker Payload
 
