@@ -13,6 +13,6 @@ func TestSource_Configuration(t *testing.T) {
 	errors.Assert(config.MaxWordCount == 0, "expected 0")
 	errors.Assert(config.MinWordSize == 0, "expected 0")
 	errors.Assert(config.MaxWordSize == 0, "expected 0")
-	errors.Assert(config.Mode == "", "expected empty string")
+	errors.Assert(config.Mode.String() == "", "expected empty string")
 	errors.Assert(config.Pattern == "", "expected empty string")
 }

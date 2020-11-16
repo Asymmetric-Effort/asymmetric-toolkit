@@ -7,6 +7,6 @@ import (
 func (o *Source) generateRandom() {
 	for o.counter = 1; o.counter <= int(o.config.MaxWordCount); o.counter++ {
 		o.WaitIfPaused()
-		o.feed.Push(random.String(o.config.WordSize.Get(),o.allowedChars))
+		o.queue.Push(random.String(o.wordSize, &o.config.AllowedChars))
 	}
 }

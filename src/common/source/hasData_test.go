@@ -7,10 +7,10 @@ import (
 
 func TestHasData(t *testing.T){
 	var s Source
-	s.feed.Setup(10)
+	s.queue.Setup(10)
 	errors.Assert(!s.HasData(), "Expect default to be false.")
-	s.feed.Push("test")
+	s.queue.Push("test")
 	errors.Assert(s.HasData(), "expect feed to have data.")
-	_ = s.feed.Pop()
+	_ = s.queue.Pop()
 	errors.Assert(!s.HasData(), "Expect feed has no data.")
 }

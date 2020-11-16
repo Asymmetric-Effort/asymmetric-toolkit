@@ -31,8 +31,9 @@ func main() {
 	log.Setup(&config.Log)
 	log.Debug(logger.EventInit)
 
-	var feed source.Source	// Source Generator
-	feed.Setup(&config.Source)		//		Pass the config object to the source.
+	var feed source.Source     // Source Generator
+	feed.Setup(&config.Source) //	Pass the config object to the source.
+	feed.Generator()		   //   Start the generator running.
 
 	//var attack dnsEnumerator			  // Attacker Payload
 

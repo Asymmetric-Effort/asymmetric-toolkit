@@ -19,20 +19,21 @@ func (o *Source) Setup(config *Configuration) {
 	 */
 	o.queue.Setup(o.config.BufferSize)
 	/*
-		From the outset, we leave the source generator in a paused state.  This will
-		ensure that the generator does not produce any results until it is unpaused.
+		From the outset, we leave the source Generator in a paused state.  This will
+		ensure that the Generator does not produce any results until it is unpaused.
 	 */
 	o.isPaused = true
 	/*
-
+		Depending on the current mode of operation, we will connect the appropriate
+		Generator.
 	 */
-	switch {
-	case config.Mode.IsSequence():
-		go o.generateSequence()
-	case config.Mode.IsRandom():
-		go o.generateRandom()
-	case config.Mode.IsDictionary():
-		go o.generateDictionary()
+	switch config.Mode.Get() {
+	case Dictionary:
+		o.Generator =o.generateDictionary
+	case Random:
+		o.Generator =o.generateRandom
+	case Sequence:
+		o.Generator =o.generateSequence
 	default:
 		panic("Source::Setup() encountered Mode NotSet")
 	}

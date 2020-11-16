@@ -79,7 +79,7 @@ func ProcessSpecification(args []string) (cfg *Configuration, exit bool, err err
 	//
 	var SourceConfig source.Configuration
 	SourceConfig.Dictionary = ui.Arguments[cli.FlagSourceDictionary].String()
-	SourceConfig.Mode = ui.Arguments[cli.FlagSource].String()
+	SourceConfig.Mode.SetString(ui.Arguments[cli.FlagSource].String())
 	SourceConfig.MaxWordCount = ui.Arguments[cli.FlagSourceMaxWordCount].Integer()
 	SourceConfig.MaxWordSize = ui.Arguments[cli.FlagSourceMaxWordSize].Integer()
 	SourceConfig.MinWordSize = ui.Arguments[cli.FlagSourceMinWordSize].Integer()

@@ -6,7 +6,7 @@ package source
 */
 type Configuration struct {
 	AllowedChars string // Allowed characters to be used in any sequence or random words.
-	BufferSize   int    // Size of the channel/queue used by the generator.
+	BufferSize   int    // Size of the channel/queue used by the Generator.
 	Dictionary   string // Specifies the dictionary path/file.
 	MaxWordCount int    // Maximum number of words to be generated.
 	MaxWordSize  int    // Maximum number of characters in the word size.

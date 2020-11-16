@@ -1,5 +1,7 @@
 package counter
+/*
 
+ */
 import (
 	"asymmetric-effort/asymmetric-toolkit/src/common/errors"
 	"testing"
