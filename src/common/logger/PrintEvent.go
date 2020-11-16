@@ -9,14 +9,16 @@ import (
 )
 
 func (o *Logger) PrintEvent(event *LogEventStruct) {
-
-	if (event.Level.Get() <= o.Level.Get()) && (o.Writer != nil) {
+	var out string = "{}"
+	if o.PrintThisLine(event.Level.Get()) {
 		event.Tags = o.tagMerge(&event.Tags)
 		msg, err := json.Marshal(*event)
 		if err != nil {
 			panic(err)
 		}
-		out := string(msg)
+		out = string(msg)
+	}
+	if o.Writer != nil {
 		o.Writer(&out)
 	}
 }

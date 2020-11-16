@@ -41,30 +41,29 @@ func TestLogger_CriticalBool(t *testing.T) {
 		},
 	}
 
-	for _, boolMsg := range []bool{true, false} {
-		for _, test := range tests {
-			fmt.Printf("PrintThisLine:\n"+
-				"\ttest level     : %v\n"+
-				"\tExpectPrintMsg : %v\n"+
-				"\tPrintThisLine  : %v\n",
-				test.Level.String(),
-				test.ExpectPrintMsg,
-				log.PrintThisLine(test.Level))
+	for _, test := range tests {
+		fmt.Printf("PrintThisLine:\n"+
+			"\ttest level     : %v\n"+
+			"\tExpectPrintMsg : %v\n"+
+			"\tPrintThisLine  : %v\n",
+			test.Level.String(),
+			test.ExpectPrintMsg,
+			log.PrintThisLine(test.Level))
 
-			if test.ExpectPrintMsg {
-				if log.PrintThisLine(test.Level) {
-					fmt.Println("PrintThisLine() outcome hit: pass")
-				} else {
-					panic("PrintThisLine() outcome mismatch: pass")
-				}
+		if test.ExpectPrintMsg {
+			if log.PrintThisLine(test.Level) {
+				fmt.Println("PrintThisLine() outcome hit: pass")
+			} else {
+				panic("PrintThisLine() outcome mismatch: pass")
 			}
 		}
-		fmt.Println("")
-		fmt.Println("------------")
-		fmt.Println("second phase")
-		fmt.Println("------------")
-		fmt.Println("")
-
+	}
+	fmt.Println("")
+	fmt.Println("------------")
+	fmt.Println("second phase")
+	fmt.Println("------------")
+	fmt.Println("")
+	for _, boolMsg := range []bool{true, false} {
 		for _, test := range tests {
 			var event LogEventStruct
 
