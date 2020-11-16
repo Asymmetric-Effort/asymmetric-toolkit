@@ -11,16 +11,21 @@ import (
 */
 
 type Configuration struct {
+	// General Config.
 	Force          bool
 	Debug          bool
+	// Log Configuration
+	Log            logger.Configuration
+	// Source Configuration
+	Source         source.Configuration
+	// Attack Configuration
 	Concurrency    int
 	Delay          int
 	Depth          int
 	DnsServer      string
 	DnsRecordTypes string
 	Domain         string
-	Log            logger.Configuration
-	Source         source.Configuration
-	Output         string
 	Timeout        int
+	// Reporting Configuration
+	Output         string
 }
