@@ -16,8 +16,7 @@ const ( //Reserved 0...1000 for core use.  1000+ are program-defined.
 	FlagVersion        ArgumentFlag = 2 // Displays version string
 	FlagDebug          ArgumentFlag = 3 // Indicates debug logging.
 	FlagLogLevel       ArgumentFlag = 4 // Indicates the logging level.
-	FlagLogFacility    ArgumentFlag = 5 // Indicates the logging facility.
-	FlagLogDestination ArgumentFlag = 6 // Indicates the logging target (stdout, file, syslog).
+	FlagLogDestination ArgumentFlag = 5 // Indicates the logging target (stdout, file, syslog).
 
 	// ToDo: Add as a common Flag in common/cli
 	FlagForce  ArgumentFlag = 8 // Indicates force is to be used in all operations.
