@@ -4,7 +4,7 @@ import (
 	"fmt"
 )
 
-func (o *Mode) String() string{
+func (o *Mode) String() string {
 	switch *o {
 	case Sequence:
 		return strModeSequence
