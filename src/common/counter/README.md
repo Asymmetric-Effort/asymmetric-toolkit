@@ -1,11 +1,15 @@
 Counter
 =======
 
-### Objective:
-* To create an arbitrary-length counter for generating sequences of words using a given character set
+### Purpose:
+* Create an arbitrary-length counter for generating sequences of words using a given character set
   where each word is in ascending sequential order.  This counter should generate each sequence regardless
   of the character set given assuming the relative value of one character to the next according to the character's
   position in the character set array given as input when initialized.
+
+### Usage
+
+
 
 ### Theory of Operation:
 

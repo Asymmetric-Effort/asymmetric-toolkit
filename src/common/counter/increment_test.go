@@ -89,10 +89,11 @@ func TestCounter_Increment(t *testing.T) {
 					break
 				}
 			}
+
 			expectedCount := int64(calcNumWords(test.wordSize, len(test.charset)))
 			errors.Assert(int64(count) == expectedCount,
 				fmt.Sprintf("Expected %d iterations.  Encountered:%d", count, expectedCount))
 		}
-		fmt.Println("Stage 2: OK")
+		fmt.Println("Stage 1: OK")
 	}()
 }
