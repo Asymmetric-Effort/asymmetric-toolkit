@@ -6,9 +6,9 @@ import (
 )
 
 type Source struct {
-	config Configuration
-	isPaused       bool
-	feed           fifo.Fifo
-	counter        int
-	logger 		   *logger.Logger
+	config   *Configuration // Source-specific configuration.
+	isPaused bool           // Indicator whether to pause the source generator.
+	queue    fifo.Fifo      // First-in/first-out queue from the generator to the consumer.
+	counter  int            // Counter indicating the number of words generated.
+	logger   *logger.Logger // Logger reference.
 }
