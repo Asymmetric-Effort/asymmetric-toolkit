@@ -29,6 +29,7 @@ const ( //Reserved 0...1000 for core use.  1000+ are program-defined.
 	FlagDnsServer   ArgumentFlag = 12 // Specifies the DNS server to be used by attackers.
 	FlagDomain      ArgumentFlag = 13 // Specifies a fully qualified domain name.
 	FlagTimeout     ArgumentFlag = 14 // Provides a connection timeout for any attacker process.
+	FlagFile		ArgumentFlag = 15 // Provides a filename for general, unspecified use.
 
 	// Enumeration Flags
 	FlagDepth ArgumentFlag = 40 // Indicates the depth of any enumeration attack.
