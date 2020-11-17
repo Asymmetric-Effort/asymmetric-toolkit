@@ -20,7 +20,7 @@ func TestSource_GenerateRandom(t *testing.T) {
 	s.wordSize = 100
 	s.config.MaxWordCount = 100
 	s.config.AllowedChars = keyspace
-	s.config.BufferSize = 1048576
+	s.config.BufferSize = 16384
 	s.queue.Setup(s.config.BufferSize)
 	/*
 		Run Generator
