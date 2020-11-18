@@ -40,8 +40,6 @@ func ProcessSpecification(args []string) (cfg *Configuration, exit bool, err err
 	// Update the Specification with standard parameters
 	// using the standardized configuration.
 	//
-	spec.AddLogLevel(logger.Info)
-	spec.AddLogDestination(logger.Stdout)
 	spec.AddInputFile()
 	spec.AddOutputFile()
 	//

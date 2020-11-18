@@ -32,7 +32,8 @@ func (o *CommandLine) Parse(spec *Specification, args *[]string) (exit bool, err
 	spec.AddForce()   // If our force flag (--force) is not set, we will add it here.
 
 	spec.AddLogLevel(logger.Info)
-	//spec.AddLogFacility(ProgramName)
+	spec.AddLogDestination(logger.Stdout)
+
 	//spec.AddLogTarget("stdout")
 
 	spec.EnsureUniqueFlagId() //Scan the specification and ensure we have unique flagIDs.
