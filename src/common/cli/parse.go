@@ -23,7 +23,7 @@ func (o *CommandLine) Parse(spec *Specification, args *[]string) (exit bool, err
 	var lastFlag *ArgumentDescriptor = nil
 
 	if len(*args) == 0 { // No argument?  Exit.
-		return true, fmt.Errorf("\n\tMissing arguments (use --help for usage)\n")
+		return true, fmt.Errorf("\n\t%s\n",MissingArgumentsMessage)
 	}
 
 	spec.AddHelp()    // If our help flags (-h and --help) are not set, we will add them here.
