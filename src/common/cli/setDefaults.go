@@ -21,13 +21,18 @@ func (o *CommandLine) SetDefaults(spec *Specification) (err error) {
 		// This ensures the default value is validated just like a user-provided value,
 		// then process any error.
 		//
-		//fmt.Printf("SetDefaults():'%v'(%v) to '%v'\n", flag, flagSpec.FlagId, flagSpec.Default)
-		err, o.Arguments[flagSpec.FlagId] = flagSpec.Parse(&flagSpec.Default)
-		//
-		// Stop processing on error
-		//
-		if err != nil {
-			err = fmt.Errorf("flag:%s, error: %v", flag, err)
+		if (flagSpec.Expects != ExpectNone) && (flagSpec.Expects != ExpectEnd)  {
+			//fmt.Printf("SetDefaults():'%v'(%v) to '%v'\n", flag, flagSpec.FlagId, flagSpec.Default)
+			err, o.Arguments[flagSpec.FlagId] = flagSpec.Parse(&flagSpec.Default)
+			//
+			// Stop processing on error
+			//
+			if o.Arguments[flagSpec.FlagId] == nil {
+				panic(fmt.Sprintf("flag:'%s', error: missing or invalid default value", flag))
+			}
+			if err != nil {
+				err = fmt.Errorf("flag:%s, error: %v", flag, err)
+			}
 		}
 	}
 	//

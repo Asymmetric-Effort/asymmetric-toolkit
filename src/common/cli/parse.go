@@ -37,6 +37,9 @@ func (o *CommandLine) Parse(spec *Specification, args *[]string) (exit bool, err
 
 	spec.EnsureUniqueFlagId() //Scan the specification and ensure we have unique flagIDs.
 
+	//
+	// Set the default values for our specification.
+	//
 	if err := o.SetDefaults(spec); err != nil {
 		return true, fmt.Errorf("error applying default values in commandline processor. "+
 			"%v", err)
