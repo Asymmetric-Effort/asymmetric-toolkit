@@ -19,7 +19,7 @@ func (o *CommandLine) Parse(spec *Specification, args *[]string) (exit bool, err
 		Output:
 			- Should the caller exit or continue? (default: continue.
 	*/
-	var expected NextExpected = ExpectFlag
+	var expected = ExpectFlag // NextExpected
 	var lastFlag *ArgumentDescriptor = nil
 
 	if len(*args) == 0 { // No argument?  Exit.
@@ -36,8 +36,10 @@ func (o *CommandLine) Parse(spec *Specification, args *[]string) (exit bool, err
 
 	//spec.AddLogTarget("stdout")
 
-	spec.EnsureUniqueFlagId() //Scan the specification and ensure we have unique flagIDs.
-
+	err = spec.EnsureUniqueFlagId() //Scan the specification and ensure we have unique flagIDs.
+	if err != nil {
+		panic(err)
+	}
 	//
 	// Set the default values for our specification.
 	//
@@ -89,7 +91,7 @@ func (o *CommandLine) Parse(spec *Specification, args *[]string) (exit bool, err
 							return true, nil
 						}
 						// We have hit a flag, which is present (e.g. --debug or --force) and we need to set true.
-						o.Arguments[lastFlag.FlagId].Value="true"
+						o.Arguments[lastFlag.FlagId].Value = "true"
 						expected = ExpectFlag // Reset and get another flag.
 					} else {
 						//

@@ -15,7 +15,7 @@ func main() {
 	//
 	// Setup our program to run
 	//
-	var exit chan int = make(chan int, 1) // We will block until an exit code is written to this channel.
+	var exit = make(chan int, 1) // We will block until an exit code is written to this channel.
 	config, exitProgram, err := ProcessSpecification(os.Args[1:])
 	if err != nil {
 		exit <- cli.ErrArgumentParseError
@@ -26,6 +26,7 @@ func main() {
 	errors.Assert(config == nil, "Internal error nil config encountered.")
 
 	var log logger.Logger
+	//goland:noinspection GoNilness
 	log.Setup(&config.Log)
 	log.Debug(logger.EventInit)
 
