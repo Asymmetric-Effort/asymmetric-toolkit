@@ -11,6 +11,9 @@ import (
 	value.
 */
 func (o *Argument) String() string {
+	if o == nil {
+		panic("Argument::String() called with nil pointer Argument")
+	}
 	getDelimiter := func() string {
 		//
 		// Get the delimiter from our encoded list string (delimiterLen,delimiterStr,ListString)
