@@ -1,7 +1,9 @@
 package DictionaryReader
 
 import (
+	"asymmetric-effort/asymmetric-toolkit/src/common/dictionary"
 	"asymmetric-effort/asymmetric-toolkit/src/common/errors"
+	"asymmetric-effort/asymmetric-toolkit/src/common/source"
 	"bufio"
 	"crypto/aes"
 	"crypto/cipher"
@@ -10,11 +12,12 @@ import (
 	"encoding/base64"
 	"fmt"
 	"io"
-	"os"
 )
 
-func (o *Reader) Setup(file *os.File, passphrase []byte) (read func() string) {
-	errors.Assert(file != nil, "Reader::Setup() encountered nil file handle")
+func (o *Reader) Setup(mode dictionary.Mode, config *source.Configuration) (read func() string) {
+	errors.Assert(config != nil, "Reader::Setup() encountered nil configuration reference.")
+
+
 	o.file = file
 	scanner := bufio.NewScanner(file)
 	encryptionKey := func() []byte {
