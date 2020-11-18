@@ -11,7 +11,6 @@ import (
 	buildconfig "asymmetric-effort/asymmetric-toolkit/buildConfig"
 	"asymmetric-effort/asymmetric-toolkit/src/common/cli"
 	"asymmetric-effort/asymmetric-toolkit/src/common/logger"
-	"asymmetric-effort/asymmetric-toolkit/src/common/source"
 	"fmt"
 )
 
@@ -31,35 +30,20 @@ func ProcessSpecification(args []string) (cfg *Configuration, exit bool, err err
 	var spec = cli.Specification{
 		Author:      buildconfig.Author,
 		AuthorEmail: buildconfig.AuthorEmail,
-		Description: Description,
+		Description: ProgramDescription,
 		ProgramName: ProgramName,
 		Copyright:   buildconfig.Copyright,
 		Version:     buildconfig.Version,
-		Argument:    map[string]cli.ArgumentDescriptor{
-			"in":{
-				cli.FlagInputFile,
-				cli.String,
-				"",
-				"Input flag indicating the source file from which the dictionary " +
-					"words will be consumed to create a new dictionary file.",
-				cli.ParserString(),
-				cli.ExpectValue,
-			},
-			"out":{
-				cli.FlagOutputFile,
-				cli.String,
-				"",
-				"Input flag indicating the output dictionary file which will be created by this tool.",
-				cli.ParserString(),
-				cli.ExpectValue,
-			},
-		},
+		Argument:    map[string]cli.ArgumentDescriptor{},
 	}
 	//
 	// Update the Specification with standard parameters
 	// using the standardized configuration.
 	//
 	spec.AddLogLevel(logger.Info)
+	spec.AddLogDestination(logger.Stdout)
+	spec.AddInputFile()
+	spec.AddOutputFile()
 	//
 	// Parse the commandline arguments and in response
 	// we expect a boolean (exitProgram) and error object
@@ -67,32 +51,25 @@ func ProcessSpecification(args []string) (cfg *Configuration, exit bool, err err
 	// executing or abandon hope.
 	//
 	exit, err = ui.Parse(&spec, &args)
-
-	var ConfigureLog logger.Configuration
-	ConfigureLog.Level.Set(logger.Level(ui.Arguments[cli.FlagLogLevel].Integer()))
-	ConfigureLog.Destination.Set(logger.Destination(ui.Arguments[cli.FlagLogDestination].Integer()))
+	//
+	// Configure common/logger
+	//
+	var CfgLog logger.Configuration
+	CfgLog.Level.SetString(ui.Arguments[cli.FlagLogLevel].String())
+	CfgLog.Destination.SetString(ui.Arguments[cli.FlagLogDestination].String())
 	// ToDo: Pass in settings string.
-	//
-	// Source Configuration (common/source)
-	//
-	var SourceConfig source.Configuration
-	SourceConfig.Dictionary = ui.Arguments[cli.FlagSourceDictionary].String()
 	//
 	// General Configuration (common/cli) integration.
 	//
 	var Config Configuration
-	Config.Log = ConfigureLog
-	Config.Source = SourceConfig
+	Config.Log = CfgLog
 	//
 	// General Log configuration.
 	//
-	Config.Debug = ui.Arguments[cli.FlagDebug].Boolean()
-	Config.Force = ui.Arguments[cli.FlagForce].Boolean()
-	Config.InFile = ui.Arguments[cli.FlagInputFile].String()
-	Config.OutFile = ui.Arguments[cli.FlagOutputFile].String()
-
-
-
+	Config.Debug = ui.Arguments[cli.FlagDebug].Boolean()          // Add debug logging
+	Config.Force = ui.Arguments[cli.FlagForce].Boolean()          // Add force to overwrite targets
+	Config.InputFile = ui.Arguments[cli.FlagInputFile].String()   // Specify the input file (text file)
+	Config.OutputFile = ui.Arguments[cli.FlagOutputFile].String() // Specify the output file (dictionary)
 	//
 	// Evaluate the error object.
 	//

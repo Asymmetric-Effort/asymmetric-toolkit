@@ -22,6 +22,6 @@ type Configuration struct {
 	//
 	// Reporting Configuration
 	//
-	InFile  string // Text file source.
-	OutFile string // Dictionary file output.
+	InputFile  string // Text file source.
+	OutputFile string // Dictionary file output.
 }

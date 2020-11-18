@@ -40,6 +40,5 @@ func main() {
 	//		Create a dictionary definition and write it to a temporary file.
 	//	Add the header to the output file and then copy the contents of the temporary file into the output file.
 	//
-
 	<-exit
 }
