@@ -71,6 +71,9 @@ func ProcessSpecification(args []string) (cfg *Configuration, exit bool, err err
 	Config.Force = ui.Arguments[cli.FlagForce].Boolean()          // Add force to overwrite targets
 	Config.InputFile = ui.Arguments[cli.FlagInputFile].String()   // Specify the input file (text file)
 	Config.OutputFile = ui.Arguments[cli.FlagOutputFile].String() // Specify the output file (dictionary)
+	if Config.Debug {
+		Config.Log.Level.Set(logger.Debug)
+	}
 	//
 	// Evaluate the error object.
 	//
