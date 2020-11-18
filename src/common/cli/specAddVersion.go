@@ -18,7 +18,7 @@ func (o *Specification) AddVersion() {
 		versionDefault,
 		versionHelpText,
 		ParserNoop(),
-		ExpectEnd,
+		ExpectNone,
 	}
 	//
 	// We add a short argument for version (-v)
@@ -29,6 +29,6 @@ func (o *Specification) AddVersion() {
 		versionDefault,
 		versionHelpText,
 		ParserNoop(),
-		ExpectEnd,
+		ExpectNone,
 	}
 }
