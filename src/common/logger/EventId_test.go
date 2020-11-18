@@ -12,5 +12,8 @@ func TestEventId(t *testing.T) {
 	errors.Assert(EventTagCreate == 2, "Expected 2")
 	errors.Assert(EventTagClose == 3, "Expected 3")
 
+	errors.Assert(EventFlagForce == 10, "Expected 10")
+
 	// Reserved EventIds for tool and common use 1000+
+
 }
