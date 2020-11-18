@@ -2,7 +2,7 @@ package cli
 
 const (
 	versionHelpText string = "Show version string"
-	versionDefault  string = ""
+	versionDefault  string = "false"
 	versionArgLong  string = "version"
 	versionArgShort string = "v"
 )

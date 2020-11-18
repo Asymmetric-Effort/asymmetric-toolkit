@@ -11,4 +11,5 @@ const (
 	Stdout Destination = 0
 	File   Destination = 1
 	Syslog Destination = 2
+	DestinationStrings="Stdout,File,Syslog"
 )

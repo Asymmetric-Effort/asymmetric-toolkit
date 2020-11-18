@@ -3,8 +3,8 @@ package cli
 	Specification::AddHelp() implements the -h and --help flags.
  */
 const (
-	usageHelpText string = "Show help / usage screen."
-	usageDefault  string = ""
+	helpHelpText string = "Show help / usage screen."
+	helpDefault  string = "false"
 
 	helpArgLong  = "help"
 	helpArgShort = "h"
@@ -18,8 +18,8 @@ func (o *Specification) AddHelp() {
 	o.Argument[helpArgLong] = ArgumentDescriptor{
 		FlagHelp,
 		Boolean,
-		usageDefault,
-		usageHelpText,
+		helpDefault,
+		helpHelpText,
 		o.ShowHelp,
 		ExpectNone,
 	}
@@ -29,8 +29,8 @@ func (o *Specification) AddHelp() {
 	o.Argument[helpArgShort] = ArgumentDescriptor{
 		FlagHelp,
 		Boolean,
-		usageDefault,
-		usageHelpText,
+		helpDefault,
+		helpHelpText,
 		o.ShowHelp,
 		ExpectNone,
 	}

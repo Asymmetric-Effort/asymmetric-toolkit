@@ -1,6 +1,9 @@
 package cli
 
-import "fmt"
+import (
+	"fmt"
+	"strconv"
+)
 
 /*
 	CommandLine::SetDefaults() will iterate through the specification and create Argument objects for each
@@ -16,13 +19,24 @@ func (o *CommandLine) SetDefaults(spec *Specification) (err error) {
 	delete(o.Arguments, noFlag)
 	delete(spec.Argument, "")
 	for flag, flagSpec := range spec.Argument {
+		//fmt.Println("flag:", flag, " flagSpec:", flagSpec)
 		//
 		// Call the parser function for each argument and pass the default value.
 		// This ensures the default value is validated just like a user-provided value,
 		// then process any error.
 		//
-		if (flagSpec.Expects != ExpectNone) && (flagSpec.Expects != ExpectEnd)  {
-			//fmt.Printf("SetDefaults():'%v'(%v) to '%v'\n", flag, flagSpec.FlagId, flagSpec.Default)
+		if (flagSpec.Expects == ExpectNone) || (flagSpec.Expects == ExpectEnd) {
+			//fmt.Println("\tExpects:", flagSpec.Expects, "(none|end) Default:", flagSpec.Default)
+			_, err := strconv.ParseBool(flagSpec.Default)
+			if err != nil {
+				panic(fmt.Sprintf("(%d) Expected boolean default value.  Encountered non-boolean.",
+					flagSpec.FlagId))
+			}
+			o.Arguments[flagSpec.FlagId] = &Argument{
+				Boolean,
+				flagSpec.Default,
+			}
+		} else {
 			err, o.Arguments[flagSpec.FlagId] = flagSpec.Parse(&flagSpec.Default)
 			//
 			// Stop processing on error
@@ -35,6 +49,7 @@ func (o *CommandLine) SetDefaults(spec *Specification) (err error) {
 			}
 		}
 	}
+
 	//
 	// return result (no error expected here).
 	//

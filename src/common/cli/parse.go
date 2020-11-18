@@ -87,6 +87,8 @@ func (o *CommandLine) Parse(spec *Specification, args *[]string) (exit bool, err
 							// as in the --help or --version use cases.
 							return true, nil
 						}
+						// We have hit a flag, which is present (e.g. --debug or --force) and we need to set true.
+						o.Arguments[lastFlag.FlagId].Value="true"
 						expected = ExpectFlag // Reset and get another flag.
 					} else {
 						//

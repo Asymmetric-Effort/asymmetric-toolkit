@@ -37,11 +37,11 @@ func TestSpecification_AddUsage(t *testing.T) {
 			panic(fmt.Sprintf("Boolean Argument type expected.  Type:%d", o.Argument[argFlag].Type))
 		}
 
-		if o.Argument[argFlag].Default != usageDefault {
+		if o.Argument[argFlag].Default != helpDefault {
 			panic(fmt.Sprintf("Default should be empty for %s", argFlag))
 		}
 
-		if o.Argument[argFlag].Help != usageHelpText {
+		if o.Argument[argFlag].Help != helpHelpText {
 			panic("usageHelpText mismatch")
 		}
 

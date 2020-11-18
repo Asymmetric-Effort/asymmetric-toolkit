@@ -2,7 +2,7 @@ package cli
 
 const (
 	forceHelpText string = "Execute operations with force"
-	forceDefault  string = ""
+	forceDefault  string = "false"
 	forceArgLong         = "force"
 )
 
