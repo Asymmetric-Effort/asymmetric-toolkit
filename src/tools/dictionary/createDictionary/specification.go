@@ -49,6 +49,9 @@ func ProcessSpecification(args []string) (cfg *Configuration, exit bool, err err
 	// executing or abandon hope.
 	//
 	exit, err = ui.Parse(&spec, &args)
+	if err != nil {
+		return
+	}
 	//
 	// Configure common/logger
 	//

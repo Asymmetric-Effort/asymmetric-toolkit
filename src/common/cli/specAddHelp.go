@@ -7,7 +7,6 @@ const (
 	helpDefault  string = "false"
 
 	helpArgLong  = "help"
-	helpArgShort = "h"
 )
 
 func (o *Specification) AddHelp() {
@@ -16,17 +15,6 @@ func (o *Specification) AddHelp() {
 	// We add a long argument for help (--help)
 	//
 	o.Argument[helpArgLong] = ArgumentDescriptor{
-		FlagHelp,
-		Boolean,
-		helpDefault,
-		helpHelpText,
-		o.ShowHelp,
-		ExpectNone,
-	}
-	//
-	// We add a short argument for help (-h)
-	//
-	o.Argument[helpArgShort] = ArgumentDescriptor{
 		FlagHelp,
 		Boolean,
 		helpDefault,

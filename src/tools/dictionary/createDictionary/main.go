@@ -6,8 +6,8 @@ package main
 
 import (
 	"asymmetric-effort/asymmetric-toolkit/src/common/cli"
-	"asymmetric-effort/asymmetric-toolkit/src/common/errors"
 	"asymmetric-effort/asymmetric-toolkit/src/common/logger"
+	"fmt"
 	"os"
 )
 
@@ -18,12 +18,12 @@ func main() {
 	var exit = make(chan int, 1) // We will block until an exit code is written to this channel.
 	config, exitProgram, err := ProcessSpecification(os.Args[1:])
 	if err != nil {
-		exit <- cli.ErrArgumentParseError
+		fmt.Printf("Error: %v", err)
+		os.Exit(cli.ErrArgumentParseError)
 	}
-	if exitProgram {
-		exit <- cli.ErrSuccess
+	if exitProgram || (config == nil) {
+		os.Exit(cli.ErrSuccess)
 	}
-	errors.Assert(config == nil, "Internal error nil config encountered.")
 
 	var log logger.Logger
 	//goland:noinspection GoNilness
@@ -41,5 +41,5 @@ func main() {
 	//		Create a dictionary definition and write it to a temporary file.
 	//	Add the header to the output file and then copy the contents of the temporary file into the output file.
 	//
-	<-exit
+	os.Exit(<-exit)
 }

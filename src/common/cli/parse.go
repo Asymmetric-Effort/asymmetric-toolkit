@@ -23,29 +23,25 @@ func (o *CommandLine) Parse(spec *Specification, args *[]string) (exit bool, err
 	var lastFlag *ArgumentDescriptor = nil
 
 	if len(*args) == 0 { // No argument?  Exit.
-		return true, nil
+		return true, fmt.Errorf("\n\tMissing arguments (use --help for usage)\n")
 	}
 
 	spec.AddHelp()    // If our help flags (-h and --help) are not set, we will add them here.
 	spec.AddVersion() // If our version flags (-v and --version) are not set, we will add them here.
 	spec.AddDebug()   // If our debug flag (--debug) is not set, we will add it here.
 	spec.AddForce()   // If our force flag (--force) is not set, we will add it here.
-
 	spec.AddLogLevel(logger.Info)
 	spec.AddLogDestination(logger.Stdout)
 
-	//spec.AddLogTarget("stdout")
-
 	err = spec.EnsureUniqueFlagId() //Scan the specification and ensure we have unique flagIDs.
 	if err != nil {
-		panic(err)
+		panic(fmt.Sprintf("FlagId uniqueness error: %v", err))
 	}
 	//
 	// Set the default values for our specification.
 	//
 	if err := o.SetDefaults(spec); err != nil {
-		return true, fmt.Errorf("error applying default values in commandline processor. "+
-			"%v", err)
+		return true, fmt.Errorf("error applying default values in commandline processor. %v", err)
 	}
 
 	for _, currentArgument := range *args {
@@ -67,7 +63,6 @@ func (o *CommandLine) Parse(spec *Specification, args *[]string) (exit bool, err
 				//
 				return true, fmt.Errorf("expected flag but encountered "+
 					"non-flag argument (%s)", currentArgument)
-				//
 			}
 			if knownSpec, ok := spec.Argument[arg]; ok {
 				//

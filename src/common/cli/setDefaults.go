@@ -19,7 +19,6 @@ func (o *CommandLine) SetDefaults(spec *Specification) (err error) {
 	delete(o.Arguments, noFlag)
 	delete(spec.Argument, "")
 	for flag, flagSpec := range spec.Argument {
-		//fmt.Println("flag:", flag, " flagSpec:", flagSpec)
 		//
 		// Call the parser function for each argument and pass the default value.
 		// This ensures the default value is validated just like a user-provided value,
@@ -38,6 +37,9 @@ func (o *CommandLine) SetDefaults(spec *Specification) (err error) {
 			}
 		} else {
 			err, o.Arguments[flagSpec.FlagId] = flagSpec.Parse(&flagSpec.Default)
+			if err != nil {
+				panic(err)
+			}
 			//
 			// Stop processing on error
 			//

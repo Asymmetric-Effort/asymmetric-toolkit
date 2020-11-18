@@ -17,18 +17,7 @@ func (o *Specification) AddVersion() {
 		None,
 		versionDefault,
 		versionHelpText,
-		ParserNoop(),
-		ExpectNone,
-	}
-	//
-	// We add a short argument for version (-v)
-	//
-	o.Argument[versionArgShort] = ArgumentDescriptor{
-		FlagVersion,
-		None,
-		versionDefault,
-		versionHelpText,
-		ParserNoop(),
+		o.ShowVersion,
 		ExpectNone,
 	}
 }

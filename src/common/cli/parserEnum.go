@@ -22,9 +22,6 @@ func ParserEnum(p ...string) (parser func(arg *string) (err error, val *Argument
 	var enumeratedSet []string // The enumerated set we will bounds check for.
 
 	if len(p) == 0 {
-		//
-		// Ensure we do not have an empty set which would be meaningless.
-		//
 		panic("ParserEnum() cannot create a parser function for an empty set.")
 	}
 	for _, e := range p {

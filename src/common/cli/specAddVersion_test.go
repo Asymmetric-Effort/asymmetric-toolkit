@@ -18,9 +18,6 @@ func TestSpecification_AddVersion(t *testing.T) {
 	if versionArgLong != "version" {
 		panic("version flag (long) mismatch")
 	}
-	if versionArgShort != "v" {
-		panic("version flag (short) mismatch")
-	}
 
 	if o.Argument != nil {
 		panic("Expected nil ArgumentDescriptor in Specification.")
@@ -32,7 +29,7 @@ func TestSpecification_AddVersion(t *testing.T) {
 		panic("Expected nil ArgumentDescriptor in Specification.")
 	}
 
-	for i, argFlag := range []string{versionArgShort, versionArgLong} {
+	for i, argFlag := range []string{versionArgLong} {
 
 		if o.Argument[argFlag].FlagId != FlagVersion {
 			panic(fmt.Sprintf("%d(%s) expected.  FlagId:%d", i, argFlag, o.Argument[argFlag].FlagId))
