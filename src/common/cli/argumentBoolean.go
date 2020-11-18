@@ -8,6 +8,9 @@ package cli
 import "strconv"
 
 func (o *Argument) Boolean() bool {
+	if o == nil {
+		panic("Nil Boolean argument pointer")
+	}
 	if o.Type == Boolean {
 		return func() bool {
 			i, err := strconv.ParseBool(o.Value)

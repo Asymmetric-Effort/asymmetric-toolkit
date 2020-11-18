@@ -11,6 +11,9 @@ import (
 */
 
 func (o *Argument) List() []string {
+	if o == nil {
+		panic("Nil List argument pointer")
+	}
 	/*
 		Extract and return our list of strings.
 	*/

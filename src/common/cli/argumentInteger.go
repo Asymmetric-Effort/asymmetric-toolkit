@@ -11,6 +11,9 @@ import (
 )
 
 func (o *Argument) Integer() int {
+	if o == nil {
+		panic("Nil Integer argument pointer")
+	}
 	if o.Type == Integer {
 		return func() int {
 			i, err := strconv.Atoi(o.Value)

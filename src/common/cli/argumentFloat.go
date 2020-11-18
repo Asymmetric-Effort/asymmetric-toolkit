@@ -8,6 +8,9 @@ package cli
 import "strconv"
 
 func (o *Argument) Float() float64 {
+	if o == nil {
+		panic("Nil Float argument pointer")
+	}
 	if o.Type == Float {
 		return func() float64 {
 			i, err := strconv.ParseFloat(o.Value, 64)
