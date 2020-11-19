@@ -7,51 +7,43 @@ encrypted on a record-by-record level using a symmetric AES passphrase and armor
 ciphertext which will not encounter binary storage issues in github.
 
 
-# Theory of Operation
-```go 
-type Dictionary struct{
-    Initialize func()
-    OpenRead func(fileName string)
-    OpenWrite func(fileName string)
-    CloseFile func()
-    
-    LoadHeader func() *Header
-    LoadDefinition func() *Definition //First defnition reference.
-    Next func() *Definition
-    
-    handle *os.File
-   
-    content struct {
-        header struct {
-            formatVersion uint8
-            scoreVersion  uint8
-            reserved      uint16
-            wordCount     uint32
+## Usage
+```go
+package main
+
+import (
+    "asymmetric-effort/asymmetric-toolkit/src/common/dictionary"
+)
+
+func main(){
+    var source dictionary.Dictionary
+    var target dictionary.Dictionary
+    source.Setup(&dictionary.Configuration{
+        FileName: "myDict.atd",
+        Overwrite: true,
+        FormatVersion: 0,
+        ScoreVersion: 0,
+        Passphrase: []("passphrase"),
+        CompressionAlg: dictionary.Gzip,
+    })
+
+    target.Setup(&dictionary.Configuration{
+        FileName: "myDict.atd",
+        Overwrite: true,
+        FormatVersion: 0,
+        ScoreVersion: 0,
+        Passphrase: []byte("passphrase"),
+        CompressionAlg: dictionary.Gzip,
+    })
+
+    sourceHeader:=source.GetHeader()
+
+    for definition:=range source.GetDefinition() {
+        if err != nil {
+            panic(err)
         }
-        definitions []struct{
-            Id      uint32
-            Word    string
-            Score   int
-            Created int64          // Unix nano timestamp when the word is identified/created.
-            LastHit int64          // Unix nano timestamp when the word is identified/created.
-            tags    DefinitionTags // Tags used to identify definition attributes.
-            hits    int            //Count of hits
-            miss    int            //Count of misses
-        }
+    	target.AddDefinition(&definition)
     }
+    target.SetHeader(&sourceHeader)
 }
-
-
-func (o *Dictionary) Setup(){
-
-    var fileHandle *os.File
-
-    o.OpenRead:=func(fileName string){
-        //Open the file
-    }
-    o.OpenWrite:=func(fileName string){
-        //Open the file.
-    }
-}
-
 ```
