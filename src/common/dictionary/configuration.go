@@ -5,6 +5,6 @@ type Configuration struct {
 	Overwrite      bool	  // Flag to indicate if any existing file is to be overwritten.
 	FormatVersion  Version
 	ScoreVersion   Version
-	passphrase     []byte
-	compressionAlg ioCompression
+	Passphrase     []byte
+	CompressionAlg ioCompression
 }

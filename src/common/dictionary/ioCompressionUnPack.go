@@ -6,9 +6,9 @@ import (
 
 func(o *ioCompression)Unpack(in *[]byte)(out *[]byte){
 	switch *o {
-	case noCompress:
+	case NoCompress:
 		out = in
-	case gzip:
+	case Gzip:
 		out = o.GunZip(in)
 	default:
 		panic(fmt.Sprintf("Unsupported ioCompression type (%d)",*o))
