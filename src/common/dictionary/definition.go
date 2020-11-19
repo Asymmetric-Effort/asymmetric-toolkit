@@ -6,7 +6,7 @@ type Definition struct {
 	Score   int
 	Created int64          // Unix nano timestamp when the word is identified/created.
 	LastHit int64          // Unix nano timestamp when the word is identified/created.
-	tags    DefinitionTags // Tags used to identify definition attributes.
-	hits    int            //Count of hits
-	miss    int            //Count of misses
+	Tags    DefinitionTags // Tags used to identify definition attributes.
+	Hits    int            //Count of hits
+	Miss    int            //Count of misses
 }

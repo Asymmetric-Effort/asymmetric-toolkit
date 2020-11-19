@@ -28,9 +28,5 @@ func (o *Dictionary) Setup(config *Configuration) (err error) {
 		}
 	} // else file does not exist, we may create it.
 	o.fileHandle, err = os.OpenFile(o.Config.FileName, FileAccess, FilePermissions)
-	if err != nil {
-		return err
-	}
-	err = o.LoadHeader() // This should leave our file handle at the first definition.
 	return
 }
