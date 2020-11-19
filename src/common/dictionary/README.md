@@ -13,6 +13,8 @@ package main
 
 import (
     "asymmetric-effort/asymmetric-toolkit/src/common/dictionary"
+    "github.com/google/uuid"
+    "time"
 )
 
 func main(){
@@ -23,7 +25,7 @@ func main(){
         Overwrite: true,
         FormatVersion: 0,
         ScoreVersion: 0,
-        Passphrase: []("passphrase"),
+        Passphrase: []byte("passphrase"),
         CompressionAlg: dictionary.Gzip,
     })
 
@@ -36,14 +38,35 @@ func main(){
         CompressionAlg: dictionary.Gzip,
     })
 
-    sourceHeader:=source.GetHeader()
+    sourceHeader,err:=source.GetHeader()
+    if err != nil {
+        panic(err)
+    }
 
     for definition:=range source.GetDefinition() {
-        if err != nil {
-            panic(err)
-        }
     	target.AddDefinition(&definition)
     }
     target.SetHeader(&sourceHeader)
+
+    newDefinitionId,err:=uuid.NewUUID()
+    if err!= nil{
+        panic(err)
+    }
+    
+    var tags DefinitionTags
+        tags.tag
+
+    target.AddDefinition(&dictionary.Definition{
+        Id      :newDefinitionId, //uuid.UUID
+        Word    :"",                    // string
+        Score   :0,                     // int
+        Created :time.Now().UnixNano(), // Unix nano timestamp when the word is identified/created.
+        LastHit :0,                     // Unix nano timestamp when the word is identified/created.
+        Tags    :tags,                  // Tags used to identify definition attributes.
+        Hits    :0,                     // Count of hits
+        Miss    :0,                     // Count of misses
+    })
+
+
 }
 ```
