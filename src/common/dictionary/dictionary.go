@@ -1,35 +1,25 @@
-package dictionary
-
-import (
-	"asymmetric-effort/asymmetric-toolkit/src/common/dictionary/definition"
-	"asymmetric-effort/asymmetric-toolkit/src/common/dictionary/reader"
-	"asymmetric-effort/asymmetric-toolkit/src/common/dictionary/writer"
-	"os"
-)
+package dictionary_old
 
 type Dictionary struct {
-	Read func() string
-	Write func(s string)
-	runtime struct {
-		passphrase *string           //Encryption passphrase (not written to the actual file).
-		fileHandle *os.File          //File handle for reading/writing the actual file.
-		io         struct {
-			reader DictionaryReader.Reader
-			writer DictionaryWriter.Writer
-		}
-	}
-	content struct {
-		header struct {
-			version           [3]byte // file format version
-			compressed        bool    // flag indicates whether compression is used
-			created           int64   // unix timestamp
-			descriptionLength uint16
-			description       []byte
-		}
-		body struct {
-			defCount    uint32 // definition count (number records in body)
-			definitions []definition.Record
-		}
-		footer [32]byte //hash of file up to the footer.
-	}
+	//header
+	//content
+	//footer
+}
+
+type IOMode uint8
+
+const (
+	READ   IOMode = 0
+	WRITE  IOMode = 1
+	CREATE IOMode = 2
+)
+
+func (o *Dictionary) Open(fileName string, mode IOMode)
+
+func (o *Dictionary) Reader() string {
+
+}
+
+func (o *Dictionary) Write(s string) {
+
 }

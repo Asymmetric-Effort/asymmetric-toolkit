@@ -1,5 +1,6 @@
 package dictionary
 
 const (
-	Version string = "0.0.1"
+	FormatVersion uint8 = 1
+	ScoreVersion uint8 = 1
 )
