@@ -6,5 +6,5 @@ type Configuration struct {
 	FormatVersion  Version
 	ScoreVersion   Version
 	passphrase     []byte
-	compressionAlg CompressionAlgorithms
+	compressionAlg ioCompression
 }

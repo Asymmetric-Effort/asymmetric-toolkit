@@ -5,13 +5,12 @@ import (
 	gzipCompression "compress/gzip"
 )
 
-const CompressionHeader = "Asymmetric-Toolkit(GZIP)"
-
 func (o *ioCompression) Gzip(in *[]byte) (out *[]byte) {
 	var buf bytes.Buffer
 
 	// Write gzipped data to the client
 	g, err := gzipCompression.NewWriterLevel(&buf, gzipCompression.BestSpeed)
+	g.Name=CompressionHeader
 	if err != nil {
 		panic(err)
 	}

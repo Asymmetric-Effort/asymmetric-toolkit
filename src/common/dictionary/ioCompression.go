@@ -6,3 +6,7 @@ const (
 	noCompress = 0
 	gzip       = 1
 )
+
+const (
+	CompressionHeader = "Asymmetric-Toolkit(GZIP)"
+)

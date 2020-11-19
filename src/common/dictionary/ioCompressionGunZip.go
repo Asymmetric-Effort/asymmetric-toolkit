@@ -1,6 +1,7 @@
 package dictionary
 
 import (
+	"asymmetric-effort/asymmetric-toolkit/src/common/errors"
 	"bytes"
 	gzipCompression "compress/gzip"
 	"fmt"
@@ -15,6 +16,7 @@ func (o *ioCompression) GunZip(in *[]byte) (out *[]byte) {
 	if err != nil {
 		panic(err)
 	}
+	errors.Assert(g.Name == CompressionHeader, CompressionHeader+" mismatch")
 
 	data, err = ioutil.ReadAll(g)
 	if err != nil {
