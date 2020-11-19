@@ -1,6 +1,9 @@
 package dictionary
 
+import "os"
+
+
 const (
-	FormatVersion uint8 = 1
-	ScoreVersion uint8 = 1
+	FileAccess      = os.O_RDWR
+	FilePermissions = 0644
 )
