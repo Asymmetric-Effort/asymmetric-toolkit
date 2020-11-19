@@ -51,7 +51,6 @@ func (o *CommandLine) SetDefaults(spec *Specification) (err error) {
 			}
 		}
 	}
-
 	//
 	// return result (no error expected here).
 	//

@@ -14,6 +14,6 @@ func TestCliConstants(t *testing.T) {
 	errors.Assert(ErrFileOpenFailed == 12, "Expected 12")
 	errors.Assert(ErrFileRead == 13, "Expected 13")
 
-	errors.Assert(MissingArgumentsMessage == "Missing arguments (use --help for usage)",
+	errors.Assert(ErrMsgMissingArguments == "\n\tMissing arguments (use --help for usage)\n",
 		"Expected string mismatch")
 }

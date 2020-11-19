@@ -12,5 +12,10 @@ const (
 	ErrFileOpenFailed = 12 // Failed to open file
 	ErrFileRead       = 13 // File read operation error.
 
-	MissingArgumentsMessage = "Missing arguments (use --help for usage)"
+	ErrMsgMissingArguments = "\n\tMissing arguments (use --help for usage)\n"
+	ErrMsgEmptyInputFilename = "empty input filename"
+	ErrMsgEmptyOutputFilename = "empty output filename"
+	ErrMsgInputFileNotFound = "input file not found"
+	ErrMsgOutputFileNotFound = "output file not found"
+	ErrMsgOutputFileExists = "output file exists (use --force to overwrite)"
 	)
