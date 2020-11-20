@@ -2,17 +2,19 @@ package tags
 
 import (
 	"asymmetric-effort/asymmetric-toolkit/src/common/errors"
+	"fmt"
 	"testing"
 )
 
-func TestString_Add(t *testing.T){
-	var tag String = NewString()
-
-	tag.Add("test1","myString1")
-
-	errors.Assert(tag["test1"]=="myString1","expect true")
-
-	tag.Add("test2","myString2")
-
-	errors.Assert(tag["test2"]=="myString2","expect false")
+func TestString_Add(t *testing.T) {
+	o := NewString()
+	for i := 1; i < 255; i++ {
+		tagName := fmt.Sprintf("test%d", i)
+		o.Add(tagName, "1.0")
+		errors.Assert(o[tagName] == "1.0", "expect true")
+	}
+	defer func() { recover() }()
+	o.Add("Too many", "1.0")
+	o.Add("Too many", "2.0")
+	panic("Expected error for too many.  It didn't happen.")
 }
