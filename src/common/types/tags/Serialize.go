@@ -3,6 +3,7 @@ package tags
 import (
 	"asymmetric-effort/asymmetric-toolkit/src/common/misc"
 	"bytes"
+	"fmt"
 )
 
 func (o *String) Serialize() []byte {
@@ -13,5 +14,6 @@ func (o *String) Serialize() []byte {
 		buf.Write([]byte(key))                           // key (bytes)
 		buf.Write([]byte(value))                         // value (bytes)
 	}
+	fmt.Println("String::Serialize(): start d=", buf.Bytes())
 	return buf.Bytes()
 }
