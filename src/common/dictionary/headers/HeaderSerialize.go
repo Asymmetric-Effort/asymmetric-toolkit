@@ -1,4 +1,4 @@
-package dictionary
+package headers
 
 import (
 	"fmt"
