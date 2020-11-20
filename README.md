@@ -10,16 +10,17 @@ Note these milestones are not exhaustive but provide a summary of latest efforts
 * [Documentation](docs/README.md).
 * [common/cli](src/common/cli/README.md) is working.  Tests written. [clidev](src/tools/clidev/README.md) is
   ready, providing an example implementation of [common/cli](src/common/cli/README.md).
+* [common/types/tags](src/common/types/tags/README.md) is now complete.
+* [common/logger](src/common/logger/README.md) is feature complete.
 
 ### ToDo:
-* Working on [common/logger](src/common/logger/README.md) to provide rich, high-cardinality structured event logging
-  to stdout, file or syslog ensuring the efficient use of network and system resources.  This leaves the path open
-  for a compression and encryption layer to our logging strategy.
+* Working on [tools/dictionary/createDictionary](src/tools/dictionary/createDictionary/README.md) and the
+[common/dictionary](src/common/dictionary/README.md) to finish out the dictionary writer then the dictionary reader
+facilities.  These will ingest textfile dictionaries and output proprietary dictionary files.
 * Continue work on [dnsEnum](src/tools/dnsenum/README.md).
   > This tool is our first attempt at and end-to-end golang solution within the framework.  Proof-of-concept efforts
-  > have been the basis for all work performed within the project thus far.  Now with 
-  > [common/cli](src/common/cli/README.md) finished, we can refactor existing code to implement 
-  > [common/cli](src/common/cli/README.md) and move forward to the next hurdle.
+  > have been the basis for all work performed within the project thus far.  
+  > The tool will require [common/dictionary](src/common/dictionary/README.md) and at least one dictionary file.
 
 ## Purpose:
 * To Provide a thin set of compact, container-based pen testing tools written in golang,
