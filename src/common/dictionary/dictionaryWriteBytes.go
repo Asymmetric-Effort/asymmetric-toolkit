@@ -1,5 +1,5 @@
 package dictionary
 
-func (o *Dictionary) WriteBytes(*[]byte) {
+func (o *Descriptor) WriteBytes(*[]byte) {
 	//
 }

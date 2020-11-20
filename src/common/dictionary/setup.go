@@ -1,7 +1,7 @@
 package dictionary
 
 /*
-	Dictionary::Setup() will initialize the configuration object by consuming the object passed by caller
+	Descriptor::Setup() will initialize the configuration object by consuming the object passed by caller
 	and mapping it by reference to the internal pointer.  Then we open the dictionary file specified in the
 	Configuration, load its header and setup our encryption/compression layer.
 */
@@ -11,7 +11,7 @@ import (
 	"os"
 )
 
-func (o *Dictionary) Setup(config *Configuration) (err error) {
+func (o *Descriptor) Setup(config *Configuration) (err error) {
 	o.Config = config //Load configuration from parent.
 
 	if o.fileHandle != nil {

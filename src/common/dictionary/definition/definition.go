@@ -7,16 +7,16 @@ package definition
 */
 import (
 	"asymmetric-effort/asymmetric-toolkit/src/common/types/tags"
+	"github.com/google/uuid"
 )
 
 type Descriptor struct {
-	Id      uint32
-	Word    string
-	Score   int
-	Created int64       // Unix nano timestamp when the word is identified/created.
-	LastHit int64       // Unix nano timestamp when the word is identified/created.
+	Id      uuid.UUID   // Definition Identifier
+	Score   uint        // weighted score.
+	Created uint64      // Unix nano timestamp when the word is identified/created.
+	LastHit uint64      // Unix nano timestamp when the word is identified/created.
+	Hits    uint32      //Count of hits
+	Miss    uint32      //Count of misses
+	Word    string      // string word (cleartext)
 	Tags    tags.String // Tags used to identify definition attributes.
-	Hits    int         //Count of hits
-	Miss    int         //Count of misses
 }
-

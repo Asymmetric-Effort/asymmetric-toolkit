@@ -8,6 +8,7 @@ ciphertext which will not encounter binary storage issues in github.
 
 
 ## Usage
+The following is a comprehensive example of all features of the reader/writer dictionary:
 ```go
 package main
 
@@ -53,8 +54,9 @@ func main(){
         panic(err)
     }
     
-    var tags DefinitionTags
-        tags.tag
+    var tags= dictionary.DefinitionTags{
+        "my_tag":"my_value",
+    }
 
     target.AddDefinition(&dictionary.Definition{
         Id      :newDefinitionId, //uuid.UUID

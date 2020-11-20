@@ -1,17 +1,19 @@
 package definition
 
-import "asymmetric-effort/asymmetric-toolkit/src/common/types/tags"
+import (
+	"bytes"
+	"encoding/gob"
+)
 
-func (o *Descriptor) Deserialize(data *[]byte) {
+func (o *Descriptor) Deserialize(in *[]byte) {
 	if o == nil {
 		panic("nil Definition struct")
 	}
-	o.Id = 0               // Definition (word) UUID identifier
-	o.Word = ""            // Definition (word) string
-	o.Score = 0            // int score
-	o.Created = 0          // Unix nano timestamp when the word is identified/created.
-	o.LastHit = 0          // Unix nano timestamp when the word is identified/created.
-	o.Tags = tags.String{} // Tags used to identify definition attributes.
-	o.Hits = 0             // Count of hits
-	o.Miss = 0             // Count of misses
+	var data Descriptor
+	dec := gob.NewDecoder(bytes.NewReader(*in))
+	err := dec.Decode(&data)
+	if err != nil {
+		panic(err)
+	}
+	*o=data
 }
