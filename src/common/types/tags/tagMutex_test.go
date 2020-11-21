@@ -1,8 +1,8 @@
 package tags
 
-func (o *Tag)Count() int{
+import "testing"
+
+func TestTagMutex(t *testing.T){
 	mutex.Lock()
 	defer mutex.Unlock()
-
-	return len(*o)
 }

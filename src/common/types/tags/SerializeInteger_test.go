@@ -7,12 +7,13 @@ import (
 	"testing"
 )
 
-func TestTag_Serialize(t *testing.T) {
+func TestTag_SerializeInteger(t *testing.T) {
 	key := "name"
-	o := NewTag()
-	o.Add(key)
-	tag := o.Serialize()
-	expectedTag := []byte{1, 0, 4, 110, 97, 109, 101}
+	value := 1
+	o := NewInteger()
+	o.Add(key, value)
+	tag := o.SerializeInteger()
+	expectedTag := []byte{1, 3, 4, 110, 97, 109, 101, 1, 0, 0, 0}
 	fmt.Println("    :0.......8......F.")
 	fmt.Println("tag1:", tag)
 	fmt.Println("tag2:", expectedTag)

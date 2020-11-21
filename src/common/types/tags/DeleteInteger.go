@@ -1,7 +1,10 @@
 package tags
 
 func (o *Integer)  Delete(key string) (hadRecord bool) {
-	if o.Find(key){
+	mutex.Lock()
+	defer mutex.Unlock()
+
+	if _, ok := (*o)[key];ok {
 		delete(*o,key)
 		hadRecord=true
 	}

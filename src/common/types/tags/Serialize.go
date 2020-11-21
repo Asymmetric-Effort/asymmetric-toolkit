@@ -1,19 +1,35 @@
 package tags
 
+/*
+	Tag::Serialize() is going to serialize the Tag struct to produce a byte slice.
+
+		<tagCount:byte>
+		<tagType:byte(0)><keyLength:byte><key:[]byte>
+		<tagType:byte(0)><keyLength:byte><key:[]byte>
+		.
+		.
+		.
+		<tagType:byte(0)><keyLength:byte><key:[]byte>
+*/
 import (
-	"asymmetric-effort/asymmetric-toolkit/src/common/misc"
 	"bytes"
-	"fmt"
 )
 
-func (o *String) Serialize() []byte {
+func (o *Tag) Serialize() []byte {
+	mutex.Lock()
+	defer mutex.Unlock()
+
 	buf := bytes.Buffer{}
-	for key, value := range *o {
-		buf.Write(misc.Uint32ToByte(uint32(len(key))))   // Length of key
-		buf.Write(misc.Uint32ToByte(uint32(len(value)))) // Length of value
-		buf.Write([]byte(key))                           // key (bytes)
-		buf.Write([]byte(value))                         // value (bytes)
+
+	buf.WriteByte(byte(len(*o))) // tagCount (uint8: 1 byte)
+	for key, _ := range *o {
+		buf.WriteByte(byte(BasicTag)) // BasicTag is only a key (no value).
+		buf.WriteByte(byte(len(key))) // Length of key (Byte)
+		buf.Write([]byte(key))        // key (bytes)
+
 	}
-	fmt.Println("String::Serialize(): start d=", buf.Bytes())
+
+	//fmt.Println("String::Serialize(): start d=", buf.Bytes())
+
 	return buf.Bytes()
 }

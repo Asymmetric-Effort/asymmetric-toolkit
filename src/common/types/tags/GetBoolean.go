@@ -1,7 +1,10 @@
 package tags
 
 func (o *Boolean)Get(key string) bool {
-	if o.Find(key){
+	mutex.Lock()
+	defer mutex.Unlock()
+
+	if _, ok := (*o)[key];ok {
 		return (*o)[key]
 	}
 	panic("Key does not exist")
