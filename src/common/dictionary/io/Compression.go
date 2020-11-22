@@ -1,6 +1,8 @@
-package dictionary
-
-type ioCompression uint8
+package io
+/*
+	Dictionary compression facility.
+ */
+type Compression uint8
 
 const (
 	NoCompress = 0

@@ -1,5 +1,7 @@
-package dictionary
+package io
+/*
 
+ */
 import (
 	"asymmetric-effort/asymmetric-toolkit/src/common/errors"
 	"fmt"
@@ -7,7 +9,7 @@ import (
 )
 
 func TestIoCompression_Gzip(t *testing.T){
-	var o ioCompression
+	var o Compression
 	in := []byte("test")
 	fmt.Println("Stage 1 (start)")
 	out := o.Gzip(&in)

@@ -1,5 +1,7 @@
-package dictionary
-
+package io
+/*
+	Compression::GunZip - Facilitates decompression using GZIP library.
+ */
 import (
 	"asymmetric-effort/asymmetric-toolkit/src/common/errors"
 	"bytes"
@@ -8,7 +10,7 @@ import (
 	"io/ioutil"
 )
 
-func (o *ioCompression) GunZip(in *[]byte) (out *[]byte) {
+func (o *Compression) GunZip(in *[]byte) (out *[]byte) {
 	var buf bytes.Buffer
 	var data []byte
 

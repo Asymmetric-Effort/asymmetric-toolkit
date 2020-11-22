@@ -1,16 +1,19 @@
-package dictionary
+package io
 
+/*
+	Compression::Gzip() - Facilitates compression using the GZIP library.
+ */
 import (
 	"bytes"
 	gzipCompression "compress/gzip"
 )
 
-func (o *ioCompression) Gzip(in *[]byte) (out *[]byte) {
+func (o *Compression) Gzip(in *[]byte) (out *[]byte) {
 	var buf bytes.Buffer
 
 	// Write gzipped data to the client
 	g, err := gzipCompression.NewWriterLevel(&buf, gzipCompression.BestSpeed)
-	g.Name=CompressionHeader
+	g.Name = CompressionHeader
 	if err != nil {
 		panic(err)
 	}

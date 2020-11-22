@@ -17,6 +17,6 @@ type Descriptor struct {
 	LastHit uint64      // Unix nano timestamp when the word is identified/created.
 	Hits    uint32      //Count of hits
 	Miss    uint32      //Count of misses
-	Word    string      // string word (cleartext)
 	Tags    tags.String // Tags used to identify definition attributes.
+	Word    string      // string word (cleartext)
 }
