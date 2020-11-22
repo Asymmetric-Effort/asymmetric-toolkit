@@ -10,12 +10,18 @@ The top-level uses the `IO` object to `Encode()` or `Decode()` information:
 ```go
 package main
 
+import (
+	"asymmetric-effort/asymmetric-toolkit/src/common/dictionary/io"
+    "fmt"
+)
+
 func main(){
-var io IO 
-    io.Setup(io.Gzip, "mypassphrase")
-    in:="My source text."
-    out:=IO.encode(&in)
-    verify:=*IO.decode(&out)
+var i io.IO 
+    i.Setup(io.Gzip, "myPassphrase")
+    in:=[]byte("My source text.")
+    out:=i.Encode(&in)
+    verify:=*i.Decode(out)
+    fmt.Println(verify)
 }
 ```
 These two methods will wrap the compression and encryption processes.
