@@ -9,6 +9,13 @@ import (
 	"os"
 )
 
+func closeFile(fileHandle *os.File) {
+	err := fileHandle.Close()
+	if err != nil {
+		panic(err)
+	}
+}
+
 func main() {
 	exit, msg := createDictionary(os.Args[1:])
 	fmt.Println(msg)

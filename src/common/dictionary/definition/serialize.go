@@ -10,7 +10,7 @@ import (
 )
 
 func (o *Descriptor) Serialize(crypto io.Cryptography, compress io.Compression) []byte {
-	return crypto.Encrypt(compress.Pack(func() *[]byte {
+	return *crypto.Encrypt(compress.Pack(func() *[]byte {
 		buf := bytes.Buffer{}
 		buf.Write(misc.UuidSerialize(o.Id))               // ...ID (16-bytes)
 		buf.Write(misc.Uint32ToByte(uint32(len(o.Word)))) // ...Word length (32 bits)

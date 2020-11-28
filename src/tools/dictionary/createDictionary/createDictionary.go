@@ -2,6 +2,7 @@ package main
 
 import (
 	"asymmetric-effort/asymmetric-toolkit/src/common/cli"
+	"asymmetric-effort/asymmetric-toolkit/src/common/dictionary"
 	"asymmetric-effort/asymmetric-toolkit/src/common/file"
 	"asymmetric-effort/asymmetric-toolkit/src/common/logger"
 	"bufio"
@@ -9,89 +10,46 @@ import (
 	"os"
 )
 
+type Dictionary struct {
+	handle   *os.File
+	position uint32
 
-
-type DefinitionScore int
-
-type SourceFile struct {
-	name      string
-	handle    *os.File
-	hashtable HashTable
+	header DictionaryFileHeader
 }
 
-type DictionaryHeader struct {
-	version uint32
-}
-
-type DictionaryDefinition struct {
-	Id      []byte
-	Word    string
-	Score   DefinitionScore
-	Origin  DefinitionOrigin
-	Type    DefinitionType
-	Created int64
-	LastHit int64
-}
-
-type DictionaryFile struct {
-	name    string
-	handle  *os.File
-	header  DictionaryHeader
-	content []DictionaryDefinitions
-	footer  DictionaryFooter
-}
-
-func closeFile(fileHandle *os.File) {
-	err := fileHandle.Close()
-	if err != nil {
-		panic(err)
-	}
-}
-func writeDefinition(fileHandle *os.File, config *Configuration) (exit int, msg string) {
-	//
-	return
-}
-
-func writeHeader(fileHandle *os.File, config *Configuration) (exit int, msg string) {
-	//
-	return
-}
-
-func writeFooter(fileHandle *os.File, config *Configuration) (exit int, msg string) {
-	//
-	return
-}
-
-func openOutputFile(fileName string) *os.File {
-	f, err := os.Create(config.OutputFile)
-	if err != nil {
-		panic(err)
-	}
-	return f
+type DictionaryFileHeader struct {
+	FileVersion  uint16 //
+	ScoreVersion uint16 //
+	ReservedA    uint8  //                        +--------------------------=+
+	ReservedB    uint8  //                        |  Dictionary Header Flags  |
+	ReservedC    uint8  //                        +---------------------------+
+	//						//           F P          |FOE - File Operation Error |
+	//						//           O F F        |PFL - Pending File Lock    |
+	//						// ----------E L L        | FL - File Lock            |
+	Flags            uint8  // 7 6 5 4 3 2 1 0        +--------------------------=+
+	TagTableOffset   uint32 // Offset for TagTable
+	DefinitionOffset uint32 // Offset for DefinitionTable
 }
 
 func createDictionary(args []string) (exit int, msg string) {
-	exit = cli.ErrSuccess // Return with no errors
-	msg = "OK"
-	/*
-		Parse the commandline arguments and configure our internal state.
-	*/
+	var log logger.Logger
+	exit, msg = cli.ErrSuccess, "OK" // Return with no errors
+	//
+	//	Parse the commandline arguments and configure our internal state.
+	//
 	config, exitProgram, err := ProcessSpecification(args)
 	switch {
-	/*
-		Verify the commandline arguments are okay.
-	*/
+	//
+	//	Verify the commandline arguments are okay.
+	//
 	case err != nil:
 		return cli.ErrArgumentParseError, fmt.Sprintf("Error: %v", err)
 	case exitProgram || (config == nil):
 		return cli.ErrSuccess, "Exit Success"
 	}
-	/*
-		Configure our logger.
-	*/
-	//goland:noinspection GoNilness
-	var log logger.Logger
-	log.Setup(&config.Log)
+	//
+	// Evaluate inputs
+	//
 	switch {
 	case config.InputFile == "":
 		return cli.ErrBadFilename, "Error: " + cli.ErrMsgEmptyInputFilename
@@ -105,24 +63,26 @@ func createDictionary(args []string) (exit int, msg string) {
 	case file.FileExists(config.OutputFile) && !config.Force:
 		return cli.ErrBadFilename, "Error: " + cli.ErrMsgOutputFileExists
 	}
-
+	//
+	// Configure our logger.
+	//
+	log.Setup(&config.Log)
+	//
+	// Open the source file.
+	//
 	sourceFile, err := os.Open(config.InputFile)
 	if err != nil {
 		return cli.ErrFileOpenFailed, fmt.Sprintf("Failed to Open file (Error: %v)", err)
 	}
 	defer closeFile(sourceFile)
 
-	outputFile := openOutputFile(config.OutputFile)
-	defer closeFile(outputFile)
+	var dictionary dictionary.File
 
-	exit, msg = writeHeader(&outputFile, config)
-	if exit != cli.ErrSuccess {
-		return exit, msg
+	err := dictionary.Setup(config)
+	if err != nil {
+		panic(err)
 	}
-
-	var wordHash map[hash]struct{}
-	{
-	}
+	defer dictionary.Teardown()
 
 	scanner := bufio.NewScanner(sourceFile)
 	for scanner.Scan() {
@@ -130,11 +90,7 @@ func createDictionary(args []string) (exit int, msg string) {
 			return cli.ErrFileRead, fmt.Sprintf("failed to read from file (Error: %v)", err)
 		}
 		word := scanner.Text()
-		exit, msg = writeDefinition(&outputFile, word)
-		if exit != cli.ErrSuccess {
-			return exit, msg
-		}
+		dictionary.WriteWord(word)
 	}
-	exit, msg = writeFooter(&outputFile, config)
 	return
 }
