@@ -24,7 +24,7 @@ func (o *File) WordWrite(offset int64, word *Word) (err error) {
 	//
 	// Write header
 	//
-	fmt.Printf("file::WordWrite() - header:%b\n", header)
+	fmt.Printf("\tfile::WordWrite() - header:%b\n", header)
 	if err= binary.Write(&buf, binary.BigEndian, header); err != nil {
 		return fmt.Errorf("\tError  writing header:%v", err)
 	}
@@ -37,19 +37,22 @@ func (o *File) WordWrite(offset int64, word *Word) (err error) {
 	//
 	// Write Parent address
 	//
+	fmt.Printf("\tword.Parent (%x) of size %d bytes\n",word.Parent,parentPtrSz)
 	if err = writeVarLenAddressToBuf(&buf, word.Parent, parentPtrSz); err != nil {
 		return fmt.Errorf("\tError  writing Parent (%x):%v", word.Parent, err)
 	}
 	//
 	// Write LHS address
 	//
-	if err = writeVarLenAddressToBuf(&buf, word.Lhs, parentPtrSz); err != nil {
+	fmt.Printf("\tword.Lhs (%x) of size %d bytes\n",word.Lhs,lhsPtrSz)
+	if err = writeVarLenAddressToBuf(&buf, word.Lhs, lhsPtrSz); err != nil {
 		return fmt.Errorf("\tError  writing Lhs (%x):%v", word.Parent, err)
 	}
 	//
 	// Write RHS Address
 	//
-	if err = writeVarLenAddressToBuf(&buf, word.Rhs, parentPtrSz); err != nil {
+	fmt.Printf("\tword.Rhs (%x) of size %d bytes\n",word.Rhs,rhsPtrSz)
+	if err = writeVarLenAddressToBuf(&buf, word.Rhs, rhsPtrSz); err != nil {
 		return fmt.Errorf("\tError  writing Rhs (%x):%v", word.Parent, err)
 	}
 	//

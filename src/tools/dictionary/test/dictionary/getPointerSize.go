@@ -1,21 +1,27 @@
 package dictionary
 
-import "math"
+import (
+	"fmt"
+	"math"
+)
 
-func getPointerSize(p int64) uint32 {
+func getPointerSize(p int64) (result uint32) {
 	/*
 		output should be 0...255
 		output must be 32-bit to allow caller mask operations.
 	*/
 	switch {
 	case p <= math.MaxUint8:
-		return 1
+		result= 1
 	case p <= math.MaxUint16:
-		return 2
+		result= 2
 	case p <= math.MaxUint32:
-		return 4
+		result=4
 	case uint(p) <= math.MaxUint64:
-		return 8
+		result=8
+	default:
+		panic("dictionary.GetPointerSize(): PointerSize out of bounds")
 	}
-	panic("dictionary.GetPointerSize(): PointerSize out of bounds")
+	fmt.Printf("\t\tdictionary.getPointerSize(): result:%d\n",result)
+	return result
 }

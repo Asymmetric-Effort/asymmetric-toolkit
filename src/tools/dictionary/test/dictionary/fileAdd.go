@@ -8,7 +8,7 @@ import (
 	"fmt"
 )
 
-func (o *File) Add(wordStr *string) {
+func (o *File) Add(wordStr *string, prevNode int64) (parentPtr int64) {
 
 	o.mutex.Lock()
 	defer o.mutex.Unlock()
@@ -17,6 +17,7 @@ func (o *File) Add(wordStr *string) {
 	//
 	var newWord Word
 	newWord.Set(wordStr, 0, 0)
+	newWord.Parent = prevNode
 	//
 	//Read current root word and get the word string.
 	//
@@ -31,7 +32,8 @@ func (o *File) Add(wordStr *string) {
 	}()
 
 	if rootWord == nil {
-		fmt.Println("\tFile::Add() DEBUG: tree is at root (", o.Header.RootWord, ")")
+		o.Header.RootWord= newWord.Parent
+		fmt.Printf("\tFile::Add() DEBUG: tree is at root (%x)\n", o.Header.RootWord)
 	} else {
 		if *rootWord < newWord.Word {
 			fmt.Printf("\tFile::Add() DEBUG: tree is lhs (%x)\n", o.Header.RootWord)
@@ -69,4 +71,6 @@ func (o *File) Add(wordStr *string) {
 	fmt.Println("\tFile::Add() Updating file header")
 	o.WriteHeader(o.Header)
 	fmt.Println("\tFile::Add() header update successful")
+	parentPtr = newWord.Parent
+	return parentPtr
 }

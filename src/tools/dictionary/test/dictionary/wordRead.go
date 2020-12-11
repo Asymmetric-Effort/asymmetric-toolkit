@@ -24,22 +24,24 @@ func (o *File) WordRead(offset int64) *Word {
 	fmt.Printf("\tFile::WordRead()  offset:%x\n", offset)
 	pos, o.Err = o.Handle.Seek(offset, 0)
 	errors.Assert(o.Err == nil, fmt.Sprintf("File::WordRead(): post-seek error: %v", o.Err))
-	errors.Assert(pos == offset, fmt.Sprintf("Expected to have moved to target position:%x but at %x", offset, pos))
+	errors.Assert(pos == offset, fmt.Sprintf("Expected to have moved to target "+
+		"position:%x but at %x", offset, pos))
 	fmt.Printf("\tFile::WordRead() curr position:%x\n", pos)
 	//
-	//
+	// Read the word header
 	//
 	if o.Err = binary.Read(o.Handle, binary.BigEndian, &header); o.Err != nil {
 		panic(fmt.Sprintf("\tFile::WordRead(): Error Reading file "+
 			"(header:%x), error: %v\n", header, o.Err))
 	}
-	fmt.Printf("\tFile::WordRead(): OK (header:%x)\n", header)
+	fmt.Printf("\tFile::WordRead(): OK (header: %b)\n", header)
 	//
 	//	Header is read.  Parsing it into the values...
 	//
-	parentPtrSz = uint8((header & 65280) >> 16)
-	lhsPtrSz = uint8((header & 255) >> 8)
 	rhsPtrSz = uint8(header & 255)
+	lhsPtrSz = uint8((header >> 8) & 255)
+	parentPtrSz = uint8((header >> 16) & 255)
+
 	fmt.Printf("\tFile::WordRead(): "+
 		"parentPtrSz:%x "+
 		"lhsPtrSz:%x "+
@@ -47,51 +49,72 @@ func (o *File) WordRead(offset int64) *Word {
 	//
 	// Reading the word size for the new field.
 	//
-	wordSz, err = readField(o.Handle, 2)
+	wordSz, err = readHeaderField(o.Handle, wordSizeLength)
 	if err != nil {
 		panic(fmt.Sprintf("\tFile::WordRead() Error reading wordSz: %v", o.Err))
 	}
 	fmt.Printf("\tFile::WordRead(): wordSz:%d [%x]\n", wordSz, wordSz)
 	//
+	// Read parentPtr
 	//
-	//
-	word.Parent, err = readField(o.Handle, parentPtrSz)
+	word.Parent, err = readHeaderField(o.Handle, parentPtrSz)
+	errors.Assert(word.Parent > 0, "Expect non-nil (non-zero) parent pointer.")
 	if err != nil {
 		panic(fmt.Sprintf("\tFile::WordRead() Error reading Parent: %v", o.Err))
 	}
-	word.Lhs, err = readField(o.Handle, lhsPtrSz)
+	fmt.Printf("\tFile::WordRead(): word.Parent:%d [%x]\n", word.Parent, word.Parent)
+	//
+	// Read LhsPtr
+	//
+	word.Lhs, err = readHeaderField(o.Handle, lhsPtrSz)
 	if err != nil {
 		panic(fmt.Sprintf("\tFile::WordRead() Error reading Lhs: %v", o.Err))
 	}
-	word.Rhs, err = readField(o.Handle, rhsPtrSz)
+	fmt.Printf("\tFile::WordRead(): word.Lhs:%d [%x]\n", word.Lhs, word.Lhs)
+	//
+	// Read RhsPtr
+	//
+	word.Rhs, err = readHeaderField(o.Handle, rhsPtrSz)
 	if err != nil {
 		panic(fmt.Sprintf("\tFile::WordRead() Error reading Rhs: %v", o.Err))
 	}
+	fmt.Printf("\tFile::WordRead(): word.Rhs:%d [%x]\n", word.Rhs, word.Rhs)
+	//
+	//  Read Word from disk
+	//
 	word.Word = func() string {
+		fmt.Printf("\tFile::WordRead(): reading word data\n")
+		//
+		//      wordSz is right (4 chars) but position is not.
+		//
 		buf := make([]byte, wordSz)
 		if o.Err = binary.Read(o.Handle, binary.BigEndian, &buf); o.Err != nil {
-			panic(fmt.Sprintf("\tFile::WordRead() Error reading word: %v", o.Err))
+			panic(fmt.Sprintf("\tFile::WordRead() Error reading word: %v\n", o.Err))
 		}
+		fmt.Printf("\tFile::WordRead(): word read: %s %v", string(buf), buf)
 		return string(buf)
 	}()
-	if o.Err = binary.Read(o.Handle, binary.BigEndian, &word.Lhs); o.Err != nil {
-		panic(o.Err)
-	}
-	if o.Err = binary.Read(o.Handle, binary.BigEndian, &word.Rhs); o.Err != nil {
-		panic(o.Err)
-	}
+	//if o.Err = binary.Read(o.Handle, binary.BigEndian, &word.Lhs); o.Err != nil {
+	//	panic(o.Err)
+	//}
+	//if o.Err = binary.Read(o.Handle, binary.BigEndian, &word.Rhs); o.Err != nil {
+	//	panic(o.Err)
+	//}
 	errors.Assert(o.Err == nil, fmt.Sprintf("\tFile::WordRead(): post-read error: %v", o.Err))
 	return &word
 }
 
-func readField(f *os.File, sz uint8) (result int64, err error) {
+func readHeaderField(f *os.File, sz uint8) (result int64, err error) {
 	//
 	// Read the word file with a given size.
 	//
-	fmt.Printf("\tFile::readField(): starting (sz:%d)\n", sz)
+	fmt.Printf("\tFile::readHeaderField(): starting (sz:%d)\n", sz)
+	if sz == 0 {
+		return 0, nil
+	}
 	buf := make([]byte, sz)
 	if err = binary.Read(f, binary.BigEndian, &buf); err != nil {
-		panic(fmt.Sprintf("\t\tFile::readField() Error reading word: %v", err))
+		panic(fmt.Sprintf("\t\tFile::readHeaderField() Error reading word: %v", err))
 	}
 	switch sz {
 	case 1: // Byte
@@ -106,6 +129,6 @@ func readField(f *os.File, sz uint8) (result int64, err error) {
 	default:
 		panic(fmt.Sprintf("\t\t\tUnsupported field width in readField():%d", sz))
 	}
-	fmt.Printf("\tFile::readField(): terminate (result:%x)\n", result)
+	fmt.Printf("\tFile::readHeaderField(): terminate (result:%x)\n", result)
 	return result, nil
 }
