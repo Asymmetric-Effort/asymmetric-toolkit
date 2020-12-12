@@ -11,6 +11,3 @@ const (
 	filePermissions = 0600
 )
 
-const (
-	fileVersionAddr = 0
-)
